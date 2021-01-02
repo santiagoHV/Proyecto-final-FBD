@@ -199,7 +199,7 @@
             <Spinner layoutX="158.0" layoutY="342.0" prefHeight="25.0" prefWidth="67.0" />
             <Spinner layoutX="253.0" layoutY="342.0" prefHeight="25.0" prefWidth="67.0" />
             <Spinner layoutX="376.0" layoutY="342.0" prefHeight="25.0" prefWidth="67.0" />
-            <Button layoutX="866.0" layoutY="590.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="310.0" text="Button" />
+            <Button layoutX="866.0" layoutY="590.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="310.0" text="Ingrese los datos del títular" />
             <Separator layoutX="471.0" layoutY="285.0" orientation="VERTICAL" prefHeight="95.0" prefWidth="5.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="95.0" layoutX="486.0" layoutY="286.0" stroke="BLACK" strokeType="INSIDE" width="223.0" />
          </children>
