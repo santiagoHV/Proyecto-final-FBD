@@ -20,22 +20,22 @@
     -fx-background-color: white;
 }
 .navbar__button--reverve{
-    -fx-background-image: url("../../../../Proyecto/Proyecto_BD/src/Images/reserve.png");
+    -fx-background-image: url("../images/reserve.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
 .navbar__button--checkin{
-    -fx-background-image: url("../../../../Proyecto/Proyecto_BD/src/Images/checkin.png");
+    -fx-background-image: url("../images/checkin.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
 .navbar__button--checkout{
-    -fx-background-image: url("../../../../Proyecto/Proyecto_BD/src/Images/checkout.png");
+    -fx-background-image: url("../images/checkout.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
 .navbar__button--search{
-    -fx-background-image: url("../../../../Proyecto/Proyecto_BD/src/Images/search.png");
+    -fx-background-image: url("../images/search.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }

@@ -8,7 +8,6 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.Controlador_Login">
    <stylesheets>
-      <URL value="@../../assets/css/MP_CSS.css" />
       <URL value="@../../../../assets/css/Login_CSS.css" />
    </stylesheets>
    <children>
