@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.*?>
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.Controlador_Login">
+   <stylesheets>
+      <URL value="@../../../../assets/css/Login_CSS.css" />
+   </stylesheets>
    <children>
-      <AnchorPane id="AnchorDialog" fx:id="BGStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../assets/css/MP_CSS.css">
+      <AnchorPane id="AnchorDialog" fx:id="BGStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
          <children>
             <HBox alignment="CENTER" layoutX="1.0" layoutY="273.0" prefHeight="58.0" prefWidth="600.0" spacing="81.0">
                <children>
@@ -35,6 +39,7 @@
             </Label>
             <Label layoutX="14.0" layoutY="375.0" prefWidth="110.0" text="Tipo De Usuario:" />
          </children>
+
       </AnchorPane>
    </children>
 </StackPane>
