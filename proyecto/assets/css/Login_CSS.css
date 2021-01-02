@@ -1,0 +1,45 @@
+#BCancelar
+{
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #FF5169;
+    -fx-background-radius: 88;
+    -fx-font-size: 25;
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-effect: dropshadow(two-pass-box, #341111,20,0,3,3);
+}
+
+#BIngresar
+{
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #0cb1d7;
+    -fx-background-radius: 88;
+    -fx-font-size: 25;
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-effect: dropshadow(two-pass-box, #112634,20,0,3,3);
+}
+
+#AnchorDialog
+{
+    -fx-effect: dropshadow(two-pass-box,#000000,15,0,3,3);
+    -fx-background-color: linear-gradient(from 0px 0px to 600px 400px, #414141, #282828);
+}
+
+.label
+{
+    -fx-font-size: 15px;
+    -fx-text-fill: #FFFFFF;
+}
+
+.text-field
+{
+    -fx-text-fill: #FFFFFF;
+    -fx-prompt-text-fill: #b8b8b8;
+}
+
+#IniSesion
+{
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 40;
+    -fx-font-family: "Bebas Neue";
+    -fx-effect: dropshadow(two-pass-box,#000000,15,0,3,3);
+}

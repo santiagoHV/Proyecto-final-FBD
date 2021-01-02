@@ -1,0 +1,13 @@
+.label
+{
+    -fx-text-fill: #c6e7fd;
+    -fx-font-size: 40;
+    -fx-font-family: "Bebas Neue";
+    -fx-effect: dropshadow(two-pass-box,#000000,15,0,3,3);
+}
+
+#BG
+{
+    -fx-effect: dropshadow(two-pass-box,#000000,15,0,3,3);
+    -fx-background-color: linear-gradient(from 0px 0px to 1000px 700px, #fae77f, #fdbaba);
+}

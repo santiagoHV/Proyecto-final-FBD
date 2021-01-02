@@ -1,0 +1,49 @@
+@font-face
+{
+    src: url('../Fuentes/FontsFree-Net-BringHeart-Regular.ttf');
+}
+
+@font-face
+{
+    src: url('../Fuentes/MAXWELL_REGULAR.ttf');
+}
+
+@font-face
+{
+    src: url('../Fuentes/BebasNeue-Regular.ttf');
+}
+
+#ContenMP
+{
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+    -fx-background-color: linear-gradient(from 500px 250px to 1000px 600px, #270902, #481304);
+}
+
+#BIngresar
+{
+    -fx-text-fill: #000000;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 88;
+    -fx-font-size: 37;
+    -fx-font-family: "MAXWELL REGULAR";
+}
+
+#BSalir
+{
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #FF5169;
+    -fx-background-radius: 88;
+    -fx-font-size: 37;
+    -fx-font-family: "MAXWELL REGULAR";
+}
+
+#Titulo
+{
+    -fx-font-family: "Bring Heart";
+    -fx-font-size: 100;
+    -fx-effect: dropshadow(two-pass-box, #000000,15,0.50,3,3);
+}
+
+
+

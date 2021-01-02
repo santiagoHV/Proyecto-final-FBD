@@ -1,0 +1,49 @@
+@font-face
+{
+    src: url('../Fuentes/FontsFree-Net-BringHeart-Regular.ttf');
+}
+
+@font-face
+{
+    src: url('../Fuentes/MAXWELL_REGULAR.ttf');
+}
+
+@font-face
+{
+    src: url('../Fuentes/BebasNeue-Regular.ttf');
+}
+.navbar{
+    -fx-border-style: solid;
+    -fx-border-color: black;
+}
+.navbar__button{
+    -fx-background-color: white;
+}
+.navbar__button--reverve{
+    -fx-background-image: url("../../../../Proyecto/Proyecto_BD/src/Images/reserve.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.navbar__button--checkin{
+    -fx-background-image: url("../../../../Proyecto/Proyecto_BD/src/Images/checkin.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.navbar__button--checkout{
+    -fx-background-image: url("../../../../Proyecto/Proyecto_BD/src/Images/checkout.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.navbar__button--search{
+    -fx-background-image: url("../../../../Proyecto/Proyecto_BD/src/Images/search.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.title-hotel{
+    -fx-background-color: linear-gradient(from 0px 400px to 500px 1200px, #2E1E1E, white);
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+}
