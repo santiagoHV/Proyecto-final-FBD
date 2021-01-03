@@ -208,7 +208,7 @@
          </children>
          <stylesheets>
             <URL value="@../../../../Proyecto/Proyecto_BD/src/CSS/recepcionista_escenas.css" />
-            <URL value="@../../assets/css/recepcionista_escenas.css" />
+            <URL value="@../../../assets/css/recepcionista_escenas.css" />
          </stylesheets></AnchorPane>
    </children>
 </StackPane>
