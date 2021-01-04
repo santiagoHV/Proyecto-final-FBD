@@ -49,7 +49,7 @@
                </font></Label>
             <DatePicker layoutX="486.0" layoutY="212.0" prefHeight="40.0" prefWidth="290.0" />
             <DatePicker layoutX="153.0" layoutY="211.0" prefHeight="40.0" prefWidth="285.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="389.0" layoutX="866.0" layoutY="174.0" stroke="BLACK" strokeType="INSIDE" styleClass="calculadora" width="310.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="303.0" layoutX="866.0" layoutY="174.0" stroke="BLACK" strokeType="INSIDE" styleClass="calculadora" width="310.0" />
             <Label layoutX="155.0" layoutY="166.0" text="Fecha de ingreso" />
             <Label layoutX="487.0" layoutY="170.0" text="Fecha de salida" />
             <Label layoutX="157.0" layoutY="283.0" text="Cantidad de huespedes" />
@@ -201,10 +201,11 @@
             <Spinner layoutX="158.0" layoutY="342.0" prefHeight="25.0" prefWidth="67.0" />
             <Spinner layoutX="253.0" layoutY="342.0" prefHeight="25.0" prefWidth="67.0" />
             <Spinner layoutX="376.0" layoutY="342.0" prefHeight="25.0" prefWidth="67.0" />
-            <Button layoutX="866.0" layoutY="590.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="310.0" text="Ingrese los datos del títular" />
+            <Button layoutX="866.0" layoutY="497.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="310.0" text="Ingrese los datos del títular" />
             <Separator layoutX="471.0" layoutY="285.0" orientation="VERTICAL" prefHeight="95.0" prefWidth="5.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="95.0" layoutX="486.0" layoutY="286.0" stroke="BLACK" strokeType="INSIDE" width="223.0" />
             <Separator layoutX="878.0" layoutY="393.0" prefHeight="4.0" prefWidth="285.0" />
+            <Button layoutX="866.0" layoutY="614.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="310.0" text="Hacer reserva" />
          </children>
          <stylesheets>
             <URL value="@../../../../Proyecto/Proyecto_BD/src/CSS/recepcionista_escenas.css" />
