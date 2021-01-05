@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 
 public class Controlador_home_recepcionista implements Initializable {
 
-    public Button home_button;
     public Button reserve_button;
     public Button checkin_button;
 
