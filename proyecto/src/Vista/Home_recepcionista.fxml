@@ -21,12 +21,12 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="768.0" prefWidth="125.0" styleClass="navbar">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="125.0">
+                  <Button fx:id="reserve_button" onAction="#navigave" mnemonicParsing="false" prefHeight="200.0" prefWidth="125.0">
                      <styleClass>
                         <String fx:value="navbar__button" />
                         <String fx:value="navbar__button--reverve" />
                      </styleClass></Button>
-                  <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="125.0">
+                  <Button fx:id="checkin_button" onAction="#navigave" mnemonicParsing="false" prefHeight="200.0" prefWidth="125.0">
                      <styleClass>
                         <String fx:value="navbar__button" />
                         <String fx:value="navbar__button--checkin" />
@@ -209,7 +209,7 @@
          </children>
          <stylesheets>
             <URL value="@../../../../Proyecto/Proyecto_BD/src/CSS/recepcionista_escenas.css" />
-            <URL value="@../../assets/css/recepcionista_escenas.css" />
+            <URL value="@../../../../assets/css/recepcionista_escenas.css" />
          </stylesheets></AnchorPane>
    </children>
 </StackPane>
