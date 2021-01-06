@@ -1,45 +1,49 @@
-@font-face
-{
+@font-face {
     src: url('../Fuentes/FontsFree-Net-BringHeart-Regular.ttf');
 }
 
-@font-face
-{
+@font-face {
     src: url('../Fuentes/MAXWELL_REGULAR.ttf');
 }
 
-@font-face
-{
+@font-face {
     src: url('../Fuentes/BebasNeue-Regular.ttf');
 }
-.navbar{
+
+.navbar {
     -fx-border-style: solid;
     -fx-border-color: black;
 }
-.navbar__button{
+
+.navbar__button {
     -fx-background-color: white;
 }
-.navbar__button--reverve{
+
+.navbar__button--reverve {
     -fx-background-image: url("../images/reserve.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
-.navbar__button--checkin{
+
+.navbar__button--checkin {
     -fx-background-image: url("../images/checkin.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
-.navbar__button--checkout{
+
+.navbar__button--checkout {
     -fx-background-image: url("../images/checkout.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
-.navbar__button--search{
+
+.navbar__button--search {
     -fx-background-image: url("../images/search.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
-.title-hotel{
+
+.title-hotel {
     -fx-background-color: linear-gradient(from 0px 400px to 500px 1200px, #2E1E1E, white);
     -fx-font-family: "MAXWELL REGULAR";
     -fx-color: white;
