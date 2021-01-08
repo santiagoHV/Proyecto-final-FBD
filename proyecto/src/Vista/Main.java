@@ -19,7 +19,7 @@ public class Main extends Application {
 
         //Forma 1 (Youtube)
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("../Vista/MenuInicio.fxml"));
+        loader.setLocation(Main.class.getResource("MenuInicio.fxml"));
         Pane ventana = (Pane) loader.load();
 
         //Comentario chopeadito

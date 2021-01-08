@@ -51,3 +51,14 @@
     -fx-font-size: 40px;
     -fx-font-weight: bold;
 }
+
+.map-red
+{
+    -fx-border-color: #d70000;
+}
+
+.map-green
+{
+    -fx-border-color: #1bf358;
+}
+
