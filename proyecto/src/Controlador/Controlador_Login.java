@@ -69,7 +69,7 @@ public class Controlador_Login implements Initializable
     public void Click(ActionEvent actionEvent) throws IOException, SQLException {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../Vista/Home_recepcionista.fxml"));
+            loader.setLocation(Main.class.getResource("../Vista/recepcionista/Home_recepcionista.fxml"));
             Pane ventana = (Pane) loader.load();
 
             //Show the scene containing the root layout.

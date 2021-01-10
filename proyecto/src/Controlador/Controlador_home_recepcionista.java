@@ -1,13 +1,20 @@
 package Controlador;
 
+import Vista.Main;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.lang.model.element.Element;
 import java.io.IOException;
@@ -18,13 +25,19 @@ import java.util.ResourceBundle;
 
 public class Controlador_home_recepcionista implements Initializable {
 
+    //Botones de navegacion
     public Button reserve_button;
     public Button checkin_button;
+    public Button checkout_button;
+    public Button search_button;
+
     public TabPane TabPanePisos;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        reserve_button.setDisable(true);
+
         ObservableList<Tab> Tabs = TabPanePisos.getTabs();
 
         for (Tab e: Tabs)
@@ -52,18 +65,36 @@ public class Controlador_home_recepcionista implements Initializable {
         }
     }
 
-    public void navigave(ActionEvent actionEvent)
-    {
+    public void navigave(ActionEvent actionEvent) throws IOException {
+        /*
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader();
 
-        if(actionEvent.getSource().equals(reserve_button)){
-            System.out.println("soy un boton de reserva");
-        }else if(actionEvent.getSource().equals(checkin_button)){
-            System.out.println("soy un boton de checkin");
+        if(actionEvent.getSource().equals(checkin_button)){
+            loader.setLocation(Main.class.getResource("../Vista/recepcionista/checkin.fxml"));
+        }else if(actionEvent.getSource().equals(checkout_button)){
+            loader.setLocation(Main.class.getResource("../Vista/recepcionista/checkout.fxml"));
+        }else if(actionEvent.getSource().equals(search_button)){
+            loader.setLocation(Main.class.getResource("../Vista/recepcionista/search.fxml"));
         }
+
+        Pane ventana = (Pane) loader.load();
+
+        Scene scene = new Scene(ventana);
+        scene.setFill(Color.TRANSPARENT);
+        stage.setTitle("Menu Principal");
+        stage.setScene(scene);
+        //Undecorated y No Resizable:
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.TRANSPARENT);
+
+        //Mostrar Stage:
+        stage.show();*/
     }
 
-    public void EvSelecHabi(ActionEvent actionEvent) throws IOException
-    {
+    public void EvSelecHabi(ActionEvent actionEvent) throws IOException {
+
         Node Boton = (Node) actionEvent.getSource();
         String [] Partes = Boton.getStyleClass().toString().split(" ");
         System.out.println(Partes[2]);
@@ -77,6 +108,6 @@ public class Controlador_home_recepcionista implements Initializable {
             Boton.getStyleClass().set(2, "map-green");
         }
 
-        System.out.println(Boton.getStyleClass());
+        //System.out.println(Boton.getStyleClass());
     }
 }
