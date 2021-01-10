@@ -153,14 +153,14 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="266.0" prefWidth="551.0">
                            <children>
-                              <Button fx:id="btn_801" layoutX="9.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" text="Button" />
-                              <Button fx:id="btn_802" layoutX="145.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" text="Button" />
-                              <Button fx:id="btn_803" layoutX="281.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" text="Button" />
-                              <Button fx:id="btn_804" layoutX="417.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" text="Button" />
-                              <Button fx:id="btn_805" layoutX="9.0" layoutY="170.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" text="Button" />
-                              <Button fx:id="btn_806" layoutX="145.0" layoutY="170.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" text="Button" />
-                              <Button fx:id="btn_807" layoutX="281.0" layoutY="171.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" text="Button" />
-                              <Button fx:id="btn_808" layoutX="417.0" layoutY="171.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" text="Button" />
+                              <Button fx:id="btn_801" layoutX="9.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0"  styleClass="seleccion_hab__hab_sencilla" text="Button" />
+                              <Button fx:id="btn_802" layoutX="145.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="Button" />
+                              <Button fx:id="btn_803" layoutX="281.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="Button" />
+                              <Button fx:id="btn_804" layoutX="417.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0"  styleClass="seleccion_hab__hab_sencilla" text="Button" />
+                              <Button fx:id="btn_805" layoutX="9.0" layoutY="170.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="Button" />
+                              <Button fx:id="btn_806" layoutX="145.0" layoutY="170.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="Button" />
+                              <Button fx:id="btn_807" layoutX="281.0" layoutY="171.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="Button" />
+                              <Button fx:id="btn_808" layoutX="417.0" layoutY="171.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="Button" />
                            </children>
                         </AnchorPane>
                      </content>
