@@ -32,6 +32,10 @@ public class Controlador_home_recepcionista implements Initializable {
     public Button search_button;
 
     public TabPane TabPanePisos;
+    public AnchorPane content;
+
+    private double xOffset = 0;
+    private double yOffset = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -66,31 +70,36 @@ public class Controlador_home_recepcionista implements Initializable {
     }
 
     public void navigave(ActionEvent actionEvent) throws IOException {
-        /*
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader();
 
-        if(actionEvent.getSource().equals(checkin_button)){
-            loader.setLocation(Main.class.getResource("../Vista/recepcionista/checkin.fxml"));
-        }else if(actionEvent.getSource().equals(checkout_button)){
-            loader.setLocation(Main.class.getResource("../Vista/recepcionista/checkout.fxml"));
-        }else if(actionEvent.getSource().equals(search_button)){
-            loader.setLocation(Main.class.getResource("../Vista/recepcionista/search.fxml"));
-        }
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
 
-        Pane ventana = (Pane) loader.load();
+            if(actionEvent.getSource().equals(checkin_button)){
+                loader.setLocation(Main.class.getResource("../Vista/recepcionista/checkin.fxml"));
+            }else if(actionEvent.getSource().equals(checkin_button)){
+                loader.setLocation(Main.class.getResource("../Vista/recepcionista/checkout.fxml"));
+            }else if(actionEvent.getSource().equals(checkin_button)){
+                loader.setLocation(Main.class.getResource("../Vista/recepcionista/search.fxml"));
+            }
 
-        Scene scene = new Scene(ventana);
-        scene.setFill(Color.TRANSPARENT);
-        stage.setTitle("Menu Principal");
-        stage.setScene(scene);
-        //Undecorated y No Resizable:
-        stage.setResizable(false);
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.initStyle(StageStyle.TRANSPARENT);
 
-        //Mostrar Stage:
-        stage.show();*/
+
+
+            Pane ventana = (Pane) loader.load();
+
+            Scene scene = new Scene(ventana);
+            scene.setFill(Color.TRANSPARENT);
+            stage.setTitle("checkin");
+            stage.setScene(scene);
+            //Undecorated y No Resizable:
+            stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.initStyle(StageStyle.TRANSPARENT);
+
+            //Mostrar Stage:
+            stage.show();
+
+
     }
 
     public void EvSelecHabi(ActionEvent actionEvent) throws IOException {
@@ -110,4 +119,34 @@ public class Controlador_home_recepcionista implements Initializable {
 
         //System.out.println(Boton.getStyleClass());
     }
+
+    private void makeStageDragable()
+    {
+        //obtiene posicion de click
+        content.setOnMousePressed((mouseEvent ->
+        {
+            xOffset = mouseEvent.getSceneX();
+            yOffset = mouseEvent.getSceneY();
+        }));
+
+        content.setOnMouseDragged((mouseEvent ->
+        {
+            Main.stage.setX(mouseEvent.getScreenX()-xOffset);
+            Main.stage.setY(mouseEvent.getScreenY()-yOffset);
+
+            Main.stage.setOpacity(0.8);
+        }));
+
+        content.setOnDragDone((dragEvent ->
+        {
+            Main.stage.setOpacity(1);
+        }));
+
+        content.setOnMouseReleased(mouseEvent ->
+        {
+            Main.stage.setOpacity(1);
+        });
+    }
+
+
 }

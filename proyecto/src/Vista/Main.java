@@ -22,7 +22,6 @@ public class Main extends Application {
         loader.setLocation(Main.class.getResource("MenuInicio.fxml"));
         Pane ventana = (Pane) loader.load();
 
-        //Comentario chopeadito
         //Show the scene containing the root layout.
 
         Scene scene = new Scene(ventana);

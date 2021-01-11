@@ -16,11 +16,11 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.Controlador_home_recepcionista">
    <children>
-      <AnchorPane prefHeight="768.0" prefWidth="1200.0" stylesheets="@../../../assets/css/recepcionista_escenas.css">
+      <AnchorPane fx:id="content" prefHeight="768.0" prefWidth="1200.0" stylesheets="@../../../assets/css/recepcionista_escenas.css">
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="768.0" prefWidth="125.0" styleClass="navbar">
                <children>
-                  <Button fx:id="reserve_button" mnemonicParsing="false" onAction="#navigave" prefHeight="200.0" prefWidth="125.0" underline="true">
+                  <Button fx:id="reserve_button" mnemonicParsing="false" prefHeight="200.0" prefWidth="125.0" underline="true">
                      <styleClass>
                         <String fx:value="navbar__button" />
                         <String fx:value="navbar__button--reverve" />
