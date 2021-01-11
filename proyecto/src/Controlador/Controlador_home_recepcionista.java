@@ -76,13 +76,11 @@ public class Controlador_home_recepcionista implements Initializable {
 
             if(actionEvent.getSource().equals(checkin_button)){
                 loader.setLocation(Main.class.getResource("../Vista/recepcionista/checkin.fxml"));
-            }else if(actionEvent.getSource().equals(checkin_button)){
+            }else if(actionEvent.getSource().equals(checkout_button)){
                 loader.setLocation(Main.class.getResource("../Vista/recepcionista/checkout.fxml"));
-            }else if(actionEvent.getSource().equals(checkin_button)){
+            }else if(actionEvent.getSource().equals(search_button)){
                 loader.setLocation(Main.class.getResource("../Vista/recepcionista/search.fxml"));
             }
-
-
 
 
             Pane ventana = (Pane) loader.load();
