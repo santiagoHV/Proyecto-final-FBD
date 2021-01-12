@@ -68,8 +68,6 @@ public class Controlador_home_recepcionista implements Initializable {
     public void EvSelecHabi(ActionEvent actionEvent) throws IOException {
 
         Node Boton = (Node) actionEvent.getSource();
-        String [] Partes = Boton.getStyleClass().toString().split(" ");
-        System.out.println(Partes[2]);
 
         if(Boton.getStyleClass().get(2).equals("map-green"))
         {
