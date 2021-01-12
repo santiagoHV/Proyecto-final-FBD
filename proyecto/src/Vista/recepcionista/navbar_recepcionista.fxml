@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.Controlador_navbar">
+    <children>
+        <AnchorPane prefHeight="768.0" prefWidth="1200.0" style="-fx-background-color: white;">
+            <children>
+                <VBox alignment="TOP_CENTER" prefHeight="768.0" prefWidth="125.0" styleClass="navbar">
+                    <children>
+                        <Button fx:id="reserve_button" mnemonicParsing="false" onAction="#navigate" prefHeight="200.0" prefWidth="125.0">
+                            <styleClass>
+                                <String fx:value="navbar__button" />
+                                <String fx:value="navbar__button--reverve" />
+                            </styleClass>
+                        </Button>
+                        <Button fx:id="checkin_button" mnemonicParsing="false" onAction="#navigate" prefHeight="200.0" prefWidth="125.0">
+                            <styleClass>
+                                <String fx:value="navbar__button" />
+                                <String fx:value="navbar__button--checkin" />
+                            </styleClass>
+                        </Button>
+                        <Button fx:id="checkout_button" mnemonicParsing="false" onAction="#navigate" prefHeight="200.0" prefWidth="125.0">
+                            <styleClass>
+                                <String fx:value="navbar__button" />
+                                <String fx:value="navbar__button--checkout" />
+                            </styleClass>
+                        </Button>
+                        <Button fx:id="search_button" mnemonicParsing="false" onAction="#navigate" prefHeight="200.0" prefWidth="158.0">
+                            <styleClass>
+                                <String fx:value="navbar__button" />
+                                <String fx:value="navbar__button--search" />
+                            </styleClass>
+                        </Button>
+                    </children>
+                </VBox>
+            <AnchorPane fx:id="router" layoutX="126.0" prefHeight="768.0" prefWidth="1074.0" style="-fx-background-color: white;" />
+            </children>
+            <stylesheets>
+                <URL value="@../../../assets/css/recepcionista_escenas.css" />
+            </stylesheets>
+        </AnchorPane>
+    </children>
+</StackPane>
