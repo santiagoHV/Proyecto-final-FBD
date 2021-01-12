@@ -25,11 +25,6 @@ import java.util.ResourceBundle;
 
 public class Controlador_home_recepcionista implements Initializable {
 
-    //Botones de navegacion
-    public Button reserve_button;
-    public Button checkin_button;
-    public Button checkout_button;
-    public Button search_button;
 
     public TabPane TabPanePisos;
     public AnchorPane content;
@@ -40,7 +35,7 @@ public class Controlador_home_recepcionista implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        reserve_button.setDisable(true);
+        //reserve_button.setDisable(true);
 
         ObservableList<Tab> Tabs = TabPanePisos.getTabs();
 
@@ -69,36 +64,6 @@ public class Controlador_home_recepcionista implements Initializable {
         }
     }
 
-    public void navigave(ActionEvent actionEvent) throws IOException {
-
-            Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader();
-
-            if(actionEvent.getSource().equals(checkin_button)){
-                loader.setLocation(Main.class.getResource("../Vista/recepcionista/checkin.fxml"));
-            }else if(actionEvent.getSource().equals(checkout_button)){
-                loader.setLocation(Main.class.getResource("../Vista/recepcionista/checkout.fxml"));
-            }else if(actionEvent.getSource().equals(search_button)){
-                loader.setLocation(Main.class.getResource("../Vista/recepcionista/search.fxml"));
-            }
-
-
-            Pane ventana = (Pane) loader.load();
-
-            Scene scene = new Scene(ventana);
-            scene.setFill(Color.TRANSPARENT);
-            stage.setTitle("checkin");
-            stage.setScene(scene);
-            //Undecorated y No Resizable:
-            stage.setResizable(false);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.initStyle(StageStyle.TRANSPARENT);
-
-            //Mostrar Stage:
-            stage.show();
-
-
-    }
 
     public void EvSelecHabi(ActionEvent actionEvent) throws IOException {
 
