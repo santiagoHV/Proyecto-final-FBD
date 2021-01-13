@@ -12,32 +12,33 @@
         <AnchorPane prefHeight="768.0" prefWidth="1200.0" style="-fx-background-color: white;">
             <children>
                 <VBox alignment="TOP_CENTER" prefHeight="768.0" prefWidth="125.0" styleClass="navbar">
-                    <children>
-                        <Button fx:id="reserve_button" mnemonicParsing="false" onAction="#navigate" prefHeight="200.0" prefWidth="125.0">
-                            <styleClass>
-                                <String fx:value="navbar__button" />
-                                <String fx:value="navbar__button--reverve" />
-                            </styleClass>
-                        </Button>
-                        <Button fx:id="checkin_button" mnemonicParsing="false" onAction="#navigate" prefHeight="200.0" prefWidth="125.0">
-                            <styleClass>
-                                <String fx:value="navbar__button" />
-                                <String fx:value="navbar__button--checkin" />
-                            </styleClass>
-                        </Button>
-                        <Button fx:id="checkout_button" mnemonicParsing="false" onAction="#navigate" prefHeight="200.0" prefWidth="125.0">
-                            <styleClass>
-                                <String fx:value="navbar__button" />
-                                <String fx:value="navbar__button--checkout" />
-                            </styleClass>
-                        </Button>
-                        <Button fx:id="search_button" mnemonicParsing="false" onAction="#navigate" prefHeight="200.0" prefWidth="158.0">
-                            <styleClass>
-                                <String fx:value="navbar__button" />
-                                <String fx:value="navbar__button--search" />
-                            </styleClass>
-                        </Button>
-                    </children>
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="155.0" prefWidth="123.0">
+                     <styleClass>
+                        <String fx:value="navbar__button" />
+                        <String fx:value="navbar__button--reverve" />
+                     </styleClass>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="152.0" prefWidth="123.0">
+                     <styleClass>
+                        <String fx:value="navbar__button" />
+                        <String fx:value="navbar__button--checkin" />
+                     </styleClass>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="153.0" prefWidth="123.0">
+                     <styleClass>
+                        <String fx:value="navbar__button" />
+                        <String fx:value="navbar__button--checkout" />
+                     </styleClass>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="151.0" prefWidth="123.0">
+                     <styleClass>
+                        <String fx:value="navbar__button" />
+                        <String fx:value="navbar__button--search" />
+                     </styleClass>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="157.0" prefWidth="123.0" style="-fx-background-color: white;" />
+               </children>
                 </VBox>
             <AnchorPane fx:id="router" layoutX="126.0" prefHeight="768.0" prefWidth="1074.0" style="-fx-background-color: white;" />
             </children>
