@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.Controlador_checkin">
    <children>
-      <AnchorPane prefHeight="768.0" prefWidth="1072.0">
+      <AnchorPane prefHeight="768.0" prefWidth="1072.0" stylesheets="@../../../assets/css/recepcionista_escenas.css">
          <children>
             <Label alignment="CENTER" layoutX="31.0" layoutY="20.0" prefHeight="95.0" prefWidth="1029.0" styleClass="title-hotel" text="SALDARRIAGA MAHAL" textFill="WHITE">
                <font>
@@ -32,7 +33,7 @@
                </font>
             </Label>
             <TextField fx:id="codigo_reserva" layoutX="36.0" layoutY="236.0" prefHeight="25.0" prefWidth="183.0" />
-            <Separator layoutX="645.0" layoutY="135.0" orientation="VERTICAL" prefHeight="615.0" prefWidth="6.0" />
+            <Separator layoutX="527.0" layoutY="135.0" orientation="VERTICAL" prefHeight="615.0" prefWidth="6.0" />
             <Pane fx:id="panel_datos" accessibleRole="SCROLL_BAR" layoutX="36.0" layoutY="283.0" prefHeight="465.0" prefWidth="480.0" style="-fx-border-color: black; -fx-border-radius: 10; -fx-background-color: white;">
                <children>
                   <Label layoutX="129.0" layoutY="14.0" style="-fx-font-weight: 500;" text="Datos del títular de reserva">
@@ -176,76 +177,24 @@
                   </Label>
                </children>
             </Pane>
-            <ScrollPane fx:id="panel_ingreso_huespedes" layoutX="546.0" layoutY="132.0" prefHeight="472.0" prefWidth="513.0" style="-fx-border-color: black; -fx-border-radius: 10 0  0 10;" vbarPolicy="ALWAYS">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="21.0" layoutY="23.0" text="Ingreso de huespedes">
-                           <font>
-                              <Font name="MAXWELL REGULAR" size="25.0" />
-                           </font>
-                        </Label>
-                        <Pane layoutX="13.0" layoutY="66.0" prefHeight="144.0" prefWidth="471.0" style="-fx-border-color: black; -fx-border-radius: 8;" AnchorPane.topAnchor="70.0">
-                           <children>
-                              <Button layoutX="334.0" layoutY="10.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="Cambiar" />
-                              <Button layoutX="334.0" layoutY="75.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="Dar ingreso" />
-                              <Label layoutX="10.0" layoutY="8.0" prefHeight="24.0" prefWidth="210.0" text="Juanito Robado Peñalisa">
-                                 <font>
-                                    <Font name="MAXWELL REGULAR" size="19.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="12.0" layoutY="35.0" prefHeight="24.0" prefWidth="210.0" text="TI:">
-                                 <font>
-                                    <Font name="MAXWELL REGULAR" size="19.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="34.0" layoutY="35.0" prefHeight="24.0" prefWidth="210.0" text="1000000">
-                                 <font>
-                                    <Font name="MAXWELL REGULAR" size="19.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="107.0" layoutY="34.0" prefHeight="24.0" prefWidth="37.0" text="Edad:">
-                                 <font>
-                                    <Font name="MAXWELL REGULAR" size="19.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="148.0" layoutY="34.0" prefHeight="24.0" prefWidth="135.0" text="7 años">
-                                 <font>
-                                    <Font name="MAXWELL REGULAR" size="19.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="12.0" layoutY="62.0" prefHeight="24.0" prefWidth="27.0" text="Tel: ">
-                                 <font>
-                                    <Font name="MAXWELL REGULAR" size="19.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="78.0" layoutY="88.0" prefHeight="24.0" prefWidth="195.0" text="Ciudad, direccion .............">
-                                 <font>
-                                    <Font name="MAXWELL REGULAR" size="19.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="12.0" layoutY="88.0" prefHeight="24.0" prefWidth="66.0" text="Dirección:">
-                                 <font>
-                                    <Font name="MAXWELL REGULAR" size="19.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="43.0" layoutY="62.0" prefHeight="24.0" prefWidth="153.0" text="+57 300 555 2222">
-                                 <font>
-                                    <Font name="MAXWELL REGULAR" size="19.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="12.0" layoutY="112.0" prefHeight="24.0" prefWidth="174.0" text="Habitación de hospedaje:">
-                                 <font>
-                                    <Font name="MAXWELL REGULAR" size="19.0" />
-                                 </font>
-                              </Label>
-                              <ComboBox layoutX="182.0" layoutY="113.0" prefHeight="25.0" prefWidth="87.0" />
-                           </children>
-                        </Pane>
-                     </children>
-                  </AnchorPane>
-              </content>
-            </ScrollPane>
+            <VBox layoutX="546.0" layoutY="149.0" prefHeight="458.0" prefWidth="513.0" spacing="16.0">
+               <children>
+                  <Label text="Ingreso de huespedes">
+                     <font>
+                        <Font name="MAXWELL REGULAR" size="25.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane fx:id="panel_ingreso_huespedes" prefHeight="394.0" prefWidth="513.0">
+                     <content>
+                        <GridPane fx:id="GridPanel" prefHeight="0.0" prefWidth="0.0">
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
             <Button fx:id="btn_buscar" layoutX="312.0" layoutY="228.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="Buscar..." />
             <ScrollPane fx:id="panel_habitaciones" hbarPolicy="ALWAYS" layoutX="546.0" layoutY="613.0" prefHeight="134.0" prefWidth="513.0" style="-fx-border-color: black; -fx-border-radius: 10 0 0 10;" vbarPolicy="NEVER">
               <content>
@@ -265,10 +214,6 @@
             </ScrollPane>
             <Button fx:id="btn_buscar1" layoutX="312.0" layoutY="132.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="FINALIZAR" />
          </children>
-         <stylesheets>
-            <URL value="@../../../../Proyecto/Proyecto_BD/src/CSS/recepcionista_escenas.css" />
-            <URL value="@../../../assets/css/recepcionista_escenas.css" />
-         </stylesheets>
       </AnchorPane>
    </children>
 </StackPane>
