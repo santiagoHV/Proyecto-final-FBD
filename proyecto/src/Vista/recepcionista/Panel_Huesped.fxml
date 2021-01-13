@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="144.0" prefWidth="483.0" styleClass="PHuesped" stylesheets="@../../../assets/css/Panel_Huesped.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.Controlador_Huesped">
+   <children>
+      <Label fx:id="LBnom_completo" layoutX="12.0" layoutY="12.0" prefHeight="24.0" prefWidth="210.0" text="Juanito Robado Peñalisa">
+         <font>
+            <Font name="MAXWELL REGULAR" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="36.0" prefHeight="24.0" prefWidth="19.0" text="TI:">
+         <font>
+            <Font name="MAXWELL REGULAR" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="LBnum_id" layoutX="35.0" layoutY="36.0" prefHeight="24.0" prefWidth="66.0" text="1000000">
+         <font>
+            <Font name="MAXWELL REGULAR" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="101.0" layoutY="36.0" prefHeight="24.0" prefWidth="37.0" text="Edad:">
+         <font>
+            <Font name="MAXWELL REGULAR" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="LBedad" layoutX="143.0" layoutY="36.0" prefHeight="24.0" prefWidth="87.0" text="7 años">
+         <font>
+            <Font name="MAXWELL REGULAR" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="60.0" prefHeight="24.0" prefWidth="27.0" text="Tel: ">
+         <font>
+            <Font name="MAXWELL REGULAR" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="LBDireccion" layoutX="82.0" layoutY="84.0" prefHeight="24.0" prefWidth="195.0" text="Ciudad, direccion .............">
+         <font>
+            <Font name="MAXWELL REGULAR" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="84.0" prefHeight="24.0" prefWidth="66.0" text="Dirección:">
+         <font>
+            <Font name="MAXWELL REGULAR" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="LBTelefono" layoutX="39.0" layoutY="60.0" prefHeight="24.0" prefWidth="153.0" text="+57 300 555 2222">
+         <font>
+            <Font name="MAXWELL REGULAR" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="12.0" layoutY="109.0" prefHeight="24.0" prefWidth="174.0" text="Habitación de hospedaje:">
+         <font>
+            <Font name="MAXWELL REGULAR" size="19.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="187.0" layoutY="109.0" prefHeight="25.0" prefWidth="87.0" />
+      <VBox layoutX="360.0" prefHeight="144.0" prefWidth="123.0" spacing="15.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="7.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: black; -fx-border-radius: 5;" text="Cambiar" />
+            <Button mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: black; -fx-border-radius: 5;" text="Dar ingreso" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
