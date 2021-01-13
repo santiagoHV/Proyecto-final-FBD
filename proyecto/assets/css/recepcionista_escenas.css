@@ -42,6 +42,11 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
+.navbar__button--out {
+    -fx-background-image: url("../images/out.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
 
 .title-hotel {
     -fx-background-color: linear-gradient(from 0px 400px to 500px 1200px, #2E1E1E, white);

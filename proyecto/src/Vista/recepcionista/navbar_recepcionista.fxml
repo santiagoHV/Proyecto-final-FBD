@@ -13,30 +13,36 @@
             <children>
                 <VBox alignment="TOP_CENTER" prefHeight="768.0" prefWidth="125.0" styleClass="navbar">
                     <children>
-                        <Button fx:id="reserve_button" mnemonicParsing="false" onAction="#navigate" prefHeight="200.0" prefWidth="125.0">
+                        <Button fx:id="reserve_button" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="125.0">
                             <styleClass>
                                 <String fx:value="navbar__button" />
                                 <String fx:value="navbar__button--reverve" />
                             </styleClass>
                         </Button>
-                        <Button fx:id="checkin_button" mnemonicParsing="false" onAction="#navigate" prefHeight="200.0" prefWidth="125.0">
+                        <Button fx:id="checkin_button" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="125.0">
                             <styleClass>
                                 <String fx:value="navbar__button" />
                                 <String fx:value="navbar__button--checkin" />
                             </styleClass>
                         </Button>
-                        <Button fx:id="checkout_button" mnemonicParsing="false" onAction="#navigate" prefHeight="200.0" prefWidth="125.0">
+                        <Button fx:id="checkout_button" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="125.0">
                             <styleClass>
                                 <String fx:value="navbar__button" />
                                 <String fx:value="navbar__button--checkout" />
                             </styleClass>
                         </Button>
-                        <Button fx:id="search_button" mnemonicParsing="false" onAction="#navigate" prefHeight="200.0" prefWidth="158.0">
+                        <Button fx:id="search_button" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="158.0" style="-fx-background-size: 130;">
                             <styleClass>
                                 <String fx:value="navbar__button" />
                                 <String fx:value="navbar__button--search" />
                             </styleClass>
                         </Button>
+                  <Button fx:id="out_button1" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="158.0" style="-fx-background-size: 90;">
+                     <styleClass>
+                        <String fx:value="navbar__button" />
+                        <String fx:value="navbar__button--out" />
+                     </styleClass>
+                  </Button>
                     </children>
                 </VBox>
             <AnchorPane fx:id="router" layoutX="126.0" prefHeight="768.0" prefWidth="1074.0" style="-fx-background-color: white;" />
