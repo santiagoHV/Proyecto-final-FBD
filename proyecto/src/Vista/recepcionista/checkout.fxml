@@ -4,9 +4,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -24,7 +26,7 @@
             </Label>
             <VBox layoutX="543.0" layoutY="134.0" prefHeight="458.0" prefWidth="513.0" spacing="16.0">
                <children>
-                  <Label text="Ingreso de huespedes">
+                  <Label text="Salida de huespedes">
                      <font>
                         <Font name="MAXWELL REGULAR" size="25.0" />
                      </font>
@@ -67,11 +69,11 @@
                </font>
             </Label>
             <TextField fx:id="codigo_reserva" layoutX="31.0" layoutY="215.0" prefHeight="25.0" prefWidth="183.0" />
-            <Button fx:id="btn_buscar" layoutX="320.0" layoutY="202.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="Buscar..." />
-            <Button fx:id="btn_buscar1" layoutX="320.0" layoutY="134.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="FINALIZAR" />
-            <Label layoutX="156.0" layoutY="277.0" style="-fx-font-weight: 500;" text="Datos del títular de reserva">
+            <Button fx:id="btn_buscar" layoutX="313.0" layoutY="202.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="Buscar..." />
+            <Button fx:id="btn_finalizar" layoutX="312.0" layoutY="134.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="FINALIZAR" />
+            <Label layoutX="139.0" layoutY="275.0" style="-fx-font-weight: 500;" text="Datos del títular de reserva">
                <font>
-                  <Font name="MAXWELL REGULAR" size="22.0" />
+                  <Font name="MAXWELL REGULAR" size="29.0" />
                </font>
             </Label>
             <Label fx:id="datos_nombre" layoutX="31.0" layoutY="315.0" prefHeight="24.0" prefWidth="210.0" text="Juan Robado Peñalisa">
@@ -119,6 +121,74 @@
                   <Font name="MAXWELL REGULAR" size="19.0" />
                </font>
             </Label>
+            <Separator layoutX="30.0" layoutY="400.0" prefHeight="3.0" prefWidth="476.0" />
+            <Separator layoutX="32.0" layoutY="263.0" prefHeight="3.0" prefWidth="476.0" />
+            <Label layoutX="202.0" layoutY="409.0" style="-fx-font-weight: 500;" text="Datos de pago">
+               <font>
+                  <Font name="MAXWELL REGULAR" size="29.0" />
+               </font>
+            </Label>
+            <Pane layoutX="34.0" layoutY="458.0" prefHeight="181.0" prefWidth="476.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 8;">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="24.0" prefWidth="318.0" text="Valor de recerva y estadía . . . . . . . . . . . . . . . . . . . . .">
+                     <font>
+                        <Font name="MAXWELL REGULAR" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="49.0" prefHeight="24.0" prefWidth="318.0" text="Valor de consumos. . . . . . . . . . . . . . . . . . . . . . . . . . . . .">
+                     <font>
+                        <Font name="MAXWELL REGULAR" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="82.0" prefHeight="24.0" prefWidth="318.0" text="Descuentos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .">
+                     <font>
+                        <Font name="MAXWELL REGULAR" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="valor_estadia" layoutX="332.0" layoutY="14.0" prefHeight="24.0" prefWidth="89.0" text="\$ 000000000">
+                     <font>
+                        <Font name="MAXWELL REGULAR" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="valor_consumos" layoutX="332.0" layoutY="49.0" prefHeight="24.0" prefWidth="89.0" text="\$ 000000000">
+                     <font>
+                        <Font name="MAXWELL REGULAR" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="valor_descuentos" layoutX="332.0" layoutY="82.0" prefHeight="24.0" prefWidth="89.0" text="\$ 000000000">
+                     <font>
+                        <Font name="MAXWELL REGULAR" size="19.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="14.0" layoutY="123.0" prefHeight="3.0" prefWidth="443.0" />
+                  <Label fx:id="valor_total" layoutX="332.0" layoutY="135.0" prefHeight="24.0" prefWidth="89.0" text="\$ 000000000">
+                     <font>
+                        <Font name="MAXWELL REGULAR" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="134.0" prefHeight="24.0" prefWidth="318.0" text="Total a pagar . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .">
+                     <font>
+                        <Font name="MAXWELL REGULAR" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Button fx:id="btn_ver_consumos" layoutX="34.0" layoutY="659.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="145.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="Ver consumos">
+               <font>
+                  <Font name="MAXWELL REGULAR" size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_procesar_pago" layoutX="198.0" layoutY="659.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="145.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="Procesar pago">
+               <font>
+                  <Font name="MAXWELL REGULAR" size="22.0" />
+               </font>
+            </Button>
+            <Separator layoutX="524.0" layoutY="130.0" orientation="VERTICAL" prefHeight="604.0" prefWidth="8.0" />
+            <Button fx:id="btn_finalizar_proceso" layoutX="363.0" layoutY="659.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="149.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="Finalizar proceso ">
+               <font>
+                  <Font name="MAXWELL REGULAR" size="19.0" />
+               </font>
+            </Button>
          </children>
          <stylesheets>
             <URL value="@../../../assets/css/recepcionista_escenas.css" />
