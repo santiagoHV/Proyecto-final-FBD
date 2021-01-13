@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.Controlador_navbar">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_navbar">
     <children>
         <AnchorPane prefHeight="768.0" prefWidth="1200.0" style="-fx-background-color: white;">
             <children>
@@ -17,30 +17,35 @@
                             <styleClass>
                                 <String fx:value="navbar__button" />
                                 <String fx:value="navbar__button--reverve" />
+                        <String fx:value="hand_button" />
                             </styleClass>
                         </Button>
                         <Button fx:id="checkin_button" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="125.0">
                             <styleClass>
                                 <String fx:value="navbar__button" />
                                 <String fx:value="navbar__button--checkin" />
+                        <String fx:value="hand_button" />
                             </styleClass>
                         </Button>
                         <Button fx:id="checkout_button" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="125.0">
                             <styleClass>
                                 <String fx:value="navbar__button" />
                                 <String fx:value="navbar__button--checkout" />
+                        <String fx:value="hand_button" />
                             </styleClass>
                         </Button>
                         <Button fx:id="search_button" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="158.0" style="-fx-background-size: 130;">
                             <styleClass>
                                 <String fx:value="navbar__button" />
                                 <String fx:value="navbar__button--search" />
+                        <String fx:value="hand_button" />
                             </styleClass>
                         </Button>
                   <Button fx:id="out_button1" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="158.0" style="-fx-background-size: 90;">
                      <styleClass>
                         <String fx:value="navbar__button" />
                         <String fx:value="navbar__button--out" />
+                        <String fx:value="hand_button" />
                      </styleClass>
                   </Button>
                     </children>

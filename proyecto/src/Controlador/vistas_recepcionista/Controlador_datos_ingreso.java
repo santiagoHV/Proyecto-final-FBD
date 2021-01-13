@@ -1,4 +1,4 @@
-package Controlador;
+package Controlador.vistas_recepcionista;
 
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;

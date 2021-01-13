@@ -47,6 +47,9 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
+.button:hover{
+    -fx-cursor: HAND;
+}
 
 .title-hotel {
     -fx-background-color: linear-gradient(from 0px 400px to 500px 1200px, #2E1E1E, white);
@@ -57,13 +60,11 @@
     -fx-font-weight: bold;
 }
 
-.map-red
-{
+.map-red {
     -fx-border-color: #d70000;
 }
 
-.map-green
-{
+.map-green {
     -fx-border-color: #1bf358;
 }
 

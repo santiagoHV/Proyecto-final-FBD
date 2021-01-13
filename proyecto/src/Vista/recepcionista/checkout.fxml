@@ -1,54 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.Controlador_checkout">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_checkout">
    <children>
-      <AnchorPane prefHeight="768.0" prefWidth="1200.0">
+      <AnchorPane prefHeight="768.0" prefWidth="1075.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="768.0" prefWidth="125.0" styleClass="navbar">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="125.0">
-                     <styleClass>
-                        <String fx:value="navbar__button" />
-                        <String fx:value="navbar__button--reverve" />
-                     </styleClass>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="125.0">
-                     <styleClass>
-                        <String fx:value="navbar__button" />
-                        <String fx:value="navbar__button--checkin" />
-                     </styleClass>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="125.0">
-                     <styleClass>
-                        <String fx:value="navbar__button" />
-                        <String fx:value="navbar__button--checkout" />
-                     </styleClass>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="200.0" prefWidth="158.0">
-                     <styleClass>
-                        <String fx:value="navbar__button" />
-                        <String fx:value="navbar__button--search" />
-                     </styleClass>
-                  </Button>
-               </children>
-            </VBox>
-            <Label alignment="CENTER" layoutX="147.0" layoutY="23.0" prefHeight="95.0" prefWidth="1029.0" styleClass="title-hotel" text="SALDARRIAGA MAHAL" textFill="WHITE">
+
+            <Label alignment="CENTER" layoutX="28.0" layoutY="23.0" prefHeight="95.0" prefWidth="1029.0" styleClass="title-hotel" text="SALDARRIAGA MAHAL" textFill="WHITE">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
+            <VBox layoutX="543.0" layoutY="134.0" prefHeight="458.0" prefWidth="513.0" spacing="16.0">
+               <children>
+                  <Label text="Ingreso de huespedes">
+                     <font>
+                        <Font name="MAXWELL REGULAR" size="25.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane fx:id="panel_ingreso_huespedes" prefHeight="394.0" prefWidth="513.0">
+                     <content>
+                        <GridPane fx:id="GridPanel" prefHeight="0.0" prefWidth="0.0">
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+            <ScrollPane fx:id="panel_habitaciones" hbarPolicy="ALWAYS" layoutX="543.0" layoutY="592.0" prefHeight="134.0" prefWidth="513.0" style="-fx-border-color: black; -fx-border-radius: 10 0 0 10;" vbarPolicy="NEVER">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="265.0">
+                     <children>
+                        <Label layoutX="6.0" layoutY="4.0" text="Entrega de habitaciones">
+                           <font>
+                              <Font name="MAXWELL REGULAR" size="25.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="6.0" layoutY="32.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="77.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="202" />
+                        <Button layoutX="94.0" layoutY="32.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="77.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="502" />
+                        <Button layoutX="179.0" layoutY="32.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="77.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="603" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+            <Label layoutX="30.0" layoutY="129.0" style="-fx-effect: dropshadow(two-pass-box, #000000,5,0.10,3,3);" text="CHECK-OUT" underline="true">
+               <font>
+                  <Font name="MAXWELL REGULAR" size="39.0" />
+               </font>
+            </Label>
+            <Label layoutX="32.0" layoutY="189.0" text="Código de reserva:">
+               <font>
+                  <Font name="MAXWELL REGULAR" size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="codigo_reserva" layoutX="31.0" layoutY="215.0" prefHeight="25.0" prefWidth="183.0" />
+            <Button fx:id="btn_buscar" layoutX="320.0" layoutY="202.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="Buscar..." />
+            <Button fx:id="btn_buscar1" layoutX="320.0" layoutY="134.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="FINALIZAR" />
+            <Label layoutX="156.0" layoutY="277.0" style="-fx-font-weight: 500;" text="Datos del títular de reserva">
+               <font>
+                  <Font name="MAXWELL REGULAR" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="datos_nombre" layoutX="31.0" layoutY="315.0" prefHeight="24.0" prefWidth="210.0" text="Juan Robado Peñalisa">
+               <font>
+                  <Font name="MAXWELL REGULAR" size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="datos_ti" layoutX="234.0" layoutY="316.0" prefHeight="24.0" prefWidth="27.0" text="TI:">
+               <font>
+                  <Font name="MAXWELL REGULAR" size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="datos_no_i" layoutX="256.0" layoutY="316.0" prefHeight="24.0" prefWidth="210.0" text="1000000">
+               <font>
+                  <Font name="MAXWELL REGULAR" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="32.0" layoutY="340.0" prefHeight="24.0" prefWidth="27.0" text="Tel: ">
+               <font>
+                  <Font name="MAXWELL REGULAR" size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="datos_tel" layoutX="60.0" layoutY="340.0" prefHeight="24.0" prefWidth="153.0" text="+57 300 555 2222">
+               <font>
+                  <Font name="MAXWELL REGULAR" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="237.0" layoutY="340.0" prefHeight="24.0" prefWidth="37.0" text="Edad:">
+               <font>
+                  <Font name="MAXWELL REGULAR" size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="datos_edad" layoutX="280.0" layoutY="340.0" prefHeight="24.0" prefWidth="135.0" text="25 años">
+               <font>
+                  <Font name="MAXWELL REGULAR" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="32.0" layoutY="363.0" prefHeight="24.0" prefWidth="66.0" text="Dirección:">
+               <font>
+                  <Font name="MAXWELL REGULAR" size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="datos_direccion" layoutX="98.0" layoutY="363.0" prefHeight="24.0" prefWidth="279.0" text="ciudad, direccion">
+               <font>
+                  <Font name="MAXWELL REGULAR" size="19.0" />
+               </font>
+            </Label>
          </children>
          <stylesheets>
-            <URL value="@../../../../Proyecto/Proyecto_BD/src/CSS/recepcionista_escenas.css" />
             <URL value="@../../../assets/css/recepcionista_escenas.css" />
          </stylesheets>
       </AnchorPane>

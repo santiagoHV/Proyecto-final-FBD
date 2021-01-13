@@ -1,11 +1,7 @@
-package Controlador;
+package Controlador.vistas_recepcionista;
 
 import Modelo.Huesped;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class Controlador_Huesped
 {

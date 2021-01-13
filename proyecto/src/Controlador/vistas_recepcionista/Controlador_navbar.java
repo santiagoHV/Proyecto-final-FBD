@@ -1,7 +1,5 @@
-package Controlador;
+package Controlador.vistas_recepcionista;
 
-import Modelo.Huesped;
-import Modelo.Persona;
 import Vista.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +10,6 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controlador_navbar implements Initializable {
