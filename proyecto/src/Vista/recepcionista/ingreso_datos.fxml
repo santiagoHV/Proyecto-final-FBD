@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.Controlador_datos_ingreso">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_datos_ingreso">
    <children>
        <AnchorPane prefHeight="500.0" prefWidth="1000.0">
            <Label alignment="CENTER" layoutX="24.0" layoutY="21.0" prefHeight="68.0" prefWidth="959.0" styleClass="title-hotel" stylesheets="@../../../assets/css/recepcionista_escenas.css" text="SALDARRIAGA MAHAL" textFill="WHITE" />
