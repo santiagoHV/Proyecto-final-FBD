@@ -154,7 +154,6 @@ public class Controlador_checkin implements Initializable {
                 //Definición de los anchorpane:
                 //Para los botones:
                 AnchorPane PanelHabitaciones = loader.load();
-                //Para los botones de las habitaciones
 
                 Controlador_Boton_Habitaciones controlador_boton_habitaciones = loader.getController();
                 controlador_boton_habitaciones.DefinirHabitacion(Habitaciones.get(i));
