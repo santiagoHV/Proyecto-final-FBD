@@ -15,12 +15,13 @@
 }
 
 .navbar {
+    -fx-background-color: #2E1E1E;
     -fx-border-style: solid;
     -fx-border-color: black;
 }
 
 .navbar__button {
-    -fx-background-color: white;
+    -fx-background-color: TRANSPARENT;
 }
 
 .navbar__button--reverve {
@@ -41,18 +42,26 @@
 }
 
 .navbar__button--checkout {
-    -fx-background-image: url("../images/checkout.png");
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-font-size: 20px;
+    -fx-background-image: url("../images/CheckOut_Icon.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
 
 .navbar__button--search {
-    -fx-background-image: url("../images/search.png");
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-font-size: 20px;
+    -fx-background-image: url("../images/Search_Icon.png");
+    -fx-background-size: 50%;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
 .navbar__button--out {
-    -fx-background-image: url("../images/out.png");
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-font-size: 20px;
+    -fx-background-size: 85%;
+    -fx-background-image: url("../images/Out_Icon.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
@@ -61,7 +70,7 @@
 }
 
 .title-hotel {
-    -fx-background-color: linear-gradient(from 0px 400px to 500px 1200px, #2E1E1E, white);
+    -fx-background-color: linear-gradient(from 0px 400px to 500px 1200px, #2E1E1E, #1d0a01);
     -fx-font-family: "MAXWELL REGULAR";
     -fx-color: white;
     -fx-text-align: center;

@@ -15,7 +15,7 @@
             <children>
                 <VBox alignment="TOP_CENTER" prefHeight="768.0" prefWidth="125.0" styleClass="navbar">
                     <children>
-                        <Button fx:id="reserve_button" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="125.0" text="Reservar" textAlignment="CENTER">
+                        <Button fx:id="reserve_button" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="125.0" text="Reservar" textAlignment="CENTER" textFill="WHITE">
                             <styleClass>
                                 <String fx:value="navbar__button" />
                                 <String fx:value="navbar__button--reverve" />
@@ -28,14 +28,14 @@
                         <Font size="19.0" />
                      </font>
                         </Button>
-                        <Button fx:id="checkin_button" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="125.0" text="Check-In">
+                        <Button fx:id="checkin_button" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="125.0" text="Check-In" textFill="WHITE">
                             <styleClass>
                                 <String fx:value="navbar__button" />
                                 <String fx:value="navbar__button--checkin" />
                         <String fx:value="hand_button" />
                             </styleClass>
                         </Button>
-                        <Button fx:id="checkout_button" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="125.0" text="Check-out">
+                        <Button fx:id="checkout_button" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="125.0" text="Check-out" textFill="WHITE">
                             <styleClass>
                                 <String fx:value="navbar__button" />
                                 <String fx:value="navbar__button--checkout" />
@@ -45,7 +45,7 @@
                         <Font name="MAXWELL REGULAR" size="20.0" />
                      </font>
                         </Button>
-                        <Button fx:id="search_button" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="158.0" style="-fx-background-size: 130;" text="Buscar">
+                        <Button fx:id="search_button" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="158.0" text="Buscar" textAlignment="CENTER" textFill="WHITE">
                             <styleClass>
                                 <String fx:value="navbar__button" />
                                 <String fx:value="navbar__button--search" />
@@ -55,7 +55,7 @@
                         <Font name="MAXWELL REGULAR" size="20.0" />
                      </font>
                         </Button>
-                  <Button fx:id="out_button1" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="158.0" style="-fx-background-size: 90;" text="Cerrar sesión">
+                  <Button fx:id="out_button1" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="158.0" style="-fx-background-size: 90;" text="Cerrar sesión" textFill="WHITE">
                      <styleClass>
                         <String fx:value="navbar__button" />
                         <String fx:value="navbar__button--out" />
