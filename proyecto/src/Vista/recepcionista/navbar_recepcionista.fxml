@@ -28,33 +28,42 @@
                         <Font size="19.0" />
                      </font>
                         </Button>
-                        <Button fx:id="checkin_button" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="125.0" text="CheckIn">
+                        <Button fx:id="checkin_button" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="125.0" text="Check-In">
                             <styleClass>
                                 <String fx:value="navbar__button" />
                                 <String fx:value="navbar__button--checkin" />
                         <String fx:value="hand_button" />
                             </styleClass>
                         </Button>
-                        <Button fx:id="checkout_button" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="125.0">
+                        <Button fx:id="checkout_button" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="125.0" text="Check-out">
                             <styleClass>
                                 <String fx:value="navbar__button" />
                                 <String fx:value="navbar__button--checkout" />
                         <String fx:value="hand_button" />
                             </styleClass>
+                     <font>
+                        <Font name="MAXWELL REGULAR" size="20.0" />
+                     </font>
                         </Button>
-                        <Button fx:id="search_button" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="158.0" style="-fx-background-size: 130;">
+                        <Button fx:id="search_button" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="158.0" style="-fx-background-size: 130;" text="Buscar">
                             <styleClass>
                                 <String fx:value="navbar__button" />
                                 <String fx:value="navbar__button--search" />
                         <String fx:value="hand_button" />
                             </styleClass>
+                     <font>
+                        <Font name="MAXWELL REGULAR" size="20.0" />
+                     </font>
                         </Button>
-                  <Button fx:id="out_button1" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="158.0" style="-fx-background-size: 90;">
+                  <Button fx:id="out_button1" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="158.0" style="-fx-background-size: 90;" text="Cerrar sesión">
                      <styleClass>
                         <String fx:value="navbar__button" />
                         <String fx:value="navbar__button--out" />
                         <String fx:value="hand_button" />
                      </styleClass>
+                     <font>
+                        <Font name="MAXWELL REGULAR" size="19.0" />
+                     </font>
                   </Button>
                     </children>
                 </VBox>
