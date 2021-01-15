@@ -1,49 +1,88 @@
-@font-face
-{
+@font-face {
     src: url('../Fuentes/FontsFree-Net-BringHeart-Regular.ttf');
 }
 
-@font-face
-{
+@font-face {
     src: url('../Fuentes/MAXWELL_REGULAR.ttf');
 }
 
-@font-face
-{
+@font-face {
     src: url('../Fuentes/BebasNeue-Regular.ttf');
 }
-.navbar{
+
+@font-face {
+    src: url('../Fuentes/MAXWELL_BOLD.ttf');
+}
+
+.navbar {
+    -fx-background-color: #2E1E1E;
     -fx-border-style: solid;
     -fx-border-color: black;
 }
-.navbar__button{
-    -fx-background-color: white;
+
+.navbar__button {
+    -fx-background-color: TRANSPARENT;
 }
-.navbar__button--reverve{
-    -fx-background-image: url("../images/reserve.png");
+
+.navbar__button--reverve {
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-font-size: 20px;
+    -fx-background-image: url("../images/Reserva_Icon.png");
+    -fx-background-position: center;
+    -fx-background-size: 80%;
+    -fx-background-repeat: no-repeat;
+}
+
+.navbar__button--checkin {
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-font-size: 20px;
+    -fx-background-image: url("../images/Checkin_Icon.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
-.navbar__button--checkin{
-    -fx-background-image: url("../images/checkin.png");
+
+.navbar__button--checkout {
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-font-size: 20px;
+    -fx-background-image: url("../images/CheckOut_Icon.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
-.navbar__button--checkout{
-    -fx-background-image: url("../images/checkout.png");
+
+.navbar__button--search {
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-font-size: 20px;
+    -fx-background-image: url("../images/Search_Icon.png");
+    -fx-background-size: 50%;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
-.navbar__button--search{
-    -fx-background-image: url("../images/search.png");
+.navbar__button--out {
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-font-size: 20px;
+    -fx-background-size: 85%;
+    -fx-background-image: url("../images/Out_Icon.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
-.title-hotel{
-    -fx-background-color: linear-gradient(from 0px 400px to 500px 1200px, #2E1E1E, white);
+.button:hover{
+    -fx-cursor: HAND;
+}
+
+.title-hotel {
+    -fx-background-color: linear-gradient(from 0px 400px to 500px 1200px, #2E1E1E, #1d0a01);
     -fx-font-family: "MAXWELL REGULAR";
     -fx-color: white;
     -fx-text-align: center;
     -fx-font-size: 40px;
     -fx-font-weight: bold;
 }
+
+.map-red {
+    -fx-border-color: #d70000;
+}
+
+.map-green {
+    -fx-border-color: #1bf358;
+}
+

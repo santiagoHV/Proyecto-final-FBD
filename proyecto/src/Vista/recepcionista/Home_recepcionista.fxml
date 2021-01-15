@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_home_recepcionista">
+   <children>
+      <AnchorPane fx:id="content" prefHeight="768.0" prefWidth="1075.0" stylesheets="@../../../assets/css/recepcionista_escenas.css">
+         <children>
+            <Label alignment="CENTER" layoutX="25.0" layoutY="23.0" prefHeight="95.0" prefWidth="1029.0" styleClass="title-hotel" text="SALDARRIAGA MAHAL" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+            <DatePicker fx:id="fecha_salida" layoutX="364.0" layoutY="212.0" prefHeight="40.0" prefWidth="290.0" />
+            <DatePicker fx:id="fecha_ingreso" layoutX="31.0" layoutY="211.0" prefHeight="40.0" prefWidth="285.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="303.0" layoutX="744.0" layoutY="174.0" stroke="BLACK" strokeType="INSIDE" styleClass="calculadora" width="310.0" />
+            <Label layoutX="33.0" layoutY="166.0" text="Fecha de ingreso" />
+            <Label layoutX="365.0" layoutY="170.0" text="Fecha de salida" />
+            <Label layoutX="82.0" layoutY="283.0" text="Cantidad de huespedes" />
+            <Label layoutX="36.0" layoutY="325.0" text="Adultos" />
+            <Label layoutX="132.0" layoutY="325.0" text="Niños( 2-12 años)" />
+            <Label layoutX="254.0" layoutY="325.0" text="Bebés (0-2 años)" />
+            <TabPane fx:id="TabPanePisos" layoutX="36.0" layoutY="394.0" prefHeight="323.0" prefWidth="551.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                  <Tab text="Piso 2">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="266.0" prefWidth="551.0">
+                           <children>
+                              <Button fx:id="btn_201" layoutX="9.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple" text="201" />
+                              <Button fx:id="btn_202" layoutX="190.0" layoutY="5.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple" text="202" />
+                              <Button fx:id="btn_203" layoutX="370.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="180.0" styleClass="seleccion_hab__hab_triple" text="203" />
+                              <Button fx:id="btn_204" layoutX="9.0" layoutY="163.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple" text="204" />
+                              <Button fx:id="btn_205" layoutX="190.0" layoutY="162.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple" text="205" />
+                              <Button fx:id="btn_206" layoutX="366.0" layoutY="162.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="180.0" styleClass="seleccion_hab__hab_triple" text="206" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Piso 3">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="266.0" prefWidth="551.0">
+                           <children>
+                              <Button fx:id="btn_301" layoutX="9.0" layoutY="5.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple" text="301" />
+                              <Button fx:id="btn_302" layoutX="190.0" layoutY="5.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple" text="302" />
+                              <Button fx:id="btn_303" layoutX="370.0" layoutY="5.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="180.0" styleClass="seleccion_hab__hab_triple" text="303" />
+                              <Button fx:id="btn_304" layoutX="9.0" layoutY="162.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple" text="304" />
+                              <Button fx:id="btn_305" layoutX="190.0" layoutY="162.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple" text="305" />
+                              <Button fx:id="btn_306" layoutX="370.0" layoutY="162.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="180.0" styleClass="seleccion_hab__hab_triple" text="306" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Piso 4">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="266.0" prefWidth="551.0">
+                           <children>
+                              <Button fx:id="btn_401" layoutX="9.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="401" />
+                              <Button fx:id="btn_402" layoutX="145.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="402" />
+                              <Button fx:id="btn_403" layoutX="281.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="403" />
+                              <Button fx:id="btn_404" layoutX="417.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="404" />
+                              <Button fx:id="btn_405" layoutX="9.0" layoutY="163.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="405" />
+                              <Button fx:id="btn_406" layoutX="145.0" layoutY="163.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="406" />
+                              <Button fx:id="btn_407" layoutX="281.0" layoutY="163.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="407" />
+                              <Button fx:id="btn_408" layoutX="417.0" layoutY="163.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="408" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Piso 5">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="266.0" prefWidth="551.0">
+                           <children>
+                              <Button fx:id="btn_501" layoutX="9.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="501" />
+                              <Button fx:id="btn_502" layoutX="145.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="502" />
+                              <Button fx:id="btn_503" layoutX="281.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="503" />
+                              <Button fx:id="btn_504" layoutX="417.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="504" />
+                              <Button fx:id="btn_505" layoutX="9.0" layoutY="161.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="505" />
+                              <Button fx:id="btn_506" layoutX="145.0" layoutY="161.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="506" />
+                              <Button fx:id="btn_507" layoutX="281.0" layoutY="161.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="507" />
+                              <Button fx:id="btn_508" layoutX="417.0" layoutY="161.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="508" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Piso 6">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="266.0" prefWidth="551.0">
+                           <children>
+                              <Button fx:id="btn_601" layoutX="9.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="601" />
+                              <Button fx:id="btn_602" layoutX="145.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="602" />
+                              <Button fx:id="btn_603" layoutX="281.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="603" />
+                              <Button fx:id="btn_604" layoutX="417.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="604" />
+                              <Button fx:id="btn_605" layoutX="9.0" layoutY="161.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="606" />
+                              <Button fx:id="btn_606" layoutX="145.0" layoutY="161.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="607" />
+                              <Button fx:id="btn_607" layoutX="281.0" layoutY="161.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="608" />
+                              <Button fx:id="btn_608" layoutX="417.0" layoutY="161.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble" text="609" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Piso 7">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="266.0" prefWidth="551.0">
+                           <children>
+                              <Button fx:id="btn_701" layoutX="6.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="701" />
+                              <Button fx:id="btn_702" layoutX="142.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="702" />
+                              <Button fx:id="btn_703" layoutX="278.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="703" />
+                              <Button fx:id="btn_704" layoutX="414.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="704" />
+                              <Button fx:id="btn_705" layoutX="5.0" layoutY="161.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="705" />
+                              <Button fx:id="btn_706" layoutX="141.0" layoutY="161.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="706" />
+                              <Button fx:id="btn_707" layoutX="277.0" layoutY="161.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="707" />
+                              <Button fx:id="btn_708" layoutX="413.0" layoutY="161.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="708" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Piso 8">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="266.0" prefWidth="551.0">
+                           <children>
+                              <Button fx:id="btn_801" layoutX="9.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="801" />
+                              <Button fx:id="btn_802" layoutX="145.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="802" />
+                              <Button fx:id="btn_803" layoutX="281.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="803" />
+                              <Button fx:id="btn_804" layoutX="417.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="804" />
+                              <Button fx:id="btn_805" layoutX="9.0" layoutY="162.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="805" />
+                              <Button fx:id="btn_806" layoutX="145.0" layoutY="162.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="806" />
+                              <Button fx:id="btn_807" layoutX="281.0" layoutY="162.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="807" />
+                              <Button fx:id="btn_808" layoutX="417.0" layoutY="162.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="808" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+
+                  </Tab>
+                  <Tab text="Piso 9">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="266.0" prefWidth="551.0">
+                           <children>
+                              <Button fx:id="btn_901" layoutX="9.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="901" />
+                              <Button fx:id="btn_902" layoutX="145.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="902" />
+                              <Button fx:id="btn_903" layoutX="281.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="903" />
+                              <Button fx:id="btn_904" layoutX="417.0" layoutY="6.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="904" />
+                              <Button fx:id="btn_905" layoutX="9.0" layoutY="163.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="905" />
+                              <Button fx:id="btn_906" layoutX="145.0" layoutY="163.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="906" />
+                              <Button fx:id="btn_907" layoutX="281.0" layoutY="163.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="907" />
+                              <Button fx:id="btn_908" layoutX="417.0" layoutY="163.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla" text="908" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+            <Spinner fx:id="cantidad_adultos" layoutX="36.0" layoutY="342.0" prefHeight="25.0" prefWidth="67.0" />
+            <Spinner fx:id="cantidad_niños" layoutX="131.0" layoutY="342.0" prefHeight="25.0" prefWidth="67.0" />
+            <Spinner fx:id="cantidad_bebes" layoutX="254.0" layoutY="342.0" prefHeight="25.0" prefWidth="67.0" />
+            <Button layoutX="744.0" layoutY="497.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="310.0" text="Ingrese los datos del títular" />
+            <Separator layoutX="471.0" layoutY="285.0" orientation="VERTICAL" prefHeight="95.0" prefWidth="5.0" />
+            <Rectangle fx:id="control_out" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="95.0" layoutX="364.0" layoutY="286.0" stroke="BLACK" strokeType="INSIDE" width="223.0" />
+            <Separator layoutX="758.0" layoutY="393.0" prefHeight="4.0" prefWidth="285.0" />
+            <Button layoutX="744.0" layoutY="614.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="310.0" text="Hacer reserva" />
+         </children></AnchorPane>
+   </children>
+</StackPane>

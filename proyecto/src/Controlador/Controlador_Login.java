@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -67,24 +68,23 @@ public class Controlador_Login implements Initializable
     }
 
     public void Click(ActionEvent actionEvent) throws IOException, SQLException {
-            Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../Vista/PruebaCambio.fxml"));
-            Pane ventana = (Pane) loader.load();
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("../Vista/recepcionista/navbar_recepcionista.fxml"));
+        Pane ventana = (Pane) loader.load();
 
-            //Show the scene containing the root layout.
+        //Show the scene containing the root layout.
 
-            Scene scene = new Scene(ventana);
-            scene.setFill(Color.TRANSPARENT);
-            stage.setTitle("Menu Principal");
-            stage.setScene(scene);
-            //Undecorated y No Resizable:
-            stage.setResizable(false);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.initStyle(StageStyle.TRANSPARENT);
+        Scene scene = new Scene(ventana);
+        scene.setFill(Color.TRANSPARENT);
+        stage.setTitle("Menu Principal");
+        stage.setScene(scene);
+        //Undecorated y No Resizable:
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.TRANSPARENT);
 
-            //Mostrar Stage:
-            stage.show();
-
+        //Mostrar Stage:
+        stage.show();
     }
 }
