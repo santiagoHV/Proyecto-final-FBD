@@ -10,6 +10,10 @@
     src: url('../Fuentes/BebasNeue-Regular.ttf');
 }
 
+@font-face {
+    src: url('../Fuentes/MAXWELL_BOLD.ttf');
+}
+
 .navbar {
     -fx-border-style: solid;
     -fx-border-color: black;
@@ -20,13 +24,18 @@
 }
 
 .navbar__button--reverve {
-    -fx-background-image: url("../images/reserve.png");
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-font-size: 20px;
+    -fx-background-image: url("../images/Reserva_Icon.png");
     -fx-background-position: center;
+    -fx-background-size: 80%;
     -fx-background-repeat: no-repeat;
 }
 
 .navbar__button--checkin {
-    -fx-background-image: url("../images/checkin.png");
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-font-size: 20px;
+    -fx-background-image: url("../images/Checkin_Icon.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
