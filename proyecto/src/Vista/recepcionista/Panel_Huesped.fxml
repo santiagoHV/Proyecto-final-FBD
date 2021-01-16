@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="144.0" prefWidth="483.0" styleClass="PHuesped" stylesheets="@../../../assets/css/Panel_Huesped.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_Huesped">
    <children>
       <Label fx:id="LBnom_completo" layoutX="12.0" layoutY="12.0" prefHeight="24.0" prefWidth="210.0" text="Juanito Robado Peñalisa">
@@ -62,8 +63,8 @@
       <ComboBox layoutX="187.0" layoutY="109.0" prefHeight="25.0" prefWidth="87.0" />
       <VBox layoutX="360.0" prefHeight="144.0" prefWidth="123.0" spacing="15.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="7.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: black; -fx-border-radius: 5;" text="Cambiar" />
-            <Button mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: black; -fx-border-radius: 5;" text="Dar ingreso" />
+            <JFXButton mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: black; -fx-border-radius: 5;" text="Cambiar" />
+            <JFXButton mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: black; -fx-border-radius: 5;" text="Dar ingreso" />
          </children>
       </VBox>
    </children>
