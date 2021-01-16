@@ -22,7 +22,7 @@
                   <Font name="Bring Heart Regular" size="100.0" />
                </font>
             </Label>
-            <JFXButton id="BIngresar" fx:id="BRecep" layoutX="25.0" layoutY="457.0" onAction="#EvIng" prefHeight="72.0" prefWidth="236.0" ripplerFill="WHITE" text="Recepcionista" />
+            <JFXButton id="BIngresar" fx:id="BRecep" layoutX="25.0" layoutY="457.0" onAction="#EvIng" prefHeight="72.0" prefWidth="236.0" text="Recepcionista" />
             <JFXButton fx:id="BSalir" layoutX="286.0" layoutY="594.0" onAction="#EvSalir" prefHeight="72.0" prefWidth="201.0" text="Salir" />
             <JFXButton id="BIngresar" fx:id="BEmple" layoutX="269.0" layoutY="457.0" onAction="#EvIng" prefHeight="72.0" prefWidth="236.0" text="Empleado" />
             <JFXButton id="BIngresar" fx:id="BAdmin" layoutX="512.0" layoutY="457.0" onAction="#EvIng" prefHeight="72.0" prefWidth="244.0" text="Administrador" />
