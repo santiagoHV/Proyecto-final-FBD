@@ -190,7 +190,7 @@
                         <Font name="MAXWELL REGULAR" size="25.0" />
                      </font>
                   </Label>
-                  <ScrollPane fx:id="panel_ingreso_huespedes" hbarPolicy="NEVER" prefHeight="394.0" prefWidth="513.0">
+                  <ScrollPane fx:id="panel_ingreso_huespedes" hbarPolicy="NEVER" prefHeight="394.0" prefWidth="513.0" stylesheets="@../../../assets/css/ScrollPane.css">
                      <content>
                         <GridPane fx:id="GridPanel_Huespedes" prefHeight="0.0" prefWidth="0.0">
                            <rowConstraints>
@@ -209,7 +209,7 @@
                         <Font name="MAXWELL REGULAR" size="25.0" />
                      </font>
                   </Label>
-                  <ScrollPane fx:id="panel_ingreso_habitaciones" prefHeight="200.0" prefWidth="200.0" vbarPolicy="NEVER">
+                  <ScrollPane fx:id="panel_ingreso_habitaciones" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../assets/css/ScrollPane.css" vbarPolicy="NEVER">
                      <content>
                         <GridPane fx:id="GridPanel_Btn_Habitaciones" prefHeight="0.0" prefWidth="0.0">
                            <rowConstraints>

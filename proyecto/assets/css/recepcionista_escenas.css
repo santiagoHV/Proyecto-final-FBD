@@ -22,7 +22,7 @@
 }
 
 .navbar__button {
-    -fx-background-color: TRANSPARENT;
+    -fx-background-color: #2E1E1E;
 }
 
 .navbar__button--reverve {
@@ -68,6 +68,10 @@
 }
 .button:hover{
     -fx-cursor: HAND;
+}-a
+
+.navbar__button:hover{
+    -fx-background-color: #402828;
 }
 
 .title-hotel {
