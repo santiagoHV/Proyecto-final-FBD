@@ -20,7 +20,12 @@
     -fx-border-color: black;
     -fx-effect: dropshadow(two-pass-box,#000000,10,0,3,3);
 }
-
+.hab_panel{
+    -fx-background-color: #2E1E1E;
+}
+.button{
+    -fx-background-color: white;
+}
 .navbar__button {
     -fx-background-color: #2E1E1E;
 }
@@ -66,6 +71,12 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
+.button-basic{
+
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+}
+
 .button:hover{
     -fx-cursor: HAND;
 }

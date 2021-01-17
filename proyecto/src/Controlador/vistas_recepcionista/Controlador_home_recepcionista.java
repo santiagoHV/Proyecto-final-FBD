@@ -26,7 +26,6 @@ public class Controlador_home_recepcionista implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        //reserve_button.setDisable(true);
 
         ObservableList<Tab> Tabs = TabPanePisos.getTabs();
 
@@ -35,22 +34,24 @@ public class Controlador_home_recepcionista implements Initializable {
             AnchorPane Contenedor = (AnchorPane) e.getContent();
             ObservableList<Node> NodosAnchorTab = Contenedor.getChildren();
 
-            for (Node n: NodosAnchorTab)
-            {
-                Button BotonConvertido = (Button) n;
+            for (Node n: NodosAnchorTab){
 
-                BotonConvertido.getStyleClass().add("map-green");
+                try{
+                    Button BotonConvertido = (Button) n;
 
-                BotonConvertido.setOnAction(actionEvent ->
-                {
-                    try
+                    BotonConvertido.getStyleClass().add("map-green");
+
+                    BotonConvertido.setOnAction(actionEvent ->
                     {
-                        EvSelecHabi(actionEvent);
-                    } catch (IOException ioException)
-                    {
-                        ioException.printStackTrace();
-                    }
-                });
+                        try {
+                            EvSelecHabi(actionEvent);
+                        } catch (IOException ioException) {
+                            ioException.printStackTrace();
+                        }
+                    });
+                }catch (Exception exception){
+                    continue;
+                }
             }
         }
     }
