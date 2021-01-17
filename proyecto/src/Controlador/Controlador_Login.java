@@ -86,5 +86,10 @@ public class Controlador_Login implements Initializable
 
         //Mostrar Stage:
         stage.show();
+
+        //Código adicional para el stage de inicio de sesión y el menú de inicio
+        JFXButton BotonAceptar = (JFXButton) actionEvent.getSource();
+        Stage dialogActual = (Stage) BotonAceptar.getScene().getWindow();
+        dialogActual.close();
     }
 }

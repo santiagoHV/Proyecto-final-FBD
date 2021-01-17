@@ -18,10 +18,11 @@
     -fx-background-color: #2E1E1E;
     -fx-border-style: solid;
     -fx-border-color: black;
+    -fx-effect: dropshadow(two-pass-box,#000000,10,0,3,3);
 }
 
 .navbar__button {
-    -fx-background-color: TRANSPARENT;
+    -fx-background-color: #2E1E1E;
 }
 
 .navbar__button--reverve {
@@ -67,6 +68,10 @@
 }
 .button:hover{
     -fx-cursor: HAND;
+}-a
+
+.navbar__button:hover{
+    -fx-background-color: #402828;
 }
 
 .title-hotel {
