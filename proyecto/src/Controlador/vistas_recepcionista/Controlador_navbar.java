@@ -27,12 +27,12 @@ public class Controlador_navbar implements Initializable {
 
     public void navigate(ActionEvent actionEvent) {
 
-        if(actionEvent.getSource()==reserve_button)
+        if(actionEvent.getSource() == reserve_button)
         {
             AbrirMenu("../Vista/recepcionista/Home_recepcionista.fxml");
-        } else if (actionEvent.getSource()==checkin_button) {
+        } else if (actionEvent.getSource() == checkin_button) {
             AbrirMenu("../Vista/recepcionista/checkin.fxml");
-        } else if (actionEvent.getSource()==checkout_button) {
+        } else if (actionEvent.getSource() == checkout_button) {
             AbrirMenu("../Vista/recepcionista/checkout.fxml");
         } else if (actionEvent.getSource()==search_button) {
             AbrirMenu("../Vista/recepcionista/search.fxml");
