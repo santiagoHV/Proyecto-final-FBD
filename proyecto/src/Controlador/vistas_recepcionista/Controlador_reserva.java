@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controlador_home_recepcionista implements Initializable {
+public class Controlador_reserva implements Initializable {
 
 
     public TabPane TabPanePisos;

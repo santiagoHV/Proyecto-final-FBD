@@ -35,14 +35,14 @@ public class Controlador_navbar implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        AbrirMenu("../Vista/recepcionista/Home_recepcionista.fxml");
+        AbrirMenu("../Vista/recepcionista/reserva.fxml");
     }
 
     public void navigate(ActionEvent actionEvent) {
 
         if(actionEvent.getSource() == reserve_button)
         {
-            AbrirMenu("../Vista/recepcionista/Home_recepcionista.fxml");
+            AbrirMenu("../Vista/recepcionista/reserva.fxml");
         } else if (actionEvent.getSource() == checkin_button) {
             AbrirMenu("../Vista/recepcionista/checkin.fxml");
         } else if (actionEvent.getSource() == checkout_button) {
