@@ -1,14 +1,25 @@
 package Controlador.vistas_recepcionista;
 
 import Vista.Main;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.events.JFXDialogEvent;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,6 +30,7 @@ public class Controlador_home_recepcionista implements Initializable {
 
     public TabPane TabPanePisos;
     public AnchorPane content;
+    public StackPane stackPane;
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -102,4 +114,46 @@ public class Controlador_home_recepcionista implements Initializable {
     }
 
 
+    public void desplegar_datos_titular(ActionEvent actionEvent) throws IOException {
+        //Se obtiene la fuente del evento:
+        String Boton = actionEvent.getSource().toString();
+
+        //Se parte el string de la fuente del evento para obtener el texto del botón:
+        String [] Partes = Boton.split("'");
+
+        BoxBlur blur = new BoxBlur(3,3,3);
+
+        //Obtención del parent con la ruta del fxml a usar
+        Parent parent = FXMLLoader.load(getClass().getResource("../../Vista/recepcionista/ingreso_datos.fxml"));
+
+        //Creación del Dialog usando el Parent como Region (cast) para poder personalizarlo:
+        JFXDialog dialog = new JFXDialog(stackPane, (Region) parent, JFXDialog.DialogTransition.BOTTOM, true);
+
+        //Obtención de los hijos de Parent (en este caso el botón cancelar):
+
+        //Esto es un machetazo el tenaz, pero no sé de que otra forma hacerlo:
+        AnchorPane AP = (AnchorPane) parent.getChildrenUnmodifiable().get(0);
+
+        /*HBox HB = (HBox) AP.getChildren().get(0);
+        ((Label) AP.getChildren().get(3)).setText(Partes[1]);
+
+        JFXButton BSalirDialog = (JFXButton)HB.getChildrenUnmodifiable().get(0);
+
+        //Definción del manejador de eventos del botón cancelar para que cierra el dialog
+        BSalirDialog.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent)->
+        {
+            dialog.close();
+        });*/
+
+        dialog.setOnDialogClosed((JFXDialogEvent event)->
+        {
+            content.setEffect(null);
+        });
+
+        //Aplicación del efecto
+        content.setEffect(blur);
+
+        //Se muestra el dialog:
+        dialog.show();
+    }
 }
