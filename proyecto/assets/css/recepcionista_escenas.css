@@ -94,11 +94,23 @@
     -fx-font-weight: bold;
 }
 
+.seleccion_hab__hab_triple
+{
+    -fx-background-image: url("../images/Piso_1_Icon.png");
+    -fx-background-position: center;
+    -fx-background-size: 80%;
+    -fx-background-repeat: no-repeat;
+}
+
 .map-red {
     -fx-border-color: #d70000;
+    -fx-background-color: #ff9f9f;
 }
 
 .map-green {
     -fx-border-color: #1bf358;
+    -fx-background-color: #9fffba;
 }
+
+
 

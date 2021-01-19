@@ -57,7 +57,7 @@ public class Controlador_Menu_Inicio implements Initializable
         this.makeStageDragable();
 
         //Obtención del archivo por la ruta:
-        File file = new File("assets/images/pexels-william-sun-1267473 (1).jpg");
+        File file = new File("assets/images/Slide1_MenuInicio.jpg");
 
         //Conversión del archivo:
         Image image = new Image(file.toURI().toString());

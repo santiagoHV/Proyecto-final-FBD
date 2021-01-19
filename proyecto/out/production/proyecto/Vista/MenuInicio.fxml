@@ -14,7 +14,7 @@
          <children>
             <ImageView fx:id="Banner1" fitHeight="750.0" fitWidth="420.0" layoutX="772.0" layoutY="7.0" pickOnBounds="true">
                <image>
-                  <Image url="@../../assets/images/pexels-william-sun-1267473 (1).jpg" />
+                  <Image url="@../../assets/images/Slide1_MenuInicio.jpg" />
                </image>
             </ImageView>
             <Label id="Titulo" layoutX="98.0" layoutY="317.0" prefHeight="94.0" prefWidth="577.0" text="Saldarriaga Mahal" textFill="WHITE">
