@@ -16,16 +16,16 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class Controlador_home_recepcionista implements Initializable {
+public class Controlador_reserva implements Initializable {
 
 
     public TabPane TabPanePisos;
@@ -44,14 +44,23 @@ public class Controlador_home_recepcionista implements Initializable {
         for (Tab e: Tabs)
         {
             AnchorPane Contenedor = (AnchorPane) e.getContent();
-            ObservableList<Node> NodosAnchorTab = Contenedor.getChildren();
 
+            VBox vBox = (VBox) Contenedor.getChildren().get(0);
+            HBox hBoxSup = (HBox) vBox.getChildren().get(0);
+            HBox hBoxInf = (HBox) vBox.getChildren().get(2);
+
+            List<Node> NodosAnchorTab = new ArrayList<>();
+            NodosAnchorTab.addAll(hBoxSup.getChildren());
+            NodosAnchorTab.addAll(hBoxInf.getChildren());
+            
             for (Node n: NodosAnchorTab){
 
                 try{
                     Button BotonConvertido = (Button) n;
 
                     BotonConvertido.getStyleClass().add("map-green");
+
+                    //System.out.println(BotonConvertido.getStyleClass());
 
                     BotonConvertido.setOnAction(actionEvent ->
                     {
@@ -62,6 +71,7 @@ public class Controlador_home_recepcionista implements Initializable {
                         }
                     });
                 }catch (Exception exception){
+                    System.out.println(exception);
                     continue;
                 }
             }
@@ -73,13 +83,13 @@ public class Controlador_home_recepcionista implements Initializable {
 
         Node Boton = (Node) actionEvent.getSource();
 
-        if(Boton.getStyleClass().get(2).equals("map-green"))
+        if(Boton.getStyleClass().get(3).equals("map-green"))
         {
-            Boton.getStyleClass().set(2, "map-red");
+            Boton.getStyleClass().set(3, "map-red");
         }
         else
         {
-            Boton.getStyleClass().set(2, "map-green");
+            Boton.getStyleClass().set(3, "map-green");
         }
 
         //System.out.println(Boton.getStyleClass());
