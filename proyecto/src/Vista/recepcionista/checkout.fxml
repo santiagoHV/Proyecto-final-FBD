@@ -130,7 +130,7 @@
             </Label>
             <Pane layoutX="34.0" layoutY="458.0" prefHeight="181.0" prefWidth="476.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 8;">
                <children>
-                  <Label layoutX="14.0" layoutY="14.0" prefHeight="24.0" prefWidth="318.0" text="Valor de recerva y estadía . . . . . . . . . . . . . . . . . . . . .">
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="24.0" prefWidth="318.0" text="Valor de reserva y estadía . . . . . . . . . . . . . . . . . . . . .">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
