@@ -60,7 +60,7 @@ public class Controlador_reserva implements Initializable {
 
                     BotonConvertido.getStyleClass().add("map-green");
 
-                    System.out.println(BotonConvertido.getStyleClass());
+                    //System.out.println(BotonConvertido.getStyleClass());
 
                     BotonConvertido.setOnAction(actionEvent ->
                     {
@@ -92,7 +92,7 @@ public class Controlador_reserva implements Initializable {
             Boton.getStyleClass().set(3, "map-green");
         }
 
-        System.out.println(Boton.getStyleClass());
+        //System.out.println(Boton.getStyleClass());
     }
 
     private void makeStageDragable()
