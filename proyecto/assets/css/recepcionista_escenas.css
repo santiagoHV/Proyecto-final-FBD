@@ -94,27 +94,62 @@
     -fx-font-weight: bold;
 }
 
-.seleccion_hab__hab_triple
-{
-    -fx-background-image: url("../images/Piso_1_Icon.png");
+.seleccion_hab__hab_triple_up {
+    -fx-background-image: url("../images/hab_triple_up.png");
     -fx-background-position: center;
-    -fx-background-size: 80%;
+    -fx-background-size: 110%;
     -fx-background-repeat: no-repeat;
 
 }
-.seleccion_hab__hab_doble
-{
-    -fx-background-image: url("../images/Piso_1_Icon.png");
+.seleccion_hab__hab_triple_down {
+    -fx-background-image: url("../images/hab_triple_down.png");
     -fx-background-position: center;
-    -fx-background-size: 95%;
+    -fx-background-size: 110%;
+    -fx-background-repeat: no-repeat;
+
+}
+.seleccion_hab__hab_doble1_up
+{
+    -fx-background-image: url("../images/hab_doble1_up.png");
+    -fx-background-position: center;
+    -fx-background-size: 105%;
+    -fx-background-repeat: no-repeat;
+}
+.seleccion_hab__hab_doble1_down
+{
+    -fx-background-image: url("../images/hab_doble1_down.png");
+    -fx-background-position: center;
+    -fx-background-size: 105%;
+    -fx-background-repeat: no-repeat;
+}
+.seleccion_hab__hab_doble2_up
+{
+    -fx-background-image: url("../images/hab_doble2_up.png");
+    -fx-background-position: center;
+    -fx-background-size: 105%;
+    -fx-background-repeat: no-repeat;
+}
+.seleccion_hab__hab_doble2_down
+{
+    -fx-background-image: url("../images/hab_doble2_down.png");
+    -fx-background-position: center;
+    -fx-background-size: 105%;
     -fx-background-repeat: no-repeat;
 }
 
-.seleccion_hab__hab_sencilla
+.seleccion_hab__hab_sencilla_up
 {
-    -fx-background-image: url("../images/Piso_1_Icon.png");
+    -fx-background-image: url("../images/hab_sencilla_up.png");
     -fx-background-position: center;
-    -fx-background-size: 95%;
+    -fx-background-size: 105%;
+    -fx-background-repeat: no-repeat;
+}
+
+.seleccion_hab__hab_sencilla_down
+{
+    -fx-background-image: url("../images/hab_sencilla_down.png");
+    -fx-background-position: center;
+    -fx-background-size: 105%;
     -fx-background-repeat: no-repeat;
 }
 
