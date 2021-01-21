@@ -7,9 +7,8 @@ public class Registro {
     private Date f_entrada;
     private Date f_salida;
     private int k_cuenta;
-    private String k_tipo_documento;
-    private int k_identificacion;
-    private int k_reserva;
+    private Persona persona;
+    private Reserva reserva;
 
     public int getK_registro() {
 
@@ -44,27 +43,19 @@ public class Registro {
         this.k_cuenta = k_cuenta;
     }
 
-    public String getK_tipo_documento() {
-        return k_tipo_documento;
+    public Persona getPersona() {
+        return persona;
     }
 
-    public void setK_tipo_documento(String k_tipo_documento) {
-        this.k_tipo_documento = k_tipo_documento;
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
-    public int getK_identificacion() {
-        return k_identificacion;
+    public Reserva getReserva() {
+        return reserva;
     }
 
-    public void setK_identificacion(int k_identificacion) {
-        this.k_identificacion = k_identificacion;
-    }
-
-    public int getK_reserva() {
-        return k_reserva;
-    }
-
-    public void setK_reserva(int k_reserva) {
-        this.k_reserva = k_reserva;
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
     }
 }

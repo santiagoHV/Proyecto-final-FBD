@@ -10,7 +10,8 @@ public class Reserva {
     private Date f_final;
     private int cantidad_huespedes;
     private double precio_reserva;
-    private int k_condicion;
+    private Condicion_Hotel condicion;
+    private Persona persona;
 
     public int getK_reserva() {
         return k_reserva;
@@ -68,30 +69,19 @@ public class Reserva {
         this.precio_reserva = precio_reserva;
     }
 
-    public int getK_condicion() {
-        return k_condicion;
+    public Condicion_Hotel getCondicion() {
+        return condicion;
     }
 
-    public void setK_condicion(int k_condicion) {
-        this.k_condicion = k_condicion;
+    public void setCondicion(Condicion_Hotel condicion) {
+        this.condicion = condicion;
     }
 
-    public int getK_identificacion() {
-        return k_identificacion;
+    public Persona getPersona() {
+        return persona;
     }
 
-    public void setK_identificacion(int k_identificacion) {
-        this.k_identificacion = k_identificacion;
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
-
-    public String getK_tipo_documento() {
-        return k_tipo_documento;
-    }
-
-    public void setK_tipo_documento(String k_tipo_documento) {
-        this.k_tipo_documento = k_tipo_documento;
-    }
-
-    private int k_identificacion;
-    private String k_tipo_documento;
 }

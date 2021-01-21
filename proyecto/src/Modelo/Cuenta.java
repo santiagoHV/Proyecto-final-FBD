@@ -3,9 +3,9 @@ package Modelo;
 public class Cuenta {
     private int k_cuenta;
     private double precio_acumulado;
-    private int k_pago;
-    private int k_registro;
-    private int k_reserva;
+    private Pago pago;
+    private Registro registro;
+    private Reserva reserva;
 
     public int getK_cuenta() {
         return k_cuenta;
@@ -23,27 +23,27 @@ public class Cuenta {
         this.precio_acumulado = precio_acumulado;
     }
 
-    public int getK_pago() {
-        return k_pago;
+    public Pago getPago() {
+        return pago;
     }
 
-    public void setK_pago(int k_pago) {
-        this.k_pago = k_pago;
+    public void setPago(Pago pago) {
+        this.pago = pago;
     }
 
-    public int getK_registro() {
-        return k_registro;
+    public Registro getRegistro() {
+        return registro;
     }
 
-    public void setK_registro(int k_registro) {
-        this.k_registro = k_registro;
+    public void setRegistro(Registro registro) {
+        this.registro = registro;
     }
 
-    public int getK_reserva() {
-        return k_reserva;
+    public Reserva getReserva() {
+        return reserva;
     }
 
-    public void setK_reserva(int k_reserva) {
-        this.k_reserva = k_reserva;
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
     }
 }

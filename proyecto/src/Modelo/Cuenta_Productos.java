@@ -4,8 +4,8 @@ import java.sql.Date;
 public class Cuenta_Productos {
     private int pys_pedidos;
     private Date f_pedido;
-    private int k_codigo_pys;
-    private int k_cuenta;
+    private PyS pys;
+    private Cuenta cuenta;
 
     public int getPys_pedidos() {
         return pys_pedidos;
@@ -23,19 +23,19 @@ public class Cuenta_Productos {
         this.f_pedido = f_pedido;
     }
 
-    public int getK_codigo_pys() {
-        return k_codigo_pys;
+    public PyS getPys() {
+        return pys;
     }
 
-    public void setK_codigo_pys(int k_codigo_pys) {
-        this.k_codigo_pys = k_codigo_pys;
+    public void setPys(PyS pys) {
+        this.pys = pys;
     }
 
-    public int getK_cuenta() {
-        return k_cuenta;
+    public Cuenta getCuenta() {
+        return cuenta;
     }
 
-    public void setK_cuenta(int k_cuenta) {
-        this.k_cuenta = k_cuenta;
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
     }
 }
