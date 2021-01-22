@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="62dbb9cc-5465-4a70-ab02-57495a59554a" name="Default Changelist" comment="" />
+    <list default="true" id="62dbb9cc-5465-4a70-ab02-57495a59554a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/proyecto/proyecto.iml" beforeDir="false" afterPath="$PROJECT_DIR$/proyecto/proyecto.iml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +22,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/proyecto" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -30,10 +36,21 @@
       <option name="presentableId" value="Default" />
       <updated>1609372104352</updated>
       <workItem from="1609372105764" duration="855000" />
+      <workItem from="1611353143785" duration="91000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1611353233160">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1060" y="455" key="FileChooserDialogImpl/-1280.0.1280.984/0.0.2560.1400@0.0.2560.1400" timestamp="1611353233160" />
+    <state x="760" y="274" key="SettingsEditor" timestamp="1611353221079">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="760" y="274" key="SettingsEditor/-1280.0.1280.984/0.0.2560.1400@0.0.2560.1400" timestamp="1611353221079" />
   </component>
 </project>
