@@ -1,6 +1,6 @@
 package Controlador.vistas_recepcionista;
 
-import Modelo.Habitacion;
+import Modelo.entidades.Habitacion;
 import javafx.scene.control.Button;
 
 public class Controlador_Boton_Habitaciones

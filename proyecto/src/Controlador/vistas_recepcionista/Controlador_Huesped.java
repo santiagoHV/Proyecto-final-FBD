@@ -1,6 +1,6 @@
 package Controlador.vistas_recepcionista;
 
-import Modelo.Huesped;
+import Modelo.entidades.Huesped;
 import javafx.scene.control.Label;
 
 public class Controlador_Huesped

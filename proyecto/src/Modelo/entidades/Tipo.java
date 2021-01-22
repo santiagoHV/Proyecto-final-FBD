@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.entidades;
 
 public class Tipo {
     private int k_tipo_habitacion;
