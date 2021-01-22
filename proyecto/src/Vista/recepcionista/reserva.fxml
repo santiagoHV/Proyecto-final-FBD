@@ -27,7 +27,7 @@
                                        <children>
                                           <JFXButton fx:id="btn_201" mnemonicParsing="false" prefHeight="130.0" prefWidth="180.0" styleClass="seleccion_hab__hab_triple_up" text="201" />
                                           <JFXButton fx:id="btn_202" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple_up" text="202" />
-                                          <JFXButton fx:id="btn_203" mnemonicParsing="false" prefHeight="130.0" prefWidth="180.0" styleClass="seleccion_hab__hab_triple_up" text="203" />
+                                          <JFXButton fx:id="btn_203" mnemonicParsing="false" prefHeight="130.0" prefWidth="180.0" style="-fx-font-family: MAXWELL;" styleClass="seleccion_hab__hab_triple_up" text="203" />
                                        </children>
                                     </HBox>
                                     <Label text="Habitaciones triples" textFill="WHITE">
