@@ -6,6 +6,13 @@ public class PyS {
     private int stock;
     private double precio_producta;
 
+    public PyS(int k_codigo_pys, String unidad, int stock, double precio_producta) {
+        this.k_codigo_pys = k_codigo_pys;
+        this.unidad = unidad;
+        this.stock = stock;
+        this.precio_producta = precio_producta;
+    }
+
     public int getK_codigo_pys() {
         return k_codigo_pys;
     }

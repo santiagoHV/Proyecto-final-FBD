@@ -4,6 +4,11 @@ public class Reserva_Habitacion {
     private Reserva reserva;
     private Habitacion habitacion;
 
+    public Reserva_Habitacion(Reserva reserva, Habitacion habitacion) {
+        this.reserva = reserva;
+        this.habitacion = habitacion;
+    }
+
     public Reserva getReserva() {
         return reserva;
     }

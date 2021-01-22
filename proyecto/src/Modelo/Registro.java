@@ -10,6 +10,15 @@ public class Registro {
     private Persona persona;
     private Reserva reserva;
 
+    public Registro(int k_registro, Date f_entrada, Date f_salida, int k_cuenta, Persona persona, Reserva reserva) {
+        this.k_registro = k_registro;
+        this.f_entrada = f_entrada;
+        this.f_salida = f_salida;
+        this.k_cuenta = k_cuenta;
+        this.persona = persona;
+        this.reserva = reserva;
+    }
+
     public int getK_registro() {
 
         return k_registro;

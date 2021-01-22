@@ -8,6 +8,13 @@ public class Pago {
     private double monto;
     private String forma_de_pago;
 
+    public Pago(int k_pago, Date f_pago, double monto, String forma_de_pago) {
+        this.k_pago = k_pago;
+        this.f_pago = f_pago;
+        this.monto = monto;
+        this.forma_de_pago = forma_de_pago;
+    }
+
     public int getK_pago() {
         return k_pago;
     }

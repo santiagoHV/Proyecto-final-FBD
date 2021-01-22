@@ -5,6 +5,14 @@ public class Habitacion
     private int k_numero_habitacion;
     private Tipo tipo_habitacion;
 
+    public Habitacion(){
+    }
+
+    public Habitacion(int k_numero_habitacion, Tipo tipo_habitacion) {
+        this.k_numero_habitacion = k_numero_habitacion;
+        this.tipo_habitacion = tipo_habitacion;
+    }
+
     public int getK_numero_habitacion() {
         return k_numero_habitacion;
     }

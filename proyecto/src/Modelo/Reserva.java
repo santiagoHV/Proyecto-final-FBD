@@ -13,6 +13,18 @@ public class Reserva {
     private Condicion_Hotel condicion;
     private Persona persona;
 
+    public Reserva(int k_reserva, String estado, Date f_inicio, Date f_reserva, Date f_final, int cantidad_huespedes, double precio_reserva, Condicion_Hotel condicion, Persona persona) {
+        this.k_reserva = k_reserva;
+        this.estado = estado;
+        this.f_inicio = f_inicio;
+        this.f_reserva = f_reserva;
+        this.f_final = f_final;
+        this.cantidad_huespedes = cantidad_huespedes;
+        this.precio_reserva = precio_reserva;
+        this.condicion = condicion;
+        this.persona = persona;
+    }
+
     public int getK_reserva() {
         return k_reserva;
     }

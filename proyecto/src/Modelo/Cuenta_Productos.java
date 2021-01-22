@@ -7,6 +7,13 @@ public class Cuenta_Productos {
     private PyS pys;
     private Cuenta cuenta;
 
+    public Cuenta_Productos(int pys_pedidos, Date f_pedido, PyS pys, Cuenta cuenta) {
+        this.pys_pedidos = pys_pedidos;
+        this.f_pedido = f_pedido;
+        this.pys = pys;
+        this.cuenta = cuenta;
+    }
+
     public int getPys_pedidos() {
         return pys_pedidos;
     }

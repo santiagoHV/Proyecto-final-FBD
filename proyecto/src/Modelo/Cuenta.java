@@ -7,6 +7,14 @@ public class Cuenta {
     private Registro registro;
     private Reserva reserva;
 
+    public Cuenta(int k_cuenta, double precio_acumulado, Pago pago, Registro registro, Reserva reserva) {
+        this.k_cuenta = k_cuenta;
+        this.precio_acumulado = precio_acumulado;
+        this.pago = pago;
+        this.registro = registro;
+        this.reserva = reserva;
+    }
+
     public int getK_cuenta() {
         return k_cuenta;
     }
