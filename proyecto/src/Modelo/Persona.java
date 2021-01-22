@@ -20,6 +20,9 @@ public class Persona
         this.habitacion = habitacion;
     }
 
+    public Persona() {
+    }
+
     public String getK_identificacion() {
         return k_identificacion;
     }

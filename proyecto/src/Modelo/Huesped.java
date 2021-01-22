@@ -8,9 +8,8 @@ public class Huesped extends Persona
     public Huesped(){
     }
 
-    public Huesped(String n_direccion, Persona persona) {
-        this.n_direccion = n_direccion;
-        this.persona = persona;
+    public Huesped(String k_identificacion, String k_tipo_documento_id, String f_nacimiento, String n_telefono, String n_nombre, String n_apellido, String habitacion) {
+        super(k_identificacion, k_tipo_documento_id, f_nacimiento, n_telefono, n_nombre, n_apellido, habitacion);
     }
 
     public String getN_direccion() {
