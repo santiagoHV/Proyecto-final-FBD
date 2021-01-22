@@ -10,6 +10,19 @@ public class Persona
     private String n_apellido;
     private String habitacion;
 
+    public Persona(String k_identificacion, String k_tipo_documento_id, String f_nacimiento, String n_telefono, String n_nombre, String n_apellido, String habitacion) {
+        this.k_identificacion = k_identificacion;
+        this.k_tipo_documento_id = k_tipo_documento_id;
+        this.f_nacimiento = f_nacimiento;
+        this.n_telefono = n_telefono;
+        this.n_nombre = n_nombre;
+        this.n_apellido = n_apellido;
+        this.habitacion = habitacion;
+    }
+
+    public Persona() {
+    }
+
     public String getK_identificacion() {
         return k_identificacion;
     }
