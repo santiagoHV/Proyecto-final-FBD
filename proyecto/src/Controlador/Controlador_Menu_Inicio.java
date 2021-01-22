@@ -112,7 +112,7 @@ public class Controlador_Menu_Inicio implements Initializable
         BoxBlur blur = new BoxBlur(3,3,3);
 
         //Obtención del parent con la ruta del fxml a usar
-        Parent parent = FXMLLoader.load(getClass().getResource("../Vista/Login.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("../Vista/ingreso/Login.fxml"));
 
         //Creación del Dialog usando el Parent como Region (cast) para poder personalizarlo:
         JFXDialog dialog = new JFXDialog(stackPane1, (Region) parent, JFXDialog.DialogTransition.BOTTOM, true);

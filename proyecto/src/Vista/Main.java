@@ -19,7 +19,7 @@ public class Main extends Application {
 
         //Forma 1 (Youtube)
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("MenuInicio.fxml"));
+        loader.setLocation(Main.class.getResource("./ingreso/MenuInicio.fxml"));
         Pane ventana = (Pane) loader.load();
 
         //Show the scene containing the root layout.

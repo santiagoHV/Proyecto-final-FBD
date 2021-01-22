@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane id="ContenMP" fx:id="stackPane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1200.0" stylesheets="@../../assets/css/MP_CSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.Controlador_Menu_Inicio">
+<StackPane id="ContenMP" fx:id="stackPane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1200.0" stylesheets="@../../../assets/css/MP_CSS.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.Controlador_Menu_Inicio">
    <children>
       <AnchorPane id="ContenMP" fx:id="AnchorMP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1200.0">
          <children>
             <ImageView fx:id="Banner1" fitHeight="750.0" fitWidth="420.0" layoutX="772.0" layoutY="7.0" pickOnBounds="true">
                <image>
-                  <Image url="@../../assets/images/Slide1_MenuInicio.jpg" />
+                  <Image url="@../../../assets/images/Slide1_MenuInicio.jpg" />
                </image>
             </ImageView>
             <Label id="Titulo" layoutX="98.0" layoutY="317.0" prefHeight="94.0" prefWidth="577.0" text="Saldarriaga Mahal" textFill="WHITE">
