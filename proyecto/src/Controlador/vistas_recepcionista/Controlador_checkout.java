@@ -8,6 +8,6 @@ import java.util.ResourceBundle;
 public class Controlador_checkout implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        //prueba por errores de saldamigo
     }
 }
