@@ -24,7 +24,7 @@
             </Label>
             <VBox layoutX="25.0" layoutY="130.0" prefHeight="620.0" prefWidth="1029.0" spacing="10.0" styleClass="bg_container_default">
                <children>
-                  <Label styleClass="label_rotulos" text="Buscar Reserva o Cliente:">
+                  <Label styleClass="label_rotulos" text="Buscar Reserva o Cliente:" underline="true">
                      <font>
                         <Font name="Arial" size="40.0" />
                      </font>
