@@ -14,6 +14,10 @@
     src: url('../Fuentes/MAXWELL_BOLD.ttf');
 }
 
+@font-face {
+    src: url('../Fuentes/TroubleFontRegular400.otf');
+}
+
 .navbar {
     -fx-background-color: #2E1E1E;
     -fx-border-style: solid;
@@ -167,6 +171,18 @@
 .map-green {
     -fx-border-color: #1bf358;
     -fx-background-color: #9fffba;
+}
+
+.bg_container_default
+{
+    -fx-background-color: #e7e7e7;
+}
+
+.label_rotulos
+{
+    -fx-font-family: "Trouble Font";
+    -fx-font-size: 40px;
+    -fx-text-fill: #323232;
 }
 
 

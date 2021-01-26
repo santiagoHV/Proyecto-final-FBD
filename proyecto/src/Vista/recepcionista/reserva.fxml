@@ -317,7 +317,7 @@
             </TabPane>
             <Button fx:id="btn_datos_titular" layoutX="718.0" layoutY="497.0" mnemonicParsing="false" onAction="#desplegar_datos_titular" prefHeight="95.0" prefWidth="310.0" styleClass="button-basic" text="Ingrese los datos del títular" />
             <Button fx:id="btn_hacer_reserva" layoutX="718.0" layoutY="614.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="310.0" styleClass="button-basic" text="Hacer reserva" />
-            <Label layoutX="25.0" layoutY="119.0" style="-fx-effect: dropshadow(two-pass-box, #000000,5,0.10,3,3);" text="RESERVAR" underline="true">
+            <Label layoutX="25.0" layoutY="119.0" styleClass="label_rotulos" text="RESERVAR:" underline="true">
                <font>
                   <Font name="MAXWELL REGULAR" size="39.0" />
                </font>

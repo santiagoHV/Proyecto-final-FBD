@@ -23,7 +23,7 @@
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label layoutX="36.0" layoutY="128.0" style="-fx-effect: dropshadow(two-pass-box, #000000,5,0.10,3,3);" text="CHECK-IN" underline="true">
+            <Label layoutX="36.0" layoutY="128.0" styleClass="label_rotulos" text="CHECK-IN:" underline="true">
                <font>
                   <Font name="MAXWELL REGULAR" size="39.0" />
                </font>

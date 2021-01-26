@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -20,48 +22,87 @@
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label layoutX="42.0" layoutY="136.0" style="-fx-effect: dropshadow(two-pass-box, #000000,5,0.10,3,3);" text="Buscar reserva o usuario" underline="true">
-               <font>
-                  <Font name="MAXWELL REGULAR" size="39.0" />
-               </font>
-            </Label>
-            <TextField fx:id="codigo_reserva" layoutX="48.0" layoutY="240.0" prefHeight="25.0" prefWidth="159.0" />
-            <Label layoutX="48.0" layoutY="214.0" text="Código de reserva:">
-               <font>
-                  <Font name="MAXWELL REGULAR" size="25.0" />
-               </font>
-            </Label>
-            <TextField fx:id="codigo_reserva1" layoutX="273.0" layoutY="241.0" prefHeight="25.0" prefWidth="187.0" />
-            <Label layoutX="273.0" layoutY="215.0" text="Nombre y/o apellido:">
-               <font>
-                  <Font name="MAXWELL REGULAR" size="25.0" />
-               </font>
-            </Label>
-            <Label layoutX="552.0" layoutY="214.0" text="No. documento">
-               <font>
-                  <Font name="MAXWELL REGULAR" size="25.0" />
-               </font>
-            </Label>
-            <TextField fx:id="codigo_reserva2" layoutX="552.0" layoutY="241.0" prefHeight="25.0" prefWidth="136.0" />
-            <VBox layoutX="45.0" layoutY="350.0" prefHeight="403.0" prefWidth="676.0" spacing="16.0">
+            <VBox layoutX="25.0" layoutY="130.0" prefHeight="620.0" prefWidth="1029.0" spacing="10.0" styleClass="bg_container_default">
                <children>
-                  <Label text="Coincidencias">
+                  <Label styleClass="label_rotulos" text="Buscar Reserva o Cliente:">
                      <font>
-                        <Font name="MAXWELL REGULAR" size="25.0" />
+                        <Font name="Arial" size="40.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </VBox.margin>
                   </Label>
-                  <ScrollPane fx:id="panel_ingreso_huespedes" hbarPolicy="NEVER" prefHeight="358.0" prefWidth="676.0">
-                     <content>
-                        <GridPane fx:id="GridPanel_Huespedes" prefHeight="0.0" prefWidth="0.0">
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                           </rowConstraints>
-                        </GridPane>
-                     </content>
-                  </ScrollPane>
+                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="100.0" prefWidth="225.0">
+                           <children>
+                              <Label text="Código de reserva:">
+                                 <font>
+                                    <Font name="MAXWELL REGULAR" size="25.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="codigo_reserva11" prefHeight="25.0" prefWidth="187.0" />
+                           </children>
+                           <padding>
+                              <Insets top="25.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="100.0" prefWidth="225.0">
+                           <children>
+                              <Label text="Nombre y/o Apellido">
+                                 <font>
+                                    <Font name="MAXWELL REGULAR" size="25.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="codigo_reserva111" prefHeight="25.0" prefWidth="187.0" />
+                           </children>
+                           <padding>
+                              <Insets top="25.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="100.0" prefWidth="225.0">
+                           <children>
+                              <Label text="No. Documento">
+                                 <font>
+                                    <Font name="MAXWELL REGULAR" size="25.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="codigo_reserva112" prefHeight="25.0" prefWidth="187.0" />
+                           </children>
+                           <padding>
+                              <Insets top="25.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="88.0" prefWidth="1013.0">
+                     <children>
+                        <JFXButton mnemonicParsing="false" prefHeight="41.0" prefWidth="139.0" styleClass="button-basic" text="Buscar" />
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="403.0" prefWidth="676.0" spacing="9.0">
+                     <children>
+                        <Label text="Coincidencias">
+                           <font>
+                              <Font name="MAXWELL REGULAR" size="25.0" />
+                           </font>
+                        </Label>
+                        <ScrollPane fx:id="panel_ingreso_huespedes" hbarPolicy="NEVER" prefHeight="358.0" prefWidth="676.0">
+                           <content>
+                              <GridPane fx:id="GridPanel_Huespedes" prefHeight="0.0" prefWidth="0.0">
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                 </rowConstraints>
+                              </GridPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
                </children>
+               <padding>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </padding>
             </VBox>
-            <JFXButton layoutX="255.0" layoutY="300.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="223.0" styleClass="button-basic" text="Buscar" />
          </children>
       </AnchorPane>
    </children>
