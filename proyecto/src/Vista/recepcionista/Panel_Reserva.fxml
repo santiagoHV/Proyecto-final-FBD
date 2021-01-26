@@ -40,7 +40,10 @@
       </Label>
       <VBox alignment="CENTER" fillWidth="false" layoutX="360.0" layoutY="3.0" prefHeight="144.0" prefWidth="147.0" spacing="15.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXButton mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: black; -fx-border-radius: 5;" text="Editar" />
+            <JFXButton mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: black; -fx-border-radius: 5;" text="Editar">
+               <font>
+                  <Font size="28.0" />
+               </font></JFXButton>
             <JFXButton mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: black; -fx-border-radius: 5;" text="Consultar" />
          </children>
       </VBox>
