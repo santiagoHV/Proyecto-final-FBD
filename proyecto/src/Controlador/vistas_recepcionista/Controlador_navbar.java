@@ -72,7 +72,7 @@ public class Controlador_navbar implements Initializable {
 
                 Stage stageMenuInicio = new Stage();
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("../Vista/MenuInicio.fxml"));
+                loader.setLocation(Main.class.getResource("../Vista/ingreso/MenuInicio.fxml"));
                 Pane ventana = null;
 
                 //Try Catch creado por Intellij
