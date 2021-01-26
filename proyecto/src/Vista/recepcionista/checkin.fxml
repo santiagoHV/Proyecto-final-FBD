@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_checkin">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_checkin">
    <children>
       <AnchorPane prefHeight="768.0" prefWidth="1072.0" stylesheets="@../../../assets/css/recepcionista_escenas.css">
          <children>
@@ -201,7 +201,7 @@
                   </ScrollPane>
                </children>
             </VBox>
-            <Button fx:id="btn_buscar" layoutX="312.0" layoutY="228.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="Buscar..." />
+            <Button fx:id="btn_buscar" layoutX="312.0" layoutY="228.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" styleClass="button-basic" text="Buscar..." />
             <VBox layoutX="543.0" layoutY="609.0" prefHeight="143.0" prefWidth="513.0" spacing="11.0">
                <children>
                   <Label text="Entrega de habitaciones">
@@ -220,7 +220,7 @@
                   </ScrollPane>
                </children>
             </VBox>
-            <Button fx:id="btn_buscar1" layoutX="312.0" layoutY="132.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="FINALIZAR" />
+            <Button fx:id="btn_buscar1" layoutX="312.0" layoutY="132.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" styleClass="button-basic" text="FINALIZAR" />
          </children>
       </AnchorPane>
    </children>

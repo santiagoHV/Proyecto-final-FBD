@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_search">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_search">
    <children>
       <AnchorPane prefHeight="768.0" prefWidth="1075.0" stylesheets="@../../../assets/css/recepcionista_escenas.css">
          <children>
@@ -61,17 +61,7 @@
                   </ScrollPane>
                </children>
             </VBox>
-            <Button layoutX="255.0" layoutY="300.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="223.0" text="Buscar" />
-            <Label layoutX="232.0" layoutY="241.0" text="ó">
-               <font>
-                  <Font name="MAXWELL REGULAR" size="25.0" />
-               </font>
-            </Label>
-            <Label layoutX="501.0" layoutY="240.0" text="ó">
-               <font>
-                  <Font name="MAXWELL REGULAR" size="25.0" />
-               </font>
-            </Label>
+            <JFXButton layoutX="255.0" layoutY="300.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="223.0" styleClass="button-basic" text="Buscar" />
          </children>
       </AnchorPane>
    </children>

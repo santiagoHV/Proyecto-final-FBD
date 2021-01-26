@@ -74,7 +74,7 @@
     -fx-background-repeat: no-repeat;
 }
 .button-basic{
-
+    -fx-background-color: #eeeeee;
     -fx-border-color: black;
     -fx-border-radius: 10;
 }
