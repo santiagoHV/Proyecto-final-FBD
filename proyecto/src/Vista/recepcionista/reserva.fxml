@@ -1,24 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<StackPane fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_reserva">
+<StackPane fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_reserva">
    <children>
       <AnchorPane fx:id="content" prefHeight="768.0" prefWidth="1075.0">
          <children>
@@ -334,7 +323,7 @@
                   <Font name="MAXWELL REGULAR" size="25.0" />
                </font>
             </Label>
-            <Pane layoutX="31.0" layoutY="239.0" prefHeight="157.0" prefWidth="551.0" style="-fx-background-color: white; -fx-border-color: black;" styleClass="calculadora">
+            <Pane fx:id="date_q_panel" layoutX="31.0" layoutY="239.0" prefHeight="157.0" prefWidth="551.0" style="-fx-background-color: white; -fx-border-color: black;" styleClass="calculadora">
                <children>
                   <DatePicker fx:id="fecha_ingreso" layoutX="17.0" layoutY="32.0" prefHeight="34.0" prefWidth="231.0" />
                   <DatePicker fx:id="fecha_salida" layoutX="17.0" layoutY="107.0" prefHeight="34.0" prefWidth="231.0" />
@@ -366,7 +355,7 @@
             </Pane>
             <Separator layoutX="662.0" layoutY="126.0" orientation="VERTICAL" prefHeight="621.0" prefWidth="0.0" />
             <Button fx:id="btn_editar_reserva" layoutX="379.0" layoutY="182.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="EDITAR RESERVA" />
-            <Pane layoutX="718.0" layoutY="127.0" prefHeight="176.0" prefWidth="310.0" style="-fx-background-color: white; -fx-border-color: black;" styleClass="calculadora">
+            <Pane fx:id="state_panel" layoutX="718.0" layoutY="127.0" prefHeight="176.0" prefWidth="310.0" style="-fx-background-color: white; -fx-border-color: black;" styleClass="calculadora">
                <padding>
                   <Insets top="15.0" />
                </padding>
@@ -403,7 +392,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="718.0" layoutY="312.0" prefHeight="176.0" prefWidth="310.0" style="-fx-background-color: white; -fx-border-color: black;" styleClass="calculadora">
+            <Pane fx:id="price_panel" layoutX="718.0" layoutY="312.0" prefHeight="176.0" prefWidth="310.0" style="-fx-background-color: white; -fx-border-color: black;" styleClass="calculadora">
                <padding>
                   <Insets top="15.0" />
                </padding>

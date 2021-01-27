@@ -28,9 +28,30 @@ import java.util.ResourceBundle;
 public class Controlador_reserva implements Initializable {
 
 
-    public TabPane TabPanePisos;
+    //General
     public AnchorPane content;
     public StackPane stackPane;
+    public Button btn_editar_reserva;
+    public Button btn_nueva_reserva;
+    public Button btn_hacer_reserva;
+    public Button btn_datos_titular;
+
+    //Room table
+    public TabPane TabPanePisos;
+    //State table
+    public Pane state_panel;
+    public Label habitaciones_separadas;
+    public Label estado_acomodacion;
+    public Label total_personas;
+    //Price table
+    public Pane price_panel;
+    public Label valor_estadia;
+    public Label descuento;
+    public Label valor_total;
+
+    //Date and people panel
+    public Pane date_q_panel;
+
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -76,6 +97,17 @@ public class Controlador_reserva implements Initializable {
                 }
             }
         }
+
+        ////bloqueos iniciales///
+        price_panel.setDisable(true);
+        state_panel.setDisable(true);
+        date_q_panel.setDisable(true);
+        TabPanePisos.setDisable(true);
+
+        btn_hacer_reserva.setDisable(true);
+        btn_datos_titular.setDisable(true);
+
+
     }
 
 
