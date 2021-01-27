@@ -14,14 +14,28 @@
     src: url('../Fuentes/MAXWELL_BOLD.ttf');
 }
 
+@font-face {
+    src: url('../Fuentes/TroubleFontRegular400.otf');
+}
+
 .navbar {
     -fx-background-color: #2E1E1E;
     -fx-border-style: solid;
     -fx-border-color: black;
+    -fx-effect: dropshadow(two-pass-box,#000000,10,0,3,3);
 }
-
+.hab_panel{
+    -fx-background-color: #2E1E1E;
+}
+.button{
+    -fx-background-color: white;
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-font-size: 20;
+    -fx-border-radius: 10;
+    -fx-border-color: black;
+}
 .navbar__button {
-    -fx-background-color: TRANSPARENT;
+    -fx-background-color: #2E1E1E;
 }
 
 .navbar__button--reverve {
@@ -65,8 +79,18 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
+.button-basic{
+    -fx-background-color: #eeeeee;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+}
+
 .button:hover{
     -fx-cursor: HAND;
+}
+
+.navbar__button:hover{
+    -fx-background-color: #402828;
 }
 
 .title-hotel {
@@ -78,11 +102,90 @@
     -fx-font-weight: bold;
 }
 
+.seleccion_hab__hab_triple_up {
+    -fx-background-image: url("../images/hab_triple_up.png");
+    -fx-background-position: center;
+    -fx-background-size: 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-padding:  30 0 0 0;
+
+}
+.seleccion_hab__hab_triple_down {
+    -fx-background-image: url("../images/hab_triple_down.png");
+    -fx-background-position: center;
+    -fx-background-size: 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-padding:  0 0 30 0;
+
+}
+.seleccion_hab__hab_doble1_up
+{
+    -fx-background-image: url("../images/hab_doble1_up.png");
+    -fx-background-position: center;
+    -fx-background-size: 100%;
+    -fx-background-repeat: no-repeat;
+}
+.seleccion_hab__hab_doble1_down
+{
+    -fx-background-image: url("../images/hab_doble1_down.png");
+    -fx-background-position: center;
+    -fx-background-size: 100%;
+    -fx-background-repeat: no-repeat;
+}
+.seleccion_hab__hab_doble2_up
+{
+    -fx-background-image: url("../images/hab_doble2_up.png");
+    -fx-background-position: center;
+    -fx-background-size: 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-padding:  20 0 0 0;
+}
+.seleccion_hab__hab_doble2_down
+{
+    -fx-background-image: url("../images/hab_doble2_down.png");
+    -fx-background-position: center;
+    -fx-background-size: 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-padding:  0 0 20 0;
+}
+
+.seleccion_hab__hab_sencilla_up
+{
+    -fx-background-image: url("../images/hab_sencilla_up.png");
+    -fx-background-position: center;
+    -fx-background-size: 100%;
+    -fx-background-repeat: no-repeat;
+}
+
+.seleccion_hab__hab_sencilla_down
+{
+    -fx-background-image: url("../images/hab_sencilla_down.png");
+    -fx-background-position: center;
+    -fx-background-size: 100%;
+    -fx-background-repeat: no-repeat;
+}
+
 .map-red {
     -fx-border-color: #d70000;
+    -fx-background-color: #ff9f9f;
 }
 
 .map-green {
     -fx-border-color: #1bf358;
+    -fx-background-color: #9fffba;
 }
+
+.bg_container_default
+{
+    -fx-background-color: #e7e7e7;
+}
+
+.label_rotulos
+{
+    -fx-font-family: "Trouble Font";
+    -fx-font-size: 40px;
+    -fx-text-fill: #323232;
+}
+
+
 

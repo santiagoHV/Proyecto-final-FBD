@@ -3,9 +3,11 @@ package Controlador.vistas_recepcionista;
 import Modelo.entidades.Habitacion;
 import Modelo.entidades.Huesped;
 import Vista.Main;
+import com.jfoenix.controls.JFXScrollPane;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -20,13 +22,31 @@ public class Controlador_checkin implements Initializable {
 
     public GridPane GridPanel_Huespedes;
     public GridPane GridPanel_Btn_Habitaciones;
+    public ScrollPane panel_ingreso_huespedes;
+    public ScrollPane panel_ingreso_habitaciones;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Uso del método smoothScrolling para suavizar la animación de desplazamiento de los scrollPane:
+        JFXScrollPane Prueba = new JFXScrollPane();
+        Prueba.smoothScrolling(panel_ingreso_huespedes);
+        Prueba.smoothHScrolling(panel_ingreso_habitaciones);
         DefinirPanelDatosHuespedes();
         DefinirBotonesHabitacion();
+
+        AjusteScrollH(panel_ingreso_habitaciones);
     }
 
+    //Método para poder controlar los scrolls horizontales con la rueda del ratón:
+    public void AjusteScrollH(ScrollPane scrollPane)
+    {
+        scrollPane.setOnScroll(scrollEvent ->
+        {
+            if(scrollEvent.getDeltaX() == 0 && scrollEvent.getDeltaY() != 0) {
+                scrollPane.setHvalue(scrollPane.getHvalue() - scrollEvent.getDeltaY() / this.GridPanel_Btn_Habitaciones.getWidth());
+            }
+        });
+    }
 
     //Esto es temporal:
     public List<Huesped> ConsultarHuespedes()
