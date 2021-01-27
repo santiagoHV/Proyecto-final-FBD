@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.entidades;
 
 public class Persona
 {

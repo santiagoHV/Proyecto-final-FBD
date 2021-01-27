@@ -1,7 +1,7 @@
 package Controlador.vistas_recepcionista;
 
-import Modelo.Habitacion;
-import Modelo.Huesped;
+import Modelo.entidades.Habitacion;
+import Modelo.entidades.Huesped;
 import Vista.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

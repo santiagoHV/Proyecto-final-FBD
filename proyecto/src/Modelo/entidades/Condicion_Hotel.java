@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.entidades;
 
 public class Condicion_Hotel {
     private int k_condicion;
