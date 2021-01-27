@@ -1,8 +1,12 @@
 package Controlador.vistas_recepcionista;
 
+import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,10 +42,20 @@ public class Controlador_datos_ingreso implements Initializable {
     //Botones de confirmacion general
     public Button seleccionar_usuario_btn;
     public Button cancelar_btn;
+    public StackPane stack_pane;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+
+    public void close(ActionEvent actionEvent) {
+
+    }
+
+    public void select(ActionEvent actionEvent) {
+
 
     }
 }

@@ -144,16 +144,15 @@ public class Controlador_reserva implements Initializable {
         //Esto es un machetazo el tenaz, pero no sé de que otra forma hacerlo:
         AnchorPane AP = (AnchorPane) parent.getChildrenUnmodifiable().get(0);
 
-        /*HBox HB = (HBox) AP.getChildren().get(0);
-        ((Label) AP.getChildren().get(3)).setText(Partes[1]);
+        HBox HB = (HBox) AP.getChildren().get(0);
 
-        JFXButton BSalirDialog = (JFXButton)HB.getChildrenUnmodifiable().get(0);
+        Button BSalirDialog = (Button)HB.getChildrenUnmodifiable().get(1);
 
         //Definción del manejador de eventos del botón cancelar para que cierra el dialog
         BSalirDialog.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent)->
         {
             dialog.close();
-        });*/
+        });
 
         dialog.setOnDialogClosed((JFXDialogEvent event)->
         {
