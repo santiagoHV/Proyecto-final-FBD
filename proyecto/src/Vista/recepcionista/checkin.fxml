@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_checkin">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_checkin">
    <children>
       <AnchorPane prefHeight="768.0" prefWidth="1072.0" stylesheets="@../../../assets/css/recepcionista_escenas.css">
          <children>
@@ -23,7 +23,7 @@
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label layoutX="36.0" layoutY="128.0" style="-fx-effect: dropshadow(two-pass-box, #000000,5,0.10,3,3);" text="CHECK-IN" underline="true">
+            <Label layoutX="36.0" layoutY="128.0" styleClass="label_rotulos" text="CHECK-IN:" underline="true">
                <font>
                   <Font name="MAXWELL REGULAR" size="39.0" />
                </font>
@@ -190,7 +190,7 @@
                         <Font name="MAXWELL REGULAR" size="25.0" />
                      </font>
                   </Label>
-                  <ScrollPane fx:id="panel_ingreso_huespedes" hbarPolicy="NEVER" prefHeight="394.0" prefWidth="513.0">
+                  <ScrollPane fx:id="panel_ingreso_huespedes" hbarPolicy="NEVER" prefHeight="394.0" prefWidth="513.0" stylesheets="@../../../assets/css/ScrollPane.css">
                      <content>
                         <GridPane fx:id="GridPanel_Huespedes" prefHeight="0.0" prefWidth="0.0">
                            <rowConstraints>
@@ -201,7 +201,7 @@
                   </ScrollPane>
                </children>
             </VBox>
-            <Button fx:id="btn_buscar" layoutX="312.0" layoutY="228.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="Buscar..." />
+            <Button fx:id="btn_buscar" layoutX="312.0" layoutY="228.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" styleClass="button-basic" text="Buscar..." />
             <VBox layoutX="543.0" layoutY="609.0" prefHeight="143.0" prefWidth="513.0" spacing="11.0">
                <children>
                   <Label text="Entrega de habitaciones">
@@ -209,7 +209,7 @@
                         <Font name="MAXWELL REGULAR" size="25.0" />
                      </font>
                   </Label>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0" vbarPolicy="NEVER">
+                  <ScrollPane fx:id="panel_ingreso_habitaciones" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../assets/css/ScrollPane.css" vbarPolicy="NEVER">
                      <content>
                         <GridPane fx:id="GridPanel_Btn_Habitaciones" prefHeight="0.0" prefWidth="0.0">
                            <rowConstraints>
@@ -220,7 +220,7 @@
                   </ScrollPane>
                </children>
             </VBox>
-            <Button fx:id="btn_buscar1" layoutX="312.0" layoutY="132.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="FINALIZAR" />
+            <Button fx:id="btn_buscar1" layoutX="312.0" layoutY="132.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" styleClass="button-basic" text="FINALIZAR" />
          </children>
       </AnchorPane>
    </children>
