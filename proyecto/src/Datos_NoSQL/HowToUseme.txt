@@ -1,0 +1,22 @@
+
+//----------- COMO UTILIZAR ESTA BASURA ---------------//
+//_____________________________________________________//
+//                 |Recomendaciones|                   //
+// - No usar jamas la clase connectionDB fuera de      //
+//   DBMethos                                          //
+// - No leer donde diga jotoelquelolea jaj ya leyo que //
+//                                             joto xd //
+// - En caso de que no les funcione revisar las        //
+//   librerias, si el problema no es ese contactar al  //
+//   admin para que agregue su ip a la whitelist       //
+//   (no se si sea necesario xd)                       //
+//-----------------------------------------------------//
+//                     |Metodos|                       //
+// getUsuarios(): Este metodo devuelve un FindIterable //
+//                el cual se puede recorrer con un     //
+//                for(Document doc: <NombreDelFindI..>)//
+//                y para los documents ya revisen la   //
+//                documentacion flojos de mierda xd    //
+// (Recuerden importar la libreria Documents propia de //
+//  mongo, no de swing o esas mierdas)                 //
+//

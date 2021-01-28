@@ -14,7 +14,8 @@ public class Main extends Application {
     public static Stage stage = null;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
+
         //Forma 1 (Youtube)
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("./ingreso/MenuInicio.fxml"));
@@ -41,5 +42,6 @@ public class Main extends Application {
         //new BounceInDown(ventana).play();
 
         new Pulse(ventana).play();
+
     }
 }
