@@ -16,10 +16,10 @@ public class DBMethods {
 
     public void verUsuarios(){
         FindIterable<Document> users = database.getCollection("users").find();
-        System.out.println("|| <usuario> : <contraseña> ||");
+        System.out.println("|| <Usuario> : <Contraseña> : <Rol>||");
         System.out.println("--------------------------------------");
         for(Document user: users){
-            System.out.println(user.get("user") + " : " + user.get("password"));
+            System.out.println(user.get("user") + " : " + user.get("password") + " : " + user.get("role"));
         }
     }
 
