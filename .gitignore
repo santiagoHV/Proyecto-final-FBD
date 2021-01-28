@@ -2,4 +2,4 @@
 /proyecto/out/
 *.class
 /.idea/
-/proyecto/*.iml
+proyecto/proyecto.iml
