@@ -14,8 +14,13 @@ public class DBMethods {
         this.database = new connectionDB().connect();
     }
 
-    public FindIterable<Document> getUsuarios(){
-        return database.getCollection("users").find();
+    public void verUsuarios(){
+        FindIterable<Document> users = database.getCollection("users").find();
+        System.out.println("|| <usuario> : <contraseña> ||");
+        System.out.println("--------------------------------------");
+        for(Document user: users){
+            System.out.println(user.get("user") + " : " + user.get("password"));
+        }
     }
 
     public void addUsuario(String user,String pass, String role){
@@ -27,7 +32,7 @@ public class DBMethods {
             existe = true;
         }
         if(!existe) {
-            if (role.equals("admin") || role.equals("client") || role.equals("recept")) {
+            if (role.equals("admin") || role.equals("gerente") || role.equals("recept") || role.equals("worker")) {
                 try {
                     col.insertOne(new Document().append("user", user).append("password", pass).append("role", role));
                     System.out.println("Agregado con exito");
