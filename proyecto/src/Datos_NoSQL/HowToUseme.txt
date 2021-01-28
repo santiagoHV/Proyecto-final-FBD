@@ -12,20 +12,14 @@
 //   (no se si sea necesario xd)                       //                                       ||              ||
 //-----------------------------------------------------//                                       ||              ||
 //                     |Metodos|                       //                                       ||              ||
-// getUsuarios(): Este metodo devuelve un FindIterable //                                       ||              ||
-//                el cual se puede recorrer con un     //                                       ||              ||
-//                for(Document doc: <NombreDelFindI..>)//                                       ||              ||
-//                y para los documents ya revisen la   //                                       ||              ||
-//                documentacion flojos de mierda xd    //                                       ||              ||
-// (Recuerden importar la libreria Documents propia de //                                       ||              ||
-//  mongo, no de swing o esas mierdas)                 //                                       ||              ||
 //                                                     //                                       ||              ||
 // addUsuario(): Solo un retrasado no sabria como      //                                       ||              ||
 //               usarlo, en rol solo se aceptan 3      //                                       ||              ||
 //               Strings que corresponden a:           //
-//               - Cliente       -> "client"           //
+//               - Empleado      -> "worker"           //
 //               - Administrador -> "admin"            //
 //               - Recepcionista -> "recept"           //
+//               - Gerente       -> "gerente"          //
 //               Usenlos o el programa los putea       //
 //                                                     //
 /////////////////////////////////////////////////////////

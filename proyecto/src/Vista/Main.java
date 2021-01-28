@@ -20,8 +20,7 @@ public class Main extends Application {
 
         //---------------------------------- PRUEBAS ------------------------------//
         DBMethods db = new DBMethods();
-        //db.addUsuario("luis", "dasgasd", "client");
-        System.out.println(db.autenticarUsuario("david","hola123"));
+        db.verUsuarios();
         //-------------------------------------------------------------------------//
 
 
