@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.bson.Document;
 
 public class Main extends Application {
 
@@ -17,8 +18,13 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        //---------------------------------- PRUEBAS ------------------------------//
         DBMethods db = new DBMethods();
-        db.addUsuario("xXS4n714G0_G4m3R_777Xx", "ideasacabadas", "client");
+        //db.addUsuario("luis", "dasgasd", "client");
+        System.out.println(db.autenticarUsuario("david","hola123"));
+        //-------------------------------------------------------------------------//
+
+
         /*
         //Forma 1 (Youtube)
         FXMLLoader loader = new FXMLLoader();
