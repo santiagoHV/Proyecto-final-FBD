@@ -1,5 +1,6 @@
 package Vista;
 
+import Datos_NoSQL.DBMethods;
 import animatefx.animation.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        DBMethods db = new DBMethods();
+        db.addUsuario("xXS4n714G0_G4m3R_777Xx", "ideasacabadas", "client");
+        /*
         //Forma 1 (Youtube)
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("./ingreso/MenuInicio.fxml"));
@@ -42,6 +46,6 @@ public class Main extends Application {
         //new BounceInDown(ventana).play();
 
         new Pulse(ventana).play();
-
+*/
     }
 }
