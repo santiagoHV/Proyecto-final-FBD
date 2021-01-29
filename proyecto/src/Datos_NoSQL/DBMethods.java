@@ -6,6 +6,7 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
 import javax.print.Doc;
+import java.util.ArrayList;
 
 public class DBMethods {
     private MongoDatabase database;
@@ -44,19 +45,42 @@ public class DBMethods {
             }
         }
     }
-    public boolean autenticarUsuario(String user, String pass){
-        boolean auth = false;
+    public String autenticarUsuario(String user, String pass){
         MongoCollection col = database.getCollection("users");
         Document usuario = (Document) col.find(new Document().append("user", user)).first();
         if(usuario != null) {
             if (usuario.get("password").equals(pass)) {
-                auth = true;
+                return "auth";
             } else {
-                System.out.println("Contraseña incorrecta");
+                return "wrong_pass";
             }
         }else{
-            System.out.println("Este usuario no existe");
+            return "not_exist";
         }
-        return auth;
     }
+
+    public ArrayList<Document> getUsuarios(){
+        MongoCollection col = database.getCollection("users");
+        ArrayList<Document> usersArray = new ArrayList<>();
+        FindIterable<Document> users = col.find();
+        for(Document user: users){
+            usersArray.add(user);
+        }
+        return usersArray;
+    }
+    public ArrayList<Document> getUsuarios(String role){
+        MongoCollection col = database.getCollection("users");
+        ArrayList<Document> usersArray = new ArrayList<>();
+        FindIterable<Document> users = col.find(new Document().append("role", role));
+        for(Document user: users){
+            usersArray.add(user);
+        }
+        return usersArray;
+    }
+
+    public Document searchUser(String user){
+        MongoCollection col = database.getCollection("users");
+        return (Document) col.find(new Document().append("user", user)).first();
+    }
+
 }

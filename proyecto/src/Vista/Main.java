@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.bson.Document;
 
+import java.util.ArrayList;
+
 public class Main extends Application {
 
     public static Stage stage = null;
@@ -20,8 +22,10 @@ public class Main extends Application {
 
         //---------------------------------- PRUEBAS ------------------------------//
         DBMethods db = new DBMethods();
-        db.verUsuarios();
-        db.verUsuarios();
+        ArrayList<Document> users = db.getUsuarios("admin");
+        for(Document user: users){
+            System.out.println(user.get("user"));
+        }
         //-------------------------------------------------------------------------//
 
 
