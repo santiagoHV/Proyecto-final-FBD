@@ -76,10 +76,9 @@ public class Persona
 
     public Persona ConsultarPersona(int ID, String Tipo, Persona persona) {
         Operaciones op = new Operaciones();
-
         try
         {
-            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Persona Where k_identificacion = "+ID+" and  k_tipo_documento = '"+Tipo+"'");
+            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Persona Where k_identificacion = "+ID+" and k_tipo_documento = '"+Tipo+"'");
             if (resultSet.next())
             {
                 persona.setK_identificacion(resultSet.getInt(1));

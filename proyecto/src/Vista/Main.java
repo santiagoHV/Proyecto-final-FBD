@@ -1,5 +1,7 @@
 package Vista;
 
+import Modelo.entidades.Condicion_Hotel;
+import Modelo.entidades.Huesped;
 import Modelo.entidades.Persona;
 import animatefx.animation.*;
 import javafx.application.Application;
@@ -46,7 +48,7 @@ public class Main extends Application {
         new Pulse(ventana).play();
 
         //Prueba Consulta:
-        Persona persona = new Persona();
-        System.out.println(persona.ConsultarPersona(1000000,"CC",persona).getN_nombre());
+        Condicion_Hotel condicion_hotel = new Condicion_Hotel();
+        System.out.println(condicion_hotel.ConsultarCondicionHotel(1,condicion_hotel).getAforo());
     }
 }

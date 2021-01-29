@@ -1,5 +1,10 @@
 package Modelo.entidades;
 
+import DatosSQL.Operaciones;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Condicion_Hotel {
     private int k_condicion;
     private boolean estado_condicion;
@@ -14,6 +19,8 @@ public class Condicion_Hotel {
         this.aforo = aforo;
         this.numero_dias = numero_dias;
     }
+
+    public Condicion_Hotel(){};
 
     public int getK_condicion() {
         return k_condicion;
@@ -53,5 +60,23 @@ public class Condicion_Hotel {
 
     public void setNumero_dias(int numero_dias) {
         this.numero_dias = numero_dias;
+    }
+
+    public Condicion_Hotel ConsultarCondicionHotel(int ID, Condicion_Hotel condicion_hotel) {
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Condicion_Hotel WHERE k_condicion = "+ID+"");
+            resultSet.next();
+            condicion_hotel.setK_condicion(resultSet.getInt(1));
+            condicion_hotel.setEstado_condicion(resultSet.getBoolean(2));
+            condicion_hotel.setDescuento(resultSet.getDouble(3));
+            condicion_hotel.setAforo(resultSet.getDouble(4));
+            condicion_hotel.setNumero_dias(resultSet.getInt(5));
+            return condicion_hotel;
+
+        }catch (SQLException ex){
+            System.out.println(ex);
+        }
+        return null;
     }
 }
