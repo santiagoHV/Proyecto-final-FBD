@@ -3,7 +3,6 @@ package Vista;
 import animatefx.animation.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -15,7 +14,7 @@ public class Main extends Application {
     public static Stage stage = null;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
 
         //Forma 1 (Youtube)
         FXMLLoader loader = new FXMLLoader();
@@ -43,5 +42,6 @@ public class Main extends Application {
         //new BounceInDown(ventana).play();
 
         new Pulse(ventana).play();
+
     }
 }
