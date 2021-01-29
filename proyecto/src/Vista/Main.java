@@ -1,5 +1,6 @@
 package Vista;
 
+import Modelo.entidades.Persona;
 import animatefx.animation.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -43,5 +44,9 @@ public class Main extends Application {
         //new BounceInDown(ventana).play();
 
         new Pulse(ventana).play();
+
+        //Prueba Consulta:
+        Persona persona = new Persona();
+        System.out.println(persona.ConsultarPersona(1000000,"CC",persona).getN_nombre());
     }
 }

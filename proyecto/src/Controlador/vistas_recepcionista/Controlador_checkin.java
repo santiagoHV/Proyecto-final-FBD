@@ -58,7 +58,7 @@ public class Controlador_checkin implements Initializable {
         for(int i=0; i<6;i++)
         {
             huesped = new Huesped();
-            huesped.setK_identificacion("10000000");
+            huesped.setK_identificacion(10000000);
             huesped.setN_direccion("Cualquier Calle");
             huesped.setF_nacimiento("20");
             huesped.setN_nombre("Juanito");

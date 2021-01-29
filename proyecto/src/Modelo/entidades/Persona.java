@@ -1,33 +1,36 @@
 package Modelo.entidades;
 
+import DatosSQL.Operaciones;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Persona
 {
-    private String k_identificacion;
+    private int k_identificacion;
     private String k_tipo_documento_id;
     private String f_nacimiento;
     private String n_telefono;
     private String n_nombre;
     private String n_apellido;
-    private String habitacion;
 
-    public Persona(String k_identificacion, String k_tipo_documento_id, String f_nacimiento, String n_telefono, String n_nombre, String n_apellido, String habitacion) {
+    public Persona(int k_identificacion, String k_tipo_documento_id, String f_nacimiento, String n_telefono, String n_nombre, String n_apellido) {
         this.k_identificacion = k_identificacion;
         this.k_tipo_documento_id = k_tipo_documento_id;
         this.f_nacimiento = f_nacimiento;
         this.n_telefono = n_telefono;
         this.n_nombre = n_nombre;
         this.n_apellido = n_apellido;
-        this.habitacion = habitacion;
     }
 
     public Persona() {
     }
 
-    public String getK_identificacion() {
+    public int getK_identificacion() {
         return k_identificacion;
     }
 
-    public void setK_identificacion(String k_identificacion) {
+    public void setK_identificacion(int k_identificacion) {
         this.k_identificacion = k_identificacion;
     }
 
@@ -71,11 +74,26 @@ public class Persona
         this.n_apellido = n_apellido;
     }
 
-    public String getHabitacion() {
-        return habitacion;
-    }
+    public Persona ConsultarPersona(int ID, String Tipo, Persona persona) {
+        Operaciones op = new Operaciones();
 
-    public void setHabitacion(String habitacion) {
-        this.habitacion = habitacion;
+        try
+        {
+            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Persona Where k_identificacion = "+ID+" and  k_tipo_documento = '"+Tipo+"'");
+            if (resultSet.next())
+            {
+                persona.setK_identificacion(resultSet.getInt(1));
+                persona.setK_tipo_documento_id(resultSet.getString(2));
+                persona.setN_nombre(resultSet.getString(3));
+                persona.setN_apellido(resultSet.getString(4));
+                persona.setF_nacimiento(resultSet.getString(5));
+                persona.setN_telefono(resultSet.getString(6));
+                return persona;
+            }
+        }
+        catch (SQLException exception){
+            System.out.println(exception);
+        }
+        return null;
     }
 }
