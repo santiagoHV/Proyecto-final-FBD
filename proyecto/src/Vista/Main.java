@@ -1,6 +1,5 @@
 package Vista;
 
-import Datos_NoSQL.DBMethods;
 import animatefx.animation.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,9 +8,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.bson.Document;
-
-import java.util.ArrayList;
 
 public class Main extends Application {
 
@@ -19,16 +15,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        //---------------------------------- PRUEBAS ------------------------------//
-        DBMethods db = new DBMethods();
-        ArrayList<Document> users = db.getUsuarios("admin");
-        for(Document user: users){
-            System.out.println(user.get("user"));
-        }
-        //-------------------------------------------------------------------------//
-
-
 
         //Forma 1 (Youtube)
         FXMLLoader loader = new FXMLLoader();

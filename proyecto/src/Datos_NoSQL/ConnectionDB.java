@@ -6,7 +6,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.MongoClientSettings;
 
-public class connectionDB {
+public class ConnectionDB {
     public MongoDatabase connect(){
         ConnectionString connString = new ConnectionString(
                 "mongodb+srv://root:root@cluster0.l7diy.mongodb.net/hotel?retryWrites=true&w=majority"

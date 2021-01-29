@@ -4,15 +4,13 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
-
-import javax.print.Doc;
 import java.util.ArrayList;
 
 public class DBMethods {
     private MongoDatabase database;
 
     public DBMethods(){
-        this.database = new connectionDB().connect();
+        this.database = new ConnectionDB().connect();
     }
 
     public void verUsuarios(){
@@ -45,6 +43,7 @@ public class DBMethods {
             }
         }
     }
+
     public String autenticarUsuario(String user, String pass){
         MongoCollection col = database.getCollection("users");
         Document usuario = (Document) col.find(new Document().append("user", user)).first();
@@ -68,6 +67,7 @@ public class DBMethods {
         }
         return usersArray;
     }
+
     public ArrayList<Document> getUsuarios(String role){
         MongoCollection col = database.getCollection("users");
         ArrayList<Document> usersArray = new ArrayList<>();
