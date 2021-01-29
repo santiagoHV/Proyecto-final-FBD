@@ -1,5 +1,11 @@
 /proyecto/.idea/
 /proyecto/out/
-*.class
+*/*.class
 /.idea/
 /proyecto/proyecto.iml
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
