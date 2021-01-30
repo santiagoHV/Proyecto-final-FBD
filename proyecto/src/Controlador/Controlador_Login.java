@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -24,6 +25,7 @@ import javafx.stage.StageStyle;
 import org.bson.Document;
 
 import javax.swing.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -172,15 +174,27 @@ public class Controlador_Login implements Initializable
 
     public void AbrirProgress() throws IOException {
 
+        //Creación del efecto blur:
+        BoxBlur blur = new BoxBlur(5,5,3);
+
         //Obtención del parent con la ruta del fxml a usar
         Parent parent = FXMLLoader.load(getClass().getResource("../Vista/Loading_Screen.fxml"));
+        System.out.println(parent.getStyle());
 
         //Creación del Dialog usando el Parent como Region (cast) para poder personalizarlo:
         JFXDialog dialog = new JFXDialog();
         dialog.setContent((Region) parent);
 
-        Background background = new Background(new BackgroundFill(Color.TRANSPARENT,null,new Insets(400)));
-        dialog.setBackground(background);
+        File f = new File("assets/css/ProgressStyle.css");
+        dialog.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
+
+        dialog.setOnDialogClosed((JFXDialogEvent event)->
+        {
+            BGStackPane.setEffect(null);
+        });
+
+        //Aplicación del efecto
+        BGStackPane.setEffect(blur);
 
         //Se muestra el dialog:
         dialog.show(StackPane1);

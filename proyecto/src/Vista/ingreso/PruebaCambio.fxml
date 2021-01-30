@@ -3,11 +3,34 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import com.jfoenix.controls.JFXDialog?>
+<?import com.jfoenix.controls.JFXDialogLayout?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXProgressBar?>
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1200.0" stylesheets="../../../assets/css/Principal_CSS.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane id="BG" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../assets/css/Principal_CSS.css">
          <children>
-            <Label alignment="CENTER" layoutX="378.0" layoutY="247.0" prefHeight="275.0" prefWidth="456.0" text="HOLA" textAlignment="CENTER" />
+            <JFXDialog fx:id="dialogLoadComparation">
+               <JFXDialogLayout>
+                  <heading>
+                     <Label>Creando el Excel de comparación ...</Label>
+                  </heading>
+                  <body>
+                     <VBox>
+                        <HBox alignment="CENTER_RIGHT">
+                           <Label fx:id="lblIndexProgress" text="0" />
+                           <Label text="/" />
+                           <Label fx:id="lblTotalProgress" text="11" />
+                        </HBox>
+                        <JFXProgressBar fx:id="progressBarComparator" maxWidth="1.7976931348623157E308" progress="0.0" />
+                     </VBox>
+                  </body>
+                  <actions>
+                     <JFXButton fx:id="btnCancelarOperacion" styleClass="dialog-accept">Cancelar operación</JFXButton>
+                  </actions>
+               </JFXDialogLayout>
+            </JFXDialog>
          </children>
       </AnchorPane>
    </children>
