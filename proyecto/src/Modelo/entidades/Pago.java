@@ -19,6 +19,8 @@ public class Pago {
         this.forma_de_pago = forma_de_pago;
     }
 
+    public Pago(){};
+
     public int getK_pago() {
         return k_pago;
     }
@@ -58,7 +60,8 @@ public class Pago {
             resultSet.next();
             pago.setK_pago(resultSet.getInt(1));
             pago.setF_pago(resultSet.getDate(2));
-
+            pago.setMonto(resultSet.getDouble(3));
+            pago.setForma_de_pago(resultSet.getString(4));
 
             return pago;
 

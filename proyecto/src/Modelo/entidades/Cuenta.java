@@ -1,17 +1,20 @@
 package Modelo.entidades;
 
+import DatosSQL.Operaciones;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Cuenta {
     private int k_cuenta;
     private double precio_acumulado;
     private Pago pago;
-    private Registro registro;
     private Reserva reserva;
 
-    public Cuenta(int k_cuenta, double precio_acumulado, Pago pago, Registro registro, Reserva reserva) {
+    public Cuenta(int k_cuenta, double precio_acumulado, Pago pago, Reserva reserva) {
         this.k_cuenta = k_cuenta;
         this.precio_acumulado = precio_acumulado;
         this.pago = pago;
-        this.registro = registro;
         this.reserva = reserva;
     }
 
@@ -39,19 +42,33 @@ public class Cuenta {
         this.pago = pago;
     }
 
-    public Registro getRegistro() {
-        return registro;
-    }
-
-    public void setRegistro(Registro registro) {
-        this.registro = registro;
-    }
-
     public Reserva getReserva() {
         return reserva;
     }
 
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
+    }
+
+    public Cuenta ConsultarCuenta(int ID, Cuenta cuenta){
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Cuenta WHERE k_cuenta = "+ID+"");
+            resultSet.next();
+            cuenta.setK_cuenta(resultSet.getInt(1));
+            cuenta.setPrecio_acumulado(resultSet.getDouble(2));
+
+            Pago pago = new Pago();
+            cuenta.setPago(pago.ConsultarPago(resultSet.getInt(3),pago));
+
+            Reserva reserva = new Reserva();
+            cuenta.setReserva(reserva.ConsultarReserva(resultSet.getInt(4),reserva));
+
+            return cuenta;
+
+        }catch (SQLException ex){
+            System.out.println(ex);
+        }
+        return null;
     }
 }
