@@ -1,5 +1,10 @@
 package Modelo.entidades;
 
+import DatosSQL.Operaciones;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Reserva_Habitacion {
     private Reserva reserva;
     private Habitacion habitacion;
@@ -23,5 +28,23 @@ public class Reserva_Habitacion {
 
     public void setHabitacion(Habitacion habitacion) {
         this.habitacion = habitacion;
+    }
+
+    public Reserva_Habitacion ConsultaReservHab(int k_reserva, int k_numero_habitacion, Reserva_Habitacion reserva_habitacion) {
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM reserva_habitacion WHERE k_reserva = "+k_reserva+" and k_numero_habitacion = "+k_numero_habitacion+" ");
+            resultSet.next();
+
+            Reserva reserva = new Reserva();
+            reserva_habitacion.setReserva(reserva.ConsultarReserva(resultSet.getInt(1),reserva));
+
+            Habitacion habitacion = new Habitacion();
+            reserva_habitacion.setHabitacion(habitacion.ConsultarHabitacion(resultSet.getInt(2),habitacion));
+
+        }catch (SQLException ex){
+            System.out.println(ex);
+        }
+        return null;
     }
 }
