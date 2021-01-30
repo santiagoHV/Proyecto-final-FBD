@@ -18,6 +18,8 @@ public class Cuenta {
         this.reserva = reserva;
     }
 
+    public Cuenta(){}
+
     public int getK_cuenta() {
         return k_cuenta;
     }
