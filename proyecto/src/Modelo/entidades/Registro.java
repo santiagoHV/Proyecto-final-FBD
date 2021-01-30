@@ -1,23 +1,29 @@
 package Modelo.entidades;
 
+import DatosSQL.Operaciones;
+
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Registro {
     private int k_registro;
     private Date f_entrada;
     private Date f_salida;
-    private int k_cuenta;
     private Persona persona;
     private Reserva reserva;
+    private Habitacion habitacion;
 
-    public Registro(int k_registro, Date f_entrada, Date f_salida, int k_cuenta, Persona persona, Reserva reserva) {
+    public Registro(int k_registro, Date f_entrada, Date f_salida, Persona persona, Reserva reserva, Habitacion habitacion) {
         this.k_registro = k_registro;
         this.f_entrada = f_entrada;
         this.f_salida = f_salida;
-        this.k_cuenta = k_cuenta;
         this.persona = persona;
         this.reserva = reserva;
+        this.habitacion = habitacion;
     }
+
+    public Registro(){}
 
     public int getK_registro() {
 
@@ -44,14 +50,6 @@ public class Registro {
         this.f_salida = f_salida;
     }
 
-    public int getK_cuenta() {
-        return k_cuenta;
-    }
-
-    public void setK_cuenta(int k_cuenta) {
-        this.k_cuenta = k_cuenta;
-    }
-
     public Persona getPersona() {
         return persona;
     }
@@ -66,5 +64,35 @@ public class Registro {
 
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
+    }
+
+    public void setHabitacion(Habitacion habitacion) {
+        this.habitacion = habitacion;
+    }
+
+    public Registro ConsultarRegistro(int ID, Registro registro){
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM registro_checkin WHERE k_registro = "+ID+"");
+            resultSet.next();
+            registro.setK_registro(resultSet.getInt(1));
+            registro.setF_entrada(resultSet.getDate(2));
+            registro.setF_entrada(resultSet.getDate(3));
+
+            Persona persona = new Persona();
+            registro.setPersona(persona.ConsultarPersona(resultSet.getInt(5), resultSet.getString(4),persona));
+
+            Reserva reserva = new Reserva();
+            registro.setReserva(reserva.ConsultarReserva(resultSet.getInt(6),reserva));
+
+            Habitacion habitacion = new Habitacion();
+            registro.setHabitacion(habitacion.ConsultarHabitacion(resultSet.getInt(7),habitacion));
+
+            return registro;
+
+        }catch (SQLException ex){
+            System.out.println(ex);
+        }
+        return null;
     }
 }
