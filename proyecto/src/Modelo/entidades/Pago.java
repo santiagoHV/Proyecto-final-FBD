@@ -1,6 +1,10 @@
 package Modelo.entidades;
 
+import DatosSQL.Operaciones;
+
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Pago {
     private int k_pago;
@@ -47,5 +51,20 @@ public class Pago {
         this.forma_de_pago = forma_de_pago;
     }
 
+    public Pago ConsultarPago(int ID, Pago pago){
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Pago WHERE k_pago = "+ID+"");
+            resultSet.next();
+            pago.setK_pago(resultSet.getInt(1));
+            pago.setF_pago(resultSet.getDate(2));
 
+
+            return pago;
+
+        }catch (SQLException ex){
+            System.out.println(ex);
+        }
+        return null;
+    }
 }

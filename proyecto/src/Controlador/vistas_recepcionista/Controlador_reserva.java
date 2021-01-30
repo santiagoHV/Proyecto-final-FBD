@@ -1,5 +1,6 @@
 package Controlador.vistas_recepcionista;
 
+import Modelo.entidades.Reserva;
 import Vista.Main;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
@@ -10,16 +11,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -51,6 +50,12 @@ public class Controlador_reserva implements Initializable {
 
     //Date and people panel
     public Pane date_q_panel;
+    public TextField codigo_reserva;
+    public DatePicker fecha_ingreso;
+    public DatePicker fecha_salida;
+    public Spinner cantidad_adultos;
+    public Spinner cantidad_bebes;
+    public Spinner cantidad_niños;
 
 
     private double xOffset = 0;
@@ -196,5 +201,15 @@ public class Controlador_reserva implements Initializable {
 
         //Se muestra el dialog:
         dialog.show();
+    }
+
+    public void Buscar_Reserva_Por_ID(ActionEvent actionEvent) {
+        Reserva reserva = new Reserva();
+        reserva = reserva.ConsultarReserva(Integer.parseInt(codigo_reserva.getText()),reserva);
+
+        fecha_ingreso.setValue(reserva.getF_inicio().toLocalDate());
+        fecha_salida.setValue(reserva.getF_final().toLocalDate());
+        total_personas.setText(reserva.getCantidad_huespedes()+"");
+
     }
 }

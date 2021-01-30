@@ -3,6 +3,7 @@ package Vista;
 import Modelo.entidades.Condicion_Hotel;
 import Modelo.entidades.Huesped;
 import Modelo.entidades.Persona;
+import Modelo.entidades.Reserva;
 import animatefx.animation.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -48,7 +49,7 @@ public class Main extends Application {
         new Pulse(ventana).play();
 
         //Prueba Consulta:
-        Condicion_Hotel condicion_hotel = new Condicion_Hotel();
-        System.out.println(condicion_hotel.ConsultarCondicionHotel(1,condicion_hotel).getAforo());
+        Reserva reserva = new Reserva();
+        System.out.println(reserva.ConsultarReserva(1,reserva).getPrecio_reserva());
     }
 }

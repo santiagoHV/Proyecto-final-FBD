@@ -1,6 +1,10 @@
 package Modelo.entidades;
 
+import DatosSQL.Operaciones;
+
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Reserva {
     private int k_reserva;
@@ -24,6 +28,8 @@ public class Reserva {
         this.condicion = condicion;
         this.persona = persona;
     }
+
+    public Reserva(){};
 
     public int getK_reserva() {
         return k_reserva;
@@ -95,5 +101,32 @@ public class Reserva {
 
     public void setPersona(Persona persona) {
         this.persona = persona;
+    }
+
+    public Reserva ConsultarReserva(int ID, Reserva reserva){
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Reserva WHERE k_reserva = "+ID+"");
+            resultSet.next();
+            reserva.setK_reserva(resultSet.getInt(1));
+            reserva.setEstado(resultSet.getString(2));
+            reserva.setF_inicio(resultSet.getDate(3));
+            reserva.setF_reserva(resultSet.getDate(4));
+            reserva.setF_final(resultSet.getDate(5));
+            reserva.setCantidad_huespedes(resultSet.getInt(6));
+            reserva.setPrecio_reserva(resultSet.getDouble(7));
+
+            Condicion_Hotel condicion_hotel = new Condicion_Hotel();
+            reserva.setCondicion(condicion_hotel.ConsultarCondicionHotel(resultSet.getInt(8),condicion_hotel));
+
+            Persona persona = new Persona();
+            reserva.setPersona(persona.ConsultarPersona(resultSet.getInt(9),resultSet.getString(10),persona));
+
+            return reserva;
+
+        }catch (SQLException ex){
+            System.out.println(ex);
+        }
+        return null;
     }
 }
