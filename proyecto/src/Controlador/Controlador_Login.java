@@ -79,8 +79,7 @@ public class Controlador_Login implements Initializable
         });
     }
 
-    public void Click(ActionEvent actionEvent) throws IOException, SQLException {
-        AbrirProgress();
+    public void Click(ActionEvent actionEvent) throws IOException, SQLException, InterruptedException {
         if(authUsuario()){
             //Código adicional para el stage de inicio de sesión y el menú de inicio
             JFXButton BotonAceptar = (JFXButton) actionEvent.getSource();
@@ -91,10 +90,10 @@ public class Controlador_Login implements Initializable
 
     // Toma los datos ingresados y los compara con los de la base de datos
     // (Si el usuario es admin le dara acceso a recepcionista desde cualquier rol)
-    public boolean authUsuario() throws IOException {
+    public boolean authUsuario() throws IOException, InterruptedException {
         String rol = getRoleKey(JLabel_TUsuario.getText());
-        db.verUsuarios();
-
+        new _Cargar().show();
+        Thread.sleep(3000);
         Document userx = db.searchUser(TUsuario.getText());
 
         if(userx != null && (userx.get("role").equals(rol) || userx.get("role").equals("admin"))){
@@ -175,28 +174,41 @@ public class Controlador_Login implements Initializable
     public void AbrirProgress() throws IOException {
 
         //Creación del efecto blur:
-        BoxBlur blur = new BoxBlur(5,5,3);
+            BoxBlur blur = new BoxBlur(5,5,3);
 
-        //Obtención del parent con la ruta del fxml a usar
-        Parent parent = FXMLLoader.load(getClass().getResource("../Vista/Loading_Screen.fxml"));
-        System.out.println(parent.getStyle());
+            //Obtención del parent con la ruta del fxml a usar
+            Parent parent = FXMLLoader.load(getClass().getResource("../Vista/Loading_Screen.fxml"));
+            System.out.println(parent.getStyle());
 
-        //Creación del Dialog usando el Parent como Region (cast) para poder personalizarlo:
-        JFXDialog dialog = new JFXDialog();
-        dialog.setContent((Region) parent);
+            //Creación del Dialog usando el Parent como Region (cast) para poder personalizarlo:
+            JFXDialog dialog = new JFXDialog();
+            dialog.setContent((Region) parent);
 
-        File f = new File("assets/css/ProgressStyle.css");
-        dialog.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
+            File f = new File("assets/css/ProgressStyle.css");
+            dialog.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
 
-        dialog.setOnDialogClosed((JFXDialogEvent event)->
-        {
-            BGStackPane.setEffect(null);
-        });
+            dialog.setOnDialogClosed((JFXDialogEvent event)->
+            {
+                BGStackPane.setEffect(null);
+            });
 
-        //Aplicación del efecto
-        BGStackPane.setEffect(blur);
+            //Aplicación del efecto
+            BGStackPane.setEffect(blur);
 
-        //Se muestra el dialog:
-        dialog.show(StackPane1);
+            //Se muestra el dialog:
+            dialog.show(StackPane1);
+    }
+    public class _Cargar implements Runnable{
+        public void show(){
+            new Thread(this).start();
+        }
+        public void run() {
+            try {
+                AbrirProgress();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
