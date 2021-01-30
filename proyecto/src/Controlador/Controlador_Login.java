@@ -3,18 +3,22 @@ package Controlador;
 import Datos_NoSQL.DBMethods;
 import Vista.Main;
 import animatefx.animation.Shake;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
+import com.jfoenix.controls.events.JFXDialogEvent;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.bson.Document;
@@ -32,6 +36,7 @@ public class Controlador_Login implements Initializable
     public Label JLabel_TUsuario;
     public JFXTextField TUsuario;
     public JFXPasswordField TContrasena;
+    public StackPane StackPane1;
     private double xOffset = 0;
     private double yOffset = 0;
     private DBMethods db;
@@ -73,6 +78,7 @@ public class Controlador_Login implements Initializable
     }
 
     public void Click(ActionEvent actionEvent) throws IOException, SQLException {
+        AbrirProgress();
         if(authUsuario()){
             //Código adicional para el stage de inicio de sesión y el menú de inicio
             JFXButton BotonAceptar = (JFXButton) actionEvent.getSource();
@@ -86,7 +92,9 @@ public class Controlador_Login implements Initializable
     public boolean authUsuario() throws IOException {
         String rol = getRoleKey(JLabel_TUsuario.getText());
         db.verUsuarios();
+
         Document userx = db.searchUser(TUsuario.getText());
+
         if(userx != null && (userx.get("role").equals(rol) || userx.get("role").equals("admin"))){
             boolean correct = TContrasena.getText().equals(userx.get("password"));
             if(userx.get("role").equals("recept") && correct){
@@ -162,4 +170,19 @@ public class Controlador_Login implements Initializable
         }
     }
 
+    public void AbrirProgress() throws IOException {
+
+        //Obtención del parent con la ruta del fxml a usar
+        Parent parent = FXMLLoader.load(getClass().getResource("../Vista/Loading_Screen.fxml"));
+
+        //Creación del Dialog usando el Parent como Region (cast) para poder personalizarlo:
+        JFXDialog dialog = new JFXDialog();
+        dialog.setContent((Region) parent);
+
+        Background background = new Background(new BackgroundFill(Color.TRANSPARENT,null,new Insets(400)));
+        dialog.setBackground(background);
+
+        //Se muestra el dialog:
+        dialog.show(StackPane1);
+    }
 }

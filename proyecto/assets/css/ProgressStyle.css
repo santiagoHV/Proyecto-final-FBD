@@ -1,0 +1,13 @@
+.progressCircle
+{
+    -fx-progress-color: #af2df8;
+    -fx-background-color: TRANSPARENT;
+}
+
+.jfx-dialog-overlay-pane > StackPane { -fx-background-color: TRANSPARENT; }
+
+.jfx-dialog-overlay-pane { -fx-background-color: TRANSPARENT; }
+
+.jfx-dialog { -fx-background-color: TRANSPARENT; }
+
+.stackBG { -fx-background-color: TRANSPARENT; }
