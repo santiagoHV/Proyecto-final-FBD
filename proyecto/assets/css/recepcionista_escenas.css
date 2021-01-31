@@ -186,6 +186,13 @@
     -fx-font-size: 40px;
     -fx-text-fill: #323232;
 }
+.button_buscar{
+    -fx-background-color: #2E1E1E;
+    -fx-background-image: url("../images/Search_Icon.png");
+    -fx-background-position: center;
+    -fx-background-size: 70%;
+    -fx-background-repeat: no-repeat;
+}
 
 
 

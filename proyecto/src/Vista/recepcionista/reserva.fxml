@@ -304,8 +304,8 @@
                   </Tab>
               </tabs>
             </TabPane>
-            <Button fx:id="btn_datos_titular" layoutX="718.0" layoutY="497.0" mnemonicParsing="false" onAction="#desplegar_datos_titular" prefHeight="95.0" prefWidth="310.0" styleClass="button-basic" text="Ingrese los datos del títular" />
-            <Button fx:id="btn_hacer_reserva" layoutX="718.0" layoutY="614.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="310.0" styleClass="button-basic" text="Hacer reserva" />
+            <Button fx:id="btn_datos_titular" layoutX="718.0" layoutY="497.0" mnemonicParsing="false" onAction="#click" prefHeight="95.0" prefWidth="310.0" styleClass="button-basic" text="Ingrese los datos del títular" />
+            <Button fx:id="btn_hacer_reserva" layoutX="718.0" layoutY="614.0" mnemonicParsing="false" onAction="#click" prefHeight="95.0" prefWidth="310.0" styleClass="button-basic" text="Hacer reserva" />
             <Label layoutX="25.0" layoutY="119.0" styleClass="label_rotulos" text="RESERVAR:" underline="true">
                <font>
                   <Font name="MAXWELL REGULAR" size="39.0" />
@@ -316,7 +316,7 @@
                   <Font name="MAXWELL REGULAR" size="25.0" />
                </font>
             </Label>
-            <Button fx:id="btn_nueva_reserva" layoutX="379.0" layoutY="119.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="NUEVA RESERVA" />
+            <Button fx:id="btn_nueva_reserva" layoutX="379.0" layoutY="119.0" mnemonicParsing="false" onAction="#click" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="NUEVA RESERVA" />
             <TextField fx:id="codigo_reserva" layoutX="31.0" layoutY="202.0" prefHeight="25.0" prefWidth="183.0" />
             <Label layoutX="31.0" layoutY="176.0" text="Código de reserva:">
                <font>
@@ -348,13 +348,14 @@
                   <Spinner fx:id="cantidad_bebes" layoutX="316.0" layoutY="59.0" prefHeight="25.0" prefWidth="67.0" />
                   <Label layoutX="414.0" layoutY="43.0" text="Niños( 2-12 años)" />
                   <Spinner fx:id="cantidad_niños" layoutX="414.0" layoutY="59.0" prefHeight="25.0" prefWidth="67.0" />
+                  <Button fx:id="btn_verificar_fechas" layoutX="416.0" layoutY="111.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" prefHeight="34.0" prefWidth="100.0" text="Verificar" />
                </children>
                <padding>
                   <Insets top="15.0" />
                </padding>
             </Pane>
             <Separator layoutX="662.0" layoutY="126.0" orientation="VERTICAL" prefHeight="621.0" prefWidth="0.0" />
-            <Button fx:id="btn_editar_reserva" layoutX="379.0" layoutY="182.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="EDITAR RESERVA" />
+            <Button fx:id="btn_editar_reserva" layoutX="379.0" layoutY="182.0" mnemonicParsing="false" onAction="#click" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="EDITAR RESERVA" />
             <Pane fx:id="state_panel" layoutX="718.0" layoutY="127.0" prefHeight="176.0" prefWidth="310.0" style="-fx-background-color: white; -fx-border-color: black;" styleClass="calculadora">
                <padding>
                   <Insets top="15.0" />
@@ -430,6 +431,7 @@
                   </Label>
                </children>
             </Pane>
+            <Button fx:id="btn_buscar_reserva" layoutX="213.0" layoutY="202.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" prefHeight="25.0" prefWidth="33.0" style="-fx-border-radius: 0;" styleClass="button_buscar" />
          </children>
          <stylesheets>
             <URL value="@../../../assets/css/recepcionista_escenas.css" />

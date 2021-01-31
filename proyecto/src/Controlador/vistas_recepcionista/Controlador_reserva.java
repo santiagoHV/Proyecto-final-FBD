@@ -10,23 +10,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.*;
 
 public class Controlador_reserva implements Initializable {
-
+    int CAPACIDAD_MAXIMA = 120;
 
     //General
     public AnchorPane content;
@@ -51,6 +48,12 @@ public class Controlador_reserva implements Initializable {
 
     //Date and people panel
     public Pane date_q_panel;
+    public Button btn_verificar_fechas;
+    public DatePicker fecha_ingreso;
+    public DatePicker fecha_salida;
+    public Spinner cantidad_adultos;
+    public Spinner cantidad_bebes;
+    public Spinner cantidad_niños;
 
 
     private double xOffset = 0;
@@ -99,6 +102,50 @@ public class Controlador_reserva implements Initializable {
         }
 
         ////bloqueos iniciales///
+        bloquearTodo();
+        this.cantidad_adultos.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,50));
+        this.cantidad_niños.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,50));
+        this.cantidad_bebes.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,50));
+
+
+    }
+    public void click(ActionEvent actionEvent) {
+        if(actionEvent.getSource().equals(btn_nueva_reserva)){
+            date_q_panel.setDisable(false);
+            state_panel.setDisable(false);
+            btn_datos_titular.setDisable(false);
+        }else if(actionEvent.getSource().equals(btn_verificar_fechas)){
+            LocalDate fechaInicio = fecha_ingreso.getValue();
+            LocalDate fechaFinal = fecha_salida.getValue();
+            int huespedesBebes = (int) cantidad_bebes.getValue();
+            int huespedesNinos = (int) cantidad_niños.getValue();
+            int huespedesAdultos = (int) cantidad_adultos.getValue();
+
+            if(validarDatosPrincipales(fechaInicio,fechaFinal,huespedesAdultos,huespedesNinos,huespedesBebes)){
+                Date sqlFechaInicio = Date.valueOf(fechaInicio.toString());
+                Date sqlFechaFinal = Date.valueOf(fechaInicio.toString());
+
+                //habilitar habitaciones por consulta
+                TabPanePisos.setDisable(false);
+            }
+
+        }
+
+
+    }
+
+    public boolean validarDatosPrincipales(LocalDate fechaInicio, LocalDate fechaFinal, int adultos, int ninos, int bebes){
+        int capacidadMinima = CAPACIDAD_MAXIMA; //debe consultarse la capacidad maxima de la fecha
+
+        if(adultos + ninos > capacidadMinima){
+            return false;
+        }else if(fechaFinal.isBefore(fechaInicio) || fechaFinal.equals(fechaInicio)){
+            return false;
+        }
+        return true;
+    }
+
+    public void bloquearTodo(){
         price_panel.setDisable(true);
         state_panel.setDisable(true);
         date_q_panel.setDisable(true);
@@ -106,8 +153,6 @@ public class Controlador_reserva implements Initializable {
 
         btn_hacer_reserva.setDisable(true);
         btn_datos_titular.setDisable(true);
-
-
     }
 
 
@@ -197,4 +242,6 @@ public class Controlador_reserva implements Initializable {
         //Se muestra el dialog:
         dialog.show();
     }
+
+
 }
