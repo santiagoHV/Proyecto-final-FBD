@@ -1,25 +1,19 @@
 package Controlador;
 
-import Datos_NoSQL.DBMethods;
+import Datos_NoSQL.Usuario;
+import Datos_NoSQL.UsuarioDAO;
 import Vista.Main;
-import animatefx.animation.Shake;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.events.JFXDialogEvent;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.effect.BoxBlur;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.bson.Document;
@@ -41,12 +35,12 @@ public class Controlador_Login implements Initializable
     public StackPane StackPane1;
     private double xOffset = 0;
     private double yOffset = 0;
-    private DBMethods db;
+    private UsuarioDAO db;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         //Invocación del método para volver el stage arrastrable:
-        db = new DBMethods();
+        db = new UsuarioDAO();
         this.makeStageDragable();
     }
 
@@ -79,6 +73,14 @@ public class Controlador_Login implements Initializable
         });
     }
 
+    /**
+     * Metodo que inicia al dar click en ingresar, llama la autenticacion
+     * y algunos metodos para modificar la interfaz
+     * @param actionEvent
+     * @throws IOException
+     * @throws SQLException
+     * @throws InterruptedException
+     */
     public void Click(ActionEvent actionEvent) throws IOException, SQLException, InterruptedException {
         if(authUsuario()){
             //Código adicional para el stage de inicio de sesión y el menú de inicio
@@ -88,74 +90,59 @@ public class Controlador_Login implements Initializable
         }
     }
 
-    // Toma los datos ingresados y los compara con los de la base de datos
-    // (Si el usuario es admin le dara acceso a recepcionista desde cualquier rol)
+    /**
+     * Toma los datos ingresados y dependiendo de la situcion genera unas acciones
+     * y datos determinadas
+     * @return
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public boolean authUsuario() throws IOException, InterruptedException {
         String rol = getRoleKey(JLabel_TUsuario.getText());
-        new _Cargar().show();
-        Thread.sleep(3000);
-        Document userx = db.searchUser(TUsuario.getText());
-
-        if(userx != null && (userx.get("role").equals(rol) || userx.get("role").equals("admin"))){
-            boolean correct = TContrasena.getText().equals(userx.get("password"));
-            if(userx.get("role").equals("recept") && correct){
-                Stage stage = new Stage();
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("../Vista/recepcionista/navbar_recepcionista.fxml"));
-                Pane ventana = (Pane) loader.load();
-                //Show the scene containing the root layout.
-
-                Scene scene = new Scene(ventana);
-                scene.setFill(Color.TRANSPARENT);
-                stage.setTitle("Menu Principal");
-                stage.setScene(scene);
-                //Undecorated y No Resizable:
-                stage.setResizable(false);
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.initStyle(StageStyle.TRANSPARENT);
-
-                //Mostrar Stage:
-                stage.show();
+        String result = db.autenticarUsuario(new Usuario(TUsuario.getText(), TContrasena.getText(), rol));
+        if(result.equals("auth")){
+            if(rol.equals("recept") || rol.equals("admin")){
+                openReceptcion();
                 return true;
             }
-            else if(userx.get("role").equals("worker") && correct){
-                JOptionPane.showMessageDialog(null, "Aun no existe este menu");
-                return false;
+            else if(rol.equals("gerente") || rol.equals("admin")){
+                JOptionPane.showMessageDialog(null, "Interfaz en mantenimiento");
+                return true;
             }
-            else if(userx.get("role").equals("gerente") && correct){
-                JOptionPane.showMessageDialog(null, "Aun no existe este menu");
-                return false;
-            }
-            else if(userx.get("role").equals("admin") && correct){
-                Stage stage = new Stage();
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("../Vista/recepcionista/navbar_recepcionista.fxml"));
-                Pane ventana = (Pane) loader.load();
-                //Show the scene containing the root layout.
-
-                Scene scene = new Scene(ventana);
-                scene.setFill(Color.TRANSPARENT);
-                stage.setTitle("Menu Principal");
-                stage.setScene(scene);
-                //Undecorated y No Resizable:
-                stage.setResizable(false);
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.initStyle(StageStyle.TRANSPARENT);
-
-                //Mostrar Stage:
-                stage.show();
+            else if(rol.equals("worker") || rol.equals("admin")){
+                JOptionPane.showMessageDialog(null, "Interfaz en mantenimiento");
                 return true;
             }
             else{
-                JOptionPane.showMessageDialog(null,"Contraseña incorrecta");
+                JOptionPane.showMessageDialog(null, "Error inesperado 2");
                 return false;
             }
-        }else{
-            JOptionPane.showMessageDialog(null,"Este usuario no existe en este rol");
+        }
+        else if(result.equals("wrong_pass")){
+            JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+            return false;
+        }
+        else if(result.equals("not_exist")){
+            JOptionPane.showMessageDialog(null,"Este usuario no existe");
+            return false;
+        }
+        else if(result.equals("no_permission")){
+            JOptionPane.showMessageDialog(null, "Este usuario no tiene acceso aqui");
+            return false;
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Error Inesperado");
             return false;
         }
     }
-    //Convierte el rol visual al que se maneja en la DB
+
+
+    /**
+     * Toma el String de rol que ve en usuario y retorna el String que se maneja
+     * en los metodos del DAO
+     * @param role
+     * @return
+     */
     public String getRoleKey(String role){
         if(role.equals("Recepcionista")){
             return "recept";
@@ -198,6 +185,31 @@ public class Controlador_Login implements Initializable
             //Se muestra el dialog:
             dialog.show(StackPane1);
     }
+
+    /**
+     * Abre la interfaz grafica propia del recepcionista
+     * @throws IOException
+     */
+    public void openReceptcion() throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("../Vista/recepcionista/navbar_recepcionista.fxml"));
+        Pane ventana = (Pane) loader.load();
+        //Show the scene containing the root layout.
+
+        Scene scene = new Scene(ventana);
+        scene.setFill(Color.TRANSPARENT);
+        stage.setTitle("Menu Principal");
+        stage.setScene(scene);
+        //Undecorated y No Resizable:
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.TRANSPARENT);
+
+        //Mostrar Stage:
+        stage.show();
+    }
+
     public class _Cargar implements Runnable{
         public void show(){
             new Thread(this).start();
