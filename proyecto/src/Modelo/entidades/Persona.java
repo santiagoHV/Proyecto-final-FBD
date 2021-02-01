@@ -74,25 +74,23 @@ public class Persona
         this.n_apellido = n_apellido;
     }
 
-    public Persona ConsultarPersona(int ID, String Tipo, Persona persona) {
+    public void ConsultarPersona(int ID, String Tipo) {
         Operaciones op = new Operaciones();
         try
         {
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Persona Where k_identificacion = "+ID+" and k_tipo_documento = '"+Tipo+"'");
             if (resultSet.next())
             {
-                persona.setK_identificacion(resultSet.getInt(1));
-                persona.setK_tipo_documento_id(resultSet.getString(2));
-                persona.setN_nombre(resultSet.getString(3));
-                persona.setN_apellido(resultSet.getString(4));
-                persona.setF_nacimiento(resultSet.getString(5));
-                persona.setN_telefono(resultSet.getString(6));
-                return persona;
+                this.k_identificacion = resultSet.getInt(1);
+                this.k_tipo_documento_id = resultSet.getString(2);
+                this.n_nombre = resultSet.getString(3);
+                this.n_apellido = resultSet.getString(4);
+                this.f_nacimiento = resultSet.getString(5);
+                this.n_telefono = resultSet.getString(6);
             }
         }
         catch (SQLException exception){
             System.out.println(exception);
         }
-        return null;
     }
 }

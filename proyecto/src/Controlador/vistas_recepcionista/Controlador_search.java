@@ -2,6 +2,7 @@ package Controlador.vistas_recepcionista;
 
 import Modelo.entidades.Huesped;
 import Modelo.entidades.Reserva;
+import Modelo.fabricas.ReservasList;
 import Vista.Main;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -43,7 +44,7 @@ public class Controlador_search implements Initializable {
 
         Grid_Reservas.getChildren().clear();
 
-        Reserva reserva = new Reserva();
+        ReservasList reservasList = new ReservasList();
 
         int CodReserva = 0;
         int NumDoc = 0;
@@ -57,7 +58,7 @@ public class Controlador_search implements Initializable {
             NumDoc = Integer.parseInt(txt_num_doc.getText());
         }
 
-        List<Reserva> reservas = reserva.BuscarReservas(CodReserva, NumDoc, txt_nom_apel.getText());
+        List<Reserva> reservas = reservasList.BuscarReservas(CodReserva, NumDoc, txt_nom_apel.getText());
 
         int column = 0;
         int row = 0;

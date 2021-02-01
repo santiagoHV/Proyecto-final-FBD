@@ -70,29 +70,33 @@ public class Registro {
         this.habitacion = habitacion;
     }
 
-    public Registro ConsultarRegistro(int ID, Registro registro){
+    public void consultarRegistro(int ID, Registro registro){
         Operaciones op = new Operaciones();
         try {
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM registro_checkin WHERE k_registro = "+ID+"");
             resultSet.next();
-            registro.setK_registro(resultSet.getInt(1));
-            registro.setF_entrada(resultSet.getDate(2));
-            registro.setF_entrada(resultSet.getDate(3));
+            this.k_registro = resultSet.getInt(1);
+            this.f_entrada = resultSet.getDate(2);
+            this.f_entrada = resultSet.getDate(3);
 
             Persona persona = new Persona();
-            registro.setPersona(persona.ConsultarPersona(resultSet.getInt(5), resultSet.getString(4),persona));
+            persona.ConsultarPersona(resultSet.getInt(5), resultSet.getString(4));
+            this.persona = persona;
 
             Reserva reserva = new Reserva();
-            registro.setReserva(reserva.ConsultarReserva(resultSet.getInt(6),reserva));
+            reserva.ConsultarReserva(resultSet.getInt(6));
+            this.reserva = reserva;
 
             Habitacion habitacion = new Habitacion();
-            registro.setHabitacion(habitacion.ConsultarHabitacion(resultSet.getInt(7),habitacion));
+            habitacion.ConsultarHabitacion(resultSet.getInt(7));
+            this.habitacion = habitacion;
 
-            return registro;
+            //return registro;
 
         }catch (SQLException ex){
             System.out.println(ex);
         }
-        return null;
     }
+
 }
+

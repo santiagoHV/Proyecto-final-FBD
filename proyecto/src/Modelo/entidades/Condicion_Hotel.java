@@ -62,21 +62,19 @@ public class Condicion_Hotel {
         this.numero_dias = numero_dias;
     }
 
-    public Condicion_Hotel ConsultarCondicionHotel(int ID, Condicion_Hotel condicion_hotel) {
+    public void ConsultarCondicionHotel(int ID) {
         Operaciones op = new Operaciones();
         try {
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Condicion_Hotel WHERE k_condicion = "+ID+"");
             resultSet.next();
-            condicion_hotel.setK_condicion(resultSet.getInt(1));
-            condicion_hotel.setEstado_condicion(resultSet.getBoolean(2));
-            condicion_hotel.setDescuento(resultSet.getDouble(3));
-            condicion_hotel.setAforo(resultSet.getDouble(4));
-            condicion_hotel.setNumero_dias(resultSet.getInt(5));
-            return condicion_hotel;
+            this.k_condicion = resultSet.getInt(1);
+            this.estado_condicion = resultSet.getBoolean(2);
+            this.descuento = resultSet.getDouble(3);
+            this.aforo = resultSet.getDouble(4);
+            this.numero_dias = resultSet.getInt(5);
 
         }catch (SQLException ex){
             System.out.println(ex);
         }
-        return null;
     }
 }

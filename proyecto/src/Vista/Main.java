@@ -50,6 +50,7 @@ public class Main extends Application {
 
         //Prueba Consulta:
         Reserva reserva = new Reserva();
-        System.out.println(reserva.ConsultarReserva(1,reserva).getPrecio_reserva());
+        reserva.ConsultarReserva(1);
+        System.out.println(reserva.getPrecio_reserva());
     }
 }

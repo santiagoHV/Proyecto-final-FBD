@@ -50,25 +50,25 @@ public class Cuenta_Productos {
         this.cuenta = cuenta;
     }
 
-    public Cuenta_Productos ConsultarCuentaProd(int k_codigo_pys, int k_cuenta, Cuenta_Productos cuenta_productos) {
+    public void ConsultarCuentaProd(int k_codigo_pys, int k_cuenta) {
         Operaciones op = new Operaciones();
         try {
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM cuenta_productos WHERE k_codigo_pys = "+k_codigo_pys+" and k_cuenta = "+k_cuenta+" ");
             resultSet.next();
-            cuenta_productos.setPys_pedidos(resultSet.getInt(1));
-            cuenta_productos.setF_pedido(resultSet.getDate(2));
+            this.pys_pedidos = resultSet.getInt(1);
+            this.f_pedido = resultSet.getDate(2);
 
             PyS pyS = new PyS();
-            cuenta_productos.setPys(pyS.ConsultaProdYServ(resultSet.getInt(3),pyS));
+            pyS.ConsultaProdYServ(resultSet.getInt(3));
+            this.pys = pyS;
 
             Cuenta cuenta = new Cuenta();
-            cuenta_productos.setCuenta(cuenta.ConsultarCuenta(resultSet.getInt(4),cuenta));
+            cuenta.ConsultarCuenta(resultSet.getInt(4));
+            this.cuenta = cuenta;
 
-            return cuenta_productos;
 
         }catch (SQLException ex){
             System.out.println(ex);
         }
-        return null;
     }
 }

@@ -52,21 +52,19 @@ public class PyS {
         this.precio_producta = precio_producta;
     }
 
-    public PyS ConsultaProdYServ(int ID, PyS pyS){
+    public void ConsultaProdYServ(int ID){
         Operaciones op = new Operaciones();
         try {
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM productoyservicio WHERE k_codigo_pys = "+ID+"");
             resultSet.next();
-            pyS.setK_codigo_pys(resultSet.getInt(1));
-            pyS.setUnidad(resultSet.getString(2));
-            pyS.setStock(resultSet.getInt(3));
-            pyS.setPrecio_producta(resultSet.getDouble(4));
+            this.k_codigo_pys = resultSet.getInt(1);
+            this.unidad = resultSet.getString(2);
+            this.stock = resultSet.getInt(3);
+            this.precio_producta = resultSet.getDouble(4);
 
-            return pyS;
 
         }catch (SQLException ex){
             System.out.println(ex);
         }
-        return null;
     }
 }

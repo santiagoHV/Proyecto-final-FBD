@@ -5,8 +5,6 @@ import DatosSQL.Operaciones;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Reserva {
     private int k_reserva;
@@ -14,22 +12,56 @@ public class Reserva {
     private Date f_inicio;
     private Date f_reserva;
     private Date f_final;
-    private int cantidad_huespedes;
+    private int cantidad_adultos;
+    private int cantidad_ninos;
+    private int cantidad_bebes;
     private double precio_reserva;
     private Condicion_Hotel condicion;
     private Persona persona;
 
-    public Reserva(int k_reserva, String estado, Date f_inicio, Date f_reserva, Date f_final, int cantidad_huespedes, double precio_reserva, Condicion_Hotel condicion, Persona persona) {
+    public Reserva(int k_reserva, String estado, Date f_inicio, Date f_reserva, Date f_final, int cantidad_adultos, int cantidad_ninos, int cantidad_bebes, double precio_reserva, Condicion_Hotel condicion, Persona persona) {
         this.k_reserva = k_reserva;
         this.estado = estado;
         this.f_inicio = f_inicio;
         this.f_reserva = f_reserva;
         this.f_final = f_final;
-        this.cantidad_huespedes = cantidad_huespedes;
+        this.cantidad_adultos = cantidad_adultos;
+        this.cantidad_ninos = cantidad_ninos;
+        this.cantidad_bebes = cantidad_bebes;
         this.precio_reserva = precio_reserva;
         this.condicion = condicion;
         this.persona = persona;
     }
+
+    public void ConsultarReserva(int ID){
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Reserva WHERE k_reserva = "+ID+"");
+            resultSet.next();
+            this.k_reserva = resultSet.getInt(1);
+            this.estado = resultSet.getString(2);
+            this.f_inicio = resultSet.getDate(3);
+            this.f_reserva = resultSet.getDate(4);
+            this.f_final = resultSet.getDate(5);
+            this.cantidad_adultos = resultSet.getInt(6);
+            this.cantidad_ninos = resultSet.getInt(7);
+            this.cantidad_bebes = resultSet.getInt(8);
+            this.precio_reserva = resultSet.getDouble(9);
+
+            Condicion_Hotel condicion_hotel = new Condicion_Hotel();
+            condicion_hotel.ConsultarCondicionHotel(resultSet.getInt(10));
+            this.condicion = condicion_hotel;
+
+            Persona persona = new Persona();
+            persona.ConsultarPersona(resultSet.getInt(11),resultSet.getString(12));
+            this.persona = persona;
+
+        }catch (SQLException ex){
+            System.out.println(ex);
+        }
+    }
+
+
 
     public Reserva(){};
 
@@ -73,12 +105,28 @@ public class Reserva {
         this.f_final = f_final;
     }
 
-    public int getCantidad_huespedes() {
-        return cantidad_huespedes;
+    public int getCantidad_adultos() {
+        return cantidad_adultos;
     }
 
-    public void setCantidad_huespedes(int cantidad_huespedes) {
-        this.cantidad_huespedes = cantidad_huespedes;
+    public void setCantidad_adultos(int cantidad_adultos) {
+        this.cantidad_adultos = cantidad_adultos;
+    }
+
+    public int getCantidad_ninos() {
+        return cantidad_ninos;
+    }
+
+    public void setCantidad_ninos(int cantidad_ninos) {
+        this.cantidad_ninos = cantidad_ninos;
+    }
+
+    public int getCantidad_bebes() {
+        return cantidad_bebes;
+    }
+
+    public void setCantidad_bebes(int cantidad_bebes) {
+        this.cantidad_bebes = cantidad_bebes;
     }
 
     public double getPrecio_reserva() {
@@ -105,69 +153,5 @@ public class Reserva {
         this.persona = persona;
     }
 
-    public Reserva ConsultarReserva(int ID, Reserva reserva){
-        Operaciones op = new Operaciones();
-        try {
-            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Reserva WHERE k_reserva = "+ID+"");
-            resultSet.next();
-            reserva.setK_reserva(resultSet.getInt(1));
-            reserva.setEstado(resultSet.getString(2));
-            reserva.setF_inicio(resultSet.getDate(3));
-            reserva.setF_reserva(resultSet.getDate(4));
-            reserva.setF_final(resultSet.getDate(5));
-            reserva.setCantidad_huespedes(resultSet.getInt(6));
-            reserva.setPrecio_reserva(resultSet.getDouble(7));
 
-            Condicion_Hotel condicion_hotel = new Condicion_Hotel();
-            reserva.setCondicion(condicion_hotel.ConsultarCondicionHotel(resultSet.getInt(8),condicion_hotel));
-
-            Persona persona = new Persona();
-            reserva.setPersona(persona.ConsultarPersona(resultSet.getInt(9),resultSet.getString(10),persona));
-
-            return reserva;
-
-        }catch (SQLException ex){
-            System.out.println(ex);
-        }
-        return null;
-    }
-
-    public List<Reserva> BuscarReservas(int k_reserva, int num_doc, String nom_or_apel) {
-
-        List<Reserva> reservaList = new ArrayList<>();
-
-        Operaciones op = new Operaciones();
-        try {
-            ResultSet resultSet =
-                    op.ConsultaEsp("SELECT * FROM Reserva WHERE k_reserva = "+k_reserva+" or k_identificacion = "+num_doc+" or " +
-                            "k_identificacion = (SELECT k_identificacion FROM Persona WHERE n_nombre IN ('"+nom_or_apel+"') or n_apellido IN ('"+nom_or_apel+"')) ");
-
-            Reserva reserva;
-            while (resultSet.next()) {
-
-                reserva = new Reserva();
-                reserva.setK_reserva(resultSet.getInt(1));
-                reserva.setEstado(resultSet.getString(2));
-                reserva.setF_inicio(resultSet.getDate(3));
-                reserva.setF_reserva(resultSet.getDate(4));
-                reserva.setF_final(resultSet.getDate(5));
-                reserva.setCantidad_huespedes(resultSet.getInt(6));
-                reserva.setPrecio_reserva(resultSet.getDouble(7));
-
-                Condicion_Hotel condicion_hotel = new Condicion_Hotel();
-                reserva.setCondicion(condicion_hotel.ConsultarCondicionHotel(resultSet.getInt(8),condicion_hotel));
-
-                Persona persona = new Persona();
-                reserva.setPersona(persona.ConsultarPersona(resultSet.getInt(9),resultSet.getString(10),persona));
-
-                reservaList.add(reserva);
-            }
-
-            return reservaList;
-
-        }catch (SQLException ex){
-            System.out.println(ex);
-        }
-        return null;
-    }
 }

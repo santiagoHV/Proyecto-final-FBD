@@ -37,10 +37,12 @@ public class Reserva_Habitacion {
             resultSet.next();
 
             Reserva reserva = new Reserva();
-            reserva_habitacion.setReserva(reserva.ConsultarReserva(resultSet.getInt(1),reserva));
+            reserva.ConsultarReserva(resultSet.getInt(1));
+            this.reserva = reserva;
 
             Habitacion habitacion = new Habitacion();
-            reserva_habitacion.setHabitacion(habitacion.ConsultarHabitacion(resultSet.getInt(2),habitacion));
+            habitacion.ConsultarHabitacion(resultSet.getInt(2));
+            this.habitacion = habitacion;
 
         }catch (SQLException ex){
             System.out.println(ex);

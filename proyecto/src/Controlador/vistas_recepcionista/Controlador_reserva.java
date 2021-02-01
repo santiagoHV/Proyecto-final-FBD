@@ -2,7 +2,6 @@ package Controlador.vistas_recepcionista;
 
 import Modelo.entidades.Reserva;
 import Vista.Main;
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.events.JFXDialogEvent;
 import javafx.collections.ObservableList;
@@ -18,9 +17,7 @@ import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -205,11 +202,11 @@ public class Controlador_reserva implements Initializable {
 
     public void Buscar_Reserva_Por_ID(ActionEvent actionEvent) {
         Reserva reserva = new Reserva();
-        reserva = reserva.ConsultarReserva(Integer.parseInt(codigo_reserva.getText()),reserva);
+        reserva.ConsultarReserva(Integer.parseInt(codigo_reserva.getText()));
 
         fecha_ingreso.setValue(reserva.getF_inicio().toLocalDate());
         fecha_salida.setValue(reserva.getF_final().toLocalDate());
-        total_personas.setText(reserva.getCantidad_huespedes()+"");
+        total_personas.setText(reserva.getCantidad_adultos()+"");
 
     }
 }
