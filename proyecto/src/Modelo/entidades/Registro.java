@@ -1,23 +1,29 @@
 package Modelo.entidades;
 
+import DatosSQL.Operaciones;
+
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Registro {
     private int k_registro;
     private Date f_entrada;
     private Date f_salida;
-    private int k_cuenta;
     private Persona persona;
     private Reserva reserva;
+    private Habitacion habitacion;
 
-    public Registro(int k_registro, Date f_entrada, Date f_salida, int k_cuenta, Persona persona, Reserva reserva) {
+    public Registro(int k_registro, Date f_entrada, Date f_salida, Persona persona, Reserva reserva, Habitacion habitacion) {
         this.k_registro = k_registro;
         this.f_entrada = f_entrada;
         this.f_salida = f_salida;
-        this.k_cuenta = k_cuenta;
         this.persona = persona;
         this.reserva = reserva;
+        this.habitacion = habitacion;
     }
+
+    public Registro(){}
 
     public int getK_registro() {
 
@@ -44,14 +50,6 @@ public class Registro {
         this.f_salida = f_salida;
     }
 
-    public int getK_cuenta() {
-        return k_cuenta;
-    }
-
-    public void setK_cuenta(int k_cuenta) {
-        this.k_cuenta = k_cuenta;
-    }
-
     public Persona getPersona() {
         return persona;
     }
@@ -67,4 +65,38 @@ public class Registro {
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
     }
+
+    public void setHabitacion(Habitacion habitacion) {
+        this.habitacion = habitacion;
+    }
+
+    public void consultarRegistro(int ID, Registro registro){
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM registro_checkin WHERE k_registro = "+ID+"");
+            resultSet.next();
+            this.k_registro = resultSet.getInt(1);
+            this.f_entrada = resultSet.getDate(2);
+            this.f_entrada = resultSet.getDate(3);
+
+            Persona persona = new Persona();
+            persona.ConsultarPersona(resultSet.getInt(5), resultSet.getString(4));
+            this.persona = persona;
+
+            Reserva reserva = new Reserva();
+            reserva.ConsultarReserva(resultSet.getInt(6));
+            this.reserva = reserva;
+
+            Habitacion habitacion = new Habitacion();
+            habitacion.ConsultarHabitacion(resultSet.getInt(7));
+            this.habitacion = habitacion;
+
+            //return registro;
+
+        }catch (SQLException ex){
+            System.out.println(ex);
+        }
+    }
+
 }
+
