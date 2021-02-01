@@ -41,7 +41,7 @@
                                     <Font name="MAXWELL REGULAR" size="25.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="codigo_reserva11" prefHeight="25.0" prefWidth="187.0" />
+                              <TextField fx:id="txt_cod_reserva" prefHeight="25.0" prefWidth="187.0" />
                            </children>
                            <padding>
                               <Insets top="25.0" />
@@ -54,7 +54,7 @@
                                     <Font name="MAXWELL REGULAR" size="25.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="codigo_reserva111" prefHeight="25.0" prefWidth="187.0" />
+                              <TextField fx:id="txt_nom_apel" prefHeight="25.0" prefWidth="187.0" />
                            </children>
                            <padding>
                               <Insets top="25.0" />
@@ -67,7 +67,7 @@
                                     <Font name="MAXWELL REGULAR" size="25.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="codigo_reserva112" prefHeight="25.0" prefWidth="187.0" />
+                              <TextField fx:id="txt_num_doc" prefHeight="25.0" prefWidth="187.0" />
                            </children>
                            <padding>
                               <Insets top="25.0" />
@@ -77,25 +77,59 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="88.0" prefWidth="1013.0">
                      <children>
-                        <JFXButton mnemonicParsing="false" prefHeight="41.0" prefWidth="139.0" styleClass="button-basic" text="Buscar" />
+                        <JFXButton fx:id="btn_buscar" mnemonicParsing="false" onAction="#Consultar_Reservas_Clientes" prefHeight="41.0" prefWidth="139.0" styleClass="button-basic" text="Buscar" />
                      </children>
                   </HBox>
-                  <VBox prefHeight="403.0" prefWidth="676.0" spacing="9.0">
+                  <VBox alignment="TOP_CENTER" prefHeight="403.0" prefWidth="676.0" spacing="9.0">
                      <children>
-                        <Label text="Coincidencias">
+                        <Label prefHeight="26.0" prefWidth="1003.0" text="Coincidencias:">
                            <font>
                               <Font name="MAXWELL REGULAR" size="25.0" />
                            </font>
                         </Label>
-                        <ScrollPane fx:id="panel_ingreso_huespedes" hbarPolicy="NEVER" prefHeight="358.0" prefWidth="676.0">
-                           <content>
-                              <GridPane fx:id="GridPanel_Huespedes" prefHeight="0.0" prefWidth="0.0">
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                 </rowConstraints>
-                              </GridPane>
-                           </content>
-                        </ScrollPane>
+                        <HBox alignment="CENTER" prefHeight="345.0" prefWidth="1013.0" spacing="5.0">
+                           <children>
+                              <VBox prefHeight="341.0" prefWidth="500.0">
+                                 <children>
+                                    <Label text="Reservas Halladas:">
+                                       <font>
+                                          <Font name="MAXWELL REGULAR" size="25.0" />
+                                       </font>
+                                    </Label>
+                                    <ScrollPane fx:id="panel_reservas_halladas" hbarPolicy="NEVER" prefHeight="341.0" prefWidth="498.0">
+                                       <content>
+                                          <GridPane fx:id="Grid_Reservas" alignment="TOP_CENTER" prefHeight="0.0" prefWidth="0.0">
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                             </rowConstraints>
+                                          </GridPane>
+                                       </content>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </ScrollPane>
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="267.0" layoutY="10.0" prefHeight="341.0" prefWidth="500.0">
+                                 <children>
+                                    <Label text="Clientes Hallados:">
+                                       <font>
+                                          <Font name="MAXWELL REGULAR" size="25.0" />
+                                       </font>
+                                    </Label>
+                                    <ScrollPane fx:id="panel_clientes_hallados" hbarPolicy="NEVER" prefHeight="341.0" prefWidth="498.0">
+                                       <content>
+                                          <GridPane fx:id="Grid_Clientes" prefHeight="0.0" prefWidth="0.0">
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                             </rowConstraints>
+                                          </GridPane>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                </children>

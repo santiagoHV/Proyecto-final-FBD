@@ -1,7 +1,7 @@
 package Controlador.vistas_recepcionista;
 
+import Modelo.entidades.Reserva;
 import Vista.Main;
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.events.JFXDialogEvent;
 import javafx.collections.ObservableList;
@@ -21,6 +21,9 @@ import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class Controlador_reserva implements Initializable {
     int CAPACIDAD_MAXIMA = 120;
@@ -49,6 +52,7 @@ public class Controlador_reserva implements Initializable {
     //Date and people panel
     public Pane date_q_panel;
     public Button btn_verificar_fechas;
+    public TextField codigo_reserva;
     public DatePicker fecha_ingreso;
     public DatePicker fecha_salida;
     public Spinner cantidad_adultos;
@@ -243,5 +247,13 @@ public class Controlador_reserva implements Initializable {
         dialog.show();
     }
 
+    public void Buscar_Reserva_Por_ID(ActionEvent actionEvent) {
+        Reserva reserva = new Reserva();
+        reserva.ConsultarReserva(Integer.parseInt(codigo_reserva.getText()));
 
+        fecha_ingreso.setValue(reserva.getF_inicio().toLocalDate());
+        fecha_salida.setValue(reserva.getF_final().toLocalDate());
+        total_personas.setText(reserva.getCantidad_adultos()+"");
+
+    }
 }

@@ -1,5 +1,9 @@
 package Vista;
 
+import Modelo.entidades.Condicion_Hotel;
+import Modelo.entidades.Huesped;
+import Modelo.entidades.Persona;
+import Modelo.entidades.Reserva;
 import animatefx.animation.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -43,5 +47,9 @@ public class Main extends Application {
 
         new Pulse(ventana).play();
 
+        //Prueba Consulta:
+        Reserva reserva = new Reserva();
+        reserva.ConsultarReserva(1);
+        System.out.println(reserva.getPrecio_reserva());
     }
 }

@@ -1,5 +1,10 @@
 package Modelo.entidades;
 
+import DatosSQL.Operaciones;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Tipo {
     private int k_tipo_habitacion;
     private double precio_habitacion;
@@ -10,6 +15,8 @@ public class Tipo {
         this.precio_habitacion = precio_habitacion;
         this.descripcion = descripcion;
     }
+
+    public Tipo(){};
 
     public int getK_tipo_habitacion() {
         return k_tipo_habitacion;
@@ -33,5 +40,23 @@ public class Tipo {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Tipo ConsultarTipoHab(int ID, Tipo tipo){
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM tipo WHERE k_tipo_habitacion = "+ID+"");
+            resultSet.next();
+
+            tipo.setK_tipo_habitacion(resultSet.getInt(1));
+            tipo.setPrecio_habitacion(resultSet.getDouble(2));
+            tipo.setDescripcion(resultSet.getString(3));
+
+            return tipo;
+
+        }catch (SQLException ex){
+            System.out.println(ex);
+        }
+        return null;
     }
 }

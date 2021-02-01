@@ -15,7 +15,7 @@ public class Controlador_Huesped
     public void setValoresPanel(Huesped huesped)
     {
         LBnom_completo.setText(huesped.getN_nombre() + " " + huesped.getN_apellido());
-        LBnum_id.setText(huesped.getK_identificacion());
+        LBnum_id.setText(huesped.getK_identificacion()+"");
         LBedad.setText(huesped.getF_nacimiento());
         LBDireccion.setText(huesped.getN_direccion());
         LBTelefono.setText(huesped.getN_telefono());
