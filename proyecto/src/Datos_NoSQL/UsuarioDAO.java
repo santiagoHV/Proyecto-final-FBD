@@ -64,7 +64,7 @@ public class UsuarioDAO {
         Document usuarioBase = (Document) col.find(new Document().append("user", usuario.getUser())).first();
         if(usuarioBase != null) {
             if (usuarioBase.get("password").equals(usuario.getPassword())) {
-                if(usuarioBase.get("role").equals(usuario.getRole())){
+                if(usuarioBase.get("role").equals(usuario.getRole()) || usuarioBase.get("role").equals("admin")){
                     return "auth";
                 }else{
                     return "no_permission";
