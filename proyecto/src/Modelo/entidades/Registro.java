@@ -70,7 +70,7 @@ public class Registro {
         this.habitacion = habitacion;
     }
 
-    public void consultarRegistro(int ID, Registro registro){
+    public void consultarRegistro(int ID){
         Operaciones op = new Operaciones();
         try {
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM registro_checkin WHERE k_registro = "+ID+"");
