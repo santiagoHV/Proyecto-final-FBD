@@ -5,7 +5,6 @@ import Datos_NoSQL.UsuarioDAO;
 import Vista.Main;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.events.JFXDialogEvent;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,15 +17,12 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.temporal.Temporal;
 import java.util.ResourceBundle;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class Controlador_Login implements Initializable {
     public AnchorPane BGStackPane;
@@ -39,7 +35,6 @@ public class Controlador_Login implements Initializable {
     private double xOffset = 0;
     private double yOffset = 0;
     private UsuarioDAO db;
-    public int AUTH = 2;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -88,20 +83,7 @@ public class Controlador_Login implements Initializable {
      */
 
     public void Click(ActionEvent actionEvent) throws IOException, SQLException, InterruptedException {
-        progress.setVisible(true);
-        Task tarea = new Task<Void>(){
-
-            @Override
-            protected Void call() throws Exception {
-                      AUTH = authUsuario();
-                return null;
-            }
-        };
-        Thread hilo = new Thread(tarea);
-        hilo.start();
-        Object cerrojo = new Object();
-        System.out.println(AUTH);
-        if(authUsuario()==1)
+        if(authUsuario())
         {
             JFXButton BotonAceptar = (JFXButton) actionEvent.getSource();
             Stage dialogActual = (Stage) BotonAceptar.getScene().getWindow();
@@ -122,35 +104,35 @@ public class Controlador_Login implements Initializable {
      * @throws IOException
      * @throws InterruptedException
      */
-    public int authUsuario() throws IOException, InterruptedException {
+    public boolean authUsuario() throws IOException, InterruptedException {
         String rol = getRoleKey(JLabel_TUsuario.getText());
         String result = db.autenticarUsuario(new Usuario(TUsuario.getText(), TContrasena.getText(), rol));
         if (result.equals("auth")) {
             if (rol.equals("recept") || rol.equals("admin")) {
                 JOptionPane.showMessageDialog(null, "ENTRO");
-                return 1;
+                return true;
             } else if (rol.equals("gerente") || rol.equals("admin")) {
                 JOptionPane.showMessageDialog(null, "Interfaz en mantenimiento");
-                return 1;
+                return true;
             } else if (rol.equals("worker") || rol.equals("admin")) {
                 JOptionPane.showMessageDialog(null, "Interfaz en mantenimiento");
-                return 1;
+                return true;
             } else {
                 JOptionPane.showMessageDialog(null, "Error inesperado 2");
-                return 0;
+                return false;
             }
         } else if (result.equals("wrong_pass")) {
             JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
-            return 0;
+            return false;
         } else if (result.equals("not_exist")) {
             JOptionPane.showMessageDialog(null, "Este usuario no existe");
-            return 0;
+            return false;
         } else if (result.equals("no_permission")) {
             JOptionPane.showMessageDialog(null, "Este usuario no tiene acceso aqui");
-            return 0;
+            return false;
         } else {
             JOptionPane.showMessageDialog(null, "Error Inesperado");
-            return 0;
+            return false;
         }
     }
 
@@ -227,35 +209,4 @@ public class Controlador_Login implements Initializable {
         stage.show();
     }
 
-    public class _Cargar implements Runnable {
-        public void show() {
-            new Thread(this).start();
-        }
-
-        public void run() {
-            try {
-                AUTH = authUsuario();
-                Thread.sleep(2000);
-
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }
-    }
-
-   public class runn implements Runnable{
-        private Object cerrojo = new Object();
-       @Override
-       public void run() {
-            synchronized (cerrojo){
-                try {
-                    AUTH = authUsuario();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-       }
-   }
 }

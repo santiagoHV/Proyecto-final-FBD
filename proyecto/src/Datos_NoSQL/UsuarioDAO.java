@@ -13,7 +13,6 @@ public class UsuarioDAO {
     public UsuarioDAO(){
         this.database = new ConnectionDB().connect();
     }
-
     /**
      * Muestra todos los usuarios registrados por consola
      */
