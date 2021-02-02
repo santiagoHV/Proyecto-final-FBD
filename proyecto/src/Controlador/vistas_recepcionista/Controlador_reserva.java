@@ -1,5 +1,6 @@
 package Controlador.vistas_recepcionista;
 
+import DatosSQL.DAOs.DAO_Reserva;
 import Modelo.entidades.Reserva;
 import Vista.Main;
 import com.jfoenix.controls.JFXDialog;
@@ -206,30 +207,14 @@ public class Controlador_reserva implements Initializable {
 
 
     public void desplegar_datos_titular(ActionEvent actionEvent) throws IOException {
-        //Se obtiene la fuente del evento:
         String Boton = actionEvent.getSource().toString();
-
-        //Se parte el string de la fuente del evento para obtener el texto del botón:
         String [] Partes = Boton.split("'");
-
         BoxBlur blur = new BoxBlur(3,3,3);
-
-        //Obtención del parent con la ruta del fxml a usar
         Parent parent = FXMLLoader.load(getClass().getResource("../../Vista/recepcionista/ingreso_datos.fxml"));
-
-        //Creación del Dialog usando el Parent como Region (cast) para poder personalizarlo:
         JFXDialog dialog = new JFXDialog(stackPane, (Region) parent, JFXDialog.DialogTransition.BOTTOM, true);
-
-        //Obtención de los hijos de Parent (en este caso el botón cancelar):
-
-        //Esto es un machetazo el tenaz, pero no sé de que otra forma hacerlo:
         AnchorPane AP = (AnchorPane) parent.getChildrenUnmodifiable().get(0);
-
         HBox HB = (HBox) AP.getChildren().get(0);
-
         Button BSalirDialog = (Button)HB.getChildrenUnmodifiable().get(1);
-
-        //Definción del manejador de eventos del botón cancelar para que cierra el dialog
         BSalirDialog.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent)->
         {
             dialog.close();
@@ -240,20 +225,18 @@ public class Controlador_reserva implements Initializable {
             content.setEffect(null);
         });
 
-        //Aplicación del efecto
         content.setEffect(blur);
-
-        //Se muestra el dialog:
         dialog.show();
     }
 
     public void Buscar_Reserva_Por_ID(ActionEvent actionEvent) {
-        Reserva reserva = new Reserva();
-        reserva.ConsultarReserva(Integer.parseInt(codigo_reserva.getText()));
+        DAO_Reserva dao_reserva = new DAO_Reserva();
+        Reserva reserva = dao_reserva.consultarReserva(Integer.parseInt(codigo_reserva.getText()));
 
         fecha_ingreso.setValue(reserva.getF_inicio().toLocalDate());
         fecha_salida.setValue(reserva.getF_final().toLocalDate());
         total_personas.setText(reserva.getCantidad_adultos()+"");
-
     }
+
+
 }

@@ -34,20 +34,5 @@ public class Habitacion
         this.k_numero_habitacion = k_numero_habitacion;
     }
 
-    public void ConsultarHabitacion(int ID){
-        Operaciones op = new Operaciones();
-        try {
-            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Habitacion WHERE k_numero_habitacion = "+ID+"");
-            resultSet.next();
 
-            this.k_numero_habitacion = resultSet.getInt(1);
-
-            Tipo tipo = new Tipo();
-            tipo.ConsultarTipoHab(resultSet.getInt(2),tipo);
-            this.tipo_habitacion = tipo;
-
-        }catch (SQLException ex){
-            System.out.println(ex);
-        }
-    }
 }

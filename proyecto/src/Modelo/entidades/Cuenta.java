@@ -52,25 +52,4 @@ public class Cuenta {
         this.reserva = reserva;
     }
 
-    public void ConsultarCuenta(int ID){
-        Operaciones op = new Operaciones();
-        try {
-            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Cuenta WHERE k_cuenta = "+ID+"");
-            resultSet.next();
-            this.k_cuenta = resultSet.getInt(1);
-            this.precio_acumulado = resultSet.getDouble(2);
-
-            Pago pago = new Pago();
-            pago.ConsultarPago(resultSet.getInt(3));
-            this.pago = pago;
-
-            Reserva reserva = new Reserva();
-            reserva.ConsultarReserva(resultSet.getInt(4));
-            this.reserva = reserva;
-
-
-        }catch (SQLException ex){
-            System.out.println(ex);
-        }
-    }
 }

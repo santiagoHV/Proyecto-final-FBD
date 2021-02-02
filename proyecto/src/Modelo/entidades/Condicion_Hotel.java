@@ -62,19 +62,5 @@ public class Condicion_Hotel {
         this.numero_dias = numero_dias;
     }
 
-    public void ConsultarCondicionHotel(int ID) {
-        Operaciones op = new Operaciones();
-        try {
-            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Condicion_Hotel WHERE k_condicion = "+ID+"");
-            resultSet.next();
-            this.k_condicion = resultSet.getInt(1);
-            this.estado_condicion = resultSet.getBoolean(2);
-            this.descuento = resultSet.getDouble(3);
-            this.aforo = resultSet.getDouble(4);
-            this.numero_dias = resultSet.getInt(5);
 
-        }catch (SQLException ex){
-            System.out.println(ex);
-        }
-    }
 }
