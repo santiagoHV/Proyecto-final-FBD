@@ -15,9 +15,9 @@
 //                                                     //                                       ||              ||
 // addUsuario(): Solo un retrasado no sabria como      //                                       ||              ||
 //               usarlo, en rol solo se aceptan 3      //                                       ||              ||
-//               Strings que corresponden a:           //
-//               - Empleado      -> "worker"           //
-//               - Administrador -> "admin"            //
+//               Strings que corresponden a:           //                                      //                \\
+//               - Empleado      -> "worker"           //                                     //                  \\
+//               - Administrador -> "admin"            //                                    //                    \\
 //               - Recepcionista -> "recept"           //
 //               - Gerente       -> "gerente"          //
 //               Usenlos o el programa los putea       //
