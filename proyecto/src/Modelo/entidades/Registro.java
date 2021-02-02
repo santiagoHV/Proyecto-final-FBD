@@ -70,33 +70,7 @@ public class Registro {
         this.habitacion = habitacion;
     }
 
-    public void consultarRegistro(int ID){
-        Operaciones op = new Operaciones();
-        try {
-            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM registro_checkin WHERE k_registro = "+ID+"");
-            resultSet.next();
-            this.k_registro = resultSet.getInt(1);
-            this.f_entrada = resultSet.getDate(2);
-            this.f_entrada = resultSet.getDate(3);
 
-            Persona persona = new Persona();
-            persona.ConsultarPersona(resultSet.getInt(5), resultSet.getString(4));
-            this.persona = persona;
-
-            Reserva reserva = new Reserva();
-            reserva.ConsultarReserva(resultSet.getInt(6));
-            this.reserva = reserva;
-
-            Habitacion habitacion = new Habitacion();
-            habitacion.ConsultarHabitacion(resultSet.getInt(7));
-            this.habitacion = habitacion;
-
-            //return registro;
-
-        }catch (SQLException ex){
-            System.out.println(ex);
-        }
-    }
 
 }
 

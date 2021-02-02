@@ -53,19 +53,5 @@ public class Pago {
         this.forma_de_pago = forma_de_pago;
     }
 
-    public void ConsultarPago(int ID){
-        Operaciones op = new Operaciones();
-        try {
-            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Pago WHERE k_pago = "+ID+"");
-            resultSet.next();
-            this.k_pago = resultSet.getInt(1);
-            this.f_pago = resultSet.getDate(2);
-            this.monto = resultSet.getDouble(3);
-            this.forma_de_pago = resultSet.getString(4);
 
-
-        }catch (SQLException ex){
-            System.out.println(ex);
-        }
-    }
 }

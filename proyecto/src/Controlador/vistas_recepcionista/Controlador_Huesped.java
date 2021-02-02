@@ -16,7 +16,7 @@ public class Controlador_Huesped
     {
         LBnom_completo.setText(huesped.getN_nombre() + " " + huesped.getN_apellido());
         LBnum_id.setText(huesped.getK_identificacion()+"");
-        LBedad.setText(huesped.getF_nacimiento());
+        LBedad.setText(huesped.getF_nacimiento().toString());
         LBDireccion.setText(huesped.getN_direccion());
         LBTelefono.setText(huesped.getN_telefono());
     }

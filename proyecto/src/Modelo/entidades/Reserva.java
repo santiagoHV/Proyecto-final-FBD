@@ -33,34 +33,6 @@ public class Reserva {
         this.persona = persona;
     }
 
-    public void ConsultarReserva(int ID){
-        Operaciones op = new Operaciones();
-        try {
-            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Reserva WHERE k_reserva = "+ID+"");
-            resultSet.next();
-            this.k_reserva = resultSet.getInt(1);
-            this.estado = resultSet.getString(2);
-            this.f_inicio = resultSet.getDate(3);
-            this.f_reserva = resultSet.getDate(4);
-            this.f_final = resultSet.getDate(5);
-            this.cantidad_adultos = resultSet.getInt(6);
-            this.cantidad_ninos = resultSet.getInt(7);
-            this.cantidad_bebes = resultSet.getInt(8);
-            this.precio_reserva = resultSet.getDouble(9);
-
-            Condicion_Hotel condicion_hotel = new Condicion_Hotel();
-            condicion_hotel.ConsultarCondicionHotel(resultSet.getInt(10));
-            this.condicion = condicion_hotel;
-
-            Persona persona = new Persona();
-            persona.ConsultarPersona(resultSet.getInt(11),resultSet.getString(12));
-            this.persona = persona;
-
-        }catch (SQLException ex){
-            System.out.println(ex);
-        }
-    }
-
 
 
     public Reserva(){};

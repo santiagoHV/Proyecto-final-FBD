@@ -30,23 +30,4 @@ public class Reserva_Habitacion {
         this.habitacion = habitacion;
     }
 
-    public Reserva_Habitacion ConsultaReservHab(int k_reserva, int k_numero_habitacion, Reserva_Habitacion reserva_habitacion) {
-        Operaciones op = new Operaciones();
-        try {
-            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM reserva_habitacion WHERE k_reserva = "+k_reserva+" and k_numero_habitacion = "+k_numero_habitacion+" ");
-            resultSet.next();
-
-            Reserva reserva = new Reserva();
-            reserva.ConsultarReserva(resultSet.getInt(1));
-            this.reserva = reserva;
-
-            Habitacion habitacion = new Habitacion();
-            habitacion.ConsultarHabitacion(resultSet.getInt(2));
-            this.habitacion = habitacion;
-
-        }catch (SQLException ex){
-            System.out.println(ex);
-        }
-        return null;
-    }
 }

@@ -1,5 +1,6 @@
 package Controlador.vistas_recepcionista;
 
+import DatosSQL.DAOs.DAO_Reserva;
 import Modelo.entidades.Reserva;
 import Vista.Main;
 import com.jfoenix.controls.JFXDialog;
@@ -229,8 +230,8 @@ public class Controlador_reserva implements Initializable {
     }
 
     public void Buscar_Reserva_Por_ID(ActionEvent actionEvent) {
-        Reserva reserva = new Reserva();
-        reserva.ConsultarReserva(Integer.parseInt(codigo_reserva.getText()));
+        DAO_Reserva dao_reserva = new DAO_Reserva();
+        Reserva reserva = dao_reserva.consultarReserva(Integer.parseInt(codigo_reserva.getText()));
 
         fecha_ingreso.setValue(reserva.getF_inicio().toLocalDate());
         fecha_salida.setValue(reserva.getF_final().toLocalDate());
