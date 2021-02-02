@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_search">
+<StackPane fx:id="StackBG" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_search">
    <children>
       <AnchorPane prefHeight="768.0" prefWidth="1075.0" stylesheets="@../../../assets/css/recepcionista_escenas.css">
          <children>
@@ -75,9 +76,10 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="88.0" prefWidth="1013.0">
+                  <HBox alignment="CENTER" prefHeight="88.0" prefWidth="1013.0" spacing="10.0">
                      <children>
                         <JFXButton fx:id="btn_buscar" mnemonicParsing="false" onAction="#Consultar_Reservas_Clientes" prefHeight="41.0" prefWidth="139.0" styleClass="button-basic" text="Buscar" />
+                        <ProgressIndicator fx:id="proSpinner" visible="false" />
                      </children>
                   </HBox>
                   <VBox alignment="TOP_CENTER" prefHeight="403.0" prefWidth="676.0" spacing="9.0">

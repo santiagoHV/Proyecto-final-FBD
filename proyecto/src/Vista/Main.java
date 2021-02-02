@@ -48,8 +48,8 @@ public class Main extends Application {
         new Pulse(ventana).play();
 
         //Prueba Consulta:
-        Reserva reserva = new Reserva();
-        reserva.ConsultarReserva(1);
-        System.out.println(reserva.getPrecio_reserva());
+        Huesped huesped = new Huesped();
+        huesped.ConsultarHuesped(1000000);
+        System.out.println(huesped.getN_nombre());
     }
 }

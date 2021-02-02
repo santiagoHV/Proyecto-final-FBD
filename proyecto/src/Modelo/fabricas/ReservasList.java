@@ -12,6 +12,8 @@ import java.util.List;
 
 public class ReservasList {
 
+    public List<Reserva> PruebaRun;
+
     public List<Reserva> BuscarReservas(int k_reserva, int num_doc, String nom_or_apel) {
 
         List<Reserva> reservaList = new ArrayList<>();
@@ -44,7 +46,7 @@ public class ReservasList {
 
                 reservaList.add(reserva);
             }
-
+            PruebaRun = reservaList;
             return reservaList;
 
         }catch (SQLException ex){
