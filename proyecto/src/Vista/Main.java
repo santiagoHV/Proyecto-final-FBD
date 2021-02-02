@@ -46,10 +46,5 @@ public class Main extends Application {
         //new BounceInDown(ventana).play();
 
         new Pulse(ventana).play();
-
-        //Prueba Consulta:
-        Huesped huesped = new Huesped();
-        huesped.ConsultarHuesped(1000000);
-        System.out.println(huesped.getN_nombre());
     }
 }
