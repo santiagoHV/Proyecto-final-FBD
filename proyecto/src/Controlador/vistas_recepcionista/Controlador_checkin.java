@@ -35,6 +35,7 @@ public class Controlador_checkin implements Initializable {
 //        DefinirBotonesHabitacion();
 
         AjusteScrollH(panel_ingreso_habitaciones);
+        Controlador_datos_ingreso controlador_datos_ingreso = new Controlador_datos_ingreso();
     }
 
     //Método para poder controlar los scrolls horizontales con la rueda del ratón:
