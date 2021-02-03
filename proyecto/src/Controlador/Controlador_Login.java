@@ -42,7 +42,7 @@ public class Controlador_Login implements Initializable {
     private double xOffset = 0;
     private double yOffset = 0;
     private UsuarioDAO db;
-    public boolean AUTH;
+    public String AUTH;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -107,15 +107,29 @@ public class Controlador_Login implements Initializable {
         tarea.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent workerStateEvent) {
-                if(AUTH){
-
+                if(AUTH.equals("recept")){
                     try {
                         openReceptcion();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    JFXButton BotonAceptar = (JFXButton) actionEvent.getSource();
+                    Stage dialogActual = (Stage) BotonAceptar.getScene().getWindow();
+                    dialogActual.close();
+                }
+                else if(AUTH.equals("gerente")){
+
+                    JFXButton BotonAceptar = (JFXButton) actionEvent.getSource();
+                    Stage dialogActual = (Stage) BotonAceptar.getScene().getWindow();
+                    dialogActual.close();
+                }
+                else if(AUTH.equals("worker")) {
+                    JFXButton BotonAceptar = (JFXButton) actionEvent.getSource();
+                    Stage dialogActual = (Stage) BotonAceptar.getScene().getWindow();
+                    dialogActual.close();
                 }
                 progress.setVisible(false);
+
             }
         });
         Thread adios = new Thread(tarea);
@@ -133,38 +147,34 @@ public class Controlador_Login implements Initializable {
      * @throws IOException
      * @throws InterruptedException
      */
-    public boolean authUsuario() throws IOException, InterruptedException {
+    public String authUsuario() throws IOException, InterruptedException {
         String rol = getRoleKey(JLabel_TUsuario.getText());
         String result = db.autenticarUsuario(new Usuario(TUsuario.getText(), TContrasena.getText(), rol));
         if (result.equals("auth")) {
             if (rol.equals("recept") || rol.equals("admin")) {
-                JOptionPane.showMessageDialog(null,"Jueputaputa");
-
-
-
-                return true;
+                return "recept";
             } else if (rol.equals("gerente") || rol.equals("admin")) {
                 JOptionPane.showMessageDialog(null, "Interfaz en mantenimiento");
-                return true;
+                return "gerente";
             } else if (rol.equals("worker") || rol.equals("admin")) {
                 JOptionPane.showMessageDialog(null, "Interfaz en mantenimiento");
-                return true;
+                return "worker";
             } else {
                 JOptionPane.showMessageDialog(null, "Error inesperado 2");
-                return false;
+                return "";
             }
         } else if (result.equals("wrong_pass")) {
             JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
-            return false;
+            return "";
         } else if (result.equals("not_exist")) {
             JOptionPane.showMessageDialog(null, "Este usuario no existe");
-            return false;
+            return "";
         } else if (result.equals("no_permission")) {
             JOptionPane.showMessageDialog(null, "Este usuario no tiene acceso aqui");
-            return false;
+            return "";
         } else {
             JOptionPane.showMessageDialog(null, "Error Inesperado");
-            return false;
+            return "";
         }
     }
 
