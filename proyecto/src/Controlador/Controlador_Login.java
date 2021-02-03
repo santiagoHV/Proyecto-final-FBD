@@ -1,13 +1,20 @@
 package Controlador;
 
+import Controlador.vistas_recepcionista.Controlador_Card_Reserva;
 import Datos_NoSQL.Usuario;
 import Datos_NoSQL.UsuarioDAO;
 import Vista.Main;
+import animatefx.animation.BounceOut;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.events.JFXDialogEvent;
+import com.sun.media.jfxmediaimpl.platform.Platform;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -31,9 +38,11 @@ public class Controlador_Login implements Initializable {
     public JFXTextField TUsuario;
     public JFXPasswordField TContrasena;
     public StackPane StackPane1;
+    public ProgressIndicator progress;
     private double xOffset = 0;
     private double yOffset = 0;
     private UsuarioDAO db;
+    public boolean AUTH;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -68,6 +77,7 @@ public class Controlador_Login implements Initializable {
         {
             Main.stage.setOpacity(1);
         });
+        progress.setVisible(false);
     }
 
     /**
@@ -81,14 +91,36 @@ public class Controlador_Login implements Initializable {
      */
 
     public void Click(ActionEvent actionEvent) throws IOException, SQLException, InterruptedException {
-        if(authUsuario())
-        {
-            JFXButton BotonAceptar = (JFXButton) actionEvent.getSource();
-            Stage dialogActual = (Stage) BotonAceptar.getScene().getWindow();
-            dialogActual.close();
-        }
-    }
+        progress.setVisible(true);
+        Task tarea = new Task<Void>(){
+            @Override
+            protected Void call() throws Exception {
+                try{
+                    AUTH = authUsuario();
+                }catch(Exception e) {
+                    System.out.println(e);
+                }
+                return null;
+            }
 
+        };
+        tarea.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent workerStateEvent) {
+                if(AUTH){
+
+                    try {
+                        openReceptcion();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                progress.setVisible(false);
+            }
+        });
+        Thread adios = new Thread(tarea);
+        adios.start();
+    }
 
 
 
@@ -106,7 +138,10 @@ public class Controlador_Login implements Initializable {
         String result = db.autenticarUsuario(new Usuario(TUsuario.getText(), TContrasena.getText(), rol));
         if (result.equals("auth")) {
             if (rol.equals("recept") || rol.equals("admin")) {
-                openReceptcion();
+                JOptionPane.showMessageDialog(null,"Jueputaputa");
+
+
+
                 return true;
             } else if (rol.equals("gerente") || rol.equals("admin")) {
                 JOptionPane.showMessageDialog(null, "Interfaz en mantenimiento");
@@ -177,5 +212,4 @@ public class Controlador_Login implements Initializable {
         //Mostrar Stage:
         stage.show();
     }
-
 }
