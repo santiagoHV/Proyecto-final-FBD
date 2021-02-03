@@ -31,7 +31,6 @@ public class Controlador_Login implements Initializable {
     public JFXTextField TUsuario;
     public JFXPasswordField TContrasena;
     public StackPane StackPane1;
-    public ProgressIndicator progress;
     private double xOffset = 0;
     private double yOffset = 0;
     private UsuarioDAO db;
@@ -41,7 +40,6 @@ public class Controlador_Login implements Initializable {
         //Invocación del método para volver el stage arrastrable:
         db = new UsuarioDAO();
         this.makeStageDragable();
-        progress.setVisible(false);
     }
 
     //Método para arrastrar la ventana
@@ -88,7 +86,6 @@ public class Controlador_Login implements Initializable {
             JFXButton BotonAceptar = (JFXButton) actionEvent.getSource();
             Stage dialogActual = (Stage) BotonAceptar.getScene().getWindow();
             dialogActual.close();
-            progress.setVisible(false);
         }
     }
 
@@ -154,34 +151,6 @@ public class Controlador_Login implements Initializable {
         } else {
             return null;
         }
-    }
-
-    public void AbrirProgress() throws IOException {
-
-        //Creación del efecto blur:
-        BoxBlur blur = new BoxBlur(5, 5, 3);
-
-        //Obtención del parent con la ruta del fxml a usar
-        Parent parent = FXMLLoader.load(getClass().getResource("../Vista/Loading_Screen.fxml"));
-        System.out.println(parent.getStyle());
-
-        //Creación del Dialog usando el Parent como Region (cast) para poder personalizarlo:
-        JFXDialog dialog = new JFXDialog();
-        dialog.setContent((Region) parent);
-
-        File f = new File("assets/css/ProgressStyle.css");
-        dialog.getStylesheets().add("file:///" + f.getAbsolutePath().replace("\\", "/"));
-
-        dialog.setOnDialogClosed((JFXDialogEvent event) ->
-        {
-            BGStackPane.setEffect(null);
-        });
-
-        //Aplicación del efecto
-        BGStackPane.setEffect(blur);
-
-        //Se muestra el dialog:
-        dialog.show(StackPane1);
     }
 
     /**
