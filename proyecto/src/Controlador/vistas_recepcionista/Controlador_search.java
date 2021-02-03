@@ -4,6 +4,8 @@ import Modelo.entidades.Huesped;
 import Modelo.entidades.Reserva;
 import Modelo.fabricas.ReservasList;
 import Vista.Main;
+import animatefx.animation.BounceIn;
+import animatefx.animation.BounceOut;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXSpinner;
@@ -55,6 +57,7 @@ public class Controlador_search implements Initializable {
 
         Grid_Reservas.getChildren().clear();
 
+        new BounceIn(proSpinner).play();
         proSpinner.setVisible(true);
 
         ReservasList reservasList = new ReservasList();
@@ -85,7 +88,26 @@ public class Controlador_search implements Initializable {
         tarea.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent workerStateEvent) {
-                proSpinner.setVisible(false);
+                new BounceOut(proSpinner).play();
+
+                Task<Void> sleeper = new Task<Void>()
+                {
+                    @Override
+                    protected Void call() throws Exception {
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                        }
+                        return null;
+                    }
+                };
+
+                sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                    @Override
+                    public void handle(WorkerStateEvent workerStateEvent) {
+                        proSpinner.setVisible(false);
+                    }
+                });
 
                 int column = 0;
                 int row = 0;

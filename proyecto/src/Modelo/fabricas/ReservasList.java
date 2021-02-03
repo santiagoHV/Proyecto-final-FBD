@@ -1,5 +1,7 @@
 package Modelo.fabricas;
 
+import DatosSQL.DAOs.DAO_CondicionHotel;
+import DatosSQL.DAOs.DAO_Persona;
 import DatosSQL.Operaciones;
 import Modelo.entidades.Condicion_Hotel;
 import Modelo.entidades.Persona;
@@ -36,13 +38,11 @@ public class ReservasList {
                 reserva.setCantidad_adultos(resultSet.getInt(6));
                 reserva.setPrecio_reserva(resultSet.getDouble(7));
 
-                Condicion_Hotel condicion_hotel = new Condicion_Hotel();
-                condicion_hotel.ConsultarCondicionHotel(resultSet.getInt(8));
-                reserva.setCondicion(condicion_hotel);
+                DAO_CondicionHotel condicion_hotel = new DAO_CondicionHotel();
+                reserva.setCondicion(condicion_hotel.consultarCondicion(resultSet.getInt(10)));
 
-                Persona persona = new Persona();
-                persona.ConsultarPersona(resultSet.getInt(9),resultSet.getString(10));
-                reserva.setPersona(persona);
+                DAO_Persona persona = new DAO_Persona();
+                reserva.setPersona(persona.consultarPersona(resultSet.getInt(11),resultSet.getString(12)));
 
                 reservaList.add(reserva);
             }
