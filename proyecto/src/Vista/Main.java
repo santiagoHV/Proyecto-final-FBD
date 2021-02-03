@@ -46,10 +46,5 @@ public class Main extends Application {
         //new BounceInDown(ventana).play();
 
         new Pulse(ventana).play();
-
-        //Prueba Consulta:
-//        Reserva reserva = new Reserva();
-//        reserva.ConsultarReserva(1);
-//        System.out.println(reserva.getPrecio_reserva());
     }
 }

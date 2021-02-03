@@ -82,6 +82,7 @@
 .button-basic{
     -fx-background-color: #eeeeee;
     -fx-border-color: black;
+    -fx-background-radius: 10;
     -fx-border-radius: 10;
 }
 
