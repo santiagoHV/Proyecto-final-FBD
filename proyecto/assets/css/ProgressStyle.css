@@ -1,0 +1,17 @@
+.progressCircle
+{
+    -fx-background-color: TRANSPARENT;
+}
+
+.progressCircle .arc
+{
+    -fx-stroke-width: 9px;
+    -fx-effect: dropshadow(two-pass-box,#000000,10,0,3,3);
+    -fx-effect: bloom();
+}
+
+.jfx-dialog-overlay-pane > StackPane { -fx-background-color: TRANSPARENT; }
+
+.jfx-dialog-overlay-pane { -fx-background-color: TRANSPARENT; }
+
+.stackBG { -fx-background-color: TRANSPARENT; }

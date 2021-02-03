@@ -22,6 +22,7 @@
 {
     -fx-effect: dropshadow(two-pass-box,#000000,15,0,3,3);
     -fx-background-color: linear-gradient(from 0px 0px to 600px 400px, #414141, #282828);
+
 }
 
 .label

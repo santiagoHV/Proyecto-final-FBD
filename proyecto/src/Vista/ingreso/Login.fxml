@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.Controlador_Login">
+<StackPane fx:id="StackPane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.Controlador_Login">
    <stylesheets>
       <URL value="@../../../assets/css/Login_CSS.css" />
    </stylesheets>
@@ -38,6 +38,7 @@
                </font>
             </Label>
             <Label layoutX="14.0" layoutY="375.0" prefWidth="110.0" text="Tipo De Usuario:" />
+            <ProgressIndicator fx:id="progress" layoutX="508.0" layoutY="174.0" />
          </children>
 
       </AnchorPane>
