@@ -106,7 +106,7 @@ public class Controlador_Login implements Initializable {
         String result = db.autenticarUsuario(new Usuario(TUsuario.getText(), TContrasena.getText(), rol));
         if (result.equals("auth")) {
             if (rol.equals("recept") || rol.equals("admin")) {
-                JOptionPane.showMessageDialog(null, "ENTRO");
+                openReceptcion();
                 return true;
             } else if (rol.equals("gerente") || rol.equals("admin")) {
                 JOptionPane.showMessageDialog(null, "Interfaz en mantenimiento");
