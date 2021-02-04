@@ -1,8 +1,6 @@
 package Controlador.vistas_recepcionista;
 
-import Modelo.entidades.Habitacion;
-import Modelo.entidades.Huesped;
-import Vista.Main;
+
 import com.jfoenix.controls.JFXScrollPane;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -15,6 +17,7 @@ public class Controlador_datos_ingreso implements Initializable {
 
     //OBJETOS FXML
     //Panel para nuevos usuarios
+    public Pane backPanelNuevo;
     public Pane panel_nuevo_ingreso;
     public Label titulo_ingresos;
     public TextField nombres_in;
@@ -27,9 +30,11 @@ public class Controlador_datos_ingreso implements Initializable {
     public TextField direccion_in;
 
     //Panel de busqueda de usuarios existentes
+    public Pane backPanelBuscar;
     public TextField srch_no_documento_in;
     public ComboBox srch_tipo_documento_in;
     public Pane panel_busqueda;
+
     //Subpanel de ususario encontrado
     public Pane subpanel_usuarios;
     public Label ti_srch;
@@ -44,6 +49,9 @@ public class Controlador_datos_ingreso implements Initializable {
     public Button cancelar_btn;
     public StackPane stack_pane;
 
+    public String nombre;
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -56,6 +64,16 @@ public class Controlador_datos_ingreso implements Initializable {
 
     public void select(ActionEvent actionEvent) {
 
+    }
 
+
+    public void enablePanel(MouseEvent mouseEvent) {
+        if(mouseEvent.getSource().equals(backPanelBuscar)){
+            panel_busqueda.setDisable(false);
+            panel_nuevo_ingreso.setDisable(true);
+        }else{
+            panel_busqueda.setDisable(true);
+            panel_nuevo_ingreso.setDisable(false);
+        }
     }
 }
