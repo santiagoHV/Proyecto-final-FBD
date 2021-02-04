@@ -19,7 +19,7 @@ public class Reserva {
     private Condicion_Hotel condicion;
     private Persona persona;
 
-    public Reserva(int k_reserva, String estado, Date f_inicio, Date f_reserva, Date f_final, int cantidad_adultos, int cantidad_ninos, int cantidad_bebes, double precio_reserva, Condicion_Hotel condicion, Persona persona) {
+    public Reserva(int k_reserva, String estado, Date f_inicio, Date f_reserva, Date f_final, int cantidad_bebes , int cantidad_ninos, int cantidad_adultos, double precio_reserva, Condicion_Hotel condicion, Persona persona) {
         this.k_reserva = k_reserva;
         this.estado = estado;
         this.f_inicio = f_inicio;

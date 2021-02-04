@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="144.0" prefWidth="483.0" styleClass="PCards" stylesheets="@../../../assets/css/Cards.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_Huesped">
+<AnchorPane fx:id="AnchorBG" minHeight="0.0" minWidth="0.0" prefHeight="144.0" prefWidth="483.0" styleClass="PCards" stylesheets="@../../../assets/css/Cards.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_Huesped">
    <children>
       <Label fx:id="LBnom_completo" layoutX="12.0" layoutY="12.0" prefHeight="24.0" prefWidth="210.0" text="Juanito Robado Peñalisa">
          <font>
@@ -20,17 +19,17 @@
             <Font name="MAXWELL REGULAR" size="19.0" />
          </font>
       </Label>
-      <Label fx:id="LBnum_id" layoutX="35.0" layoutY="36.0" prefHeight="24.0" prefWidth="66.0" text="1000000">
+      <Label fx:id="LBnum_id" layoutX="35.0" layoutY="36.0" prefHeight="24.0" prefWidth="93.0" text="1000000">
          <font>
             <Font name="MAXWELL REGULAR" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="101.0" layoutY="36.0" prefHeight="24.0" prefWidth="37.0" text="Edad:">
+      <Label layoutX="192.0" layoutY="12.0" prefHeight="24.0" prefWidth="37.0" text="Edad:">
          <font>
             <Font name="MAXWELL REGULAR" size="19.0" />
          </font>
       </Label>
-      <Label fx:id="LBedad" layoutX="143.0" layoutY="36.0" prefHeight="24.0" prefWidth="87.0" text="7 años">
+      <Label fx:id="LBedad" layoutX="234.0" layoutY="12.0" prefHeight="24.0" prefWidth="87.0" text="7 años">
          <font>
             <Font name="MAXWELL REGULAR" size="19.0" />
          </font>

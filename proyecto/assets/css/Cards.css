@@ -6,7 +6,6 @@
 {
     -fx-background-color: #d7d7d7;
     -fx-background-radius: 8px;
-
     -fx-font-family: "MAXWELL REGULAR";
 }
 
@@ -14,3 +13,18 @@
 {
     -fx-font-size: 18px;
 }
+
+.CardBebe
+{
+    -fx-background-color: #fddddd;
+}
+
+.CardNinos
+{
+    -fx-background-color: #fffee0;
+}
+.CardAdultos
+{
+    -fx-background-color: #d1dcff;
+}
+

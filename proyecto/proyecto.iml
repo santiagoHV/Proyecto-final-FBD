@@ -14,5 +14,6 @@
     <orderEntry type="library" name="org.mongodb:mongodb-driver-legacy:4.2.0" level="project" />
     <orderEntry type="library" name="postgresql-42.2.18" level="project" />
     <orderEntry type="library" name="io.github.palexdev:materialfx:11.6.0" level="project" />
+
   </component>
 </module>

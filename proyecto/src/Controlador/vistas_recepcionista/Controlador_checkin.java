@@ -1,13 +1,23 @@
 package Controlador.vistas_recepcionista;
 
+import DatosSQL.DAOs.DAO_Reserva;
 import Modelo.entidades.Habitacion;
 import Modelo.entidades.Huesped;
+import Modelo.entidades.Persona;
+import Modelo.entidades.Reserva;
 import Vista.Main;
 import com.jfoenix.controls.JFXScrollPane;
+import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -24,6 +34,9 @@ public class Controlador_checkin implements Initializable {
     public GridPane GridPanel_Btn_Habitaciones;
     public ScrollPane panel_ingreso_huespedes;
     public ScrollPane panel_ingreso_habitaciones;
+    public TextField codigo_reserva;
+    public Button btn_buscar;
+    public MFXProgressSpinner progressConCheck;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,114 +62,99 @@ public class Controlador_checkin implements Initializable {
         });
     }
 
-    //Esto es temporal:
-//    public List<Huesped> ConsultarHuespedes()
-//    {
-//        List<Huesped> Huespedes = new ArrayList<>();
-//        Huesped huesped;
-//
-//        //Ciclo Temporal para llenar la interfaz mientras se conecta con la base de datos:
-//        for(int i=0; i<6;i++)
-//        {
-//            huesped = new Huesped();
-//            huesped.setK_identificacion(10000000);
-//            huesped.setN_direccion("Cualquier Calle");
-//            huesped.setF_nacimiento("20");
-//            huesped.setN_nombre("Juanito");
-//            huesped.setN_apellido("Vainas");
-//            huesped.setN_telefono("123");
-//
-//            Huespedes.add(huesped);
-//        }
-//
-//        return Huespedes;
-//    }
 
-    //Esto también es temporal:
-//    public List<Habitacion> ConsultarHabitacion()
-//    {
-//        List<Habitacion> Habitaciones = new ArrayList<>();
-//        Habitacion habitacion;
-//
-//        //Datos temporales, mientras se conecta la base de datos:
-//        habitacion = new Habitacion();
-//        habitacion.setK_numero_habitacion(102);
-//        Habitaciones.add(habitacion);
-//
-//        habitacion = new Habitacion();
-//        habitacion.setK_numero_habitacion(210);
-//        Habitaciones.add(habitacion);
-//
-//        habitacion = new Habitacion();
-//        habitacion.setK_numero_habitacion(209);
-//        Habitaciones.add(habitacion);
-//
-//        habitacion = new Habitacion();
-//        habitacion.setK_numero_habitacion(106);
-//        Habitaciones.add(habitacion);
-//
-//        habitacion = new Habitacion();
-//        habitacion.setK_numero_habitacion(101);
-//        Habitaciones.add(habitacion);
-//
-//        habitacion = new Habitacion();
-//        habitacion.setK_numero_habitacion(202);
-//        Habitaciones.add(habitacion);
-//
-//        habitacion = new Habitacion();
-//        habitacion.setK_numero_habitacion(204);
-//        Habitaciones.add(habitacion);
-//
-//        habitacion = new Habitacion();
-//        habitacion.setK_numero_habitacion(205);
-//        Habitaciones.add(habitacion);
-//
-//        return Habitaciones;
-//    }
 
-//    public void DefinirPanelDatosHuespedes() {
-//        List<Huesped> Huespedes = ConsultarHuespedes();
-//
-//        int column = 0;
-//        int row = 0;
-//
-//        //El i<6 es arbitrario mientras se añade la base de datos
-//        try
-//        {
-//            for(int i=0; i<6;i++) {
-//                //Carga de las plantillas para los paneles con información de los huespedes
-//                FXMLLoader loader = new FXMLLoader();
-//                loader.setLocation(Main.class.getResource("../Vista/recepcionista/Panel_Huesped.fxml"));
-//
-//                //Definición de los anchorpane:
-//                //Para el panel de los huespedes:
-//                AnchorPane PanelHuespedes = loader.load();
-//
-//                Controlador_Huesped controlador_huesped = loader.getController();
-//                controlador_huesped.setValoresPanel(Huespedes.get(i));
-//
-//                row++;
-//                GridPanel_Huespedes.add(PanelHuespedes,column,row);
-//                GridPane.setMargin(PanelHuespedes,new Insets(8));
-//
-//                //Alto y Ancho:
-//
-//                //Ancho:
-//                GridPanel_Huespedes.setMaxWidth(Region.USE_COMPUTED_SIZE);
-//                GridPanel_Huespedes.setPrefWidth(Region.USE_COMPUTED_SIZE);
-//                GridPanel_Huespedes.setMinWidth(Region.USE_COMPUTED_SIZE);
-//
-//                //Alto:
-//                GridPanel_Huespedes.setMaxHeight(Region.USE_COMPUTED_SIZE);
-//                GridPanel_Huespedes.setPrefHeight(Region.USE_COMPUTED_SIZE);
-//                GridPanel_Huespedes.setMinHeight(Region.USE_COMPUTED_SIZE);
-//
-//
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void DefinirPanelDatosHuespedes() {
+
+        DAO_Reserva dao_reserva = new DAO_Reserva();
+
+        int codReserva = 0;
+        if(!codigo_reserva.getText().equals("")){
+            codReserva = Integer.parseInt(codigo_reserva.getText());
+        }
+
+        final int codReservaFinal = codReserva;
+
+        Task<Reserva> taskConReserva = new Task<Reserva>() {
+            @Override
+            protected Reserva call() throws Exception {
+                return dao_reserva.consultarReserva(codReservaFinal);
+            }
+        };
+
+        taskConReserva.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent workerStateEvent) {
+
+                Reserva reserva = taskConReserva.getValue();
+
+                int column = 0;
+                int row = 0;
+
+                try
+                {
+                    int cantBebes = reserva.getCantidad_bebes();
+                    int cantNinos = reserva.getCantidad_ninos();
+                    int cantAdultos = reserva.getCantidad_adultos();
+                    int cantTotalHuespedes = cantBebes + cantNinos + cantAdultos;
+
+                    for(int i=0; i<cantTotalHuespedes;i++) {
+                        //Carga de las plantillas para los paneles con información de los huespedes
+                        FXMLLoader loader = new FXMLLoader();
+                        loader.setLocation(Main.class.getResource("../Vista/recepcionista/Panel_Huesped.fxml"));
+
+                        //Definición de los anchorpane:
+                        //Para el panel de los huespedes:
+                        AnchorPane PanelHuespedes = loader.load();
+
+                        Controlador_Huesped controlador_huesped = loader.getController();
+
+                        if(cantBebes>0)
+                        {
+                            controlador_huesped.setValoresTemporales("Bebe");
+                            cantBebes--;
+                        }
+                        else if(cantNinos>0)
+                        {
+                            controlador_huesped.setValoresTemporales("Nino");
+                            cantNinos--;
+                        }
+                        else if(cantAdultos>0)
+                        {
+                            controlador_huesped.setValoresTemporales("Adulto");
+                            cantAdultos--;
+                        }
+
+                        row++;
+                        GridPanel_Huespedes.add(PanelHuespedes,column,row);
+                        GridPane.setMargin(PanelHuespedes,new Insets(8));
+
+                        //Alto y Ancho:
+
+                        //Ancho:
+                        GridPanel_Huespedes.setMaxWidth(Region.USE_COMPUTED_SIZE);
+                        GridPanel_Huespedes.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                        GridPanel_Huespedes.setMinWidth(Region.USE_COMPUTED_SIZE);
+
+                        //Alto:
+                        GridPanel_Huespedes.setMaxHeight(Region.USE_COMPUTED_SIZE);
+                        GridPanel_Huespedes.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                        GridPanel_Huespedes.setMinHeight(Region.USE_COMPUTED_SIZE);
+                    }
+                    progressConCheck.setVisible(false);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        Thread threadReserva = new Thread(taskConReserva);
+        threadReserva.start();
+    }
+
+    public void ClickBuscar(ActionEvent actionEvent) {
+        progressConCheck.setVisible(true);
+        DefinirPanelDatosHuespedes();
+    }
 
 //    public void DefinirBotonesHabitacion()
 //    {
