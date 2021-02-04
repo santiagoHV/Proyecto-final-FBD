@@ -1,0 +1,78 @@
+.navbar__button {
+    -fx-background-color: #2E1E1E;
+}
+.button{
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-border-radius: 10;
+    -fx-border-color: black;
+}
+.navbar__button--home {
+    -fx-font-size: 20px;
+    -fx-background-size: 85%;
+    -fx-background-image: url("../images/money.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.navbar__button--usuarios {
+    -fx-font-size: 20px;
+    -fx-background-size: 85%;
+    -fx-background-image: url("../images/Usuario.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.navbar__button--habitaciones {
+    -fx-font-size: 20px;
+    -fx-background-size: 85%;
+    -fx-background-image: url("../images/Key.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.navbar__button--out{
+    -fx-font-size: 20px;
+    -fx-background-size: 70%;
+    -fx-background-image: url("../images/Out_Icon.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.title-hotel {
+    -fx-background-color: linear-gradient(from 0px 400px to 500px 1200px, #2E1E1E, #1d0a01);
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+}
+.button--circle{
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-border-radius: 200;
+    -fx-border-color: #9c9c9c;
+    -fx-background-color: Transparent;
+}
+.button--circle--ingresos{
+    -fx-background-image: url("../images/Ingresopp.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 80%;
+}
+.button--circle--ing-hab{
+    -fx-background-image: url("../images/Tarjetapp.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 80%;
+}
+.label--circle{
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-text-align: center;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+}
+
+.TableColumn{
+    -fx-font-size: 25px;
+    -fx-font-family: "MAXWELL REGULAR";
+}
+.button--table{
+    -fx-font-size: 25px;
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-background-color: #2E1E1E;
+}

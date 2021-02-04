@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1074.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@gerente_escenas.css">
+         <children>
+            <Label alignment="CENTER" layoutX="23.0" layoutY="14.0" prefHeight="95.0" prefWidth="1029.0" styleClass="title-hotel" text="SALDARRIAGA MAHAL" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <TableView layoutX="24.0" layoutY="156.0" prefHeight="515.0" prefWidth="1029.0" styleClass="TableColumn">
+              <columns>
+                <TableColumn prefWidth="257.0" text="Nombre de Usuario" />
+                <TableColumn prefWidth="258.0" text="Contraseña" />
+                  <TableColumn minWidth="0.0" prefWidth="257.0" text="Código del empleado" />
+                  <TableColumn prefWidth="258.0" />
+              </columns>
+            </TableView>
+            <Button layoutX="430.0" layoutY="693.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="218.0" styleClass="button--table" text="Agregar Usuario" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
