@@ -68,10 +68,10 @@ public class Controlador_datos_ingreso implements Initializable {
     }
     public void validarNuevosDatos(ActionEvent actionEvent) {
 
-        String tipoDoc = ;
+        //String tipoDoc = ;
         int noDocumento = Integer.parseInt(no_documento_in.getText());
         String telefono = telefono_in.getText();
-        LocalDate fNacimiento = ;
+        //LocalDate fNacimiento = ;
         String direccion = direccion_in.getText();
 
         if(nombres_in.getText() == null){
