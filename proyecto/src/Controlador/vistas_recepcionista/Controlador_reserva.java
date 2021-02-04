@@ -233,7 +233,12 @@ public class Controlador_reserva implements Initializable {
         Button btnCargarDatos = (Button)HB.getChildrenUnmodifiable().get(0);
 
         btnCargarDatos.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent) ->{
-            //aca van los metodos para obtener datos
+            CheckBox checkNuevo = (CheckBox) dialog.lookup("#checkNuevo");
+            if(checkNuevo.isSelected()){
+                //obtiene lo nuevo
+            }else{
+                //obtiene lo viejo
+            }
         });
 
         BSalirDialog.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent)->

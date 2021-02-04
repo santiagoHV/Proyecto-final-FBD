@@ -32,6 +32,7 @@
     -fx-font-family: "MAXWELL REGULAR";
     -fx-font-size: 20;
     -fx-border-radius: 10;
+    -fx-border-color: black;
 }
 .navbar__button {
     -fx-background-color: #2E1E1E;
@@ -44,6 +45,7 @@
     -fx-background-position: center;
     -fx-background-size: 80%;
     -fx-background-repeat: no-repeat;
+    -fx-border-color: none;
 }
 
 .navbar__button--checkin {
@@ -52,6 +54,7 @@
     -fx-background-image: url("../images/Checkin_Icon.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
+    -fx-border-color: none;
 }
 
 .navbar__button--checkout {
@@ -60,6 +63,7 @@
     -fx-background-image: url("../images/CheckOut_Icon.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
+    -fx-border-color: none;
 }
 
 .navbar__button--search {
@@ -69,6 +73,7 @@
     -fx-background-size: 50%;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
+    -fx-border-color: none;
 }
 .navbar__button--out {
     -fx-font-family: "MAXWELL REGULAR";
@@ -77,6 +82,7 @@
     -fx-background-image: url("../images/Out_Icon.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
+    -fx-border-color: none;
 }
 .button-basic{
     -fx-background-color: #eeeeee;

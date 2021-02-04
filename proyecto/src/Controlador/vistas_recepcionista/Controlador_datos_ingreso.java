@@ -1,16 +1,14 @@
 package Controlador.vistas_recepcionista;
 
-import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class Controlador_datos_ingreso implements Initializable {
@@ -50,12 +48,15 @@ public class Controlador_datos_ingreso implements Initializable {
     public StackPane stack_pane;
 
     public String nombre;
-
+    public CheckBox checkNuevoUsuario;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        tipo_documento_in.getItems().add("CC");
+        tipo_documento_in.getItems().add("CE");
+        tipo_documento_in.getItems().add("RC");
+        tipo_documento_in.getItems().add("TI");
     }
 
     public void close(ActionEvent actionEvent) {
@@ -65,7 +66,34 @@ public class Controlador_datos_ingreso implements Initializable {
     public void select(ActionEvent actionEvent) {
 
     }
+    public void validarNuevosDatos(ActionEvent actionEvent) {
 
+        String tipoDoc = ;
+        int noDocumento = Integer.parseInt(no_documento_in.getText());
+        String telefono = telefono_in.getText();
+        LocalDate fNacimiento = ;
+        String direccion = direccion_in.getText();
+
+        if(nombres_in.getText() == null){
+
+        }else if(apellidos_in.getText() == null){
+
+        }else if(validarFechaYDocumento((String) tipo_documento_in.getValue(), fecha_nacimiento_in.getValue())){
+
+        }
+    }
+
+    private boolean validarFechaYDocumento(String tipoDoc, LocalDate fecha) {
+        LocalDate fechaActual = LocalDate.now();
+        if(fechaActual.isBefore(fecha)){
+            return false;
+        }else if(fechaActual.getYear() - fecha.getYear() >= 18 && (tipoDoc.equals("CC") || tipoDoc.equals("CE"))){
+
+        }else{
+            return false;
+        }
+        return false;
+    }
 
     public void enablePanel(MouseEvent mouseEvent) {
         if(mouseEvent.getSource().equals(backPanelBuscar)){
@@ -76,4 +104,6 @@ public class Controlador_datos_ingreso implements Initializable {
             panel_nuevo_ingreso.setDisable(false);
         }
     }
+
+
 }
