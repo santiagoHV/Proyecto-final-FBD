@@ -7,11 +7,12 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="com.jfoenix:jfoenix:9.0.10" level="project" />
-    <orderEntry type="library" name="io.github.typhon0:AnimateFX:1.2.1" level="project" />
     <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="library" name="org.mongodb:mongodb-driver-sync:4.2.0" level="project" />
-    <orderEntry type="library" name="org.mongodb:mongodb-driver-legacy:4.2.0" level="project" />
     <orderEntry type="library" name="postgresql-42.2.18" level="project" />
+    <orderEntry type="library" name="com.jfoenix:jfoenix:9.0.10" level="project" />
+    <orderEntry type="library" name="io.github.palexdev:materialfx:11.6.0" level="project" />
+    <orderEntry type="library" name="io.github.typhon0:AnimateFX:1.2.1" level="project" />
+    <orderEntry type="library" name="org.mongodb:mongodb-driver-legacy:4.2.0" level="project" />
+    <orderEntry type="library" name="org.mongodb:mongodb-driver-sync:4.2.0" level="project" />
   </component>
 </module>
