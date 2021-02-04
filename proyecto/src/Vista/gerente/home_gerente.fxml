@@ -10,7 +10,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1074.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@gerente_escenas.css">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../assets/css/gerente_escenas.css">
          <children>
             <Label layoutX="157.0" layoutY="581.0" styleClass="label--circle" text="Ganancias generales">
                <font>
