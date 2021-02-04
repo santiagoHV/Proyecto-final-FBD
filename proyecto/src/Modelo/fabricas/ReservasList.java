@@ -14,17 +14,21 @@ import java.util.List;
 
 public class ReservasList {
 
-    public List<Reserva> PruebaRun;
-
     public List<Reserva> BuscarReservas(int k_reserva, int num_doc, String nom_or_apel) {
 
         List<Reserva> reservaList = new ArrayList<>();
 
         Operaciones op = new Operaciones();
         try {
+            String Query = "SELECT * FROM Reserva WHERE k_reserva = "+k_reserva+" or k_identificacion = "+num_doc+" or " +
+                    "k_identificacion = (SELECT k_identificacion FROM Persona WHERE n_nombre IN ('"+nom_or_apel+"') or n_apellido IN ('"+nom_or_apel+"')) ";
+
+            if(nom_or_apel.equals("") && k_reserva==0 && num_doc==0)
+            {
+                Query = "SELECT * FROM Reserva";
+            }
             ResultSet resultSet =
-                    op.ConsultaEsp("SELECT * FROM Reserva WHERE k_reserva = "+k_reserva+" or k_identificacion = "+num_doc+" or " +
-                            "k_identificacion = (SELECT k_identificacion FROM Persona WHERE n_nombre IN ('"+nom_or_apel+"') or n_apellido IN ('"+nom_or_apel+"')) ");
+                    op.ConsultaEsp(Query);
 
             Reserva reserva;
             while (resultSet.next()) {
@@ -46,7 +50,6 @@ public class ReservasList {
 
                 reservaList.add(reserva);
             }
-            PruebaRun = reservaList;
             return reservaList;
 
         }catch (SQLException ex){

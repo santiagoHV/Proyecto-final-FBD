@@ -8,7 +8,9 @@ import animatefx.animation.BounceIn;
 import animatefx.animation.BounceOut;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXScrollPane;
 import com.jfoenix.controls.JFXSpinner;
+import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -41,12 +43,13 @@ public class Controlador_search implements Initializable {
     public GridPane Grid_Reservas;
     public ScrollPane panel_reservas_halladas;
     public StackPane StackBG;
-    public ProgressIndicator proSpinner;
+    public MFXProgressSpinner proSpinner;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        JFXScrollPane Prueba = new JFXScrollPane();
+        Prueba.smoothScrolling(panel_reservas_halladas);
     }
 
     public void Consultar_Reservas_Clientes(ActionEvent actionEvent) throws InterruptedException, IOException {
@@ -77,15 +80,15 @@ public class Controlador_search implements Initializable {
         final int CodFinal = CodReserva;
         final int NumDocFinal = NumDoc;
 
-        Task<Void> tarea = new Task<Void>() {
+        Task<List<Reserva>> taskConsultListReserv = new Task<List<Reserva>>() {
             @Override
-            protected Void call() throws Exception {
-                reservasList.BuscarReservas(CodFinal, NumDocFinal, txt_nom_apel.getText());
-                return null;
+            protected List<Reserva> call() throws Exception {
+
+                return reservasList.BuscarReservas(CodFinal, NumDocFinal, txt_nom_apel.getText());
             }
         };
 
-        tarea.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+        taskConsultListReserv.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent workerStateEvent) {
                 new BounceOut(proSpinner).play();
@@ -114,7 +117,8 @@ public class Controlador_search implements Initializable {
 
                 try
                 {
-                    for(int i=0; i< reservasList.PruebaRun.size();i++) {
+                    List<Reserva> reservas = taskConsultListReserv.getValue();
+                    for(int i=0; i< reservas.size();i++) {
                         //Carga de las plantillas para los paneles con información de los huespedes
                         FXMLLoader loader = new FXMLLoader();
                         loader.setLocation(Main.class.getResource("../Vista/recepcionista/Panel_Reserva.fxml"));
@@ -124,7 +128,7 @@ public class Controlador_search implements Initializable {
                         AnchorPane PanelReservas = loader.load();
 
                         Controlador_Card_Reserva controlador_card_reserva = loader.getController();
-                        controlador_card_reserva.setValoresCamposCardReserva(reservasList.PruebaRun.get(i));
+                        controlador_card_reserva.setValoresCamposCardReserva(reservas.get(i));
 
                         row++;
                         Grid_Reservas.add(PanelReservas,column,row);
@@ -148,9 +152,7 @@ public class Controlador_search implements Initializable {
             }
         });
 
-        Thread hola = new Thread(tarea);
+        Thread hola = new Thread(taskConsultListReserv);
         hola.start();
-
-        //List<Reserva> reservas = reservasList.BuscarReservas(CodReserva, NumDoc, txt_nom_apel.getText());
     }
 }
