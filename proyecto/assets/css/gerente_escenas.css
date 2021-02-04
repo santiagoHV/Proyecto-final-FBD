@@ -71,8 +71,9 @@
 }
 
 .TableColumn{
-    -fx-font-size: 25px;
+    -fx-font-size: 32px;
     -fx-font-family: "MAXWELL REGULAR";
+    -fx-text-alignment: center;
 }
 .button--table{
     -fx-font-size: 25px;
