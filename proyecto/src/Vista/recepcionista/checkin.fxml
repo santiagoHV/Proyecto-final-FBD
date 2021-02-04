@@ -38,7 +38,7 @@
             <Separator layoutX="527.0" layoutY="135.0" orientation="VERTICAL" prefHeight="615.0" prefWidth="6.0" />
             <Pane fx:id="panel_datos" accessibleRole="SCROLL_BAR" layoutX="36.0" layoutY="283.0" prefHeight="465.0" prefWidth="480.0" style="-fx-border-color: black; -fx-border-radius: 10; -fx-background-color: white;">
                <children>
-                  <Label layoutX="129.0" layoutY="14.0" style="-fx-font-weight: 500;" text="Datos del títular de reserva">
+                  <Label layoutX="104.0" layoutY="14.0" style="-fx-font-weight: 500;" text="Datos del títular de reserva">
                      <font>
                         <Font name="MAXWELL REGULAR" size="22.0" />
                      </font>

@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -37,6 +38,12 @@ public class Controlador_checkin implements Initializable {
     public TextField codigo_reserva;
     public Button btn_buscar;
     public MFXProgressSpinner progressConCheck;
+    public Label datos_nombre;
+    public Label datos_ti;
+    public Label datos_no_i;
+    public Label datos_tel;
+    public Label datos_edad;
+    public Label datos_direccion;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -86,7 +93,14 @@ public class Controlador_checkin implements Initializable {
             @Override
             public void handle(WorkerStateEvent workerStateEvent) {
 
+                GridPanel_Huespedes.getChildren().clear();
+
                 Reserva reserva = taskConReserva.getValue();
+
+                //Definición de los datos del titular:
+                datos_no_i.setText(reserva.getPersona().getK_identificacion()+"");
+                datos_nombre.setText(reserva.getPersona().getN_nombre() + " " +reserva.getPersona().getN_apellido());
+                datos_tel.setText(reserva.getPersona().getN_telefono());
 
                 int column = 0;
                 int row = 0;
