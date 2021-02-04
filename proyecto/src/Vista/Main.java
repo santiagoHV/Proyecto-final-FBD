@@ -1,9 +1,5 @@
 package Vista;
 
-import Modelo.entidades.Condicion_Hotel;
-import Modelo.entidades.Huesped;
-import Modelo.entidades.Persona;
-import Modelo.entidades.Reserva;
 import animatefx.animation.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

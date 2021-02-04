@@ -143,6 +143,9 @@ public class Controlador_reserva implements Initializable {
                 TabPanePisos.setDisable(false);
             }
 
+        }else if(actionEvent.getSource().equals(btn_hacer_reserva)){
+            Controlador_datos_ingreso controlador_datos_ingreso = new Controlador_datos_ingreso();
+            System.out.println(controlador_datos_ingreso.nombre);
         }
 
 
@@ -165,7 +168,7 @@ public class Controlador_reserva implements Initializable {
         date_q_panel.setDisable(true);
         TabPanePisos.setDisable(true);
 
-        btn_hacer_reserva.setDisable(true);
+        //btn_hacer_reserva.setDisable(true);
         btn_datos_titular.setDisable(true);
     }
 
@@ -214,16 +217,25 @@ public class Controlador_reserva implements Initializable {
         });
     }
 
-
+    /**
+     * event listener del boton de despliegue para datos de ususario
+     * @param actionEvent
+     * @throws IOException
+     */
     public void desplegar_datos_titular(ActionEvent actionEvent) throws IOException {
-        String Boton = actionEvent.getSource().toString();
-        String [] Partes = Boton.split("'");
+
         BoxBlur blur = new BoxBlur(3,3,3);
         Parent parent = FXMLLoader.load(getClass().getResource("../../Vista/recepcionista/ingreso_datos.fxml"));
         JFXDialog dialog = new JFXDialog(stackPane, (Region) parent, JFXDialog.DialogTransition.BOTTOM, true);
         AnchorPane AP = (AnchorPane) parent.getChildrenUnmodifiable().get(0);
         HBox HB = (HBox) AP.getChildren().get(0);
         Button BSalirDialog = (Button)HB.getChildrenUnmodifiable().get(1);
+        Button btnCargarDatos = (Button)HB.getChildrenUnmodifiable().get(0);
+
+        btnCargarDatos.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent) ->{
+            //aca van los metodos para obtener datos
+        });
+
         BSalirDialog.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent)->
         {
             dialog.close();
