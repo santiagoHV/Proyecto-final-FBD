@@ -95,6 +95,9 @@ public class Controlador_Menu_Inicio implements Initializable
 
         //Se vuelve a definir la imagen:
         Banner1.setImage(NImage);
+
+        BRecep.setDisableVisualFocus(true);
+        BRecep.setFocusTraversable(false);
     }
 
     public void EvIng(ActionEvent actionEvent) throws IOException {

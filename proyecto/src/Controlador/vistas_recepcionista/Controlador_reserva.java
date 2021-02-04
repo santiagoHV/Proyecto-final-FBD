@@ -4,9 +4,14 @@ import DatosSQL.DAOs.DAO_Reserva;
 import Modelo.entidades.Reserva;
 import Vista.Main;
 import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.events.JFXDialogEvent;
+import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -19,6 +24,7 @@ import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.interfaces.RSAKey;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.*;
@@ -27,6 +33,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controlador_reserva implements Initializable {
+    public MFXProgressSpinner progressIndReserva;
+    public TabPane TabPanePisos;
+
     int CAPACIDAD_MAXIMA = 120;
 
     //General
@@ -38,7 +47,7 @@ public class Controlador_reserva implements Initializable {
     public Button btn_datos_titular;
 
     //Room table
-    public TabPane TabPanePisos;
+
     //State table
     public Pane state_panel;
     public Label habitaciones_separadas;
@@ -67,7 +76,7 @@ public class Controlador_reserva implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-
+        progressIndReserva.setVisible(false);
         ObservableList<Tab> Tabs = TabPanePisos.getTabs();
 
         for (Tab e: Tabs)
@@ -242,13 +251,39 @@ public class Controlador_reserva implements Initializable {
     }
 
     public void Buscar_Reserva_Por_ID(ActionEvent actionEvent) {
-        DAO_Reserva dao_reserva = new DAO_Reserva();
-        Reserva reserva = dao_reserva.consultarReserva(Integer.parseInt(codigo_reserva.getText()));
+        if(!codigo_reserva.getText().equals(""))
+        {
+            progressIndReserva.setVisible(true);
+            //Se instancia la clase dao correspondiente al objeto a consultar:
+            DAO_Reserva dao_reserva = new DAO_Reserva();
 
-        fecha_ingreso.setValue(reserva.getF_inicio().toLocalDate());
-        fecha_salida.setValue(reserva.getF_final().toLocalDate());
-        total_personas.setText(reserva.getCantidad_adultos()+"");
+            //Se crea la tarea encargada de realizar la consulta (con la intención de que la consulta no congele la interfaz gráfica)
+            Task<Reserva> reservaTask = new Task<Reserva>() {
+                @Override
+                protected Reserva call() throws Exception {
+                    //Se realiza la consulta usando la instancia del dao asociado a la clase correspondiente
+                    return dao_reserva.consultarReserva(Integer.parseInt(codigo_reserva.getText()+""));
+                }
+            };
+
+            //Se crea el hilo que llevará a cabo la tarea
+            Thread threadReserva = new Thread(reservaTask);
+
+            //Se define la operación a realizar en caso de completar la tarea exitosamente (que conlleva a la obtención de los datos consultados en interfaz)
+            reservaTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                @Override
+                public void handle(WorkerStateEvent workerStateEvent) {
+                    Reserva reserva = reservaTask.getValue();
+                    fecha_ingreso.setValue(reserva.getF_inicio().toLocalDate());
+                    fecha_salida.setValue(reserva.getF_final().toLocalDate());
+                    total_personas.setText(reserva.getCantidad_adultos()+"");
+                    progressIndReserva.setVisible(false);
+                }
+            });
+
+
+            //Se inicia el hilo asignado
+            threadReserva.start();
+        }
     }
-
-
 }
