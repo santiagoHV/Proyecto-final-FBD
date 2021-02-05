@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import javax.swing.SingleSelectionModel;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -76,9 +77,17 @@ public class Controlador_AddUser implements Initializable {
             @Override
             protected Void call() throws Exception {
                 try {
-                    db.addUsuario(user);
+                    boolean agregado = db.addUsuario(user);
                     progress.setVisible(false);
-                    JOptionPane.showMessageDialog(null,"Usuario creado con exito!");
+                    if(agregado){
+                        JOptionPane.showMessageDialog(null,"Usuario creado con exito!");
+                        l_username.setText("");
+                        l_password.setText("");
+                        l_password2.setText("");
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Este usuario ya existe");
+                    }
+
                 }catch (Exception e){
                     progress.setVisible(false);
                     JOptionPane.showMessageDialog(null, "Error al crear el usuario, intente luego.");
