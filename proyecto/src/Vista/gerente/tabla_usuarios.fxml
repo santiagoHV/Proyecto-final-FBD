@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1074.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_gerente.Controlador_Usuarios">
+<StackPane fx:id="SPtabla" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1074.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_gerente.Controlador_Usuarios">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../assets/css/gerente_escenas.css">
+      <AnchorPane fx:id="Anchor" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../assets/css/gerente_escenas.css">
          <children>
             <Label alignment="CENTER" layoutX="23.0" layoutY="14.0" prefHeight="95.0" prefWidth="1029.0" styleClass="title-hotel" text="SALDARRIAGA MAHAL" textFill="WHITE">
                <font>
@@ -29,8 +29,9 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </TableView>
-            <Button layoutX="430.0" layoutY="693.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="218.0" styleClass="button--table" text="Agregar Usuario" textFill="WHITE" />
+            <Button fx:id="dropButton" layoutX="24.0" layoutY="694.0" mnemonicParsing="false" onAction="#dropSelectedUser" prefHeight="46.0" prefWidth="235.0" styleClass="button--table" text="Eliminar seleccionado" textFill="WHITE" />
             <ProgressIndicator fx:id="progress" layoutX="1000.0" layoutY="690.0" prefHeight="73.0" prefWidth="68.0" />
+            <Button layoutX="430.0" layoutY="694.0" mnemonicParsing="false" onAction="#openAdd" prefHeight="46.0" prefWidth="218.0" styleClass="button--table" text="Agregar Usuario" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

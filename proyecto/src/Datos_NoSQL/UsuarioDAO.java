@@ -118,4 +118,14 @@ public class UsuarioDAO {
         return new Usuario((String) userx.get("user"),(String) userx.get("password"), (String) userx.get("role"));
     }
 
+    public boolean dropUser(Usuario user){
+        MongoCollection col = database.getCollection("users");
+        try{
+            col.findOneAndDelete(new Document().append("user", user.getUser()).append("password", user.getPassword()).append("role", user.getRole()));
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
 }

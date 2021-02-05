@@ -2,17 +2,30 @@ package Controlador.vistas_gerente;
 
 import Datos_NoSQL.Usuario;
 import Datos_NoSQL.UsuarioDAO;
+import Vista.Main;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.events.JFXDialogEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -26,10 +39,49 @@ public class Controlador_Usuarios implements Initializable {
     public UsuarioDAO db;
     public ObservableList<Usuario> OBS;
     public ProgressIndicator progress;
+    public Button dropButton;
+    public AnchorPane Anchor;
+    public StackPane SPtabla;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         db = new UsuarioDAO();
+        loadUsers();
+    }
+
+    public ObservableList<Usuario> getUsuarios() {
+        ObservableList<Usuario> obs = FXCollections.observableArrayList();
+        for (Usuario user : db.getUsuarios()) {
+            if (user.getRole().equals("recept")) {
+                user.setRole("Recepcionista");
+            } else if (user.getRole().equals("worker")) {
+                user.setRole("Trabajador");
+            } else if (user.getRole().equals("gerente")) {
+                user.setRole("Gerente");
+            } else if (user.getRole().equals("admin")) {
+                user.setRole("Administrador");
+            }
+            obs.add(user);
+        }
+        return obs;
+    }
+
+    public void dropSelectedUser() {
+        Usuario user = table_users.getSelectionModel().getSelectedItem();
+        if (user.getRole().equals("Recepcionista")) {
+            user.setRole("recept");
+        } else if (user.getRole().equals("Trabajador")) {
+            user.setRole("worker");
+        } else if (user.getRole().equals("Gerente")) {
+            user.setRole("gerente");
+        } else if (user.getRole().equals("Administrador")) {
+            user.setRole("admin");
+        }
+        db.dropUser(user);
+        loadUsers();
+    }
+
+    public void loadUsers() {
         progress.setVisible(true);
         Task<Void> tareita = new Task<Void>() {
             @Override
@@ -52,21 +104,30 @@ public class Controlador_Usuarios implements Initializable {
         ricoJuanHurtado.start();
     }
 
-    public ObservableList<Usuario> getUsuarios(){
-        ObservableList<Usuario> obs = FXCollections.observableArrayList();
-        for(Usuario user: db.getUsuarios()){
-            if(user.getRole().equals("recept")){
-                user.setRole("Recepcionista");
-            }else if(user.getRole().equals("worker")){
-                user.setRole("Trabajador");
-            }else if(user.getRole().equals("gerente")){
-                user.setRole("Gerente");
-            }else if(user.getRole().equals("admin")){
-                user.setRole("Administrador");
-            }
-            obs.add(user);
-        }
-        return obs;
+    public void openAdd() throws IOException {
+        BoxBlur blur = new BoxBlur(3, 3, 3);
+        Parent parent = FXMLLoader.load(getClass().getResource("../../Vista/gerente/add_user.fxml"));
+        JFXDialog dialog = new JFXDialog(SPtabla, (Region) parent, JFXDialog.DialogTransition.TOP, true);
+        //Esto es un machetazo el tenaz, pero no sé de que otra forma hacerlo:
+        AnchorPane AP = (AnchorPane) parent.getChildrenUnmodifiable().get(0);
+        Button BSalirDialog = (Button) AP.getChildrenUnmodifiable().get(6);
+
+        //Definción del manejador de eventos del botón cancelar para que cierra el dialog
+        BSalirDialog.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent) ->
+        {
+            dialog.close();
+        });
+        dialog.setOnDialogClosed((JFXDialogEvent event) ->
+        {
+            Anchor.setEffect(null);
+            loadUsers();
+        });
+
+        //Aplicación del efecto
+        Anchor.setEffect(blur);
+
+        //Se muestra el dialog:
+        dialog.show();
     }
 }
 
