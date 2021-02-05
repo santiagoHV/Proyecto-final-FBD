@@ -25,6 +25,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -67,18 +68,22 @@ public class Controlador_Usuarios implements Initializable {
     }
 
     public void dropSelectedUser() {
-        Usuario user = table_users.getSelectionModel().getSelectedItem();
-        if (user.getRole().equals("Recepcionista")) {
-            user.setRole("recept");
-        } else if (user.getRole().equals("Trabajador")) {
-            user.setRole("worker");
-        } else if (user.getRole().equals("Gerente")) {
-            user.setRole("gerente");
-        } else if (user.getRole().equals("Administrador")) {
-            user.setRole("admin");
-        }
-        db.dropUser(user);
-        loadUsers();
+            Usuario user = table_users.getSelectionModel().getSelectedItem();
+            if(user != null) {
+                if (user.getRole().equals("Recepcionista")) {
+                    user.setRole("recept");
+                } else if (user.getRole().equals("Trabajador")) {
+                    user.setRole("worker");
+                } else if (user.getRole().equals("Gerente")) {
+                    user.setRole("gerente");
+                } else if (user.getRole().equals("Administrador")) {
+                    user.setRole("admin");
+                }
+                db.dropUser(user);
+                loadUsers();
+            }else{
+                JOptionPane.showMessageDialog(null,"Por favor, seleccione un usuario");
+            }
     }
 
     public void loadUsers() {
