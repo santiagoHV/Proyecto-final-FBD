@@ -199,6 +199,9 @@
     -fx-background-size: 70%;
     -fx-background-repeat: no-repeat;
 }
+.controlInvalido{
+    -fx-border-color: red;
+}
 
 
 

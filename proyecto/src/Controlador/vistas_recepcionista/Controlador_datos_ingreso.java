@@ -4,11 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.chrono.IsoChronology;
 import java.util.ResourceBundle;
 
 public class Controlador_datos_ingreso implements Initializable {
@@ -53,6 +55,8 @@ public class Controlador_datos_ingreso implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        seleccionar_usuario_btn.setDisable(true);
+
         tipo_documento_in.getItems().add("CC");
         tipo_documento_in.getItems().add("CE");
         tipo_documento_in.getItems().add("RC");
@@ -69,17 +73,37 @@ public class Controlador_datos_ingreso implements Initializable {
     public void validarNuevosDatos(ActionEvent actionEvent) {
 
         //String tipoDoc = ;
-        int noDocumento = Integer.parseInt(no_documento_in.getText());
         String telefono = telefono_in.getText();
         //LocalDate fNacimiento = ;
         String direccion = direccion_in.getText();
 
-        if(nombres_in.getText() == null){
-
-        }else if(apellidos_in.getText() == null){
-
-        }else if(validarFechaYDocumento((String) tipo_documento_in.getValue(), fecha_nacimiento_in.getValue())){
-
+        if(nombres_in.getText() == ""){
+            nombres_in.getStyleClass().add("controlInvalido");
+            System.out.println(nombres_in.getStyleClass());
+        }
+        if(apellidos_in.getText() == ""){
+            apellidos_in.getStyleClass().add("controlInvalido");
+        }
+        if(tipo_documento_in.getValue() == null){
+            tipo_documento_in.getStyleClass().add("controlInvalido");
+        }
+        if(no_documento_in.getText() == ""){
+            no_documento_in.getStyleClass().add("controlInvalido");
+        }
+        try {
+            long i = Long.parseLong(no_documento_in.getText());
+        }catch (Exception e){
+            no_documento_in.getStyleClass().add("controlInvalido");
+        }
+        if(telefono_in.getText() == ""){
+            telefono_in.getStyleClass().add("controlInvalido");
+        }
+        if(fecha_nacimiento_in.getValue() != null){
+            if(validarFechaYDocumento((String) tipo_documento_in.getValue(), fecha_nacimiento_in.getValue())) {
+                fecha_nacimiento_in.getStyleClass().add("controlInvalido");
+            }
+        }else if(fecha_nacimiento_in.getValue() == null){
+            fecha_nacimiento_in.getStyleClass().add("controlInvalido");
         }
     }
 
@@ -87,12 +111,17 @@ public class Controlador_datos_ingreso implements Initializable {
         LocalDate fechaActual = LocalDate.now();
         if(fechaActual.isBefore(fecha)){
             return false;
-        }else if(fechaActual.getYear() - fecha.getYear() >= 18 && (tipoDoc.equals("CC") || tipoDoc.equals("CE"))){
-
+        }else if(fechaActual.getYear() - fecha.getYear() > 18 && (tipoDoc.equals("CC") || tipoDoc.equals("CE"))){
+            return true;
+        }else if(fechaActual.getYear() - fecha.getYear() == 18 && (tipoDoc.equals("CC") || tipoDoc.equals("CE"))){
+            if(fechaActual.getMonthValue() >= fecha.getMonthValue()){
+                return true;
+            }else{
+                return false;
+            }
         }else{
             return false;
         }
-        return false;
     }
 
     public void enablePanel(MouseEvent mouseEvent) {
