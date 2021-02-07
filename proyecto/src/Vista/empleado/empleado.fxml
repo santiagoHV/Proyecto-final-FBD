@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="empleado" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_empleado.Controlador_empleado">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" style="-fx-background-color: #1f2021;" stylesheets="@../../../assets/css/Empleado.css">
+         <children>
+            <AnchorPane fx:id="ERuta" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1200.0" style="-fx-background-color: #363434; -fx-background-radius: 0 25 25 0;" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="949.6" AnchorPane.topAnchor="7.0">
+               <children>
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1200.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="7.0">
+                     <children>
+                        <ImageView fitHeight="121.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../assets/images/circle.PNG" />
+                           </image>
+                           <VBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <JFXButton fx:id="BRestaurante" onMouseClicked="#onRestauranteButtonClicked" prefHeight="66.0" prefWidth="244.0" stylesheets="@../../../assets/css/Empleado.css" text="Restaurante" textFill="#ffffff" />
+                        <JFXButton fx:id="BPiscina" onMouseClicked="#onPiscinaButtonClicked" prefHeight="66.0" prefWidth="244.0" stylesheets="@../../../assets/css/Empleado.css" text="Piscina" textFill="#ffffff" />
+                        <JFXButton fx:id="BCafeteria" onMouseClicked="#onCafeteriaButtonClicked" prefHeight="66.0" prefWidth="244.0" text="Cafetería" textFill="#ffffff" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="RPane" prefHeight="563.0" prefWidth="926.0" style="-fx-background-color: #2d2e2d;" stylesheets="@../../../assets/css/Empleado.css" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0">
+               <children>
+                  <VBox layoutX="-1.0" layoutY="-1.0" prefHeight="568.0" prefWidth="920.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0">
+                     <children>
+                        <HBox fx:id="EHabitacion" prefHeight="96.0" prefWidth="911.0" style="-fx-background-radius: 45 45 45 45;" stylesheets="@../../../assets/css/Empleado.css">
+                           <children>
+                              <Label fx:id="txtRPiso" alignment="CENTER" prefHeight="66.0" prefWidth="140.0" stylesheets="@../../../assets/css/Empleado.css" text="Piso">
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="15.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="RDPiso" focusColor="WHITE" prefHeight="32.0" prefWidth="167.0" style="-fx-background-color: white;" unFocusColor="BLACK">
+                                 <HBox.margin>
+                                    <Insets top="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                              <Label fx:id="txtRHabitacion" prefHeight="65.0" prefWidth="167.0" stylesheets="@../../../assets/css/Empleado.css" text="Habitación">
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="15.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="RDHabitacion" focusColor="WHITE" prefHeight="32.0" prefWidth="167.0" style="-fx-background-color: white;" unFocusColor="BLACK">
+                                 <HBox.margin>
+                                    <Insets top="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                              <JFXButton fx:id="RPoner" alignment="CENTER" onMouseClicked="#onClickedHabitacion" text="Cargar" textFill="#2d2e2d">
+                                 <HBox.margin>
+                                    <Insets left="50.0" top="25.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="43.0" prefWidth="901.0">
+                           <children>
+                              <Label fx:id="txtRProductos" text="Productos:">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="333.0" prefWidth="682.0">
+                           <children>
+                              <GridPane>
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="101.0" prefWidth="101.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="101.0" prefWidth="101.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="101.0" prefWidth="101.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="101.0" prefWidth="101.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="101.0" prefWidth="101.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints maxHeight="-Infinity" minHeight="41.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="41.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label fx:id="RTNombre" alignment="CENTER" prefHeight="41.0" prefWidth="101.0" text="Nombre " GridPane.columnIndex="1" />
+                                    <Label fx:id="RTCodigo" alignment="CENTER" prefHeight="41.0" prefWidth="101.0" stylesheets="@../../../assets/css/Empleado.css" text="Código">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </Label>
+                                    <Label fx:id="RC1" prefHeight="41.0" prefWidth="101.0" text="001" GridPane.rowIndex="1" />
+                                    <Label fx:id="RN1" prefHeight="41.0" prefWidth="101.0" text="Desayuno" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="RTPrecio" alignment="CENTER" prefHeight="41.0" prefWidth="101.0" text="Precio" GridPane.columnIndex="2" />
+                                    <Label fx:id="RP1" prefHeight="41.0" prefWidth="101.0" text="15000" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Label fx:id="RTCantidad" alignment="CENTER" prefHeight="41.0" prefWidth="102.0" text="Cantidad" GridPane.columnIndex="3" />
+                                    <JFXTextArea fx:id="RCA1" focusColor="#2d2e2d" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="102.0" unFocusColor="#2d2e2d" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Label fx:id="RTCargar" alignment="CENTER" prefHeight="42.0" prefWidth="102.0" text="Cargar" GridPane.columnIndex="4" />
+                                    <JFXButton fx:id="RCAR1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onCargar1ButtonClicked" prefHeight="42.0" prefWidth="103.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
+                              <JFXTextArea fx:id="REMuestra" focusColor="#4b5f71" prefHeight="302.0" prefWidth="331.0" unFocusColor="#2a2c2e">
+                                 <HBox.margin>
+                                    <Insets bottom="30.0" left="15.0" right="15.0" top="5.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                                 </padding>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXTextArea>
+                           </children>
+                           <padding>
+                              <Insets left="50.0" top="15.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="82.0" prefWidth="920.0">
+                           <children>
+                              <JFXButton fx:id="RAceptar" alignment="CENTER" onMouseClicked="#onClickedCargar" text="Aceptar" textFill="#2d2e2d">
+                                 <HBox.margin>
+                                    <Insets left="600.0" top="15.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton fx:id="RLimpiar" alignment="CENTER" onMouseClicked="#onClickedLimpiar" text="Limpiar" textFill="#2d2e2d">
+                                 <HBox.margin>
+                                    <Insets left="50.0" top="15.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="PPane" prefHeight="563.0" prefWidth="926.0" style="-fx-background-color: #2d2e2d;" stylesheets="@../../../assets/css/Empleado.css" visible="false" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0">
+               <children>
+                  <VBox layoutX="-1.0" layoutY="-1.0" prefHeight="568.0" prefWidth="920.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0">
+                     <children>
+                        <HBox fx:id="EPHabitacion" prefHeight="96.0" prefWidth="911.0" stylesheets="@../../../assets/css/Empleado.css">
+                           <children>
+                              <Label fx:id="txtPHabitacion" prefHeight="66.0" prefWidth="201.0" stylesheets="@../../../assets/css/Empleado.css" text="Habitación">
+                                 <HBox.margin>
+                                    <Insets left="200.0" top="15.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="PDHabitacion" focusColor="WHITE" prefHeight="32.0" prefWidth="233.0" style="-fx-background-color: white;" unFocusColor="BLACK">
+                                 <HBox.margin>
+                                    <Insets top="30.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="43.0" prefWidth="901.0">
+                           <children>
+                              <Label fx:id="txtPProductos" text="Productos:">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="333.0" prefWidth="682.0">
+                           <children>
+                              <GridPane>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="101.0" prefWidth="101.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.0000244140625" minWidth="101.0" prefWidth="107.1999755859375" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.60002441406249" minWidth="72.79997558593749" prefWidth="97.60002441406249" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="101.0" prefWidth="101.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="101.0" prefWidth="101.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="-Infinity" minHeight="41.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="41.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="41.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="41.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="41.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="41.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="41.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label fx:id="PTNombre" alignment="CENTER" prefHeight="42.0" prefWidth="107.0" text="Nombre " GridPane.columnIndex="1" />
+                                    <Label fx:id="PTCodigo" alignment="CENTER" prefHeight="41.0" prefWidth="101.0" stylesheets="@../../../assets/css/Empleado.css" text="Código">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </Label>
+                                    <Label fx:id="PC1" prefHeight="41.0" prefWidth="101.0" text="001" GridPane.rowIndex="1" />
+                                    <Label fx:id="PC2" prefHeight="41.0" prefWidth="101.0" text="002" GridPane.rowIndex="2" />
+                                    <Label fx:id="PC3" prefHeight="41.0" prefWidth="101.0" text="003" GridPane.rowIndex="3" />
+                                    <Label fx:id="PC4" prefHeight="41.0" prefWidth="101.0" text="004" GridPane.rowIndex="4" />
+                                    <Label fx:id="PC5" prefHeight="41.0" prefWidth="101.0" text="005" GridPane.rowIndex="5" />
+                                    <Label fx:id="PC6" prefHeight="42.0" prefWidth="102.0" text="006" GridPane.rowIndex="6" />
+                                    <Label fx:id="PN1" prefHeight="42.0" prefWidth="110.0" text="Toalla" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="PN2" prefHeight="42.0" prefWidth="107.0" text="Gorro " GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="PN3" prefHeight="42.0" prefWidth="109.0" text="Bloqueador" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label fx:id="PN4" prefHeight="42.0" prefWidth="109.0" text="Pelota" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label fx:id="PN5" prefHeight="42.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Label fx:id="PN6" prefHeight="42.0" prefWidth="112.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <Label fx:id="PTPrecio" alignment="CENTER" prefHeight="41.0" prefWidth="101.0" text="Precio" GridPane.columnIndex="2" />
+                                    <Label fx:id="PP1" prefHeight="41.0" prefWidth="101.0" text="10000" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Label fx:id="PP2" prefHeight="41.0" prefWidth="101.0" text="12000" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Label fx:id="PP3" prefHeight="41.0" prefWidth="101.0" text="30000" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <Label fx:id="PP4" prefHeight="41.0" prefWidth="101.0" text="15000" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                    <Label fx:id="PP5" prefHeight="41.0" prefWidth="101.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                    <Label fx:id="PP6" prefHeight="41.0" prefWidth="101.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                    <Label fx:id="PTCantidad" alignment="CENTER" prefHeight="41.0" prefWidth="102.0" text="Cantidad" GridPane.columnIndex="3" />
+                                    <JFXTextArea fx:id="PCA1" focusColor="#2d2e2d" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="102.0" unFocusColor="#2d2e2d" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <JFXTextArea fx:id="PCA5" focusColor="#2d2e2d" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="102.0" unFocusColor="#2d2e2d" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                                    <JFXTextArea fx:id="PCA6" focusColor="#2d2e2d" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="102.0" unFocusColor="#2d2e2d" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                                    <JFXTextArea fx:id="PCA2" focusColor="#2d2e2d" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="102.0" unFocusColor="#2d2e2d" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <JFXTextArea fx:id="PCA3" focusColor="#2d2e2d" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="102.0" unFocusColor="#2d2e2d" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                    <JFXTextArea fx:id="PCA4" focusColor="#2d2e2d" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="102.0" unFocusColor="#2d2e2d" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                    <Label fx:id="PTCargar" alignment="CENTER" prefHeight="42.0" prefWidth="102.0" text="Cargar" GridPane.columnIndex="4" />
+                                    <JFXButton fx:id="PCAR1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="103.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                    <JFXButton fx:id="PCAR5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="102.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                                    <JFXButton fx:id="PCAR6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="102.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                                    <JFXButton fx:id="PCAR4" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="102.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                                    <JFXButton fx:id="PCAR3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="102.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                                    <JFXButton fx:id="PCAR2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="102.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
+                              <JFXTextArea fx:id="PEMuestra" focusColor="#4b5f71" prefHeight="270.0" prefWidth="305.0" unFocusColor="#2a2c2e">
+                                 <HBox.margin>
+                                    <Insets bottom="30.0" left="15.0" right="15.0" top="5.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                                 </padding>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXTextArea>
+                           </children>
+                           <padding>
+                              <Insets left="50.0" top="15.0" />
+                           </padding>
+                        </HBox>
+                        <JFXButton fx:id="RAceptar1" alignment="CENTER" text="Aceptar" textFill="#2d2e2d">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="760.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <JFXButton fx:id="ESalir" onMouseClicked="#onSalirButtonClicked" prefHeight="55.0" prefWidth="70.0" style="-fx-background-color: #1f2021;" text="Button" textFill="TRANSPARENT" AnchorPane.leftAnchor="1000.0" AnchorPane.topAnchor="40.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
