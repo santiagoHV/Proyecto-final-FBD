@@ -204,7 +204,7 @@
 }
 .controlValido{
     -fx-border-color: green;
-    -fx-background-color: green;
+    -fx-background-color: rgba(0,255,0,0.5);
 }
 
 

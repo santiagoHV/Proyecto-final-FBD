@@ -1,6 +1,7 @@
 package Controlador.vistas_recepcionista;
 
 import DatosSQL.DAOs.DAO_Reserva;
+import Modelo.entidades.Persona;
 import Modelo.entidades.Reserva;
 import Vista.Main;
 import com.jfoenix.controls.JFXDialog;
@@ -69,6 +70,8 @@ public class Controlador_reserva implements Initializable {
     public Spinner cantidad_bebes;
     public Spinner cantidad_niños;
 
+    public Persona titularDeReserva;
+
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -117,8 +120,8 @@ public class Controlador_reserva implements Initializable {
 
         ////bloqueos iniciales///
         bloquearTodo();
-        this.cantidad_adultos.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,50));
-        this.cantidad_niños.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,50));
+        this.cantidad_adultos.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,120));
+        this.cantidad_niños.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,120));
         this.cantidad_bebes.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,50));
 
 
@@ -144,8 +147,8 @@ public class Controlador_reserva implements Initializable {
             }
 
         }else if(actionEvent.getSource().equals(btn_hacer_reserva)){
-            Controlador_datos_ingreso controlador_datos_ingreso = new Controlador_datos_ingreso();
-            System.out.println(controlador_datos_ingreso.nombre);
+
+            System.out.println(titularDeReserva.getN_nombre());
         }
 
 
@@ -225,7 +228,8 @@ public class Controlador_reserva implements Initializable {
     public void desplegar_datos_titular(ActionEvent actionEvent) throws IOException {
 
         BoxBlur blur = new BoxBlur(3,3,3);
-        Parent parent = FXMLLoader.load(getClass().getResource("../../Vista/recepcionista/ingreso_datos.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Vista/recepcionista/ingreso_datos.fxml"));
+        Parent parent = loader.load();
         JFXDialog dialog = new JFXDialog(stackPane, (Region) parent, JFXDialog.DialogTransition.BOTTOM, true);
         AnchorPane AP = (AnchorPane) parent.getChildrenUnmodifiable().get(0);
         HBox HB = (HBox) AP.getChildren().get(0);
@@ -239,6 +243,9 @@ public class Controlador_reserva implements Initializable {
             }else{
                 //obtiene lo viejo
             }
+            Controlador_datos_ingreso controlador_datos_ingreso = loader.getController();
+            titularDeReserva = controlador_datos_ingreso.solicitarPersona(false);
+            dialog.close();
         });
 
         BSalirDialog.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent)->

@@ -12,15 +12,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 import java.net.URL;
-import java.sql.SQLException;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.chrono.IsoChronology;
 import java.util.ResourceBundle;
 
 public class Controlador_datos_ingreso implements Initializable {
@@ -64,6 +62,9 @@ public class Controlador_datos_ingreso implements Initializable {
     public String nombre;
     public CheckBox checkNuevoUsuario;
 
+    public Persona personaEncontrada;
+    public Huesped huespedEncontrado;
+
 
 
     @Override
@@ -81,6 +82,11 @@ public class Controlador_datos_ingreso implements Initializable {
         srch_tipo_documento_in.getItems().add("TI");
 
     }
+
+    /**
+     * busca una persona o huesped en el panel de busqueda
+     * @param actionEvent
+     */
     public void buscarUsuario(ActionEvent actionEvent){
         if(srch_tipo_documento_in.getValue() != null && !srch_no_documento_in.getText().equals("")){
             if(validarNoDocumento(srch_no_documento_in.getText())){
@@ -109,6 +115,7 @@ public class Controlador_datos_ingreso implements Initializable {
                     @Override
                     public void handle(WorkerStateEvent workerStateEvent) {
                         Persona persona = personaTask.getValue();
+                        personaEncontrada = persona;
 
                         if(persona != null){
                             no_identificacion_srch.setText(String.valueOf(persona.getK_identificacion()));
@@ -118,7 +125,8 @@ public class Controlador_datos_ingreso implements Initializable {
                             edad_srch.setText(String.valueOf(edad.getYears()));
                             telefono_srch.setText(persona.getN_telefono());
 
-
+                            subpanel_usuarios.getStyleClass().add("controlValido");
+                            seleccionar_usuario_btn.setDisable(false);
 
                         }else{
                             no_identificacion_srch.setText("--");
@@ -135,6 +143,7 @@ public class Controlador_datos_ingreso implements Initializable {
                     @Override
                     public void handle(WorkerStateEvent workerStateEvent) {
                         Huesped huesped = huespedTask.getValue();
+                        huespedEncontrado = huesped;
 
                         if(huesped != null){
                             direccion_srch.setText(huesped.getN_direccion());
@@ -150,6 +159,10 @@ public class Controlador_datos_ingreso implements Initializable {
         }
     }
 
+    /**
+     * obedece al boton validar y verifica que los datos en el panel de nuevos ususarios cumplan con caracteristicas basicas
+     * @param actionEvent
+     */
     public void validarNuevosDatos(ActionEvent actionEvent) {
         boolean accepted = true;
 
@@ -198,23 +211,34 @@ public class Controlador_datos_ingreso implements Initializable {
         }
     }
 
-    public void solicitarUsuario(){
-        if(checkNuevoUsuario.isSelected()){
+    /**
+     * retorna un objeto tipo persona o huesped dependiendo de lo encontrado
+     * @param isNew
+     * @return
+     */
+    public Persona solicitarPersona(boolean isNew){
+        if(isNew){
             if(direccion_in.getText().equals("")){
-                //persona
+                return new Persona(Integer.parseInt(no_documento_in.getText()),tipo_documento_in.getValue().toString(),nombres_in.getText(),
+                        apellidos_in.getText(), Date.valueOf(fecha_nacimiento_in.getValue()),telefono_in.getText());
             }else{
-                //huesped
+                return new Huesped(Integer.parseInt(no_documento_in.getText()),tipo_documento_in.getValue().toString(),nombres_in.getText(),
+                        apellidos_in.getText(), Date.valueOf(fecha_nacimiento_in.getValue()),telefono_in.getText(),direccion_in.getText());
             }
         }else {
             if(direccion_srch.getText().equals("--")){
-                //persona
+                return personaEncontrada;
             }else{
-                //huesped
+                return huespedEncontrado;
             }
         }
-
     }
 
+    /**
+     * verifica que el numero de documento ingresado sea unicamente numerico
+     * @param numero
+     * @return
+     */
     private boolean validarNoDocumento(String numero){
         try {
             int numeroInt = Integer.parseInt(numero);
@@ -224,6 +248,14 @@ public class Controlador_datos_ingreso implements Initializable {
         }
     }
 
+    /**
+     * verifica que el tipo de documento conincida con su fecha de nacimiento
+     *
+     * REFACTOREAR
+     * @param tipoDoc
+     * @param fecha
+     * @return
+     */
     private boolean validarFechaYDocumento(String tipoDoc, LocalDate fecha) {
         LocalDate fechaActual = LocalDate.now();
         if(fechaActual.isBefore(fecha)){
@@ -241,6 +273,10 @@ public class Controlador_datos_ingreso implements Initializable {
         }
     }
 
+    /**
+     *  habilita e inhabilita los paneles segun selección
+     * @param mouseEvent
+     */
     public void enablePanel(MouseEvent mouseEvent) {
         if(mouseEvent.getSource().equals(backPanelBuscar)){
             panel_busqueda.setDisable(false);
@@ -260,6 +296,5 @@ public class Controlador_datos_ingreso implements Initializable {
     }
 
     public void select(ActionEvent actionEvent) {
-
     }
 }
