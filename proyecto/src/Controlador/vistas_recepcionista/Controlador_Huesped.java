@@ -27,6 +27,7 @@ public class Controlador_Huesped implements Initializable
     public Label LBTelefono;
     public AnchorPane AnchorBG;
     public JFXComboBox comboHabitacion;
+    public Label LB_TipoDoc;
 
     public void setValoresPanel(Huesped huesped)
     {
@@ -36,6 +37,7 @@ public class Controlador_Huesped implements Initializable
         LBedad.setText(period.getYears()+"");
         LBDireccion.setText(huesped.getN_direccion());
         LBTelefono.setText(huesped.getN_telefono());
+        LB_TipoDoc.setText(huesped.getK_tipo_documento_id()+":");
 
 
         Task<Registro> registroTask = new Task<Registro>() {
