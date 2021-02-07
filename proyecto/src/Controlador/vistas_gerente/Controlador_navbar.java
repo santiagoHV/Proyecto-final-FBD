@@ -28,6 +28,7 @@ public class Controlador_navbar implements Initializable {
     public Button button_users;
     public Button button_rooms;
     public Button button_close;
+    public Button products;
     public AnchorPane router;
     public StackPane SP_navbar;
 
@@ -44,6 +45,10 @@ public class Controlador_navbar implements Initializable {
             setRouter("../Vista/gerente/tabla_usuarios.fxml");
         } else if (actionEvent.getSource() == button_rooms) {
             setRouter("../Vista/gerente/habitaciones_disp.fxml");
+        } else if (actionEvent.getSource() == products){
+            System.out.println("holaaa");
+            setRouter("../Vista/gerente/navbar_consumos.fxml");
+
         }
     }
 

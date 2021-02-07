@@ -27,7 +27,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="button_users" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="390.0" prefWidth="125.0" text="Usuarios" textFill="WHITE">
+                  <Button fx:id="button_users" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="425.0" prefWidth="125.0" text="Usuarios" textFill="WHITE">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -39,7 +39,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="button_rooms" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="394.0" prefWidth="125.0" text="Habitaciones" textFill="WHITE">
+                  <Button fx:id="button_rooms" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="428.0" prefWidth="125.0" text="Habitaciones" textFill="WHITE">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -51,7 +51,19 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="button_close" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#out" prefHeight="351.0" prefWidth="125.0" text="Cerrar sesión" textFill="WHITE">
+                  <Button fx:id="products" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="430.0" prefWidth="125.0" text="Productos" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="navbar__button" />
+                        <String fx:value="navbar__button--productos" />
+                     </styleClass>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="button_close" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#out" prefHeight="403.0" prefWidth="125.0" text="Salir" textFill="WHITE">
                      <styleClass>
                         <String fx:value="navbar__button" />
                         <String fx:value="navbar__button--out" />
@@ -59,6 +71,9 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
                   </Button>
                </children>
             </VBox>

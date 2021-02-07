@@ -28,8 +28,14 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
-.navbar__button--out{
+.navbar__button--productos{
     -fx-font-size: 20px;
+    -fx-background-size: 90%;
+    -fx-background-image: url("../images/hamburguer.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.navbar__button--out{
     -fx-background-size: 70%;
     -fx-background-image: url("../images/Out_Icon.png");
     -fx-background-position: center;

@@ -1,0 +1,40 @@
+.button {
+    -fx-background-color: #222831;
+    -fx-text-fill: white;
+    -fx-border-color: #393e46;
+    -fx-cursor: hand;
+}
+.button__restaurante{
+    -fx-background-size: 50%;
+    -fx-background-image: url("../images/restaurant.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.button__piscina{
+    -fx-background-size: 60%;
+    -fx-background-image: url("../images/pool.png");
+    -fx-background-position: top;
+    -fx-background-repeat: no-repeat;
+}
+.button__spa{
+    -fx-background-size: 55%;
+    -fx-background-image: url("../images/spa.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.button__cafeteria{
+    -fx-background-size: 60%;
+    -fx-background-image: url("../images/cafeteria.png");
+    -fx-background-position: top;
+    -fx-background-repeat: no-repeat;
+}
+.button__gym{
+    -fx-background-size: 60%;
+    -fx-background-image: url("../images/gym.png");
+    -fx-background-position: top;
+    -fx-background-repeat: no-repeat;
+}
+
+.button:hover{
+    -fx-background-color: #393e46;
+}

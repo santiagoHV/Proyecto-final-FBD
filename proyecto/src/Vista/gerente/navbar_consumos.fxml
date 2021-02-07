@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1074.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../assets/css/consumos_pane.css">
+         <children>
+            <VBox layoutY="-1.0" prefHeight="768.0" prefWidth="172.0">
+               <children>
+                  <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="153.6" prefWidth="172.0" styleClass="button__restaurante" text="Restaurante">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="153.6" prefWidth="262.0" styleClass="button__piscina" text="Piscina" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="154.0" prefWidth="236.0" styleClass="button__spa" text="Spa">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="154.0" prefWidth="225.0" styleClass="button__cafeteria" text="Cafetería">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="154.0" prefWidth="216.0" styleClass="button__gym" text="Gimnasio">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <AnchorPane layoutX="172.0" layoutY="-1.0" prefHeight="768.0" prefWidth="904.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
