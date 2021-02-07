@@ -37,6 +37,7 @@ public class Controlador_Huesped implements Initializable
         LBDireccion.setText(huesped.getN_direccion());
         LBTelefono.setText(huesped.getN_telefono());
 
+
         Task<Registro> registroTask = new Task<Registro>() {
             @Override
             protected Registro call() throws Exception {

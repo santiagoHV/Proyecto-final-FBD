@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
@@ -36,7 +37,7 @@
                         <TextField fx:id="telefono_in" layoutX="13.0" layoutY="203.0" />
                         <DatePicker fx:id="fecha_nacimiento_in" layoutX="172.0" layoutY="203.0" prefHeight="25.0" prefWidth="149.0" />
                         <Separator layoutX="13.0" layoutY="295.0" prefHeight="2.0" prefWidth="463.0" />
-                        <Button fx:id="validar_btn" onAction="#validarNuevosDatos" layoutX="14.0" layoutY="308.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="463.0" text="Validar" />
+                        <Button fx:id="validar_btn" layoutX="14.0" layoutY="308.0" mnemonicParsing="false" onAction="#validarNuevosDatos" prefHeight="38.0" prefWidth="463.0" text="Validar" />
                         <Label graphicTextGap="6.0" layoutX="14.0" layoutY="62.0" text="Nombres" textAlignment="CENTER">
                            <font>
                               <Font name="MAXWELL REGULAR" size="19.0" />
@@ -112,6 +113,8 @@
                         </Label>
                         <TextField id="srch_no_documento_in" fx:id="srch_no_documento_in" layoutX="172.0" layoutY="72.0" />
                         <ComboBox id="srch_tipo_documento_in" fx:id="srch_tipo_documento_in" layoutX="14.0" layoutY="72.0" prefHeight="25.0" prefWidth="126.0" />
+                        <Button fx:id="btn_buscar_reserva" layoutX="320.0" layoutY="72.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buscarUsuario" prefHeight="24.0" prefWidth="33.0" style="-fx-border-radius: 0;" styleClass="button_buscar" />
+                        <MFXProgressSpinner fx:id="progressIndicatorUser" layoutX="365.0" layoutY="72.0" prefHeight="26.0" prefWidth="25.0" visible="false" />
                         <Label graphicTextGap="6.0" layoutX="14.0" layoutY="52.0" text="Tipo de documento" textAlignment="CENTER">
                            <font>
                               <Font name="MAXWELL REGULAR" size="19.0" />
@@ -128,7 +131,7 @@
                               <Glow />
                            </effect>
                         </Label>
-                        <Pane fx:id="subpanel_usuarios" layoutX="18.0" layoutY="119.0" prefHeight="142.0" prefWidth="393.0" style="-fx-border-color: black;">
+                        <Pane fx:id="subpanel_usuarios" layoutX="14.0" layoutY="113.0" prefHeight="142.0" prefWidth="393.0" style="-fx-border-color: black;">
                            <children>
                               <Label fx:id="nombreC_srch" graphicTextGap="6.0" layoutX="14.0" layoutY="14.0" text="Juan Robado" textAlignment="CENTER">
                                  <font>

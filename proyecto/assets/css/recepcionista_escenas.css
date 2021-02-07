@@ -202,6 +202,10 @@
 .controlInvalido{
     -fx-border-color: red;
 }
+.controlValido{
+    -fx-border-color: green;
+    -fx-background-color: green;
+}
 
 
 
