@@ -50,6 +50,8 @@ public class Controlador_Menu_Inicio implements Initializable
     private double xOffset = 0;
     private double yOffset = 0;
 
+    Parent parent;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -112,8 +114,11 @@ public class Controlador_Menu_Inicio implements Initializable
         BoxBlur blur = new BoxBlur(3,3,3);
 
         //Obtención del parent con la ruta del fxml a usar
-        Parent parent = FXMLLoader.load(getClass().getResource("../Vista/ingreso/Login.fxml"));
-
+        if (actionEvent.getSource() == BRecep) {
+            parent = FXMLLoader.load(getClass().getResource("../Vista/ingreso/Login.fxml"));
+        }else if (actionEvent.getSource() == BEmple) {
+            parent = FXMLLoader.load(getClass().getResource("../Vista/ingreso/ELogin.fxml"));
+        }
         //Creación del Dialog usando el Parent como Region (cast) para poder personalizarlo:
         JFXDialog dialog = new JFXDialog(stackPane1, (Region) parent, JFXDialog.DialogTransition.BOTTOM, true);
 

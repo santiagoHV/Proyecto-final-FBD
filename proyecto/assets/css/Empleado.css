@@ -1,0 +1,141 @@
+@font-face
+{
+    src: url('../Fuentes/MAXWELL_REGULAR.ttf');
+}
+#BRestaurante
+{
+    -fx-text-fill: white;
+    -fx-font-size: 34;
+    -fx-font-family: "MAXWELL REGULAR";
+}
+#BGimnasio
+{
+    -fx-text-fill: white;
+    -fx-font-size: 34;
+    -fx-font-family: "MAXWELL REGULAR";
+}
+#BSpa
+{
+    -fx-text-fill: white;
+    -fx-font-size: 34;
+    -fx-font-family: "MAXWELL REGULAR";
+}
+#BCafeteria
+{
+    -fx-text-fill: white;
+    -fx-font-size: 34;
+    -fx-font-family: "MAXWELL REGULAR";
+}
+#BPiscina
+{
+    -fx-text-fill: white;
+    -fx-font-size: 34;
+    -fx-font-family: "MAXWELL REGULAR";
+}
+#pane
+{
+    -fx-background-radius: 15 15 15 15;
+}
+#txtRHabitacion,#txtRPiso,#txtPHabitacion
+{
+    -fx-text-fill: #E74238;
+    -fx-font-size: 34;
+    -fx-font-family: "MAXWELL REGULAR";
+}
+#txtRProductos,#txtPProductos
+{
+    -fx-text-fill: #E74238;
+    -fx-font-size: 34;
+    -fx-font-family: "MAXWELL REGULAR";
+}
+#RTCodigo,#PTCodigo
+{
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-text-fill: #E74238;
+    -fx-background-color: #2d2e2d;
+    -fx-font-size: 25;
+    -fx-border-color: #E74238 #E74238 #E74238 #2d2e2d  ;
+}
+#RTNombre,#PTNombre
+{
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-text-fill: #E74238;
+    -fx-background-color: #2d2e2d;
+    -fx-font-size: 25;
+    -fx-border-color: #E74238;
+}
+#RTPrecio,#PTPrecio
+{
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-text-fill: #E74238;
+    -fx-background-color: #2d2e2d;
+    -fx-font-size: 25;
+    -fx-border-color: #E74238 ;
+}
+#RTCantidad,#PTCantidad
+{
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-text-fill: #E74238;
+    -fx-background-color: #2d2e2d;
+    -fx-font-size: 25;
+    -fx-border-color: #E74238;
+}
+#RTCargar,#PTCargar
+{
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-text-fill: #E74238;
+    -fx-background-color: #2d2e2d;
+    -fx-font-size: 25;
+    -fx-border-color: #E74238 #2d2e2d  #E74238 #E74238  ;
+}
+#RC1,#RC2,#RC3,#RC4,#RC5,#RC6,#PC1,#PC2,#PC3,#PC4,#PC5,#PC6
+{
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-text-fill: #E74238;
+    -fx-background-color: #2d2e2d;
+    -fx-font-size: 25;
+    -fx-border-color: #E74238 #E74238 #E74238 #2d2e2d ;
+}
+#RN1,#RN2,#RN3,#RN4,#RN5,#RN6,#RP1,#RP2,#RP3,#RP4,#RP5,#RP6,#RCA1,#RCA2,#RCA3,#RCA4,#RCA5,#RCA6,#PN1,#PN2,#PN3,#PN4,#PN5,#PN6,#PP1,#PP2,#PP3,#PP4,#PP5,#PP6,#PCA1,#PCA2,#PCA3,#PCA4,#PCA5,#PCA6
+{
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-text-fill: #E74238;
+    -fx-background-color: #2d2e2d;
+    -fx-font-size: 25;
+    -fx-border-color: #E74238 #E74238 #E74238 #2d2e2d  ;
+}
+#RCAR1,#RCAR2,#RCAR3,#RCAR4,#RCAR5,#RCAR6,#PCAR1,#PCAR2,#PCAR3,#PCAR4,#PCAR5,#PCAR6
+{
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-background-color: #2d2e2d;
+    -fx-border-color: #E74238 #2d2e2d #E74238 #E74238 ;
+    -fx-background-image: url("../images/AgregarCompra.png");
+    -fx-background-size: 39%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+#REMuestra,#PEMuestra
+{
+    -fx-border-radius: 28 28 28 28;
+    -fx-background-radius: 28 28 28 28;
+    -fx-background-color: #626262;
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-font-size: 25 ptx;
+
+}
+#RAceptar,#PAceptar,#RLimpiar,#RPoner
+{
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-font-size: 25 ptx;
+    -fx-background-radius: 28 28 28 28;
+    -fx-background-color: #ef4a40;
+}
+#ESalir
+{
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-background-color: #2d2e2d;
+    -fx-background-image: url("../images/Salir.png");
+    -fx-background-size: 60%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
