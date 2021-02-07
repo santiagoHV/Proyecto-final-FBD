@@ -14,7 +14,7 @@
             <Font name="MAXWELL REGULAR" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="36.0" prefHeight="24.0" prefWidth="19.0" text="TI:">
+      <Label fx:id="LB_TipoDoc" layoutX="14.0" layoutY="36.0" prefHeight="24.0" prefWidth="19.0" text="TI:">
          <font>
             <Font name="MAXWELL REGULAR" size="19.0" />
          </font>
