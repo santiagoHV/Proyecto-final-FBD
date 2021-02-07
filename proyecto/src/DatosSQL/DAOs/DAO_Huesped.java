@@ -29,11 +29,4 @@ public class DAO_Huesped {
         return null;
     }
 
-    public int consultarTodo() throws SQLException {
-        Operaciones op = new Operaciones();
-
-        ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Huesped");
-        resultSet.next();
-        return resultSet.getInt(2);
-    }
 }

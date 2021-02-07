@@ -198,6 +198,23 @@ public class Controlador_datos_ingreso implements Initializable {
         }
     }
 
+    public void solicitarUsuario(){
+        if(checkNuevoUsuario.isSelected()){
+            if(direccion_in.getText().equals("")){
+                //persona
+            }else{
+                //huesped
+            }
+        }else {
+            if(direccion_srch.getText().equals("--")){
+                //persona
+            }else{
+                //huesped
+            }
+        }
+
+    }
+
     private boolean validarNoDocumento(String numero){
         try {
             int numeroInt = Integer.parseInt(numero);
