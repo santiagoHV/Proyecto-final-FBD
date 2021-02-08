@@ -70,7 +70,8 @@ public class Registro {
         this.habitacion = habitacion;
     }
 
-
-
+    public Habitacion getHabitacion() {
+        return habitacion;
+    }
 }
 

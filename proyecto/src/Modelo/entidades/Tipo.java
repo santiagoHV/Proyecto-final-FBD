@@ -6,11 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Tipo {
-    private int k_tipo_habitacion;
+    private String k_tipo_habitacion;
     private double precio_habitacion;
     private String descripcion;
 
-    public Tipo(int k_tipo_habitacion, double precio_habitacion, String descripcion) {
+    public Tipo(String k_tipo_habitacion, double precio_habitacion, String descripcion) {
         this.k_tipo_habitacion = k_tipo_habitacion;
         this.precio_habitacion = precio_habitacion;
         this.descripcion = descripcion;
@@ -18,11 +18,11 @@ public class Tipo {
 
     public Tipo(){};
 
-    public int getK_tipo_habitacion() {
+    public String getK_tipo_habitacion() {
         return k_tipo_habitacion;
     }
 
-    public void setK_tipo_habitacion(int k_tipo_habitacion) {
+    public void setK_tipo_habitacion(String k_tipo_habitacion) {
         this.k_tipo_habitacion = k_tipo_habitacion;
     }
 

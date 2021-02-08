@@ -28,7 +28,7 @@ public class DAO_Persona {
             }
         }
         catch (SQLException exception){
-            System.out.println(exception);
+            System.out.println(exception + " En Persona");
         }
         return null;
     }

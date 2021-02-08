@@ -32,21 +32,14 @@ public class ReservasList {
 
             Reserva reserva;
             while (resultSet.next()) {
-
-                reserva = new Reserva();
-                reserva.setK_reserva(resultSet.getInt(1));
-                reserva.setEstado(resultSet.getString(2));
-                reserva.setF_inicio(resultSet.getDate(3));
-                reserva.setF_reserva(resultSet.getDate(4));
-                reserva.setF_final(resultSet.getDate(5));
-                reserva.setCantidad_adultos(resultSet.getInt(6));
-                reserva.setPrecio_reserva(resultSet.getDouble(7));
-
                 DAO_CondicionHotel condicion_hotel = new DAO_CondicionHotel();
-                reserva.setCondicion(condicion_hotel.consultarCondicion(resultSet.getInt(10)));
 
                 DAO_Persona persona = new DAO_Persona();
-                reserva.setPersona(persona.consultarPersona(resultSet.getInt(11),resultSet.getString(12)));
+
+                reserva = new Reserva(resultSet.getInt(1),resultSet.getString(2),
+                resultSet.getDate(3),resultSet.getDate(4),resultSet.getDate(5),
+                resultSet.getInt(6), resultSet.getInt(7),resultSet.getInt(8),resultSet.getDouble(9),
+                condicion_hotel.consultarCondicion(resultSet.getInt(10)),persona.consultarPersona(resultSet.getInt(11),resultSet.getString(12)));
 
                 reservaList.add(reserva);
             }

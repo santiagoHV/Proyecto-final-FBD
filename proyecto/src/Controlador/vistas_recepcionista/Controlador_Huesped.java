@@ -1,10 +1,23 @@
 package Controlador.vistas_recepcionista;
 
+import DatosSQL.DAOs.DAO_Habitacion;
+import DatosSQL.DAOs.DAO_Registro;
 import Modelo.entidades.Huesped;
+import Modelo.entidades.Registro;
+import com.jfoenix.controls.JFXComboBox;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
-public class Controlador_Huesped
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ResourceBundle;
+
+public class Controlador_Huesped implements Initializable
 {
 
     public Label LBnom_completo;
@@ -13,14 +26,41 @@ public class Controlador_Huesped
     public Label LBDireccion;
     public Label LBTelefono;
     public AnchorPane AnchorBG;
+    public JFXComboBox comboHabitacion;
 
     public void setValoresPanel(Huesped huesped)
     {
         LBnom_completo.setText(huesped.getN_nombre() + " " + huesped.getN_apellido());
         LBnum_id.setText(huesped.getK_identificacion()+"");
-        LBedad.setText(huesped.getF_nacimiento().toString());
+        Period period = Period.between(huesped.getF_nacimiento().toLocalDate(), LocalDate.now());
+        LBedad.setText(period.getYears()+"");
         LBDireccion.setText(huesped.getN_direccion());
         LBTelefono.setText(huesped.getN_telefono());
+
+        Task<Registro> registroTask = new Task<Registro>() {
+            @Override
+            protected Registro call() throws Exception {
+                return new DAO_Registro().consultarRegistroPorHuesped(huesped.getK_identificacion(),huesped.getK_tipo_documento_id());
+            }
+        };
+
+        registroTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent workerStateEvent) {
+                Registro registro =registroTask.getValue();
+                if(registro!=null)
+                {
+                    comboHabitacion.setValue(registro.getHabitacion().getK_numero_habitacion());
+                }
+                else
+                {
+                    comboHabitacion.setValue("No registrado");
+                }
+            }
+        });
+
+        Thread consultaRegistro = new Thread(registroTask);
+        consultaRegistro.start();
     }
 
     public void setValoresTemporales(String tipo)
@@ -43,5 +83,10 @@ public class Controlador_Huesped
         {
             AnchorBG.getStyleClass().add("CardAdultos");
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.ComboBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -59,12 +59,12 @@
             <Font name="MAXWELL REGULAR" size="19.0" />
          </font>
       </Label>
-      <ComboBox layoutX="187.0" layoutY="109.0" prefHeight="25.0" prefWidth="87.0" />
       <VBox layoutX="360.0" prefHeight="144.0" prefWidth="123.0" spacing="15.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="7.0">
          <children>
             <JFXButton mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: black; -fx-border-radius: 5;" text="Cambiar" />
             <JFXButton mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: black; -fx-border-radius: 5;" text="Dar ingreso" />
          </children>
       </VBox>
+      <JFXComboBox fx:id="comboHabitacion" focusColor="#510503" layoutX="183.0" layoutY="110.0" prefHeight="22.0" prefWidth="104.0" />
    </children>
 </AnchorPane>

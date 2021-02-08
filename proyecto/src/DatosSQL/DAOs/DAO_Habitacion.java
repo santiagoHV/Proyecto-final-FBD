@@ -16,12 +16,12 @@ public class DAO_Habitacion {
             resultSet.next();
 
             Habitacion habitacion = new Habitacion(resultSet.getInt(1),
-                    new DAO_Tipo().consultarTipoHab(resultSet.getInt(2)));
+                    new DAO_Tipo().consultarTipoHab(resultSet.getString(2)));
 
             return habitacion;
 
         }catch (SQLException ex){
-            System.out.println(ex);
+            System.out.println(ex + "En Habitación");
         }
         return null;
     }

@@ -25,7 +25,7 @@ public class DAO_Reserva {
             return reserva;
 
         }catch (SQLException ex){
-            System.out.println(ex);
+            System.out.println(ex + "En Reserva");
         }
         return null;
     }
