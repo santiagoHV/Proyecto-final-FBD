@@ -38,3 +38,11 @@
 .button:hover{
     -fx-background-color: #393e46;
 }
+.title-hotel{
+    -fx-background-color: #222831;
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+}

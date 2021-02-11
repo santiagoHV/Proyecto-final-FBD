@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -33,14 +39,57 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="154.0" prefWidth="216.0" styleClass="button__gym" text="Gimnasio">
+                  <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="154.0" prefWidth="180.0" styleClass="button__gym" text="Gimnasio">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
                </children>
             </VBox>
-            <AnchorPane layoutX="172.0" layoutY="-1.0" prefHeight="768.0" prefWidth="904.0" />
+            <AnchorPane layoutX="172.0" layoutY="-1.0" prefHeight="768.0" prefWidth="904.0">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="87.0" prefWidth="904.0" styleClass="title-hotel" text="SALDARRIAGA MAHAL" textFill="WHITE">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                        <TableView layoutX="14.0" layoutY="135.0" prefHeight="538.0" prefWidth="876.0">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="C1" />
+                              <TableColumn prefWidth="75.0" text="C2" />
+                           </columns>
+                        </TableView>
+                        <HBox alignment="CENTER" layoutX="14.0" layoutY="680.0" prefHeight="74.0" prefWidth="876.0" spacing="30.0">
+                           <children>
+                              <JFXButton text="Añadir producto">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton text="Eliminar Producto">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton text="Aumentar Stock">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton text="Editar precio de venta">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                        <ProgressIndicator layoutX="427.0" layoutY="89.0" prefHeight="46.0" prefWidth="51.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
