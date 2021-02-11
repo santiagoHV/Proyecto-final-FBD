@@ -1,12 +1,12 @@
 package DatosSQL.DAOs;
 
 import DatosSQL.Operaciones;
-import Modelo.entidades.Condicion_Hotel;
-import Modelo.entidades.Persona;
-import Modelo.entidades.Reserva;
+import Modelo.entidades.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DAO_Reserva {
     Operaciones op;
@@ -40,5 +40,28 @@ public class DAO_Reserva {
         ResultSet resultSet = op.ConsultaEsp("SELECT MAX(k_reserva) FROM reserva");
         resultSet.next();
         return resultSet.getInt(1);
+    }
+
+    public List<Reserva_Habitacion> consultarReservaHabPorIdReserva(int ID)
+    {
+        try {
+            List<Reserva_Habitacion> reserva_habitacions = new ArrayList<>();
+            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Reserva_Habitacion WHERE k_reserva = "+ID+"");
+            Reserva_Habitacion reserva_habitacion;
+
+            DAO_Habitacion dao_habitacion = new DAO_Habitacion();
+
+            while(resultSet.next())
+            {
+                reserva_habitacion = new Reserva_Habitacion(consultarReserva(resultSet.getInt(1)), dao_habitacion.consultarHabitacion(resultSet.getInt(2)));
+                reserva_habitacions.add(reserva_habitacion);
+            }
+
+            return reserva_habitacions;
+
+        }catch (SQLException ex){
+            System.out.println(ex + "En Reserva");
+        }
+        return null;
     }
 }
