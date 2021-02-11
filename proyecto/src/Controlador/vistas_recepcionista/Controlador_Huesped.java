@@ -39,7 +39,6 @@ public class Controlador_Huesped implements Initializable
         LBTelefono.setText(huesped.getN_telefono());
         LB_TipoDoc.setText(huesped.getK_tipo_documento_id()+":");
 
-
         Task<Registro> registroTask = new Task<Registro>() {
             @Override
             protected Registro call() throws Exception {
@@ -53,12 +52,14 @@ public class Controlador_Huesped implements Initializable
                 Registro registro =registroTask.getValue();
                 if(registro!=null)
                 {
-                    comboHabitacion.setValue(registro.getHabitacion().getK_numero_habitacion());
+                    comboHabitacion.getItems().add(registro.getHabitacion().getK_numero_habitacion());
+
                 }
                 else
                 {
-                    comboHabitacion.setValue("No registrado");
+                    comboHabitacion.getItems().add("No Registrado");
                 }
+                comboHabitacion.setValue(comboHabitacion.getItems().get(0));
             }
         });
 

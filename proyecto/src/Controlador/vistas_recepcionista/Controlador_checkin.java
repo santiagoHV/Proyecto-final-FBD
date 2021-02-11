@@ -166,8 +166,11 @@ public class Controlador_checkin implements Initializable {
     }
 
     public void ClickBuscar(ActionEvent actionEvent) {
-        progressConCheck.setVisible(true);
-        DefinirPanelDatosHuespedes();
+        if(!codigo_reserva.getText().equals(""))
+        {
+            progressConCheck.setVisible(true);
+            DefinirPanelDatosHuespedes();
+        }
     }
 
 //    public void DefinirBotonesHabitacion()
