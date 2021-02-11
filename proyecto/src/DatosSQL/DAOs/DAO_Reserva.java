@@ -9,9 +9,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DAO_Reserva {
+    Operaciones op;
+
+    public DAO_Reserva(){
+        op = new Operaciones();
+    }
 
     public Reserva consultarReserva(int ID){
-        Operaciones op = new Operaciones();
+
         try {
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Reserva WHERE k_reserva = "+ID+"");
             resultSet.next();
@@ -28,5 +33,12 @@ public class DAO_Reserva {
             System.out.println(ex + "En Reserva");
         }
         return null;
+    }
+
+    public int consultarUltimoCodigo() throws SQLException {
+
+        ResultSet resultSet = op.ConsultaEsp("SELECT MAX(k_reserva) FROM reserva");
+        resultSet.next();
+        return resultSet.getInt(1);
     }
 }
