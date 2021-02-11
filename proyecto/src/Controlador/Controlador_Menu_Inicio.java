@@ -117,7 +117,9 @@ public class Controlador_Menu_Inicio implements Initializable
         if (actionEvent.getSource() == BRecep) {
             parent = FXMLLoader.load(getClass().getResource("../Vista/ingreso/Login.fxml"));
         }else if (actionEvent.getSource() == BEmple) {
-            parent = FXMLLoader.load(getClass().getResource("../Vista/ingreso/ELogin.fxml"));
+            parent = FXMLLoader.load(getClass().getResource("../Vista/ingreso/Login.fxml"));
+        }else if (actionEvent.getSource().equals(BAdmin)){
+            parent = FXMLLoader.load(getClass().getResource("../Vista/ingreso/Login.fxml"));
         }
         //Creación del Dialog usando el Parent como Region (cast) para poder personalizarlo:
         JFXDialog dialog = new JFXDialog(stackPane1, (Region) parent, JFXDialog.DialogTransition.BOTTOM, true);
