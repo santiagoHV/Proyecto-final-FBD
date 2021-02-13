@@ -318,8 +318,8 @@
                </font>
             </Label>
             <Button fx:id="btn_nueva_reserva" layoutX="379.0" layoutY="119.0" mnemonicParsing="false" onAction="#click" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="NUEVA RESERVA" />
-            <TextField fx:id="codigo_reserva" layoutX="31.0" layoutY="202.0" prefHeight="25.0" prefWidth="183.0" />
-            <Label layoutX="31.0" layoutY="176.0" text="Código de reserva:">
+            <TextField fx:id="codigo_reserva" layoutX="31.0" layoutY="202.0" prefHeight="25.0" prefWidth="183.0" styleClass="textbox_buscar" />
+            <Label layoutX="31.0" layoutY="169.0" text="Código de reserva:">
                <font>
                   <Font name="MAXWELL REGULAR" size="25.0" />
                </font>
@@ -349,7 +349,7 @@
                   <Spinner fx:id="cantidad_adultos" layoutX="316.0" layoutY="59.0" prefHeight="25.0" prefWidth="67.0" />
                   <Label layoutX="414.0" layoutY="43.0" text="Niños( 2-12 años)" />
                   <Spinner fx:id="cantidad_niños" layoutX="414.0" layoutY="59.0" prefHeight="25.0" prefWidth="67.0" />
-                  <Button fx:id="btn_verificar_fechas" layoutX="416.0" layoutY="111.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" prefHeight="34.0" prefWidth="100.0" text="Verificar" />
+                  <Button fx:id="btn_verificar_fechas" alignment="CENTER" contentDisplay="CENTER" layoutX="416.0" layoutY="111.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" prefHeight="34.0" prefWidth="100.0" text="Verificar" textAlignment="CENTER" />
                </children>
                <padding>
                   <Insets top="15.0" />
@@ -442,7 +442,7 @@
                   </Label>
                </children>
             </Pane>
-            <Button fx:id="btn_buscar_reserva" layoutX="213.0" layoutY="202.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Buscar_Reserva_Por_ID" prefHeight="24.0" prefWidth="33.0" style="-fx-border-radius: 0;" styleClass="button_buscar" />
+            <Button fx:id="btn_buscar_reserva" layoutX="213.0" layoutY="202.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Buscar_Reserva_Por_ID" prefHeight="24.0" prefWidth="33.0" styleClass="button_buscar" />
             <MFXProgressSpinner fx:id="progressIndReserva" layoutX="254.0" layoutY="201.0" prefHeight="26.0" prefWidth="25.0" />
          </children>
          <stylesheets>

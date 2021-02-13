@@ -1,10 +1,7 @@
 package Controlador.vistas_recepcionista;
 
 import DatosSQL.DAOs.DAO_Reserva;
-import Modelo.entidades.Habitacion;
-import Modelo.entidades.Huesped;
-import Modelo.entidades.Persona;
-import Modelo.entidades.Reserva;
+import Modelo.entidades.*;
 import Vista.Main;
 import com.jfoenix.controls.JFXScrollPane;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
@@ -25,6 +22,8 @@ import javafx.scene.layout.Region;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -44,6 +43,14 @@ public class Controlador_checkin implements Initializable {
     public Label datos_tel;
     public Label datos_edad;
     public Label datos_direccion;
+    public Label datos_hab_sencillas;
+    public Label datos_hab_dobles;
+    public Label datos_hab_triples;
+    public Label datos_f_inicio;
+    public Label datos_f_fin;
+    public Label datos_q_bebes;
+    public Label datos_q_ninos;
+    public Label datos_q_adultos;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -82,28 +89,106 @@ public class Controlador_checkin implements Initializable {
 
         final int codReservaFinal = codReserva;
 
-        Task<Reserva> taskConReserva = new Task<Reserva>() {
+
+        Task<List<Reserva_Habitacion>> taskConReservaHabi = new Task<List<Reserva_Habitacion>>() {
             @Override
-            protected Reserva call() throws Exception {
-                return dao_reserva.consultarReserva(codReservaFinal);
+            protected List<Reserva_Habitacion> call() throws Exception {
+                return dao_reserva.consultarReservaHabPorIdReserva(codReservaFinal);
             }
         };
 
-        taskConReserva.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+        taskConReservaHabi.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent workerStateEvent) {
 
                 GridPanel_Huespedes.getChildren().clear();
 
-                Reserva reserva = taskConReserva.getValue();
+                Reserva reserva = taskConReservaHabi.getValue().get(0).getReserva();
 
                 //Definición de los datos del titular:
                 datos_no_i.setText(reserva.getPersona().getK_identificacion()+"");
                 datos_nombre.setText(reserva.getPersona().getN_nombre() + " " +reserva.getPersona().getN_apellido());
                 datos_tel.setText(reserva.getPersona().getN_telefono());
+                datos_ti.setText(reserva.getPersona().getK_tipo_documento_id()+":");
+
+                Period period = Period.between(reserva.getPersona().getF_nacimiento().toLocalDate(), LocalDate.now());
+                datos_edad.setText(period.getYears() + " Años");
+
+                datos_hab_sencillas.setText("");
+                datos_hab_dobles.setText("");
+                datos_hab_triples.setText("");
+
+                datos_q_bebes.setText(reserva.getCantidad_bebes()+"");
+                datos_q_ninos.setText(reserva.getCantidad_ninos()+"");
+                datos_q_adultos.setText(reserva.getCantidad_adultos()+"");
+
+                datos_f_inicio.setText(reserva.getF_inicio()+"");
+                datos_f_fin.setText(reserva.getF_final()+"");
+
+                List<Habitacion> habitacionList = new ArrayList<>();
+
+                //Definición datos de la reserva:
+                for(int i = 0; i<taskConReservaHabi.getValue().size();i++)
+                {
+                    System.out.println(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion());
+                    if(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion().equals("1"))
+                    {
+                        //Habitaciones sencillas:
+                        if(datos_hab_sencillas.getText().equals(""))
+                        {
+                            datos_hab_sencillas.setText(taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion()+"");
+                        }
+                        else
+                        {
+                            datos_hab_sencillas.setText(datos_hab_sencillas.getText() + ", " + taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion());
+                        }
+                    }
+
+                    if(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion().equals("2"))
+                    {
+                        //Habitaciones dobles:
+                        if(datos_hab_dobles.getText().equals(""))
+                        {
+                            datos_hab_dobles.setText(taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion()+"");
+                        }
+                        else
+                        {
+                            datos_hab_dobles.setText(datos_hab_dobles.getText() + ", " + taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion());
+                        }
+                    }
+
+                    if(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion().equals("3"))
+                    {
+                        //Habitaciones triples:
+                        if(datos_hab_triples.getText().equals(""))
+                        {
+                            datos_hab_triples.setText(taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion()+"");
+                        }
+                        else
+                        {
+                            datos_hab_triples.setText(datos_hab_triples.getText() + ", " + taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion());
+                        }
+                    }
+                    habitacionList.add(taskConReservaHabi.getValue().get(i).getHabitacion());
+                }
+
+                if(datos_hab_sencillas.getText().equals(""))
+                {
+                    datos_hab_sencillas.setText("Ninguna Reservada");
+                }
+                if(datos_hab_dobles.getText().equals(""))
+                {
+                    datos_hab_dobles.setText("Ninguna Reservada");
+                }
+                if(datos_hab_triples.getText().equals(""))
+                {
+                    datos_hab_triples.setText("Ninguna Reservada");
+                }
 
                 int column = 0;
                 int row = 0;
+
+                DefinirBotonesHabitacion(habitacionList);
 
                 try
                 {
@@ -161,52 +246,53 @@ public class Controlador_checkin implements Initializable {
                 }
             }
         });
-        Thread threadReserva = new Thread(taskConReserva);
+        Thread threadReserva = new Thread(taskConReservaHabi);
         threadReserva.start();
     }
 
     public void ClickBuscar(ActionEvent actionEvent) {
-        progressConCheck.setVisible(true);
-        DefinirPanelDatosHuespedes();
+        if(!codigo_reserva.getText().equals(""))
+        {
+            progressConCheck.setVisible(true);
+            DefinirPanelDatosHuespedes();
+        }
     }
 
-//    public void DefinirBotonesHabitacion()
-//    {
-//        List<Habitacion> Habitaciones = ConsultarHabitacion();
-//
-//        int column = 0;
-//        int row = 0;
-//        try
-//        {
-//            for(int i=0; i<8;i++) {
-//                //Carga de las plantillas para los botones de las habitaciones:
-//                FXMLLoader loader = new FXMLLoader();
-//                loader.setLocation(Main.class.getResource("../Vista/recepcionista/Boton_Habitaciones.fxml"));
-//
-//                //Definición de los anchorpane:
-//                //Para los botones:
-//                AnchorPane PanelHabitaciones = loader.load();
-//
-//                Controlador_Boton_Habitaciones controlador_boton_habitaciones = loader.getController();
-//                controlador_boton_habitaciones.DefinirHabitacion(Habitaciones.get(i));
-//
-//                column++;
-//                GridPanel_Btn_Habitaciones.add(PanelHabitaciones,column,row);
-//                GridPane.setMargin(PanelHabitaciones,new Insets(7));
-//
-//                //Alto y Ancho:
-//                //Ancho:
-//                GridPanel_Btn_Habitaciones.setMaxWidth(Region.USE_COMPUTED_SIZE);
-//                GridPanel_Btn_Habitaciones.setPrefWidth(Region.USE_COMPUTED_SIZE);
-//                GridPanel_Btn_Habitaciones.setMinWidth(Region.USE_COMPUTED_SIZE);
-//
-//                //Alto:
-//                GridPanel_Btn_Habitaciones.setMaxHeight(Region.USE_COMPUTED_SIZE);
-//                GridPanel_Btn_Habitaciones.setPrefHeight(Region.USE_COMPUTED_SIZE);
-//                GridPanel_Btn_Habitaciones.setMinHeight(Region.USE_COMPUTED_SIZE);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void DefinirBotonesHabitacion(List<Habitacion> Habitaciones)
+    {
+        int column = 0;
+        int row = 0;
+        try
+        {
+            for(int i=0; i<Habitaciones.size();i++) {
+                //Carga de las plantillas para los botones de las habitaciones:
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(Main.class.getResource("../Vista/recepcionista/Boton_Habitaciones.fxml"));
+
+                //Definición de los anchorpane:
+                //Para los botones:
+                AnchorPane PanelHabitaciones = loader.load();
+
+                Controlador_Boton_Habitaciones controlador_boton_habitaciones = loader.getController();
+                controlador_boton_habitaciones.DefinirHabitacion(Habitaciones.get(i));
+
+                column++;
+                GridPanel_Btn_Habitaciones.add(PanelHabitaciones,column,row);
+                GridPane.setMargin(PanelHabitaciones,new Insets(7));
+
+                //Alto y Ancho:
+                //Ancho:
+                GridPanel_Btn_Habitaciones.setMaxWidth(Region.USE_COMPUTED_SIZE);
+                GridPanel_Btn_Habitaciones.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                GridPanel_Btn_Habitaciones.setMinWidth(Region.USE_COMPUTED_SIZE);
+
+                //Alto:
+                GridPanel_Btn_Habitaciones.setMaxHeight(Region.USE_COMPUTED_SIZE);
+                GridPanel_Btn_Habitaciones.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                GridPanel_Btn_Habitaciones.setMinHeight(Region.USE_COMPUTED_SIZE);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

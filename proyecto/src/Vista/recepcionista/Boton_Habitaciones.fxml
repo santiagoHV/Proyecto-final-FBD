@@ -3,8 +3,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 5; -fx-border-radius: 5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_Boton_Habitaciones">
    <children>
-      <Button fx:id="Btn_Habitacion" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" text="202" />
+      <JFXButton fx:id="Btn_Habitacion" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" text="202" />
    </children>
 </AnchorPane>

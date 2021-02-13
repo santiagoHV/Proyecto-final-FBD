@@ -34,11 +34,10 @@
                   <Font name="MAXWELL REGULAR" size="25.0" />
                </font>
             </Label>
-            <TextField fx:id="codigo_reserva" layoutX="36.0" layoutY="236.0" prefHeight="25.0" prefWidth="183.0" />
             <Separator layoutX="527.0" layoutY="135.0" orientation="VERTICAL" prefHeight="615.0" prefWidth="6.0" />
             <Pane fx:id="panel_datos" accessibleRole="SCROLL_BAR" layoutX="36.0" layoutY="283.0" prefHeight="465.0" prefWidth="480.0" style="-fx-border-color: black; -fx-border-radius: 10; -fx-background-color: white;">
                <children>
-                  <Label layoutX="104.0" layoutY="14.0" style="-fx-font-weight: 500;" text="Datos del títular de reserva">
+                  <Label layoutX="124.0" layoutY="14.0" style="-fx-font-weight: 500;" text="Datos del títular de reserva">
                      <font>
                         <Font name="MAXWELL REGULAR" size="22.0" />
                      </font>
@@ -48,12 +47,12 @@
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="datos_ti" layoutX="273.0" layoutY="50.0" prefHeight="24.0" prefWidth="210.0" text="TI:">
+                  <Label fx:id="datos_ti" layoutX="273.0" layoutY="50.0" prefHeight="24.0" prefWidth="21.0" text="TI:">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="datos_no_i" layoutX="296.0" layoutY="50.0" prefHeight="24.0" prefWidth="210.0" text="1000000">
+                  <Label fx:id="datos_no_i" layoutX="296.0" layoutY="50.0" prefHeight="24.0" prefWidth="105.0" text="1000000">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
@@ -74,16 +73,6 @@
                      </font>
                   </Label>
                   <Label fx:id="datos_edad" layoutX="314.0" layoutY="80.0" prefHeight="24.0" prefWidth="135.0" text="25 años">
-                     <font>
-                        <Font name="MAXWELL REGULAR" size="19.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="25.0" layoutY="115.0" prefHeight="24.0" prefWidth="66.0" text="Dirección:">
-                     <font>
-                        <Font name="MAXWELL REGULAR" size="19.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="datos_direccion" layoutX="95.0" layoutY="115.0" prefHeight="24.0" prefWidth="279.0" text="ciudad, direccion">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
@@ -135,7 +124,7 @@
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="263.0" prefHeight="24.0" prefWidth="149.0" text="Habitaciones dobles">
+                  <Label layoutX="14.0" layoutY="263.0" prefHeight="24.0" prefWidth="149.0" text="Habitaciones dobles:">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
@@ -145,7 +134,7 @@
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="308.0" prefHeight="24.0" prefWidth="149.0" text="Habitaciones triples">
+                  <Label layoutX="14.0" layoutY="308.0" prefHeight="24.0" prefWidth="149.0" text="Habitaciones triples:">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
@@ -177,7 +166,7 @@
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <CheckBox layoutX="25.0" layoutY="145.0" mnemonicParsing="false" text="Ingresa como huesped">
+                  <CheckBox layoutX="21.0" layoutY="124.0" mnemonicParsing="false" text="Ingresa como huesped">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
@@ -202,7 +191,6 @@
                   </ScrollPane>
                </children>
             </VBox>
-            <Button fx:id="btn_buscar" layoutX="312.0" layoutY="228.0" mnemonicParsing="false" onAction="#ClickBuscar" prefHeight="41.0" prefWidth="204.0" styleClass="button-basic" text="Buscar..." />
             <VBox layoutX="543.0" layoutY="609.0" prefHeight="143.0" prefWidth="513.0" spacing="11.0">
                <children>
                   <Label text="Entrega de habitaciones">
@@ -221,8 +209,10 @@
                   </ScrollPane>
                </children>
             </VBox>
-            <Button fx:id="btn_buscar1" layoutX="312.0" layoutY="132.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" styleClass="button-basic" text="FINALIZAR" />
-            <MFXProgressSpinner fx:id="progressConCheck" layoutX="232.0" layoutY="236.0" prefHeight="26.0" prefWidth="27.0" visible="false" />
+            <Button fx:id="btn_buscar1" layoutX="312.0" layoutY="229.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" styleClass="button-basic" text="FINALIZAR" />
+            <MFXProgressSpinner fx:id="progressConCheck" layoutX="262.0" layoutY="236.0" prefHeight="26.0" prefWidth="27.0" visible="false" />
+            <TextField fx:id="codigo_reserva" layoutX="36.0" layoutY="237.0" prefHeight="25.0" prefWidth="183.0" styleClass="textbox_buscar" />
+            <Button fx:id="btn_buscar" layoutX="219.0" layoutY="237.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ClickBuscar" prefHeight="24.0" prefWidth="33.0" styleClass="button_buscar" />
          </children>
       </AnchorPane>
    </children>
