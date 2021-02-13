@@ -3,6 +3,7 @@ package Controlador.vistas_recepcionista;
 import DatosSQL.DAOs.DAO_Habitacion;
 import DatosSQL.DAOs.DAO_Reserva;
 import DatosSQL.DAOs.DAO_Tipo;
+import Modelo.entidades.Habitacion;
 import Modelo.entidades.Persona;
 import Modelo.entidades.Reserva;
 import Modelo.entidades.Tipo;
@@ -40,6 +41,8 @@ import java.util.ResourceBundle;
 public class Controlador_reserva implements Initializable {
 
     int CAPACIDAD_MAXIMA = 120;
+    private double xOffset = 0;
+    private double yOffset = 0;
 
     //General
     public AnchorPane content;
@@ -76,29 +79,29 @@ public class Controlador_reserva implements Initializable {
     public TabPane TabPanePisos;
     public Label lblCodigoDeReserva;
 
-    public Persona titularDeReserva;
-    public ArrayList<String> listaNombresHabitaciones = new ArrayList<String>();
     public ArrayList<Tipo> tipos;
 
+    //Datos escenciales de reserva
+    public Persona titularDeReserva;
+    public ArrayList<Habitacion> listaHabitaciones = new ArrayList<Habitacion>();
 
-    private double xOffset = 0;
-    private double yOffset = 0;
+    public ArrayList<String> listaNombresHabitaciones = new ArrayList<String>();
+
+
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         progressIndReserva.setVisible(false);
 
-
-
-
-        ////bloqueos iniciales///
         bloquearTodo();
         this.cantidad_adultos.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,120));
         this.cantidad_niños.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,120));
         this.cantidad_bebes.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,50));
 
-
     }
+
     public void click(ActionEvent actionEvent) {
 
         if(actionEvent.getSource().equals(btn_nueva_reserva)){
@@ -129,6 +132,7 @@ public class Controlador_reserva implements Initializable {
             threadTipos.start();
 
         }else if(actionEvent.getSource().equals(btn_verificar_fechas)){
+
             LocalDate fechaInicio = fecha_ingreso.getValue();
             LocalDate fechaFinal = fecha_salida.getValue();
             int huespedesBebes = (int) cantidad_bebes.getValue();
@@ -154,16 +158,16 @@ public class Controlador_reserva implements Initializable {
                 habitacionesTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
                     @Override
                     public void handle(WorkerStateEvent workerStateEvent) {
+
                         mostrarHabitacionesOcupadas(habitacionesTask.getValue());
                         progressIndReserva.setVisible(false);
                         TabPanePisos.setDisable(false);
+                        total_personas.setText(String.valueOf(huespedesAdultos+huespedesNinos) + " (Sin contar bebés)");
                     }
                 });
                 threadConsultaHabitaciones.start();
 
             }
-
-
 
         }else if(actionEvent.getSource().equals(btn_hacer_reserva)){
 
@@ -220,13 +224,14 @@ public class Controlador_reserva implements Initializable {
 
             for (Node n : NodosAnchorTab) {
                 Button BotonConvertido = (Button) n;
+                BotonConvertido.getStyleClass().add("");
 
                 for(int habitacion: habitacionesOcupadas){
+
                     if(BotonConvertido.getId().equals(String.valueOf(habitacion))){
-                        BotonConvertido.getStyleClass().add("map-red");
+                        BotonConvertido.getStyleClass().set(3,"map-red");
                         BotonConvertido.setDisable(true);
-                    }else{
-                        BotonConvertido.getStyleClass().add("");
+
                     }
                 }
                 try {
@@ -248,6 +253,7 @@ public class Controlador_reserva implements Initializable {
             }
         }
     }
+
     public void EvSelecHabi(ActionEvent actionEvent) throws IOException, SQLException {
 
         Node boton = (Node) actionEvent.getSource();
@@ -257,40 +263,12 @@ public class Controlador_reserva implements Initializable {
             listaNombresHabitaciones.add(boton.getId());
             actualizarDatosDeReserva();
 
-        }
-        else {
+        } else {
             boton.getStyleClass().set(3, "");
             listaNombresHabitaciones.remove(boton.getId());
             actualizarDatosDeReserva();
         }
 
-    }
-
-    private void makeStageDragable() {
-        //obtiene posicion de click
-        content.setOnMousePressed((mouseEvent ->
-        {
-            xOffset = mouseEvent.getSceneX();
-            yOffset = mouseEvent.getSceneY();
-        }));
-
-        content.setOnMouseDragged((mouseEvent ->
-        {
-            Main.stage.setX(mouseEvent.getScreenX()-xOffset);
-            Main.stage.setY(mouseEvent.getScreenY()-yOffset);
-
-            Main.stage.setOpacity(0.8);
-        }));
-
-        content.setOnDragDone((dragEvent ->
-        {
-            Main.stage.setOpacity(1);
-        }));
-
-        content.setOnMouseReleased(mouseEvent ->
-        {
-            Main.stage.setOpacity(1);
-        });
     }
 
     /**
@@ -309,12 +287,16 @@ public class Controlador_reserva implements Initializable {
         Button BSalirDialog = (Button)HB.getChildrenUnmodifiable().get(1);
         Button btnCargarDatos = (Button)HB.getChildrenUnmodifiable().get(0);
 
+        Controlador_datos_ingreso controlador_datos_ingreso = loader.getController();
+        controlador_datos_ingreso.direccion_in.setDisable(true);
+
         btnCargarDatos.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent) ->{
             CheckBox checkNuevo = (CheckBox) dialog.lookup("#checkNuevo");
-            Controlador_datos_ingreso controlador_datos_ingreso = loader.getController();
+
 
             if(checkNuevo.isSelected()){
                 titularDeReserva = controlador_datos_ingreso.solicitarPersona(true);
+                //CREAR PERSONA
             }else{
                 titularDeReserva = controlador_datos_ingreso.solicitarPersona(false);
             }
@@ -336,6 +318,7 @@ public class Controlador_reserva implements Initializable {
         content.setEffect(blur);
         dialog.show();
     }
+
     public void actualizarDatosDeReserva() throws SQLException {
         habitaciones_separadas.setText("");
         for(String habitacion: listaNombresHabitaciones){
@@ -349,6 +332,7 @@ public class Controlador_reserva implements Initializable {
 
         }
     }
+
     /**
      * Ejecuta una consulta a una reserva existente segun su ID
      * @param actionEvent

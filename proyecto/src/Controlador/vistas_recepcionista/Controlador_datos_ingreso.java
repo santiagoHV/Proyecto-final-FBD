@@ -17,6 +17,7 @@ import javafx.scene.layout.StackPane;
 
 import java.net.URL;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ResourceBundle;
@@ -87,7 +88,7 @@ public class Controlador_datos_ingreso implements Initializable {
      * busca una persona o huesped en el panel de busqueda
      * @param actionEvent
      */
-    public void buscarUsuario(ActionEvent actionEvent){
+    public void buscarUsuario(ActionEvent actionEvent) throws SQLException {
         if(srch_tipo_documento_in.getValue() != null && !srch_no_documento_in.getText().equals("")){
             if(validarNoDocumento(srch_no_documento_in.getText())){
                 progressIndicatorUser.setVisible(true);

@@ -1,5 +1,7 @@
 package Vista;
 
+import DatosSQL.DAOs.DAO_Habitacion;
+import Modelo.entidades.Habitacion;
 import animatefx.animation.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -42,5 +44,6 @@ public class Main extends Application {
         //new BounceInDown(ventana).play();
 
         new Pulse(ventana).play();
+
     }
 }
