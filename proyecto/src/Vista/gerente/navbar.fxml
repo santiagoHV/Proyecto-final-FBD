@@ -15,7 +15,7 @@
             <AnchorPane fx:id="router" layoutX="126.0" prefHeight="768.0" prefWidth="1074.0" />
             <VBox prefHeight="768.0" prefWidth="125.0">
                <children>
-                  <Button fx:id="button_home" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="390.0" prefWidth="125.0" text="Home" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="button_home" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="128.0" prefWidth="125.0" text="Home" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -27,7 +27,16 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="button_users" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="425.0" prefWidth="125.0" text="Usuarios" textFill="WHITE">
+                  <Button fx:id="button_hotel" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="128.0" prefWidth="125.0" text="Hotel" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="navbar__button" />
+                        <String fx:value="navbar__button--hotel" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="button_users" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="128.0" prefWidth="125.0" text="Usuarios" textFill="WHITE">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -39,7 +48,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="button_rooms" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="428.0" prefWidth="125.0" text="Habitaciones" textFill="WHITE">
+                  <Button fx:id="button_rooms" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="128.0" prefWidth="125.0" text="Habitaciones" textFill="WHITE">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -51,7 +60,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="products" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="430.0" prefWidth="125.0" text="Productos" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="products" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="128.0" prefWidth="125.0" text="Productos" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -63,7 +72,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="button_close" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#out" prefHeight="403.0" prefWidth="125.0" text="Salir" textFill="WHITE">
+                  <Button fx:id="button_close" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#out" prefHeight="128.0" prefWidth="125.0" text="Salir" textFill="WHITE">
                      <styleClass>
                         <String fx:value="navbar__button" />
                         <String fx:value="navbar__button--out" />

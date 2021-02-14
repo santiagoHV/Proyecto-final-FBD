@@ -3,41 +3,50 @@
 }
 .navbar__button:hover{
     -fx-background-color: #402828;
+    -fx-font: 17px;
 }
 .button{
     -fx-font-family: "MAXWELL REGULAR";
 }
 .navbar__button--home {
-    -fx-font-size: 20px;
-    -fx-background-size: 85%;
+    -fx-font-size: 17px;
+    -fx-background-size: 75%;
     -fx-background-image: url("../images/money.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
 .navbar__button--usuarios {
-    -fx-font-size: 20px;
-    -fx-background-size: 85%;
+    -fx-font-size: 17px;
+    -fx-background-size: 70%;
     -fx-background-image: url("../images/Usuario.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
 .navbar__button--habitaciones {
-    -fx-font-size: 20px;
-    -fx-background-size: 85%;
+    -fx-font-size: 17px;
+    -fx-background-size: 75%;
     -fx-background-image: url("../images/Key.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
 .navbar__button--productos{
-    -fx-font-size: 20px;
-    -fx-background-size: 90%;
+    -fx-font-size: 17px;
+    -fx-background-size: 80%;
     -fx-background-image: url("../images/hamburguer.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
 .navbar__button--out{
-    -fx-background-size: 70%;
+    -fx-font-size: 17px;
+    -fx-background-size: 55%;
     -fx-background-image: url("../images/Out_Icon.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.navbar__button--hotel{
+    -fx-font-size: 17px;
+    -fx-background-size: 60%;
+    -fx-background-image: url("../images/hotel.png");
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
 }
