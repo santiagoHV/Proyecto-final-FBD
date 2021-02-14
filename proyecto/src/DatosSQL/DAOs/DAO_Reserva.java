@@ -1,8 +1,10 @@
 package DatosSQL.DAOs;
 
+import DatosSQL.Conexion;
 import DatosSQL.Operaciones;
 import Modelo.entidades.*;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -63,5 +65,41 @@ public class DAO_Reserva {
             System.out.println(ex + "En Reserva");
         }
         return null;
+    }
+
+    public void insertarReserva(Reserva reserva){
+        try {
+            PreparedStatement preparedStatement = Conexion.getInstance().getConnection().prepareStatement(
+                    "INSERT INTO reserva VALUES(?,?,?,?,?,?,?,?,?,?,?,?);");
+
+            preparedStatement.setInt(1, reserva.getK_reserva());
+            preparedStatement.setString(2, reserva.getEstado());
+            preparedStatement.setDate(3, reserva.getF_inicio());
+            preparedStatement.setDate(4, reserva.getF_reserva());
+            preparedStatement.setDate(5, reserva.getF_final());
+            preparedStatement.setInt(6,reserva.getCantidad_bebes());
+            preparedStatement.setInt(7,reserva.getCantidad_ninos());
+            preparedStatement.setInt(8,reserva.getCantidad_adultos());
+            preparedStatement.setDouble(9, reserva.getPrecio_reserva());
+            preparedStatement.setInt(10,reserva.getCondicion().getK_condicion());
+            preparedStatement.setInt(11,reserva.getPersona().getK_identificacion());
+            preparedStatement.setString(12, reserva.getPersona().getK_tipo_documento_id());
+
+            preparedStatement.executeUpdate();
+
+        }catch (Exception e){
+            System.out.println(e + " insertar persona");
+        }
+    }
+
+    public void insertarHabitacionEnReserva(Reserva reserva, Habitacion habitacion) throws SQLException {
+        PreparedStatement preparedStatement = Conexion.getInstance().getConnection().prepareStatement(
+                "INSERT INTO reserva_habitacion VALUES(?,?);");
+
+        preparedStatement.setInt(1,reserva.getK_reserva());
+        preparedStatement.setInt(2,habitacion.getK_numero_habitacion());
+
+        preparedStatement.executeUpdate();
+
     }
 }

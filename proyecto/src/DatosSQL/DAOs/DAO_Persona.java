@@ -51,10 +51,10 @@ public class DAO_Persona {
             preparedStatement.setDate(5, persona.getF_nacimiento());
             preparedStatement.setString(6, persona.getN_telefono());
 
-            preparedStatement.executeQuery();
+            preparedStatement.executeUpdate();
 
         }catch (Exception e){
-            System.out.println(e);
+            System.out.println(e + "es aca");
         }
     }
 }

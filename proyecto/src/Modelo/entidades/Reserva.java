@@ -35,8 +35,6 @@ public class Reserva {
 
 
 
-    public Reserva(){};
-
     public int getK_reserva() {
         return k_reserva;
     }

@@ -35,7 +35,6 @@ public class DAO_Tipo {
 
         try {
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM tipo");
-            resultSet.next();
 
             while (resultSet.next()){
                 tipos.add(new Tipo(resultSet.getString(1),resultSet.getDouble(2),resultSet.getString(3)));
