@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXProgressSpinner?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-<StackPane fx:id="stack_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_datos_ingreso">
+<StackPane fx:id="stack_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../../../assets/css/recepcionista_escenas.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_datos_ingreso">
    <children>
        <AnchorPane prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: white;">
           <children>
              <HBox alignment="CENTER" layoutX="553.0" layoutY="390.0" prefHeight="83.0" prefWidth="430.0" spacing="20.0">
                 <children>
-                   <Button fx:id="seleccionar_usuario_btn" mnemonicParsing="false" onAction="#select" prefHeight="68.0" prefWidth="204.0" text="Seleccionar usuario" />
-                   <Button fx:id="cancelar_btn" mnemonicParsing="false" onAction="#close" prefHeight="68.0" prefWidth="204.0" text="Cancelar" />
+                   <JFXButton fx:id="seleccionar_usuario_btn" mnemonicParsing="false" onAction="#select" prefHeight="68.0" prefWidth="204.0" text="Seleccionar Cliente" />
+                   <JFXButton fx:id="cancelar_btn" mnemonicParsing="false" onAction="#close" prefHeight="68.0" prefWidth="204.0" text="Cancelar" />
                 </children>
              </HBox>
                  <Label alignment="CENTER" layoutX="24.0" layoutY="21.0" prefHeight="68.0" prefWidth="959.0" styleClass="title-hotel" stylesheets="@../../../assets/css/recepcionista_escenas.css" text="SALDARRIAGA MAHAL" textFill="WHITE" />
-               <Separator layoutX="533.0" layoutY="110.0" orientation="VERTICAL" prefHeight="272.0" prefWidth="0.0" />
+               <Separator layoutX="534.0" layoutY="110.0" orientation="VERTICAL" prefHeight="376.0" prefWidth="5.0" />
             <Pane fx:id="backPanelNuevo" layoutX="22.0" layoutY="107.0" onMouseClicked="#enablePanel" prefHeight="364.0" prefWidth="495.0" style="-fx-background-color: white;">
                <children>
                   <Pane fx:id="panel_nuevo_ingreso" disable="true" layoutX="4.0" onMouseClicked="#enablePanel" prefHeight="363.0" prefWidth="489.0" style="-fx-border-color: black;">
@@ -37,7 +46,7 @@
                         <TextField fx:id="telefono_in" layoutX="13.0" layoutY="203.0" />
                         <DatePicker fx:id="fecha_nacimiento_in" layoutX="172.0" layoutY="203.0" prefHeight="25.0" prefWidth="149.0" />
                         <Separator layoutX="13.0" layoutY="295.0" prefHeight="2.0" prefWidth="463.0" />
-                        <Button fx:id="validar_btn" layoutX="14.0" layoutY="308.0" mnemonicParsing="false" onAction="#validarNuevosDatos" prefHeight="38.0" prefWidth="463.0" text="Validar" />
+                        <JFXButton fx:id="validar_btn" layoutX="14.0" layoutY="308.0" mnemonicParsing="false" onAction="#validarNuevosDatos" prefHeight="38.0" prefWidth="463.0" text="Validar" />
                         <Label graphicTextGap="6.0" layoutX="14.0" layoutY="62.0" text="Nombres" textAlignment="CENTER">
                            <font>
                               <Font name="MAXWELL REGULAR" size="19.0" />
@@ -113,7 +122,7 @@
                         </Label>
                         <TextField id="srch_no_documento_in" fx:id="srch_no_documento_in" layoutX="172.0" layoutY="72.0" />
                         <ComboBox id="srch_tipo_documento_in" fx:id="srch_tipo_documento_in" layoutX="14.0" layoutY="72.0" prefHeight="25.0" prefWidth="126.0" />
-                        <Button fx:id="btn_buscar_reserva" layoutX="320.0" layoutY="72.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buscarUsuario" prefHeight="24.0" prefWidth="33.0" style="-fx-border-radius: 0;" styleClass="button_buscar" />
+                        <JFXButton fx:id="btn_buscar_reserva" layoutX="320.0" layoutY="72.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buscarUsuario" prefHeight="24.0" prefWidth="33.0" style="-fx-border-radius: 0;" styleClass="button_buscar" />
                         <MFXProgressSpinner fx:id="progressIndicatorUser" layoutX="365.0" layoutY="72.0" prefHeight="26.0" prefWidth="25.0" visible="false" />
                         <Label graphicTextGap="6.0" layoutX="14.0" layoutY="52.0" text="Tipo de documento" textAlignment="CENTER">
                            <font>
@@ -189,7 +198,7 @@
                                     <Glow />
                                  </effect>
                               </Label>
-                              <Button fx:id="srch_editar" layoutX="261.0" layoutY="23.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="87.0" text="Editar" />
+                              <JFXButton fx:id="srch_editar" layoutX="261.0" layoutY="23.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="87.0" text="Editar" />
                               <Label graphicTextGap="6.0" layoutX="12.0" layoutY="113.0" text="Dirección:" textAlignment="CENTER">
                                  <font>
                                     <Font name="MAXWELL REGULAR" size="19.0" />
@@ -212,7 +221,7 @@
                   </Pane>
                </children>
             </Pane>
-             <CheckBox id="checkNuevo" fx:id="checkNuevoUsuario" layoutX="528.0" layoutY="438.0" mnemonicParsing="false" opacity="1.0" selected="false" />
+             <CheckBox id="checkNuevo" fx:id="checkNuevoUsuario" layoutX="528.0" layoutY="438.0" mnemonicParsing="false" opacity="0.0" />
 
           </children>
        </AnchorPane>

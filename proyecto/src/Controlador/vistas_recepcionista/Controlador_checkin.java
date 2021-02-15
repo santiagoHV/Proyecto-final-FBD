@@ -1,9 +1,13 @@
 package Controlador.vistas_recepcionista;
 
+import DatosSQL.DAOs.DAO_Persona;
 import DatosSQL.DAOs.DAO_Reserva;
 import Modelo.entidades.*;
 import Vista.Main;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXScrollPane;
+import com.jfoenix.controls.events.JFXDialogEvent;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -12,13 +16,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -51,6 +53,10 @@ public class Controlador_checkin implements Initializable {
     public Label datos_q_bebes;
     public Label datos_q_ninos;
     public Label datos_q_adultos;
+    public StackPane stackBG;
+
+
+    private Persona titularDeReserva;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -205,6 +211,64 @@ public class Controlador_checkin implements Initializable {
                         //Definición de los anchorpane:
                         //Para el panel de los huespedes:
                         AnchorPane PanelHuespedes = loader.load();
+
+                        //////////////////////////////////////////////
+                        VBox vBox = (VBox) PanelHuespedes.getChildren().get(10);
+                        JFXButton BCambiar = (JFXButton) vBox.getChildren().get(0);
+                        JFXButton BIngreso = (JFXButton) vBox.getChildren().get(1);
+
+                        //Agregado evento a cada botón "cambiar" para acceder al JFXDialog de Ingreso de Datos
+                        BCambiar.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent)->
+                        {
+                            BoxBlur blur = new BoxBlur(3,3,3);
+                            FXMLLoader loaderIngreso = new FXMLLoader(getClass().getResource("../../Vista/recepcionista/ingreso_datos.fxml"));
+                            Parent parent = null;
+                            try {
+                                parent = loaderIngreso.load();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            JFXDialog dialog = new JFXDialog(stackBG, (Region) parent, JFXDialog.DialogTransition.BOTTOM, true);
+                            AnchorPane AP = (AnchorPane) parent.getChildrenUnmodifiable().get(0);
+                            HBox HB = (HBox) AP.getChildren().get(0);
+                            Button BSalirDialog = (Button)HB.getChildrenUnmodifiable().get(1);
+                            Button btnCargarDatos = (Button)HB.getChildrenUnmodifiable().get(0);
+
+                            Controlador_datos_ingreso controlador_datos_ingreso = loaderIngreso.getController();
+                            controlador_datos_ingreso.direccion_in.setDisable(true);
+
+                            btnCargarDatos.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventIngreso) ->
+                            {
+                                CheckBox checkNuevo = (CheckBox) dialog.lookup("#checkNuevo");
+
+                                if(checkNuevo.isSelected()){
+                                    titularDeReserva = controlador_datos_ingreso.solicitarPersona(true);
+                                    try{
+                                        DAO_Persona dao_persona = new DAO_Persona();
+                                        dao_persona.insertarPersona(titularDeReserva);
+                                    }catch (Exception e){
+                                        System.out.println(e + "Guardado fallido");
+                                    }
+                                }else{
+                                    titularDeReserva = controlador_datos_ingreso.solicitarPersona(false);
+                                }
+                                dialog.close();
+                                BIngreso.setDisable(false);
+                            });
+
+                            BSalirDialog.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventIngreso)->
+                            {
+                                dialog.close();
+                            });
+
+                            dialog.setOnDialogClosed((JFXDialogEvent event)->
+                            {
+                                stackBG.setEffect(null);
+                            });
+
+                            //stackBG.setEffect(blur);
+                            dialog.show();
+                        });
 
                         Controlador_Huesped controlador_huesped = loader.getController();
 
