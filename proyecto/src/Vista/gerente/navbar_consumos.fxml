@@ -12,33 +12,33 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="903.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="903.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_gerente.Productos.Controlador_Productos">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../assets/css/consumos_pane.css">
          <children>
             <VBox layoutX="1076.0" prefHeight="768.0" prefWidth="172.0">
                <children>
-                  <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="153.6" prefWidth="172.0" styleClass="button__restaurante" text="Restaurante">
+                  <Button fx:id="restaurante_button" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#loadCategoria" prefHeight="153.6" prefWidth="172.0" styleClass="button__restaurante" text="Restaurante">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="153.6" prefWidth="262.0" styleClass="button__piscina" text="Piscina" textFill="WHITE">
+                  <Button fx:id="piscina_button" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#loadCategoria" prefHeight="153.6" prefWidth="262.0" styleClass="button__piscina" text="Piscina" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="154.0" prefWidth="236.0" styleClass="button__spa" text="Spa">
+                  <Button fx:id="spa_button" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#loadCategoria" prefHeight="154.0" prefWidth="236.0" styleClass="button__spa" text="Spa">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="154.0" prefWidth="225.0" styleClass="button__cafeteria" text="Cafetería">
+                  <Button fx:id="cafeteria_button" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#loadCategoria" prefHeight="154.0" prefWidth="225.0" styleClass="button__cafeteria" text="Cafetería">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" prefHeight="154.0" prefWidth="180.0" styleClass="button__gym" text="Gimnasio">
+                  <Button fx:id="gimnasio_button" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#loadCategoria" prefHeight="154.0" prefWidth="180.0" styleClass="button__gym" text="Gimnasio">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -54,10 +54,12 @@
                               <Font size="10.0" />
                            </font>
                         </Label>
-                        <TableView layoutX="14.0" layoutY="135.0" prefHeight="538.0" prefWidth="876.0">
+                        <TableView fx:id="tabla_productos" layoutX="14.0" layoutY="128.0" prefHeight="545.0" prefWidth="876.0" styleClass="tabla_consumos">
                            <columns>
-                              <TableColumn prefWidth="75.0" text="C1" />
-                              <TableColumn prefWidth="75.0" text="C2" />
+                              <TableColumn fx:id="col_id" prefWidth="149.0" text="Codigo" />
+                              <TableColumn fx:id="col_nombre" prefWidth="336.0" text="Nombre" />
+                              <TableColumn fx:id="col_stock" prefWidth="158.0" text="Stock" />
+                              <TableColumn fx:id="col_precio" prefWidth="233.0" text="Precio" />
                            </columns>
                         </TableView>
                         <HBox alignment="CENTER" layoutX="14.0" layoutY="680.0" prefHeight="74.0" prefWidth="876.0" spacing="30.0">
@@ -84,7 +86,7 @@
                               </JFXButton>
                            </children>
                         </HBox>
-                        <ProgressIndicator layoutX="427.0" layoutY="89.0" prefHeight="46.0" prefWidth="51.0" />
+                        <ProgressIndicator fx:id="progresi" layoutX="429.0" layoutY="87.0" prefHeight="39.0" prefWidth="46.0" />
                      </children>
                   </AnchorPane>
                </children>

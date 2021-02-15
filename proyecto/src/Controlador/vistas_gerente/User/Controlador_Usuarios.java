@@ -1,4 +1,4 @@
-package Controlador.vistas_gerente;
+package Controlador.vistas_gerente.User;
 
 import Datos_NoSQL.Usuario;
 import Datos_NoSQL.UsuarioDAO;

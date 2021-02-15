@@ -1,5 +1,7 @@
 package Controlador.vistas_gerente;
 
+import DatosSQL.DAOs.DAO_PyS;
+import Modelo.entidades.PyS;
 import Vista.Main;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
@@ -21,6 +23,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controlador_navbar implements Initializable {

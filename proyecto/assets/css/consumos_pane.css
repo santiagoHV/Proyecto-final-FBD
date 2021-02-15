@@ -3,6 +3,7 @@
     -fx-text-fill: white;
     -fx-border-color: #393e46;
     -fx-cursor: hand;
+    -fx-font-size: 20px;
 }
 .button__restaurante{
     -fx-background-size: 50%;
@@ -45,4 +46,8 @@
     -fx-text-align: center;
     -fx-font-size: 40px;
     -fx-font-weight: bold;
+}
+
+.tabla_consumos{
+    -fx-font-size: 22px;
 }
