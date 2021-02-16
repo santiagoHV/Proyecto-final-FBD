@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -23,7 +24,7 @@ public class Controlador_Productos implements Initializable {
     public TableColumn col_nombre;
     public TableColumn col_stock;
     public TableColumn col_precio;
-    public TableView tabla_productos;
+    public TableView<PyS> tabla_productos;
     public Button gimnasio_button;
     public Button cafeteria_button;
     public Button spa_button;
@@ -81,6 +82,15 @@ public class Controlador_Productos implements Initializable {
             loadProductos("Piscina");
         } else if(actionEvent.getSource() == cafeteria_button){
             loadProductos("Cafeteria");
+        }
+    }
+
+    public void deleteProductoSelected(ActionEvent actionEvent) {
+        String categoria = tabla_productos.getSelectionModel().getSelectedItem().getCategoria();
+        if(new DAO_PyS().deleteByID(tabla_productos.getSelectionModel().getSelectedItem().getK_codigo_pys())){
+            loadProductos(categoria);
+        }else{
+            JOptionPane.showMessageDialog(null,"Error al eliminar el producto");
         }
     }
 }
