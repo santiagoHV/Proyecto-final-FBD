@@ -1,9 +1,13 @@
 package Controlador.vistas_recepcionista;
 
+import DatosSQL.DAOs.DAO_Persona;
 import DatosSQL.DAOs.DAO_Reserva;
 import Modelo.entidades.*;
 import Vista.Main;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXScrollPane;
+import com.jfoenix.controls.events.JFXDialogEvent;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -12,13 +16,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -42,7 +44,6 @@ public class Controlador_checkin implements Initializable {
     public Label datos_no_i;
     public Label datos_tel;
     public Label datos_edad;
-    public Label datos_direccion;
     public Label datos_hab_sencillas;
     public Label datos_hab_dobles;
     public Label datos_hab_triples;
@@ -51,6 +52,10 @@ public class Controlador_checkin implements Initializable {
     public Label datos_q_bebes;
     public Label datos_q_ninos;
     public Label datos_q_adultos;
+    public StackPane stackBG;
+
+    private Controlador_checkin controlador_checkin = this;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -206,21 +211,33 @@ public class Controlador_checkin implements Initializable {
                         //Para el panel de los huespedes:
                         AnchorPane PanelHuespedes = loader.load();
 
+                        //////////////////////////////////////////////
+                        /*VBox vBox = (VBox) PanelHuespedes.getChildren().get(10);
+                        JFXButton BCambiar = (JFXButton) vBox.getChildren().get(0);
+                        JFXButton BIngreso = (JFXButton) vBox.getChildren().get(1);
+
+                        //Agregado evento a cada botón "cambiar" para acceder al JFXDialog de Ingreso de Datos
+                        BCambiar.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent)->
+                        {
+
+                        });*/
+
                         Controlador_Huesped controlador_huesped = loader.getController();
+                        controlador_huesped.controlador_checkin = controlador_checkin;
 
                         if(cantBebes>0)
                         {
-                            controlador_huesped.setValoresTemporales("Bebe");
+                            controlador_huesped.setValoresTemporales("Bebe", habitacionList);
                             cantBebes--;
                         }
                         else if(cantNinos>0)
                         {
-                            controlador_huesped.setValoresTemporales("Nino");
+                            controlador_huesped.setValoresTemporales("Niño", habitacionList);
                             cantNinos--;
                         }
                         else if(cantAdultos>0)
                         {
-                            controlador_huesped.setValoresTemporales("Adulto");
+                            controlador_huesped.setValoresTemporales("Adulto", habitacionList);
                             cantAdultos--;
                         }
 

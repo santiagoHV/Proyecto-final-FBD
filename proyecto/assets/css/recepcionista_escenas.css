@@ -32,6 +32,7 @@
     -fx-font-family: "MAXWELL REGULAR";
     -fx-font-size: 20;
     -fx-border-radius: 10;
+    -fx-background-radius: 10;
     -fx-border-color: black;
 }
 .navbar__button {

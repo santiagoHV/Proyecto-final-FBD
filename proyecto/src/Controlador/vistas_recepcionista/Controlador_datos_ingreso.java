@@ -4,6 +4,8 @@ import DatosSQL.DAOs.DAO_Huesped;
 import DatosSQL.DAOs.DAO_Persona;
 import Modelo.entidades.Huesped;
 import Modelo.entidades.Persona;
+import animatefx.animation.FadeOut;
+import animatefx.animation.Shake;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -14,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.sql.Date;
@@ -81,14 +84,13 @@ public class Controlador_datos_ingreso implements Initializable {
         srch_tipo_documento_in.getItems().add("CE");
         srch_tipo_documento_in.getItems().add("RC");
         srch_tipo_documento_in.getItems().add("TI");
-
     }
 
     /**
      * busca una persona o huesped en el panel de busqueda
      * @param actionEvent
      */
-    public void buscarUsuario(ActionEvent actionEvent) throws SQLException {
+    public void buscarCliente(ActionEvent actionEvent) throws SQLException {
         if(srch_tipo_documento_in.getValue() != null && !srch_no_documento_in.getText().equals("")){
             if(validarNoDocumento(srch_no_documento_in.getText())){
                 progressIndicatorUser.setVisible(true);
@@ -169,31 +171,44 @@ public class Controlador_datos_ingreso implements Initializable {
 
         if(nombres_in.getText().equals("")){
             nombres_in.getStyleClass().add("controlInvalido");
+            new Shake(nombres_in).play();
             accepted = false;
         }
         if(apellidos_in.getText().equals("")){
             apellidos_in.getStyleClass().add("controlInvalido");
+            new Shake(apellidos_in).play();
             accepted = false;
         }
         if(tipo_documento_in.getValue() == null){
             tipo_documento_in.getStyleClass().add("controlInvalido");
+            new Shake(tipo_documento_in).play();
             accepted = false;
         }
         if(no_documento_in.getText().equals("") || !validarNoDocumento(no_documento_in.getText())){
             no_documento_in.getStyleClass().add("controlInvalido");
+            new Shake(no_documento_in).play();
             accepted = false;
         }
         if(telefono_in.getText().equals("")){
             telefono_in.getStyleClass().add("controlInvalido");
+            new Shake(telefono_in).play();
             accepted = false;
         }
         if(fecha_nacimiento_in.getValue() != null){
-            if(validarFechaYDocumento((String) tipo_documento_in.getValue(), fecha_nacimiento_in.getValue())) {
+            if(!validarFechaYDocumento((String) tipo_documento_in.getValue(), fecha_nacimiento_in.getValue())) {
                 fecha_nacimiento_in.getStyleClass().add("controlInvalido");
+                new Shake(fecha_nacimiento_in).play();
                 accepted = false;
             }
         }else if(fecha_nacimiento_in.getValue() == null){
             fecha_nacimiento_in.getStyleClass().add("controlInvalido");
+            new Shake(fecha_nacimiento_in).play();
+            accepted = false;
+        }
+        if(!direccion_in.isDisable() && direccion_in.getText().equals(""))
+        {
+            direccion_in.getStyleClass().add("controlInvalido");
+            new Shake(direccion_in).play();
             accepted = false;
         }
 
