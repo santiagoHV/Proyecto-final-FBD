@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="903.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_gerente.Productos.Controlador_Productos">
+<StackPane fx:id="stackPane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="903.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_gerente.Productos.Controlador_Productos">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../assets/css/consumos_pane.css">
+      <AnchorPane fx:id="AnchorMP" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../assets/css/consumos_pane.css">
          <children>
             <VBox layoutX="1076.0" prefHeight="768.0" prefWidth="172.0">
                <children>
@@ -69,17 +69,12 @@
                                     <Font size="20.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton onAction="#deleteProductoSelected" text="Eliminar Producto">
+                              <JFXButton onAction="#loadDialog" text="Modificar Stock">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton text="Aumentar Stock">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </JFXButton>
-                              <JFXButton text="Editar precio de venta">
+                              <JFXButton onAction="#loadDialog" text="Editar precio de venta">
                                  <font>
                                     <Font size="20.0" />
                                  </font>

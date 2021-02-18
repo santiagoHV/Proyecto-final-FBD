@@ -2,20 +2,29 @@ package Controlador.vistas_gerente.Productos;
 
 import DatosSQL.DAOs.DAO_PyS;
 import Modelo.entidades.PyS;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.events.JFXDialogEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -32,6 +41,8 @@ public class Controlador_Productos implements Initializable {
     public Button restaurante_button;
     public ProgressIndicator progresi;
     public ObservableList<PyS> OBS;
+    public StackPane stackPane1;
+    public AnchorPane AnchorMP;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -85,12 +96,25 @@ public class Controlador_Productos implements Initializable {
         }
     }
 
-    public void deleteProductoSelected(ActionEvent actionEvent) {
-        String categoria = tabla_productos.getSelectionModel().getSelectedItem().getCategoria();
-        if(new DAO_PyS().deleteByID(tabla_productos.getSelectionModel().getSelectedItem().getK_codigo_pys())){
-            loadProductos(categoria);
-        }else{
-            JOptionPane.showMessageDialog(null,"Error al eliminar el producto");
-        }
+    public void loadDialog(ActionEvent actionEvent) throws IOException {
+        String Boton = actionEvent.getSource().toString();
+        String [] Partes = Boton.split("'");
+        BoxBlur blur = new BoxBlur(3,3,3);
+        Parent parent = FXMLLoader.load(getClass().getResource("../../../Vista/gerente/productos_dialog.fxml"));
+        JFXDialog dialog = new JFXDialog(stackPane1, (Region) parent, JFXDialog.DialogTransition.BOTTOM, true);
+        AnchorPane AP = (AnchorPane) parent.getChildrenUnmodifiable().get(0);
+        HBox HB = (HBox) AP.getChildren().get(0);
+        ((Label) AP.getChildren().get(2)).setText(Partes[1]);
+        JFXButton BSalirDialog = (JFXButton)HB.getChildrenUnmodifiable().get(0);
+        BSalirDialog.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent)->
+        {
+            dialog.close();
+        });
+        dialog.setOnDialogClosed((JFXDialogEvent event)->
+        {
+            AnchorMP.setEffect(null);
+        });
+        AnchorMP.setEffect(blur);
+        dialog.show();
     }
 }

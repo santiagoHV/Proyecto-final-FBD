@@ -40,14 +40,4 @@ public class DAO_PyS {
         return  pys_array;
     }
 
-    public boolean deleteByID(int id){
-        Operaciones op = new Operaciones();
-        try {
-            op.UpdateEsp("DELETE FROM productoyservicio WHERE k_codigo_pys = "+id);
-            return true;
-        }catch (SQLException e){
-            e.printStackTrace();
-            return false;
-        }
-    }
 }

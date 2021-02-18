@@ -133,7 +133,6 @@ public class Controlador_Login implements Initializable {
                     dialogActual.close();
                 }
                 progress.setVisible(false);
-
             }
         });
         Thread adios = new Thread(tarea);
