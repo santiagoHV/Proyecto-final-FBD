@@ -44,7 +44,6 @@ public class Controlador_checkin implements Initializable {
     public Label datos_no_i;
     public Label datos_tel;
     public Label datos_edad;
-    public Label datos_direccion;
     public Label datos_hab_sencillas;
     public Label datos_hab_dobles;
     public Label datos_hab_triples;
@@ -55,8 +54,8 @@ public class Controlador_checkin implements Initializable {
     public Label datos_q_adultos;
     public StackPane stackBG;
 
+    private Controlador_checkin controlador_checkin = this;
 
-    private Persona titularDeReserva;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -213,78 +212,32 @@ public class Controlador_checkin implements Initializable {
                         AnchorPane PanelHuespedes = loader.load();
 
                         //////////////////////////////////////////////
-                        VBox vBox = (VBox) PanelHuespedes.getChildren().get(10);
+                        /*VBox vBox = (VBox) PanelHuespedes.getChildren().get(10);
                         JFXButton BCambiar = (JFXButton) vBox.getChildren().get(0);
                         JFXButton BIngreso = (JFXButton) vBox.getChildren().get(1);
 
                         //Agregado evento a cada botón "cambiar" para acceder al JFXDialog de Ingreso de Datos
                         BCambiar.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent)->
                         {
-                            BoxBlur blur = new BoxBlur(3,3,3);
-                            FXMLLoader loaderIngreso = new FXMLLoader(getClass().getResource("../../Vista/recepcionista/ingreso_datos.fxml"));
-                            Parent parent = null;
-                            try {
-                                parent = loaderIngreso.load();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            JFXDialog dialog = new JFXDialog(stackBG, (Region) parent, JFXDialog.DialogTransition.BOTTOM, true);
-                            AnchorPane AP = (AnchorPane) parent.getChildrenUnmodifiable().get(0);
-                            HBox HB = (HBox) AP.getChildren().get(0);
-                            Button BSalirDialog = (Button)HB.getChildrenUnmodifiable().get(1);
-                            Button btnCargarDatos = (Button)HB.getChildrenUnmodifiable().get(0);
 
-                            Controlador_datos_ingreso controlador_datos_ingreso = loaderIngreso.getController();
-                            controlador_datos_ingreso.direccion_in.setDisable(true);
-
-                            btnCargarDatos.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventIngreso) ->
-                            {
-                                CheckBox checkNuevo = (CheckBox) dialog.lookup("#checkNuevo");
-
-                                if(checkNuevo.isSelected()){
-                                    titularDeReserva = controlador_datos_ingreso.solicitarPersona(true);
-                                    try{
-                                        DAO_Persona dao_persona = new DAO_Persona();
-                                        dao_persona.insertarPersona(titularDeReserva);
-                                    }catch (Exception e){
-                                        System.out.println(e + "Guardado fallido");
-                                    }
-                                }else{
-                                    titularDeReserva = controlador_datos_ingreso.solicitarPersona(false);
-                                }
-                                dialog.close();
-                                BIngreso.setDisable(false);
-                            });
-
-                            BSalirDialog.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventIngreso)->
-                            {
-                                dialog.close();
-                            });
-
-                            dialog.setOnDialogClosed((JFXDialogEvent event)->
-                            {
-                                stackBG.setEffect(null);
-                            });
-
-                            //stackBG.setEffect(blur);
-                            dialog.show();
-                        });
+                        });*/
 
                         Controlador_Huesped controlador_huesped = loader.getController();
+                        controlador_huesped.controlador_checkin = controlador_checkin;
 
                         if(cantBebes>0)
                         {
-                            controlador_huesped.setValoresTemporales("Bebe");
+                            controlador_huesped.setValoresTemporales("Bebe", habitacionList);
                             cantBebes--;
                         }
                         else if(cantNinos>0)
                         {
-                            controlador_huesped.setValoresTemporales("Nino");
+                            controlador_huesped.setValoresTemporales("Niño", habitacionList);
                             cantNinos--;
                         }
                         else if(cantAdultos>0)
                         {
-                            controlador_huesped.setValoresTemporales("Adulto");
+                            controlador_huesped.setValoresTemporales("Adulto", habitacionList);
                             cantAdultos--;
                         }
 

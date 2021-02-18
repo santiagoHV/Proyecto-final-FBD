@@ -84,14 +84,13 @@ public class Controlador_datos_ingreso implements Initializable {
         srch_tipo_documento_in.getItems().add("CE");
         srch_tipo_documento_in.getItems().add("RC");
         srch_tipo_documento_in.getItems().add("TI");
-
     }
 
     /**
      * busca una persona o huesped en el panel de busqueda
      * @param actionEvent
      */
-    public void buscarUsuario(ActionEvent actionEvent) throws SQLException {
+    public void buscarCliente(ActionEvent actionEvent) throws SQLException {
         if(srch_tipo_documento_in.getValue() != null && !srch_no_documento_in.getText().equals("")){
             if(validarNoDocumento(srch_no_documento_in.getText())){
                 progressIndicatorUser.setVisible(true);
@@ -196,7 +195,7 @@ public class Controlador_datos_ingreso implements Initializable {
             accepted = false;
         }
         if(fecha_nacimiento_in.getValue() != null){
-            if(validarFechaYDocumento((String) tipo_documento_in.getValue(), fecha_nacimiento_in.getValue())) {
+            if(!validarFechaYDocumento((String) tipo_documento_in.getValue(), fecha_nacimiento_in.getValue())) {
                 fecha_nacimiento_in.getStyleClass().add("controlInvalido");
                 new Shake(fecha_nacimiento_in).play();
                 accepted = false;
@@ -204,6 +203,12 @@ public class Controlador_datos_ingreso implements Initializable {
         }else if(fecha_nacimiento_in.getValue() == null){
             fecha_nacimiento_in.getStyleClass().add("controlInvalido");
             new Shake(fecha_nacimiento_in).play();
+            accepted = false;
+        }
+        if(!direccion_in.isDisable() && direccion_in.getText().equals(""))
+        {
+            direccion_in.getStyleClass().add("controlInvalido");
+            new Shake(direccion_in).play();
             accepted = false;
         }
 
