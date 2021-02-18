@@ -2,9 +2,7 @@ package Controlador.vistas_recepcionista;
 
 import DatosSQL.DAOs.*;
 import Modelo.entidades.*;
-import Vista.Main;
 import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.events.JFXDialogEvent;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
 import javafx.collections.ObservableList;
@@ -20,15 +18,12 @@ import javafx.scene.control.*;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
-import java.security.interfaces.RSAKey;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -46,6 +41,7 @@ public class Controlador_reserva implements Initializable {
     public Button btn_nueva_reserva;
     public Button btn_hacer_reserva;
     public Button btn_datos_titular;
+    public Button btn_buscar_reserva;
 
     //Room table
 
@@ -88,6 +84,8 @@ public class Controlador_reserva implements Initializable {
     Condicion_Hotel condicionHotel;
 
     public ArrayList<String> listaNombresHabitaciones = new ArrayList<String>();
+    public String mensajeEstado;
+    public int personasHospedadasEnLaFecha;
 
 
     @Override
@@ -106,12 +104,17 @@ public class Controlador_reserva implements Initializable {
      * @param actionEvent
      */
     public void click(ActionEvent actionEvent) throws SQLException {
+        DAO_Reserva dao_reserva = new DAO_Reserva();
 
+        /**
+         * prepara para una reserva nueva, solicitando la condicion de hotel activa,
+         * los tipos de habitacion y el k de la ultima reserva
+         */
         if(actionEvent.getSource().equals(btn_nueva_reserva)){
 
             DAO_Tipo dao_tipo = new DAO_Tipo();
             DAO_CondicionHotel dao_condicionHotel = new DAO_CondicionHotel();
-            DAO_Reserva dao_reserva = new DAO_Reserva();
+
 
             progressIndReserva.setVisible(true);
 
@@ -143,13 +146,26 @@ public class Controlador_reserva implements Initializable {
                 public void handle(WorkerStateEvent workerStateEvent) {
                     tipos = tipoTask.getValue();
 
-                    System.out.println(tipos.size());
                     date_q_panel.setDisable(false);
                     state_panel.setDisable(false);
-                    btn_datos_titular.setDisable(false);
+
                     threadCondicion.start();
                     threadNumReserva.start();
+                    bloqueosNuevaReserva(true);
 
+                    fecha_ingreso.setDayCellFactory(d ->
+                            new DateCell() {
+                                @Override public void updateItem(LocalDate item, boolean empty) {
+                                    super.updateItem(item, empty);
+                                    setDisable(item.isBefore(LocalDate.now()));
+                                }});
+
+                    fecha_salida.setDayCellFactory(d ->
+                            new DateCell() {
+                                @Override public void updateItem(LocalDate item, boolean empty) {
+                                    super.updateItem(item, empty);
+                                    setDisable(item.isBefore(LocalDate.now()));
+                                }});
                     progressIndReserva.setVisible(false);
 
                 }
@@ -171,6 +187,10 @@ public class Controlador_reserva implements Initializable {
             threadTipos.start();
 
         }
+        /**
+         * verifica la correcta colocacion de las fechas, la cantidad de personas
+         * y verifica disponibilidad por condicion hotelera
+         */
         else if(actionEvent.getSource().equals(btn_verificar_fechas)){
 
             LocalDate fechaInicio = fecha_ingreso.getValue();
@@ -179,9 +199,11 @@ public class Controlador_reserva implements Initializable {
             huespedesNinos = (int) cantidad_niños.getValue();
             huespedesAdultos = (int) cantidad_adultos.getValue();
 
-            if(validarDatosPrincipales(fechaInicio,fechaFinal,huespedesAdultos,huespedesNinos,huespedesBebes)){
+
+            if(validarFechas(fechaInicio,fechaFinal)){
                 this.sqlFechaInicio = Date.valueOf(fechaInicio.toString());
                 this.sqlFechaFinal = Date.valueOf(fechaFinal.toString());
+
 
                 DAO_Habitacion dao_habitacion = new DAO_Habitacion();
                 progressIndReserva.setVisible(true);
@@ -189,6 +211,7 @@ public class Controlador_reserva implements Initializable {
                 Task<ArrayList<Integer>> habitacionesTask = new Task<ArrayList<Integer>>() {
                     @Override
                     protected ArrayList<Integer> call() throws Exception {
+                        personasHospedadasEnLaFecha = dao_reserva.consultarCantidadDePersonasHospedadas(sqlFechaInicio,sqlFechaFinal);
                         return dao_habitacion.consultarHbitacionesOcupadasPorFecha(sqlFechaInicio,sqlFechaFinal);
                     }
                 };
@@ -198,11 +221,13 @@ public class Controlador_reserva implements Initializable {
                 habitacionesTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
                     @Override
                     public void handle(WorkerStateEvent workerStateEvent) {
-
-                        mostrarHabitacionesOcupadas(habitacionesTask.getValue());
-                        progressIndReserva.setVisible(false);
-                        TabPanePisos.setDisable(false);
-                        total_personas.setText(String.valueOf(huespedesAdultos+huespedesNinos) + " (Sin contar bebés)");
+                        System.out.println("cantidad de personas" + personasHospedadasEnLaFecha);
+                        if(validarCantidadDePersonas(huespedesAdultos,huespedesNinos,huespedesBebes, (int) ((CAPACIDAD_MAXIMA * condicionHotel.getAforo()) - personasHospedadasEnLaFecha))){
+                            mostrarHabitacionesOcupadas(habitacionesTask.getValue());
+                            progressIndReserva.setVisible(false);
+                            TabPanePisos.setDisable(false);
+                            total_personas.setText(String.valueOf(huespedesAdultos+huespedesNinos) + " (Sin contar bebés)");
+                        }
                     }
                 });
                 threadConsultaHabitaciones.start();
@@ -214,7 +239,6 @@ public class Controlador_reserva implements Initializable {
             Reserva reserva = new Reserva(codigoDeReserva,"activa",sqlFechaInicio,Date.valueOf(LocalDate.now()),
                     sqlFechaFinal,huespedesBebes,huespedesNinos,huespedesAdultos,calcularPrecioReserva(),condicionHotel, titularDeReserva);
 
-            DAO_Reserva dao_reserva = new DAO_Reserva();
             dao_reserva.insertarReserva(reserva);
 
             for(Habitacion habitacion: listaHabitaciones){
@@ -229,21 +253,60 @@ public class Controlador_reserva implements Initializable {
      * Valida los datos de fecha para consultar disponibilidad
      * @param fechaInicio
      * @param fechaFinal
+     * @return
+     */
+    public boolean validarFechas(LocalDate fechaInicio, LocalDate fechaFinal){
+
+        if(fechaInicio != null && fechaFinal != null){
+            if (fechaFinal.isBefore(fechaInicio) || fechaFinal.equals(fechaInicio)) {
+                invalidarControl(true,fecha_ingreso);
+                invalidarControl(true,fecha_salida);
+                return false;
+            }
+            invalidarControl(false,fecha_ingreso);
+            invalidarControl(false,fecha_salida);
+            return true;
+        }else if(fechaInicio == null){
+            invalidarControl(true,fecha_ingreso);
+            return false;
+        } else if(fechaFinal == null){
+            invalidarControl(true,fecha_salida);
+            return false;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * valida cantidad de personas en reserva comparado con la capacidad
      * @param adultos
      * @param ninos
      * @param bebes
+     * @param capacidadMinima
      * @return
      */
-    public boolean validarDatosPrincipales(LocalDate fechaInicio, LocalDate fechaFinal, int adultos, int ninos, int bebes){
-        int capacidadMinima = CAPACIDAD_MAXIMA; //debe consultarse la capacidad maxima de la fecha
+    public boolean validarCantidadDePersonas( int adultos, int ninos, int bebes, int capacidadMinima){
+        if (adultos + ninos + bebes > capacidadMinima) {
+            invalidarControl(true,cantidad_adultos);
+            invalidarControl(true,cantidad_niños);
+            invalidarControl(true,cantidad_bebes);
+            return false;
 
-        if(adultos + ninos > capacidadMinima){
-            return false;
-        }else if(fechaFinal.isBefore(fechaInicio) || fechaFinal.equals(fechaInicio)){
-            return false;
+        } else {
+            invalidarControl(false,cantidad_adultos);
+            invalidarControl(false,cantidad_niños);
+            invalidarControl(false,cantidad_bebes);
+            return true;
         }
-        return true;
+    }
 
+    /**
+     * Bloqueos en interfaz cuando se selecciona nueva reserva
+     */
+    public void bloqueosNuevaReserva(boolean flagBloqueado){
+        btn_editar_reserva.setDisable(flagBloqueado);
+        codigo_reserva.setDisable(flagBloqueado);
+        btn_buscar_reserva.setDisable(flagBloqueado);
     }
 
     /**
@@ -456,6 +519,19 @@ public class Controlador_reserva implements Initializable {
 
             //Se inicia el hilo asignado
             threadReserva.start();
+        }
+    }
+
+    /**
+     * Valida o invalida un nodo
+     * @param flagInvalido
+     * @param nodo
+     */
+    public void invalidarControl(boolean flagInvalido, Node nodo){
+        if(flagInvalido){
+            nodo.getStyleClass().add("map-red");
+        }else{
+            nodo.getStyleClass().remove("map-red");
         }
     }
 

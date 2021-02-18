@@ -4,6 +4,7 @@ import DatosSQL.Conexion;
 import DatosSQL.Operaciones;
 import Modelo.entidades.*;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -100,6 +101,20 @@ public class DAO_Reserva {
         preparedStatement.setInt(2,habitacion.getK_numero_habitacion());
 
         preparedStatement.executeUpdate();
+    }
 
+    public int consultarCantidadDePersonasHospedadas(Date fInicio, Date fFinal) {
+        try {
+            ResultSet resultSet = op.ConsultaEsp("SELECT sum(q_cantidad_bebes), sum(q_cantidad_ninos), sum(q_cantidad_adultos) FROM reserva" +
+                    " WHERE " +
+                    "      (('" + fInicio + "' BETWEEN r.f_inicio and r.f_final OR '" + fFinal + "' BETWEEN r.f_inicio and r.f_final) OR " +
+                    "      (r.f_inicio BETWEEN '" + fInicio + "' and '" + fFinal + "' OR r.f_final BETWEEN '" + fInicio + "' and '" + fFinal + "'));");
+
+            resultSet.next();
+            return resultSet.getInt(1) + resultSet.getInt(2) + resultSet.getInt(3);
+        } catch (SQLException ex) {
+            System.out.println(ex + "En Habitación");
+        }
+        return 0;
     }
 }

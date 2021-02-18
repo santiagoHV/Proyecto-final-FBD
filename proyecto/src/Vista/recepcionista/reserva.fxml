@@ -367,27 +367,27 @@
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="habitaciones_separadas" layoutX="6.0" layoutY="22.0" prefHeight="24.0" prefWidth="162.0">
+                  <Label fx:id="habitaciones_separadas" layoutX="6.0" layoutY="22.0" prefHeight="24.0" prefWidth="212.0">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="6.0" layoutY="53.0" prefHeight="24.0" prefWidth="212.0" text="Total de personas a acomodar:">
+                  <Label layoutX="6.0" layoutY="48.0" prefHeight="24.0" prefWidth="212.0" text="Total de personas a acomodar:">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="6.0" layoutY="90.0" prefHeight="24.0" prefWidth="162.0" text="Estado de acomodación:">
+                  <Label layoutX="6.0" layoutY="93.0" prefHeight="24.0" prefWidth="162.0" text="Estado de acomodación:">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="estado_acomodacion" layoutX="6.0" layoutY="108.0" prefHeight="24.0" prefWidth="162.0" text="Faltan habitaciones" textFill="#e10808">
+                  <Label fx:id="estado_acomodacion" layoutX="6.0" layoutY="110.0" prefHeight="24.0" prefWidth="162.0" text="Faltan habitaciones" textFill="#e10808">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="total_personas" layoutX="213.0" layoutY="53.0" prefHeight="24.0" prefWidth="33.0" text="6">
+                  <Label fx:id="total_personas" layoutX="8.0" layoutY="66.0" prefHeight="24.0" prefWidth="195.0">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
