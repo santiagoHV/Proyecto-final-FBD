@@ -14,11 +14,13 @@
             <HBox alignment="CENTER" layoutX="-2.0" layoutY="286.0" prefHeight="100.0" prefWidth="600.0" spacing="70.0">
                <children>
                   <JFXButton fx:id="BSalirDialog" prefHeight="54.0" prefWidth="180.0" styleClass="cancelar_button" text="Cancelar" />
-                  <JFXButton prefHeight="54.0" prefWidth="180.0" styleClass="ok_button" text="Ok" />
+                  <JFXButton fx:id="ok_button" onAction="#modificar_valor" prefHeight="54.0" prefWidth="180.0" styleClass="ok_button" text="Ok" />
                </children>
             </HBox>
-            <JFXTextField alignment="CENTER" layoutX="155.0" layoutY="177.0" prefHeight="30.0" prefWidth="286.0" promptText="Nuevo Valor" styleClass="field_camp" />
+            <JFXTextField fx:id="value_input" alignment="CENTER" layoutX="155.0" layoutY="177.0" prefHeight="30.0" prefWidth="286.0" promptText="Nuevo Valor" styleClass="field_camp" />
             <Label fx:id="title_label" alignment="CENTER" layoutY="-1.0" prefHeight="94.0" prefWidth="600.0" styleClass="label_titulo" text="Label" />
+            <Label fx:id="id_label" layoutX="24.0" layoutY="93.0" prefHeight="17.0" prefWidth="28.0" />
+            <Label layoutY="93.0" text="ID:" />
          </children>
       </AnchorPane>
    </children>

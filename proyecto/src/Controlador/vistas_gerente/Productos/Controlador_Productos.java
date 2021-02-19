@@ -43,7 +43,7 @@ public class Controlador_Productos implements Initializable {
     public ObservableList<PyS> OBS;
     public StackPane stackPane1;
     public AnchorPane AnchorMP;
-
+    public String actual_categoria;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         progresi.setVisible(false);
@@ -85,36 +85,52 @@ public class Controlador_Productos implements Initializable {
     public void loadCategoria(ActionEvent actionEvent) {
         if(actionEvent.getSource() == gimnasio_button){
             loadProductos("Gimnasio");
+            actual_categoria = "Gimnasio";
         } else if(actionEvent.getSource() == restaurante_button){
             loadProductos("Restaurante");
+            actual_categoria = "Restaurante";
         } else if(actionEvent.getSource() == spa_button){
             loadProductos("Spa");
+            actual_categoria = "Spa";
         } else if(actionEvent.getSource() == piscina_button){
             loadProductos("Piscina");
+            actual_categoria = "Piscina";
         } else if(actionEvent.getSource() == cafeteria_button){
             loadProductos("Cafeteria");
+            actual_categoria = "Cafeteria";
         }
     }
 
     public void loadDialog(ActionEvent actionEvent) throws IOException {
-        String Boton = actionEvent.getSource().toString();
-        String [] Partes = Boton.split("'");
-        BoxBlur blur = new BoxBlur(3,3,3);
-        Parent parent = FXMLLoader.load(getClass().getResource("../../../Vista/gerente/productos_dialog.fxml"));
-        JFXDialog dialog = new JFXDialog(stackPane1, (Region) parent, JFXDialog.DialogTransition.BOTTOM, true);
-        AnchorPane AP = (AnchorPane) parent.getChildrenUnmodifiable().get(0);
-        HBox HB = (HBox) AP.getChildren().get(0);
-        ((Label) AP.getChildren().get(2)).setText(Partes[1]);
-        JFXButton BSalirDialog = (JFXButton)HB.getChildrenUnmodifiable().get(0);
-        BSalirDialog.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent)->
-        {
-            dialog.close();
-        });
-        dialog.setOnDialogClosed((JFXDialogEvent event)->
-        {
-            AnchorMP.setEffect(null);
-        });
-        AnchorMP.setEffect(blur);
-        dialog.show();
+        if(tabla_productos.getSelectionModel().getSelectedItem() != null) {
+            String Boton = actionEvent.getSource().toString();
+            String[] Partes = Boton.split("'");
+            BoxBlur blur = new BoxBlur(3, 3, 3);
+            Parent parent = FXMLLoader.load(getClass().getResource("../../../Vista/gerente/productos_dialog.fxml"));
+            JFXDialog dialog = new JFXDialog(stackPane1, (Region) parent, JFXDialog.DialogTransition.BOTTOM, true);
+            AnchorPane AP = (AnchorPane) parent.getChildrenUnmodifiable().get(0);
+            HBox HB = (HBox) AP.getChildren().get(0);
+            ((Label) AP.getChildren().get(2)).setText(Partes[1]);
+            ((Label) AP.getChildren().get(3)).setText(tabla_productos.getSelectionModel().getSelectedItem().getK_codigo_pys() + "");
+            JFXButton BSalirDialog = (JFXButton) HB.getChildrenUnmodifiable().get(0);
+            JFXButton ok_button = (JFXButton) HB.getChildrenUnmodifiable().get(1);
+            BSalirDialog.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent) ->
+            {
+                dialog.close();
+            });
+            ok_button.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent) ->
+            {
+                dialog.close();
+                loadProductos(actual_categoria);
+            });
+            dialog.setOnDialogClosed((JFXDialogEvent event) ->
+            {
+                AnchorMP.setEffect(null);
+            });
+            AnchorMP.setEffect(blur);
+            dialog.show();
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione el producto que desea modificar");
+        }
     }
 }

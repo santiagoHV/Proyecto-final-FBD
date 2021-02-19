@@ -40,4 +40,25 @@ public class DAO_PyS {
         return  pys_array;
     }
 
+    public boolean modificarPrecio(String id,String precio){
+        Operaciones op = new Operaciones();
+        try{
+            op.UpdateEsp("UPDATE productoyservicio SET v_precio_producto = "+ precio + " WHERE k_codigo_pys ="+ id );
+            return true;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean modificarStock(String id,String monto){
+        Operaciones op = new Operaciones();
+        try{
+            op.UpdateEsp("UPDATE productoyservicio SET q_stock = "+ monto + " WHERE k_codigo_pys ="+ id );
+            return true;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
