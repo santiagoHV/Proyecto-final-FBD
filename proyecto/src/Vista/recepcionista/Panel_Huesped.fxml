@@ -61,7 +61,7 @@
       </Label>
       <VBox fx:id="content_botones" layoutX="360.0" prefHeight="144.0" prefWidth="123.0" spacing="15.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="7.0">
          <children>
-            <JFXButton fx:id="btn_cambiar" mnemonicParsing="false" onAction="#ev_ingresar_datos" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: black; -fx-border-radius: 5;" text="Cambiar" />
+            <JFXButton fx:id="btn_cambiar" mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: black; -fx-border-radius: 5;" text="Cambiar" />
             <JFXButton fx:id="btn_ingreso" disable="true" mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: black; -fx-border-radius: 5;" text="Dar ingreso" />
          </children>
       </VBox>

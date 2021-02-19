@@ -9,10 +9,10 @@ import java.sql.SQLException;
 
 public class DAO_Huesped {
 
-    public Huesped consultarHuesped(int ID) {
+    public Huesped consultarHuesped(int ID, String Tipo) {
         Operaciones op = new Operaciones();
         try {
-            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Huesped WHERE k_identificacion = "+ID+"");
+            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Huesped WHERE k_identificacion = "+ID+" and  k_tipo_documento = '"+Tipo+"'");
             resultSet.next();
 
             DAO_Persona dao_persona = new DAO_Persona();
