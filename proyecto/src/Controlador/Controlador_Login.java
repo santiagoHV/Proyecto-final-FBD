@@ -244,4 +244,24 @@ public class Controlador_Login implements Initializable {
         //Mostrar Stage:
         stage.show();
     }
+
+    public void openTrabajador() throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("../Vista/gerente/navbar.fxml"));
+        Pane ventana = (Pane) loader.load();
+        //Show the scene containing the root layout.
+
+        Scene scene = new Scene(ventana);
+        scene.setFill(Color.TRANSPARENT);
+        stage.setTitle("Menu Principal");
+        stage.setScene(scene);
+        //Undecorated y No Resizable:
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.TRANSPARENT);
+
+        //Mostrar Stage:
+        stage.show();
+    }
 }
