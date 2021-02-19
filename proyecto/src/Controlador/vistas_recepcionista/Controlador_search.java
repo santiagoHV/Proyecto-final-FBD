@@ -221,7 +221,7 @@ public class Controlador_search implements Initializable {
                         AnchorPane PanelHuesped = loader.load();
 
                         Controlador_Huesped controlador_huesped = loader.getController();
-                        controlador_huesped.setValoresPanel(Huespedes.get(i));
+                        controlador_huesped.setValoresPanel(Huespedes.get(i), null);
 
                         row++;
                         Grid_Clientes.add(PanelHuesped,column,row);

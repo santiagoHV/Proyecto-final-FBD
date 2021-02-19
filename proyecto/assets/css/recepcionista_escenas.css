@@ -218,5 +218,11 @@
     -fx-background-color: rgba(0,255,0,0.5);
 }
 
+.button_finalizar
+{
+    -fx-background-color: #4f2112;
+    -fx-text-fill: #ffffff;
+}
+
 
 

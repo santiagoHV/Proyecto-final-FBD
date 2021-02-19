@@ -46,18 +46,32 @@ public class Controlador_Huesped implements Initializable
     public JFXComboBox comboHabitacion;
     public Label LB_TipoDoc;
     public Label txt_tipo_huesped;
-    public Controlador_checkin controlador_checkin;
     public JFXButton btn_cambiar;
     public JFXButton btn_ingreso;
 
-    private Persona titularDeReserva;
-
-    public void setValoresPanel(Huesped huesped)
+    public void setValoresPanel(Huesped huesped, List<Habitacion> habitacionList)
     {
         LBnom_completo.setText(huesped.getN_nombre() + " " + huesped.getN_apellido());
         LBnum_id.setText(huesped.getK_identificacion()+"");
         Period period = Period.between(huesped.getF_nacimiento().toLocalDate(), LocalDate.now());
         LBedad.setText(period.getYears()+"");
+
+        if(period.getYears()<=2)
+        {
+            AnchorBG.getStyleClass().add("CardBebe");
+            txt_tipo_huesped.setText("Bebe");
+        }
+        else if(period.getYears()>2 && period.getYears()<18)
+        {
+            AnchorBG.getStyleClass().add("CardNinos");
+            txt_tipo_huesped.setText("Niño");
+        }
+        else if (period.getYears()>=18)
+        {
+            AnchorBG.getStyleClass().add("CardAdultos");
+            txt_tipo_huesped.setText("Adulto");
+        }
+
         LBDireccion.setText(huesped.getN_direccion());
         LBTelefono.setText(huesped.getN_telefono());
         LB_TipoDoc.setText(huesped.getK_tipo_documento_id()+":");
@@ -76,11 +90,28 @@ public class Controlador_Huesped implements Initializable
                 if(registro!=null)
                 {
                     comboHabitacion.getItems().add(registro.getHabitacion().getK_numero_habitacion());
-
                 }
                 else
                 {
-                    comboHabitacion.getItems().add("No Registrado");
+                    if(habitacionList==null)
+                    {
+                        if(!comboHabitacion.getItems().get(comboHabitacion.getItems().size()-1).equals("No Registrado"))
+                        {
+                            comboHabitacion.getItems().add("No Registrado");
+                        }
+                    }
+                    else
+                    {
+                        int i = 0;
+                        for(Habitacion h: habitacionList)
+                        {
+                            if(!comboHabitacion.getItems().get(i).equals(h.getK_numero_habitacion()))
+                            {
+                                comboHabitacion.getItems().add(h.getK_numero_habitacion());
+                            }
+                            i++;
+                        }
+                    }
                 }
                 comboHabitacion.setValue(comboHabitacion.getItems().get(comboHabitacion.getItems().size()-1));
             }
@@ -99,22 +130,22 @@ public class Controlador_Huesped implements Initializable
         LBTelefono.setText("Por Asignar");
         txt_tipo_huesped.setText(tipo);
 
-        for(Habitacion h: habitacionList)
-        {
-            comboHabitacion.getItems().add(h.getK_numero_habitacion());
-        }
-
-        if(tipo=="Bebe")
+        if(tipo.equals("Bebe"))
         {
             AnchorBG.getStyleClass().add("CardBebe");
         }
-        else if(tipo=="Nino")
+        else if(tipo.equals("Niño"))
         {
             AnchorBG.getStyleClass().add("CardNinos");
         }
-        else if (tipo=="Adulto")
+        else if (tipo.equals("Adulto"))
         {
             AnchorBG.getStyleClass().add("CardAdultos");
+        }
+
+        for(Habitacion h: habitacionList)
+        {
+            comboHabitacion.getItems().add(h.getK_numero_habitacion());
         }
     }
 
@@ -122,76 +153,5 @@ public class Controlador_Huesped implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         
-    }
-
-
-    public void ev_ingresar_datos(ActionEvent actionEvent)
-    {
-        FXMLLoader loaderIngreso = new FXMLLoader(getClass().getResource("../../Vista/recepcionista/ingreso_datos.fxml"));
-        Parent parent = null;
-        try {
-            parent = loaderIngreso.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        JFXDialog dialog = new JFXDialog(controlador_checkin.stackBG, (Region) parent, JFXDialog.DialogTransition.BOTTOM, true);
-        AnchorPane AP = (AnchorPane) parent.getChildrenUnmodifiable().get(0);
-        HBox HB = (HBox) AP.getChildren().get(0);
-        Button BSalirDialog = (Button)HB.getChildrenUnmodifiable().get(1);
-        Button btnCargarDatos = (Button)HB.getChildrenUnmodifiable().get(0);
-
-        Controlador_datos_ingreso controlador_datos_ingreso = loaderIngreso.getController();
-
-        btnCargarDatos.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventIngreso) ->
-        {
-            CheckBox checkNuevo = (CheckBox) dialog.lookup("#checkNuevo");
-
-            if(checkNuevo.isSelected()){
-                titularDeReserva = controlador_datos_ingreso.solicitarPersona(true);
-                try{
-                    DAO_Persona dao_persona = new DAO_Persona();
-                    dao_persona.insertarPersona(titularDeReserva);
-                }catch (Exception e){
-                    System.out.println(e + "Guardado fallido");
-                }
-            }else{
-                titularDeReserva = controlador_datos_ingreso.solicitarPersona(false);
-            }
-
-            if(titularDeReserva.getClass().equals(Huesped.class))
-            {
-                setValoresPanel((Huesped) titularDeReserva);
-                dialog.close();
-                btn_ingreso.setDisable(false);
-            }
-            else
-            {
-                FXMLLoader alertaDireccion = new FXMLLoader(getClass().getResource("../../Vista/recepcionista/alerta.fxml"));
-                Parent contenedor = null;
-                try {
-                    contenedor = alertaDireccion.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                JFXDialog dialogAlerta = new JFXDialog(controlador_checkin.stackBG, (Region) contenedor, JFXDialog.DialogTransition.BOTTOM, true);
-
-                AnchorPane alertaAP = (AnchorPane) contenedor.getChildrenUnmodifiable().get(0);
-                JFXButton btn_aceptar = (JFXButton) alertaAP.getChildren().get(2);
-                btn_aceptar.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventAceptar)->
-                {
-                    dialogAlerta.close();
-                });
-
-                dialogAlerta.show();
-            }
-        });
-
-        BSalirDialog.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventIngreso)->
-        {
-            dialog.close();
-        });
-
-        dialog.show();
     }
 }

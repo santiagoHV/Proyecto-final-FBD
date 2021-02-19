@@ -1,13 +1,13 @@
 package Controlador.vistas_recepcionista;
 
 import DatosSQL.DAOs.DAO_Persona;
+import DatosSQL.DAOs.DAO_Registro;
 import DatosSQL.DAOs.DAO_Reserva;
 import Modelo.entidades.*;
 import Vista.Main;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXScrollPane;
-import com.jfoenix.controls.events.JFXDialogEvent;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -18,7 +18,6 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
@@ -53,8 +52,14 @@ public class Controlador_checkin implements Initializable {
     public Label datos_q_ninos;
     public Label datos_q_adultos;
     public StackPane stackBG;
+    public JFXButton btn_finalizar;
 
     private Controlador_checkin controlador_checkin = this;
+
+    private Persona titularDeReserva;
+    private List<Huesped> huespedList = new ArrayList<>();
+
+    private List<Registro> registroList = new ArrayList<>();
 
 
     @Override
@@ -63,11 +68,8 @@ public class Controlador_checkin implements Initializable {
         JFXScrollPane Prueba = new JFXScrollPane();
         Prueba.smoothScrolling(panel_ingreso_huespedes);
         Prueba.smoothHScrolling(panel_ingreso_habitaciones);
-//        DefinirPanelDatosHuespedes();
-//        DefinirBotonesHabitacion();
 
         AjusteScrollH(panel_ingreso_habitaciones);
-        Controlador_datos_ingreso controlador_datos_ingreso = new Controlador_datos_ingreso();
     }
 
     //Método para poder controlar los scrolls horizontales con la rueda del ratón:
@@ -86,6 +88,7 @@ public class Controlador_checkin implements Initializable {
     public void DefinirPanelDatosHuespedes() {
 
         DAO_Reserva dao_reserva = new DAO_Reserva();
+        DAO_Registro dao_registro = new DAO_Registro();
 
         int codReserva = 0;
         if(!codigo_reserva.getText().equals("")){
@@ -99,6 +102,14 @@ public class Controlador_checkin implements Initializable {
             @Override
             protected List<Reserva_Habitacion> call() throws Exception {
                 return dao_reserva.consultarReservaHabPorIdReserva(codReservaFinal);
+            }
+        };
+
+        Task<List<Registro>> taskConRegistros = new Task<List<Registro>>() {
+            @Override
+            protected List<Registro> call() throws Exception {
+                List<Registro> registroListTarea = dao_registro.consultarRegistroPorReserva(codReservaFinal);
+                return registroListTarea;
             }
         };
 
@@ -135,7 +146,6 @@ public class Controlador_checkin implements Initializable {
                 //Definición datos de la reserva:
                 for(int i = 0; i<taskConReservaHabi.getValue().size();i++)
                 {
-                    System.out.println(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion());
                     if(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion().equals("1"))
                     {
                         //Habitaciones sencillas:
@@ -190,77 +200,221 @@ public class Controlador_checkin implements Initializable {
                     datos_hab_triples.setText("Ninguna Reservada");
                 }
 
-                int column = 0;
-                int row = 0;
+                Thread threadRegistro = new Thread(taskConRegistros);
+                threadRegistro.start();
 
-                DefinirBotonesHabitacion(habitacionList);
+                taskConRegistros.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                    @Override
+                    public void handle(WorkerStateEvent workerStateEvent) {
+                        System.out.println("Pasó Registros");
+                        registroList = taskConRegistros.getValue();
 
-                try
-                {
-                    int cantBebes = reserva.getCantidad_bebes();
-                    int cantNinos = reserva.getCantidad_ninos();
-                    int cantAdultos = reserva.getCantidad_adultos();
-                    int cantTotalHuespedes = cantBebes + cantNinos + cantAdultos;
+                        int column = 0;
+                        int row = 0;
 
-                    for(int i=0; i<cantTotalHuespedes;i++) {
-                        //Carga de las plantillas para los paneles con información de los huespedes
-                        FXMLLoader loader = new FXMLLoader();
-                        loader.setLocation(Main.class.getResource("../Vista/recepcionista/Panel_Huesped.fxml"));
-
-                        //Definición de los anchorpane:
-                        //Para el panel de los huespedes:
-                        AnchorPane PanelHuespedes = loader.load();
-
-                        //////////////////////////////////////////////
-                        /*VBox vBox = (VBox) PanelHuespedes.getChildren().get(10);
-                        JFXButton BCambiar = (JFXButton) vBox.getChildren().get(0);
-                        JFXButton BIngreso = (JFXButton) vBox.getChildren().get(1);
-
-                        //Agregado evento a cada botón "cambiar" para acceder al JFXDialog de Ingreso de Datos
-                        BCambiar.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent)->
+                        try
                         {
+                            int cantBebes = reserva.getCantidad_bebes();
+                            int cantNinos = reserva.getCantidad_ninos();
+                            int cantAdultos = reserva.getCantidad_adultos();
+                            int cantTotalHuespedes = cantBebes + cantNinos + cantAdultos;
 
-                        });*/
+                            for(int i = 0; i<cantTotalHuespedes; i++) {
+                                final int j = i;
+                                //Carga de las plantillas para los paneles con información de los huespedes
+                                FXMLLoader loader = new FXMLLoader();
+                                loader.setLocation(Main.class.getResource("../Vista/recepcionista/Panel_Huesped.fxml"));
 
-                        Controlador_Huesped controlador_huesped = loader.getController();
-                        controlador_huesped.controlador_checkin = controlador_checkin;
+                                //Definición de los anchorpane:
+                                //Para el panel de los huespedes:
+                                AnchorPane PanelHuespedes = loader.load();
 
-                        if(cantBebes>0)
-                        {
-                            controlador_huesped.setValoresTemporales("Bebe", habitacionList);
-                            cantBebes--;
+                                Controlador_Huesped controlador_huesped = loader.getController();
+
+                                if(registroList.size()==0)
+                                {
+                                    if(cantBebes>0)
+                                    {
+                                        controlador_huesped.setValoresTemporales("Bebe", habitacionList);
+                                        cantBebes--;
+                                    }
+                                    else if(cantNinos>0)
+                                    {
+                                        controlador_huesped.setValoresTemporales("Niño", habitacionList);
+                                        cantNinos--;
+                                    }
+                                    else if(cantAdultos>0)
+                                    {
+                                        controlador_huesped.setValoresTemporales("Adulto", habitacionList);
+                                        cantAdultos--;
+                                    }
+
+
+                                    controlador_huesped.btn_ingreso.setText("Ingresar");
+                                    controlador_huesped.btn_ingreso.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent ingresarReg)->
+                                    {
+
+                                    });
+                                }
+                                else
+                                {
+                                    if(i<registroList.size())
+                                    {
+                                        if(Period.between(registroList.get(i).getHuesped().getF_nacimiento().toLocalDate(), LocalDate.now()).getYears()<=2)
+                                        {
+                                            cantBebes--;
+                                        }
+                                        else if(Period.between(registroList.get(i).getHuesped().getF_nacimiento().toLocalDate(), LocalDate.now()).getYears()>2 && Period.between(registroList.get(i).getHuesped().getF_nacimiento().toLocalDate(), LocalDate.now()).getYears()<18)
+                                        {
+                                            cantNinos--;
+                                        }
+                                        else if(Period.between(registroList.get(i).getHuesped().getF_nacimiento().toLocalDate(), LocalDate.now()).getYears()>18)
+                                        {
+                                            cantAdultos--;
+                                        }
+                                        controlador_huesped.setValoresPanel(registroList.get(i).getHuesped(), habitacionList);
+
+                                        controlador_huesped.btn_ingreso.setText("Actualizar");
+                                        controlador_huesped.btn_ingreso.setDisable(false);
+
+                                        controlador_huesped.btn_ingreso.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent actualizarReg)->
+                                        {
+
+                                        });
+                                    }
+                                    else
+                                    {
+                                        if(cantBebes>0)
+                                        {
+                                            controlador_huesped.setValoresTemporales("Bebe", habitacionList);
+                                            cantBebes--;
+                                        }
+                                        else if(cantNinos>0)
+                                        {
+                                            controlador_huesped.setValoresTemporales("Niño", habitacionList);
+                                            cantNinos--;
+                                        }
+                                        else if(cantAdultos>0)
+                                        {
+                                            controlador_huesped.setValoresTemporales("Adulto", habitacionList);
+                                            cantAdultos--;
+                                        }
+
+
+                                        controlador_huesped.btn_ingreso.setText("Ingresar");
+                                        controlador_huesped.btn_ingreso.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent ingresarReg)->
+                                        {
+
+                                        });
+                                    }
+                                }
+
+                                row++;
+                                GridPanel_Huespedes.add(PanelHuespedes,column,row);
+                                GridPane.setMargin(PanelHuespedes,new Insets(8));
+
+                                //---------------------------------------------------------------
+                                //Acceso al ingreso de Datos:
+
+                                controlador_huesped.btn_cambiar.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventCambio)->
+                                {
+                                    FXMLLoader loaderIngreso = new FXMLLoader(getClass().getResource("../../Vista/recepcionista/ingreso_datos.fxml"));
+                                    Parent parent = null;
+                                    try {
+                                        parent = loaderIngreso.load();
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                    JFXDialog dialog = new JFXDialog(controlador_checkin.stackBG, (Region) parent, JFXDialog.DialogTransition.BOTTOM, true);
+                                    AnchorPane AP = (AnchorPane) parent.getChildrenUnmodifiable().get(0);
+                                    HBox HB = (HBox) AP.getChildren().get(0);
+                                    Button BSalirDialog = (Button)HB.getChildrenUnmodifiable().get(1);
+                                    Button btnCargarDatos = (Button)HB.getChildrenUnmodifiable().get(0);
+
+                                    Controlador_datos_ingreso controlador_datos_ingreso = loaderIngreso.getController();
+
+                                    btnCargarDatos.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventIngreso) ->
+                                    {
+                                        CheckBox checkNuevo = (CheckBox) dialog.lookup("#checkNuevo");
+
+                                        if(checkNuevo.isSelected()){
+                                            titularDeReserva = controlador_datos_ingreso.solicitarPersona(true);
+                                            try{
+                                                DAO_Persona dao_persona = new DAO_Persona();
+                                                dao_persona.insertarPersona(titularDeReserva);
+                                            }catch (Exception e){
+                                                System.out.println(e + "Guardado fallido");
+                                            }
+                                        }else{
+                                            titularDeReserva = controlador_datos_ingreso.solicitarPersona(false);
+                                        }
+
+                                        if(titularDeReserva.getClass().equals(Huesped.class))
+                                        {
+                                            controlador_huesped.setValoresPanel((Huesped) titularDeReserva, null);
+                                            dialog.close();
+                                            controlador_huesped.btn_ingreso.setDisable(false);
+
+                                            //Lista de huespedes, se agregan elementos en caso de que la posición esté vacía
+                                            //en caso de que no lo esté, se reemplaza el elemento
+                                            if(huespedList.size()-j==0)
+                                            {
+                                                huespedList.add(j,(Huesped) titularDeReserva);
+                                            }
+                                            else
+                                            {
+                                                huespedList.set(j,(Huesped) titularDeReserva);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            FXMLLoader alertaDireccion = new FXMLLoader(getClass().getResource("../../Vista/recepcionista/alerta.fxml"));
+                                            Parent contenedor = null;
+                                            try {
+                                                contenedor = alertaDireccion.load();
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                            JFXDialog dialogAlerta = new JFXDialog(controlador_checkin.stackBG, (Region) contenedor, JFXDialog.DialogTransition.BOTTOM, true);
+
+                                            AnchorPane alertaAP = (AnchorPane) contenedor.getChildrenUnmodifiable().get(0);
+                                            JFXButton btn_aceptar = (JFXButton) alertaAP.getChildren().get(2);
+                                            btn_aceptar.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventAceptar)->
+                                            {
+                                                dialogAlerta.close();
+                                            });
+
+                                            dialogAlerta.show();
+                                        }
+                                    });
+
+                                    BSalirDialog.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventIngreso)->
+                                    {
+                                        dialog.close();
+                                    });
+
+                                    dialog.show();
+                                });
+
+                                //Alto y Ancho:
+
+                                //Ancho:
+                                GridPanel_Huespedes.setMaxWidth(Region.USE_COMPUTED_SIZE);
+                                GridPanel_Huespedes.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                                GridPanel_Huespedes.setMinWidth(Region.USE_COMPUTED_SIZE);
+
+                                //Alto:
+                                GridPanel_Huespedes.setMaxHeight(Region.USE_COMPUTED_SIZE);
+                                GridPanel_Huespedes.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                                GridPanel_Huespedes.setMinHeight(Region.USE_COMPUTED_SIZE);
+                            }
+                            progressConCheck.setVisible(false);
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
-                        else if(cantNinos>0)
-                        {
-                            controlador_huesped.setValoresTemporales("Niño", habitacionList);
-                            cantNinos--;
-                        }
-                        else if(cantAdultos>0)
-                        {
-                            controlador_huesped.setValoresTemporales("Adulto", habitacionList);
-                            cantAdultos--;
-                        }
-
-                        row++;
-                        GridPanel_Huespedes.add(PanelHuespedes,column,row);
-                        GridPane.setMargin(PanelHuespedes,new Insets(8));
-
-                        //Alto y Ancho:
-
-                        //Ancho:
-                        GridPanel_Huespedes.setMaxWidth(Region.USE_COMPUTED_SIZE);
-                        GridPanel_Huespedes.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                        GridPanel_Huespedes.setMinWidth(Region.USE_COMPUTED_SIZE);
-
-                        //Alto:
-                        GridPanel_Huespedes.setMaxHeight(Region.USE_COMPUTED_SIZE);
-                        GridPanel_Huespedes.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                        GridPanel_Huespedes.setMinHeight(Region.USE_COMPUTED_SIZE);
                     }
-                    progressConCheck.setVisible(false);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                });
             }
         });
         Thread threadReserva = new Thread(taskConReservaHabi);
@@ -275,41 +429,10 @@ public class Controlador_checkin implements Initializable {
         }
     }
 
-    public void DefinirBotonesHabitacion(List<Habitacion> Habitaciones)
-    {
-        int column = 0;
-        int row = 0;
-        try
+    public void btn_realizar_checkin(ActionEvent actionEvent) {
+        for(Huesped h: huespedList)
         {
-            for(int i=0; i<Habitaciones.size();i++) {
-                //Carga de las plantillas para los botones de las habitaciones:
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Main.class.getResource("../Vista/recepcionista/Boton_Habitaciones.fxml"));
-
-                //Definición de los anchorpane:
-                //Para los botones:
-                AnchorPane PanelHabitaciones = loader.load();
-
-                Controlador_Boton_Habitaciones controlador_boton_habitaciones = loader.getController();
-                controlador_boton_habitaciones.DefinirHabitacion(Habitaciones.get(i));
-
-                column++;
-                GridPanel_Btn_Habitaciones.add(PanelHabitaciones,column,row);
-                GridPane.setMargin(PanelHabitaciones,new Insets(7));
-
-                //Alto y Ancho:
-                //Ancho:
-                GridPanel_Btn_Habitaciones.setMaxWidth(Region.USE_COMPUTED_SIZE);
-                GridPanel_Btn_Habitaciones.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                GridPanel_Btn_Habitaciones.setMinWidth(Region.USE_COMPUTED_SIZE);
-
-                //Alto:
-                GridPanel_Btn_Habitaciones.setMaxHeight(Region.USE_COMPUTED_SIZE);
-                GridPanel_Btn_Habitaciones.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                GridPanel_Btn_Habitaciones.setMinHeight(Region.USE_COMPUTED_SIZE);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(h.getK_identificacion());
         }
     }
 }

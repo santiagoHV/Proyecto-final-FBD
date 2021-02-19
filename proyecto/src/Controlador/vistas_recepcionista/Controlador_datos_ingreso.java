@@ -107,7 +107,7 @@ public class Controlador_datos_ingreso implements Initializable {
                 Task<Huesped> huespedTask = new Task<Huesped>() {
                     @Override
                     protected Huesped call() throws Exception {
-                        return dao_huesped.consultarHuesped(Integer.parseInt(srch_no_documento_in.getText()));
+                        return dao_huesped.consultarHuesped(Integer.parseInt(srch_no_documento_in.getText()), srch_tipo_documento_in.getValue().toString());
                     }
                 };
 
