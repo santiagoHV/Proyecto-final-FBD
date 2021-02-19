@@ -1,8 +1,6 @@
 package Controlador.vistas_recepcionista;
 
-import DatosSQL.DAOs.DAO_Persona;
-import DatosSQL.DAOs.DAO_Registro;
-import DatosSQL.DAOs.DAO_Reserva;
+import DatosSQL.DAOs.*;
 import Modelo.entidades.*;
 import Vista.Main;
 import com.jfoenix.controls.JFXButton;
@@ -23,8 +21,10 @@ import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -146,7 +146,7 @@ public class Controlador_checkin implements Initializable {
                 //Definición datos de la reserva:
                 for(int i = 0; i<taskConReservaHabi.getValue().size();i++)
                 {
-                    if(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion().equals("1"))
+                    if(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion().equals("sencilla"))
                     {
                         //Habitaciones sencillas:
                         if(datos_hab_sencillas.getText().equals(""))
@@ -159,7 +159,7 @@ public class Controlador_checkin implements Initializable {
                         }
                     }
 
-                    if(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion().equals("2"))
+                    if(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion().equals("doble"))
                     {
                         //Habitaciones dobles:
                         if(datos_hab_dobles.getText().equals(""))
@@ -172,7 +172,7 @@ public class Controlador_checkin implements Initializable {
                         }
                     }
 
-                    if(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion().equals("3"))
+                    if(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion().equals("triple"))
                     {
                         //Habitaciones triples:
                         if(datos_hab_triples.getText().equals(""))
@@ -253,7 +253,26 @@ public class Controlador_checkin implements Initializable {
                                     controlador_huesped.btn_ingreso.setText("Ingresar");
                                     controlador_huesped.btn_ingreso.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent ingresarReg)->
                                     {
+                                        System.out.println("Entra al evento");
+                                        Task<Registro> crearRegistroTask  = new Task<Registro>() {
+                                            @Override
+                                            protected Registro call() throws Exception {
+                                                return new Registro(0, Date.valueOf(LocalDate.now()),null,
+                                                        new DAO_Huesped().consultarHuesped(Integer.parseInt(controlador_huesped.LBnum_id.getText()),controlador_huesped.LB_TipoDoc.getText().replace(":","")),
+                                                        new DAO_Reserva().consultarReserva(codReservaFinal),
+                                                        new DAO_Habitacion().consultarHabitacion(Integer.parseInt(controlador_huesped.comboHabitacion.getValue().toString())));
+                                            }
+                                        };
 
+                                        crearRegistroTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                                            @Override
+                                            public void handle(WorkerStateEvent workerStateEvent) {
+                                                new DAO_Registro().insertarRegistro(crearRegistroTask.getValue());
+                                            }
+                                        });
+                                        Thread crearRegistroThread = new Thread(crearRegistroTask);
+
+                                        crearRegistroThread.start();
                                     });
                                 }
                                 else
@@ -302,9 +321,29 @@ public class Controlador_checkin implements Initializable {
 
 
                                         controlador_huesped.btn_ingreso.setText("Ingresar");
+
                                         controlador_huesped.btn_ingreso.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent ingresarReg)->
                                         {
+                                            System.out.println("Entra al evento");
+                                            Task<Registro> crearRegistroTask  = new Task<Registro>() {
+                                                @Override
+                                                protected Registro call() throws Exception {
+                                                    return new Registro(0, Date.valueOf(LocalDate.now()),null,
+                                                            new DAO_Huesped().consultarHuesped(Integer.parseInt(controlador_huesped.LBnum_id.getText()),controlador_huesped.LB_TipoDoc.getText()),
+                                                            new DAO_Reserva().consultarReserva(codReservaFinal),
+                                                            new DAO_Habitacion().consultarHabitacion(Integer.parseInt(controlador_huesped.comboHabitacion.getValue().toString())));
+                                                }
+                                            };
 
+                                            crearRegistroTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                                                @Override
+                                                public void handle(WorkerStateEvent workerStateEvent) {
+                                                    new DAO_Registro().insertarRegistro(crearRegistroTask.getValue());
+                                                }
+                                            });
+                                            Thread crearRegistroThread = new Thread(crearRegistroTask);
+
+                                            crearRegistroThread.start();
                                         });
                                     }
                                 }

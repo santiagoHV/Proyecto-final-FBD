@@ -93,7 +93,7 @@ public class Controlador_Huesped implements Initializable
                 }
                 else
                 {
-                    if(habitacionList==null)
+                    if(habitacionList==null || habitacionList.size()==0)
                     {
                         if(!comboHabitacion.getItems().get(comboHabitacion.getItems().size()-1).equals("No Registrado"))
                         {
