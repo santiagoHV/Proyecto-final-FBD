@@ -151,9 +151,11 @@ public class Controlador_reserva implements Initializable {
 
                     date_q_panel.setDisable(false);
                     state_panel.setDisable(false);
+                    price_panel.setDisable(false);
 
                     threadCondicion.start();
                     threadNumReserva.start();
+                    codigo_reserva.setText(String.valueOf(codigoDeReserva));
                     bloqueosNuevaReserva(true);
 
                     fecha_ingreso.setDayCellFactory(d ->
@@ -266,6 +268,8 @@ public class Controlador_reserva implements Initializable {
 
                     JOptionPane.showMessageDialog(null, "¡Reserva hecha!");
 
+                    reiniciarPagina();
+
                 }
             });
 
@@ -355,6 +359,37 @@ public class Controlador_reserva implements Initializable {
         btn_datos_titular.setDisable(true);
     }
 
+    public void reiniciarPagina(){
+        fecha_salida.getEditor().clear();
+        fecha_ingreso.getEditor().clear();
+        cantidad_bebes.getEditor().clear();
+        cantidad_niños.getEditor().clear();
+        cantidad_adultos.getEditor().clear();
+
+        bloquearTodo();
+
+        btn_buscar_reserva.setDisable(false);
+        btn_nueva_reserva.setDisable(false);
+        btn_editar_reserva.setDisable(false);
+        codigo_reserva.setDisable(false);
+
+        titularDeReserva = null;
+        listaHabitaciones = null;
+        listaNombresHabitaciones = null;
+        sqlFechaFinal = null;
+        sqlFechaInicio = null;
+        huespedesAdultos = 0;
+        huespedesNinos = 0;
+        huespedesBebes = 0;
+        condicionHotel = null;
+        codigo_reserva.setText("");
+        precioReserva = 0;
+        mensajeEstado = null;
+        cupoEnHabitacionesEnReserva = 0;
+        personasHospedadasEnLaFecha = 0;
+    }
+
+
     /**
      * Bloquea las habitaciones ocupadas en las fechas seleccionadas
      * @param habitacionesOcupadas
@@ -441,6 +476,7 @@ public class Controlador_reserva implements Initializable {
             actualizarDatosDeReserva();
         }
         validarHabitacionesConHuespedes();
+        actualizarPrecios(precioReserva);
 
     }
 
@@ -569,7 +605,14 @@ public class Controlador_reserva implements Initializable {
         //actualizar precios
     }
 
-    //public void actualizar precios
+    public void actualizarPrecios(double precioGeneral){
+        double descuento = condicionHotel.getDescuento() * precioGeneral;
+
+        this.valor_estadia.setText("$ " + precioGeneral);
+        this.descuento.setText("$ " + descuento);
+        this.valor_total.setText("$ " + (precioGeneral - descuento));
+
+    }
 
     /**
      * Ejecuta una consulta a una reserva existente segun su ID
