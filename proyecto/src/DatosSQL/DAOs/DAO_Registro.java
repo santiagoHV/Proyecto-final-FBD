@@ -45,8 +45,7 @@ public class DAO_Registro {
             LocalDate locald = LocalDate.now();
             java.sql.Date sqlDate = java.sql.Date.valueOf(locald);
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM registro_checkin " +
-                    "WHERE (k_identificacion = "+ID_Huesped+" and k_tipo_documento = '"+tipo_ID+"') " +
-                    "and ('"+sqlDate+"' BETWEEN f_entrada and f_salida)");
+                    "WHERE (k_identificacion = "+ID_Huesped+" and k_tipo_documento = '"+tipo_ID+"')");
 
             if(resultSet.next())
             {

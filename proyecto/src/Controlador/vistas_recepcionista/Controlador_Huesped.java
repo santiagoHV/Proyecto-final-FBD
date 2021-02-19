@@ -90,10 +90,18 @@ public class Controlador_Huesped implements Initializable
                 if(registro!=null)
                 {
                     comboHabitacion.getItems().add(registro.getHabitacion().getK_numero_habitacion());
+
+                    for(Habitacion h: habitacionList)
+                    {
+                        if(!comboHabitacion.getItems().contains(h.getK_numero_habitacion()))
+                        {
+                            comboHabitacion.getItems().add(h.getK_numero_habitacion());
+                        }
+                    }
                 }
                 else
                 {
-                    if(habitacionList==null || habitacionList.size()==0)
+                    if(habitacionList==null)
                     {
                         if(!comboHabitacion.getItems().get(comboHabitacion.getItems().size()-1).equals("No Registrado"))
                         {

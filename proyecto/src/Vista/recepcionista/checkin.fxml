@@ -146,23 +146,23 @@
                      </font>
                   </Label>
                   <Separator layoutX="14.0" layoutY="177.0" prefHeight="0.0" prefWidth="452.0" />
-                  <Separator layoutX="14.0" layoutY="375.0" prefHeight="0.0" prefWidth="452.0" />
-                  <Label layoutX="38.0" layoutY="389.0" prefHeight="24.0" prefWidth="149.0" text="Fecha de inicio">
+                  <Separator layoutX="14.0" layoutY="397.0" prefHeight="0.0" prefWidth="452.0" />
+                  <Label layoutX="38.0" layoutY="411.0" prefHeight="24.0" prefWidth="149.0" text="Fecha de inicio">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="219.0" layoutY="389.0" prefHeight="24.0" prefWidth="149.0" text="Fecha de salida">
+                  <Label layoutX="219.0" layoutY="411.0" prefHeight="24.0" prefWidth="149.0" text="Fecha de salida">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="datos_f_inicio" layoutX="38.0" layoutY="413.0" prefHeight="24.0" prefWidth="149.0" text="20-02-2021">
+                  <Label fx:id="datos_f_inicio" layoutX="38.0" layoutY="435.0" prefHeight="24.0" prefWidth="149.0" text="20-02-2021">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="datos_f_fin" layoutX="220.0" layoutY="413.0" prefHeight="24.0" prefWidth="149.0" text="20-02-2021">
+                  <Label fx:id="datos_f_fin" layoutX="220.0" layoutY="435.0" prefHeight="24.0" prefWidth="149.0" text="20-02-2021">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
@@ -172,6 +172,16 @@
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </CheckBox>
+                  <Label layoutX="14.0" layoutY="348.0" prefHeight="24.0" prefWidth="198.0" text="Habitaciones matrimoniales:">
+                     <font>
+                        <Font name="MAXWELL REGULAR" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="datos_hab_matrimoniales" layoutX="14.0" layoutY="363.0" prefHeight="24.0" prefWidth="266.0" text="202, 502, 305">
+                     <font>
+                        <Font name="MAXWELL REGULAR" size="19.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
             <VBox layoutX="546.0" layoutY="149.0" prefHeight="381.0" prefWidth="513.0" spacing="16.0">

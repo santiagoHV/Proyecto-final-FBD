@@ -53,6 +53,7 @@ public class Controlador_checkin implements Initializable {
     public Label datos_q_adultos;
     public StackPane stackBG;
     public JFXButton btn_finalizar;
+    public Label datos_hab_matrimoniales;
 
     private Controlador_checkin controlador_checkin = this;
 
@@ -108,8 +109,7 @@ public class Controlador_checkin implements Initializable {
         Task<List<Registro>> taskConRegistros = new Task<List<Registro>>() {
             @Override
             protected List<Registro> call() throws Exception {
-                List<Registro> registroListTarea = dao_registro.consultarRegistroPorReserva(codReservaFinal);
-                return registroListTarea;
+                return dao_registro.consultarRegistroPorReserva(codReservaFinal);
             }
         };
 
@@ -133,6 +133,7 @@ public class Controlador_checkin implements Initializable {
                 datos_hab_sencillas.setText("");
                 datos_hab_dobles.setText("");
                 datos_hab_triples.setText("");
+                datos_hab_matrimoniales.setText("");
 
                 datos_q_bebes.setText(reserva.getCantidad_bebes()+"");
                 datos_q_ninos.setText(reserva.getCantidad_ninos()+"");
@@ -184,6 +185,19 @@ public class Controlador_checkin implements Initializable {
                             datos_hab_triples.setText(datos_hab_triples.getText() + ", " + taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion());
                         }
                     }
+
+                    if(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion().equals("matrimonial"))
+                    {
+                        //Habitaciones matrimoniales:
+                        if(datos_hab_matrimoniales.getText().equals(""))
+                        {
+                            datos_hab_matrimoniales.setText(taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion()+"");
+                        }
+                        else
+                        {
+                            datos_hab_matrimoniales.setText(datos_hab_matrimoniales.getText() + ", " + taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion());
+                        }
+                    }
                     habitacionList.add(taskConReservaHabi.getValue().get(i).getHabitacion());
                 }
 
@@ -198,6 +212,10 @@ public class Controlador_checkin implements Initializable {
                 if(datos_hab_triples.getText().equals(""))
                 {
                     datos_hab_triples.setText("Ninguna Reservada");
+                }
+                if(datos_hab_matrimoniales.getText().equals(""))
+                {
+                    datos_hab_matrimoniales.setText("Ninguna Reservada");
                 }
 
                 Thread threadRegistro = new Thread(taskConRegistros);
@@ -291,6 +309,7 @@ public class Controlador_checkin implements Initializable {
                                         {
                                             cantAdultos--;
                                         }
+
                                         controlador_huesped.setValoresPanel(registroList.get(i).getHuesped(), habitacionList);
 
                                         controlador_huesped.btn_ingreso.setText("Actualizar");
