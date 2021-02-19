@@ -128,6 +128,11 @@ public class Controlador_Login implements Initializable {
                     dialogActual.close();
                 }
                 else if(AUTH.equals("worker")) {
+                    try {
+                        openTrabajador();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     JFXButton BotonAceptar = (JFXButton) actionEvent.getSource();
                     Stage dialogActual = (Stage) BotonAceptar.getScene().getWindow();
                     dialogActual.close();
@@ -248,7 +253,7 @@ public class Controlador_Login implements Initializable {
     public void openTrabajador() throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("../Vista/gerente/navbar.fxml"));
+        loader.setLocation(Main.class.getResource("../Vista/empleado/empleado.fxml"));
         Pane ventana = (Pane) loader.load();
         //Show the scene containing the root layout.
 
