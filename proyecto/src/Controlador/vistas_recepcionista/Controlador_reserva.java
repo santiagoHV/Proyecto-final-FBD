@@ -19,6 +19,7 @@ import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -30,7 +31,7 @@ import java.util.ResourceBundle;
 
 public class Controlador_reserva implements Initializable {
 
-    int CAPACIDAD_MAXIMA = 120;
+    int CAPACIDAD_MAXIMA = 108;
     private double xOffset = 0;
     private double yOffset = 0;
 
@@ -81,11 +82,13 @@ public class Controlador_reserva implements Initializable {
     public int huespedesNinos;
     public int huespedesAdultos;
     public int codigoDeReserva;
+    public double precioReserva;
     Condicion_Hotel condicionHotel;
 
     public ArrayList<String> listaNombresHabitaciones = new ArrayList<String>();
     public String mensajeEstado;
     public int personasHospedadasEnLaFecha;
+    public int cupoEnHabitacionesEnReserva = 0;
 
 
     @Override
@@ -222,31 +225,52 @@ public class Controlador_reserva implements Initializable {
                     @Override
                     public void handle(WorkerStateEvent workerStateEvent) {
                         System.out.println("cantidad de personas" + personasHospedadasEnLaFecha);
+                        System.out.println("aforo " + CAPACIDAD_MAXIMA * condicionHotel.getAforo());
                         if(validarCantidadDePersonas(huespedesAdultos,huespedesNinos,huespedesBebes, (int) ((CAPACIDAD_MAXIMA * condicionHotel.getAforo()) - personasHospedadasEnLaFecha))){
                             mostrarHabitacionesOcupadas(habitacionesTask.getValue());
-                            progressIndReserva.setVisible(false);
+
                             TabPanePisos.setDisable(false);
                             total_personas.setText(String.valueOf(huespedesAdultos+huespedesNinos) + " (Sin contar bebés)");
                         }
+                        progressIndReserva.setVisible(false);
                     }
                 });
                 threadConsultaHabitaciones.start();
 
             }
-
         }
         else if(actionEvent.getSource().equals(btn_hacer_reserva)){
             Reserva reserva = new Reserva(codigoDeReserva,"activa",sqlFechaInicio,Date.valueOf(LocalDate.now()),
-                    sqlFechaFinal,huespedesBebes,huespedesNinos,huespedesAdultos,calcularPrecioReserva(),condicionHotel, titularDeReserva);
+                    sqlFechaFinal,huespedesBebes,huespedesNinos,huespedesAdultos,precioReserva,condicionHotel, titularDeReserva);
+            progressIndReserva.setVisible(true);
 
-            dao_reserva.insertarReserva(reserva);
+            Task taskReserva = new Task() {
+                @Override
+                protected Object call() throws Exception {
+                    dao_reserva.insertarReserva(reserva);
 
-            for(Habitacion habitacion: listaHabitaciones){
-                dao_reserva.insertarHabitacionEnReserva(reserva,habitacion);
-            }
+                    for(Habitacion habitacion: listaHabitaciones){
+                        dao_reserva.insertarHabitacionEnReserva(reserva,habitacion);
+                    }
+
+                    return null;
+                }
+            };
+
+            Thread threadReserva = new Thread(taskReserva);
+
+            taskReserva.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                @Override
+                public void handle(WorkerStateEvent workerStateEvent) {
+                    progressIndReserva.setVisible(false);
+
+                    JOptionPane.showMessageDialog(null, "¡Reserva hecha!");
+
+                }
+            });
+
+            threadReserva.start();
         }
-
-
     }
 
     /**
@@ -286,13 +310,22 @@ public class Controlador_reserva implements Initializable {
      * @return
      */
     public boolean validarCantidadDePersonas( int adultos, int ninos, int bebes, int capacidadMinima){
-        if (adultos + ninos + bebes > capacidadMinima) {
+
+        System.out.println("capacidad minima" + capacidadMinima);
+        if(adultos + ninos + bebes == 0){
+            invalidarControl(true,cantidad_adultos);
+            invalidarControl(true,cantidad_niños);
+            invalidarControl(true,cantidad_bebes);
+            return false;
+        }
+        else if (adultos + ninos + bebes > capacidadMinima) {
             invalidarControl(true,cantidad_adultos);
             invalidarControl(true,cantidad_niños);
             invalidarControl(true,cantidad_bebes);
             return false;
 
-        } else {
+        }
+        else {
             invalidarControl(false,cantidad_adultos);
             invalidarControl(false,cantidad_niños);
             invalidarControl(false,cantidad_bebes);
@@ -388,8 +421,10 @@ public class Controlador_reserva implements Initializable {
             Tipo tipo;
             if(Integer.parseInt(boton.getId()) < 400){
                 tipo = tipos.get(2);
+            }else if(Integer.parseInt(boton.getId()) < 505){
+                tipo = tipos.get(3);
             }else if(Integer.parseInt(boton.getId()) < 700){
-                tipo = tipos.get(1);
+                tipo = tipos.get(2);
             }else{
                 tipo = tipos.get(0);
             }
@@ -397,11 +432,15 @@ public class Controlador_reserva implements Initializable {
             listaHabitaciones.add(new Habitacion(Integer.parseInt(boton.getId()),tipo));
             actualizarDatosDeReserva();
 
+
         } else {
             boton.getStyleClass().set(3, "");
+
+            listaHabitaciones.remove(listaNombresHabitaciones.indexOf(boton.getId()));
             listaNombresHabitaciones.remove(boton.getId());
             actualizarDatosDeReserva();
         }
+        validarHabitacionesConHuespedes();
 
     }
 
@@ -460,10 +499,6 @@ public class Controlador_reserva implements Initializable {
         dialog.show();
     }
 
-    public double calcularPrecioReserva(){
-        return 0;
-    }
-
     /**
      * Actualiza los datos del estado de la reserva
      */
@@ -480,6 +515,61 @@ public class Controlador_reserva implements Initializable {
 
         }
     }
+
+    /**
+     * Verifica la cantidad de huespedes con relacion a la cantidad de cupos
+     * separados en las habitaciones, y actualiza el precio de reserva
+     */
+    public void validarHabitacionesConHuespedes(){
+        cupoEnHabitacionesEnReserva = 0;
+        precioReserva = 0;
+        boolean flagHabitacionDoble = false;
+        boolean flagHabitacionTriple= false;
+
+        for(Habitacion habitacion: this.listaHabitaciones){
+            if(habitacion.getTipo_habitacion().getCupo() == 2){
+                flagHabitacionDoble = true;
+            }else if(habitacion.getTipo_habitacion().getCupo() == 3){
+                flagHabitacionTriple = true;
+            }
+            cupoEnHabitacionesEnReserva += habitacion.getTipo_habitacion().getCupo();
+            precioReserva += habitacion.getTipo_habitacion().getPrecio_habitacion();
+        }
+
+        System.out.println("cupo en habitaciones en reserva " + cupoEnHabitacionesEnReserva);
+
+        if(flagHabitacionTriple){
+            if(huespedesNinos + huespedesAdultos <= cupoEnHabitacionesEnReserva && huespedesNinos + huespedesAdultos >= (cupoEnHabitacionesEnReserva - 2)){
+                btn_datos_titular.setDisable(false);
+                mensajeEstado = "Correcto";
+            }else{
+                mensajeEstado = "Error cupo habitaciones";
+                btn_datos_titular.setDisable(true);
+            }
+        }else if(flagHabitacionDoble){
+            if(huespedesNinos + huespedesAdultos <= cupoEnHabitacionesEnReserva && huespedesNinos + huespedesAdultos >= (cupoEnHabitacionesEnReserva - 1)){
+                btn_datos_titular.setDisable(false);
+                mensajeEstado = "Correcto";
+            }else{
+                mensajeEstado = "Error cupo habitaciones";
+                btn_datos_titular.setDisable(true);
+            }
+        }else{
+            if(huespedesNinos + huespedesAdultos == cupoEnHabitacionesEnReserva){
+                btn_datos_titular.setDisable(false);
+                mensajeEstado = "Correcto";
+            }else{
+                mensajeEstado = "Error cupo habitaciones";
+                btn_datos_titular.setDisable(true);
+
+            }
+        }
+
+        estado_acomodacion.setText(mensajeEstado);
+        //actualizar precios
+    }
+
+    //public void actualizar precios
 
     /**
      * Ejecuta una consulta a una reserva existente segun su ID

@@ -105,7 +105,7 @@ public class DAO_Reserva {
 
     public int consultarCantidadDePersonasHospedadas(Date fInicio, Date fFinal) {
         try {
-            ResultSet resultSet = op.ConsultaEsp("SELECT sum(q_cantidad_bebes), sum(q_cantidad_ninos), sum(q_cantidad_adultos) FROM reserva" +
+            ResultSet resultSet = op.ConsultaEsp("SELECT sum(q_cantidad_bebes), sum(q_cantidad_ninos), sum(q_cantidad_adultos) FROM reserva r" +
                     " WHERE " +
                     "      (('" + fInicio + "' BETWEEN r.f_inicio and r.f_final OR '" + fFinal + "' BETWEEN r.f_inicio and r.f_final) OR " +
                     "      (r.f_inicio BETWEEN '" + fInicio + "' and '" + fFinal + "' OR r.f_final BETWEEN '" + fInicio + "' and '" + fFinal + "'));");
@@ -113,7 +113,7 @@ public class DAO_Reserva {
             resultSet.next();
             return resultSet.getInt(1) + resultSet.getInt(2) + resultSet.getInt(3);
         } catch (SQLException ex) {
-            System.out.println(ex + "En Habitación");
+            System.out.println(ex + "cantidad de personas hospedadas");
         }
         return 0;
     }

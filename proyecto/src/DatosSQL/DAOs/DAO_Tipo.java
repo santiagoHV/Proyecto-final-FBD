@@ -20,7 +20,7 @@ public class DAO_Tipo {
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM tipo WHERE k_tipo_habitacion = '"+ID+"'");
             resultSet.next();
 
-            Tipo tipo = new Tipo(resultSet.getString(1),resultSet.getDouble(2),resultSet.getString(3));
+            Tipo tipo = new Tipo(resultSet.getString(1),resultSet.getDouble(2),resultSet.getString(3),resultSet.getInt(4));
 
             return tipo;
 
@@ -37,7 +37,7 @@ public class DAO_Tipo {
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM tipo");
 
             while (resultSet.next()){
-                tipos.add(new Tipo(resultSet.getString(1),resultSet.getDouble(2),resultSet.getString(3)));
+                tipos.add(new Tipo(resultSet.getString(1),resultSet.getDouble(2),resultSet.getString(3),resultSet.getInt(4)));
             }
 
         }catch (SQLException ex){
