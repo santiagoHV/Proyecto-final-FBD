@@ -10,12 +10,15 @@ public class PyS {
     private String unidad;
     private int stock;
     private double precio_producta;
+    private String categoria;
 
-    public PyS(int k_codigo_pys, String unidad, int stock, double precio_producta) {
+
+    public PyS(int k_codigo_pys, String unidad, int stock, double precio_producta, String categoria) {
         this.k_codigo_pys = k_codigo_pys;
         this.unidad = unidad;
         this.stock = stock;
         this.precio_producta = precio_producta;
+        this.categoria = categoria;
     }
 
     public PyS(){}
@@ -51,6 +54,15 @@ public class PyS {
     public void setPrecio_producta(double precio_producta) {
         this.precio_producta = precio_producta;
     }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
 
 
 }

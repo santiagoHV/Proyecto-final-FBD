@@ -25,7 +25,6 @@ import java.util.ResourceBundle;
 
 public class Controlador_navbar implements Initializable {
     public AnchorPane router;
-
     public Button reserve_button;
     public Button checkin_button;
     public Button checkout_button;

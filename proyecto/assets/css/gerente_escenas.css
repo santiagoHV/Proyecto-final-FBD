@@ -1,0 +1,120 @@
+.navbar__button {
+    -fx-background-color: #2E1E1E;
+}
+.navbar__button:hover{
+    -fx-background-color: #402828;
+    -fx-font: 17px;
+}
+.button{
+    -fx-font-family: "MAXWELL REGULAR";
+}
+.navbar__button--home {
+    -fx-font-size: 17px;
+    -fx-background-size: 75%;
+    -fx-background-image: url("../images/money.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.navbar__button--usuarios {
+    -fx-font-size: 17px;
+    -fx-background-size: 70%;
+    -fx-background-image: url("../images/Usuario.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.navbar__button--habitaciones {
+    -fx-font-size: 17px;
+    -fx-background-size: 75%;
+    -fx-background-image: url("../images/Key.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.navbar__button--productos{
+    -fx-font-size: 17px;
+    -fx-background-size: 80%;
+    -fx-background-image: url("../images/hamburguer.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.navbar__button--out{
+    -fx-font-size: 17px;
+    -fx-background-size: 55%;
+    -fx-background-image: url("../images/Out_Icon.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.navbar__button--hotel{
+    -fx-font-size: 17px;
+    -fx-background-size: 60%;
+    -fx-background-image: url("../images/hotel.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.title-hotel {
+    -fx-background-color: linear-gradient(from 0px 400px to 500px 1200px, #2E1E1E, #1d0a01);
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-color: white;
+    -fx-text-align: center;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+}
+.button--circle{
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-border-radius: 200;
+    -fx-border-color: #9c9c9c;
+    -fx-background-color: Transparent;
+}
+.button--circle--ingresos{
+    -fx-background-image: url("../images/IngresoPP.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 80%;
+}
+.button--circle--ing-hab{
+    -fx-background-image: url("../images/Tarjetapp.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 80%;
+}
+.label--circle{
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-text-align: center;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+}
+
+.TableColumn{
+    -fx-font-size: 32px;
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-text-alignment: center;
+}
+.button--table{
+    -fx-font-size: 25px;
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-background-color: #2E1E1E;
+}
+.tituloAgregar{
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(rgba(64,79,93,1) 0%, rgba(51,58,67,1) 50%, rgba(34,34,34,1) 100%);
+    -fx-border-color: black;
+    -fx-effect: dropshadow(two-pass-box, #341111,20,0,3,3);
+}
+.combo-box1{
+    -fx-font-size: 23px;
+    -fx-text-alignment: center;
+}
+.plus{
+    -fx-background-color: linear-gradient(rgba(64,79,93,1) 0%, rgba(51,58,67,1) 50%, rgba(34,34,34,1) 100%);
+    -fx-background-image: url("../images/add.png");
+    -fx-effect: dropshadow(two-pass-box, #341111,20,0,3,3);
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 88;
+}
+.cancel{
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #FF5169;
+    -fx-background-radius: 88;
+    -fx-font-size: 25;
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-effect: dropshadow(two-pass-box, #341111,20,0,3,3);
+}
