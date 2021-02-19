@@ -118,7 +118,11 @@ public class Controlador_Login implements Initializable {
                     dialogActual.close();
                 }
                 else if(AUTH.equals("gerente")){
-
+                    try {
+                        openGerente();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     JFXButton BotonAceptar = (JFXButton) actionEvent.getSource();
                     Stage dialogActual = (Stage) BotonAceptar.getScene().getWindow();
                     dialogActual.close();
@@ -129,7 +133,6 @@ public class Controlador_Login implements Initializable {
                     dialogActual.close();
                 }
                 progress.setVisible(false);
-
             }
         });
         Thread adios = new Thread(tarea);
@@ -207,6 +210,25 @@ public class Controlador_Login implements Initializable {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("../Vista/recepcionista/navbar_recepcionista.fxml"));
+        Pane ventana = (Pane) loader.load();
+        //Show the scene containing the root layout.
+
+        Scene scene = new Scene(ventana);
+        scene.setFill(Color.TRANSPARENT);
+        stage.setTitle("Menu Principal");
+        stage.setScene(scene);
+        //Undecorated y No Resizable:
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.TRANSPARENT);
+
+        //Mostrar Stage:
+        stage.show();
+    }
+    public void openGerente() throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("../Vista/gerente/navbar.fxml"));
         Pane ventana = (Pane) loader.load();
         //Show the scene containing the root layout.
 

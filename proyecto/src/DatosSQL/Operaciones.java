@@ -13,4 +13,9 @@ public class Operaciones {
         ResultSet rs = stmt.executeQuery(Query);
         return rs;
     }
+    public void UpdateEsp(String Update) throws SQLException {
+        Conexion conexion = Conexion.getInstance();
+        Statement stmt = conexion.getConnection().createStatement();
+        stmt.executeUpdate(Update);
+    }
 }

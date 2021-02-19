@@ -39,7 +39,6 @@
 }
 
 .navbar__button--reverve {
-    -fx-font-family: "MAXWELL REGULAR";
     -fx-font-size: 20px;
     -fx-background-image: url("../images/Reserva_Icon.png");
     -fx-background-position: center;
@@ -48,7 +47,6 @@
 }
 
 .navbar__button--checkin {
-    -fx-font-family: "MAXWELL REGULAR";
     -fx-font-size: 20px;
     -fx-background-image: url("../images/Checkin_Icon.png");
     -fx-background-position: center;
@@ -56,7 +54,6 @@
 }
 
 .navbar__button--checkout {
-    -fx-font-family: "MAXWELL REGULAR";
     -fx-font-size: 20px;
     -fx-background-image: url("../images/CheckOut_Icon.png");
     -fx-background-position: center;
@@ -64,7 +61,6 @@
 }
 
 .navbar__button--search {
-    -fx-font-family: "MAXWELL REGULAR";
     -fx-font-size: 20px;
     -fx-background-image: url("../images/Search_Icon.png");
     -fx-background-size: 50%;
@@ -72,7 +68,6 @@
     -fx-background-repeat: no-repeat;
 }
 .navbar__button--out {
-    -fx-font-family: "MAXWELL REGULAR";
     -fx-font-size: 20px;
     -fx-background-size: 85%;
     -fx-background-image: url("../images/Out_Icon.png");
@@ -193,6 +188,9 @@
     -fx-background-position: center;
     -fx-background-size: 70%;
     -fx-background-repeat: no-repeat;
+}
+.tap-ventanas{
+    -fx-font-size: 15px;
 }
 
 
