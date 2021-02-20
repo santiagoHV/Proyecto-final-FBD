@@ -106,7 +106,8 @@ public class Controlador_reserva implements Initializable {
      * responde a los clicks de validar, reservar, nuevar reserva
      * @param actionEvent
      */
-    public void click(ActionEvent actionEvent) throws SQLException {
+    public void click(ActionEvent actionEvent) throws SQLException
+    {
         DAO_Reserva dao_reserva = new DAO_Reserva();
 
         /**
@@ -155,7 +156,6 @@ public class Controlador_reserva implements Initializable {
 
                     threadCondicion.start();
                     threadNumReserva.start();
-                    codigo_reserva.setText(String.valueOf(codigoDeReserva));
                     bloqueosNuevaReserva(true);
 
                     fecha_ingreso.setDayCellFactory(d ->
@@ -186,6 +186,7 @@ public class Controlador_reserva implements Initializable {
                 @Override
                 public void handle(WorkerStateEvent workerStateEvent) {
                     codigoDeReserva = numReservaTask.getValue() + 1;
+                    lblCodigoDeReserva.setText(String.valueOf(codigoDeReserva));
                 }
             });
 
@@ -359,6 +360,9 @@ public class Controlador_reserva implements Initializable {
         btn_datos_titular.setDisable(true);
     }
 
+    /**
+     * Vacia los elementos visuales y objetos del proceso de reserva
+     */
     public void reiniciarPagina(){
         fecha_salida.getEditor().clear();
         fecha_ingreso.getEditor().clear();
@@ -388,7 +392,6 @@ public class Controlador_reserva implements Initializable {
         cupoEnHabitacionesEnReserva = 0;
         personasHospedadasEnLaFecha = 0;
     }
-
 
     /**
      * Bloquea las habitaciones ocupadas en las fechas seleccionadas
@@ -605,8 +608,19 @@ public class Controlador_reserva implements Initializable {
         //actualizar precios
     }
 
+    /**
+     * actualiza los precios de descuentos y general
+     * @param precioGeneral
+     */
     public void actualizarPrecios(double precioGeneral){
-        double descuento = condicionHotel.getDescuento() * precioGeneral;
+        double descuento;
+
+        System.out.println(condicionHotel.getNumero_dias() + " " + condicionHotel.getDescuento());
+        if((sqlFechaFinal.toLocalDate().getDayOfYear() - sqlFechaInicio.toLocalDate().getDayOfYear()) >= condicionHotel.getNumero_dias()){
+            descuento = condicionHotel.getDescuento() * precioGeneral;
+        }else{
+            descuento = 0;
+        };
 
         this.valor_estadia.setText("$ " + precioGeneral);
         this.descuento.setText("$ " + descuento);

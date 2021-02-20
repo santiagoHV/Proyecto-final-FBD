@@ -357,7 +357,7 @@
             </Pane>
             <Separator layoutX="662.0" layoutY="126.0" orientation="VERTICAL" prefHeight="621.0" prefWidth="0.0" />
             <Button fx:id="btn_editar_reserva" layoutX="379.0" layoutY="182.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="EDITAR RESERVA" />
-            <Pane fx:id="state_panel" layoutX="718.0" layoutY="127.0" prefHeight="176.0" prefWidth="310.0" style="-fx-background-color: white; -fx-border-color: black;" styleClass="calculadora">
+            <Pane fx:id="state_panel" layoutX="718.0" layoutY="127.0" prefHeight="216.0" prefWidth="310.0" style="-fx-background-color: white; -fx-border-color: black;" styleClass="calculadora">
                <padding>
                   <Insets top="15.0" />
                </padding>
@@ -404,38 +404,38 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="price_panel" layoutX="718.0" layoutY="312.0" prefHeight="176.0" prefWidth="310.0" style="-fx-background-color: white; -fx-border-color: black;" styleClass="calculadora">
+            <Pane fx:id="price_panel" layoutX="718.0" layoutY="348.0" prefHeight="140.0" prefWidth="310.0" style="-fx-background-color: white; -fx-border-color: black;" styleClass="calculadora">
                <padding>
                   <Insets top="15.0" />
                </padding>
                <children>
-                  <Separator layoutX="14.0" layoutY="91.0" prefHeight="4.0" prefWidth="285.0" />
-                  <Label layoutX="9.0" layoutY="30.0" prefHeight="24.0" prefWidth="204.0" text="Valor de reserva y estadía . . . ">
+                  <Separator layoutX="14.0" layoutY="73.0" prefHeight="4.0" prefWidth="285.0" />
+                  <Label layoutX="9.0" layoutY="12.0" prefHeight="24.0" prefWidth="204.0" text="Valor de reserva y estadía . . . ">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="valor_estadia" layoutX="213.0" layoutY="30.0" prefHeight="24.0" prefWidth="89.0" text="\$ 000000000">
+                  <Label fx:id="valor_estadia" layoutX="213.0" layoutY="12.0" prefHeight="24.0" prefWidth="89.0" text="\$ 000000000">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="9.0" layoutY="54.0" prefHeight="24.0" prefWidth="204.0" text="Descuento por temporada . . . ">
+                  <Label layoutX="9.0" layoutY="36.0" prefHeight="24.0" prefWidth="204.0" text="Descuento por temporada . . . ">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="descuento" layoutX="213.0" layoutY="54.0" prefHeight="24.0" prefWidth="89.0" text="\$ 000000000">
+                  <Label fx:id="descuento" layoutX="213.0" layoutY="36.0" prefHeight="24.0" prefWidth="89.0" text="\$ 000000000">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="valor_total" layoutX="213.0" layoutY="122.0" prefHeight="24.0" prefWidth="89.0" text="\$ 000000000">
+                  <Label fx:id="valor_total" layoutX="213.0" layoutY="104.0" prefHeight="24.0" prefWidth="89.0" text="\$ 000000000">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="122.0" prefHeight="24.0" prefWidth="195.0" text="Total a pagar . . . . . . . . . . . . . . .">
+                  <Label layoutX="10.0" layoutY="104.0" prefHeight="24.0" prefWidth="195.0" text="Total a pagar . . . . . . . . . . . . . . .">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
