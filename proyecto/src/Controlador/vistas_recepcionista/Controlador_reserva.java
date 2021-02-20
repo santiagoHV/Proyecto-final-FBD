@@ -1,5 +1,6 @@
 package Controlador.vistas_recepcionista;
 
+import Controlador.Controlador_alerta;
 import DatosSQL.DAOs.*;
 import Modelo.entidades.*;
 import com.jfoenix.controls.JFXButton;
@@ -53,6 +54,7 @@ public class Controlador_reserva implements Initializable {
     public Label habitaciones_separadas;
     public Label estado_acomodacion;
     public Label total_personas;
+    public Label lbl_titulo_condicion;
     //Price table
     public Pane price_panel;
     public Label valor_estadia;
@@ -102,7 +104,6 @@ public class Controlador_reserva implements Initializable {
         this.cantidad_niños.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,120));
         this.cantidad_bebes.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,50));
 
-        mostrarAlerta("","");
 
     }
 
@@ -110,8 +111,7 @@ public class Controlador_reserva implements Initializable {
      * responde a los clicks de validar, reservar, nuevar reserva
      * @param actionEvent
      */
-    public void click(ActionEvent actionEvent) throws SQLException
-    {
+    public void click(ActionEvent actionEvent) throws SQLException {
         DAO_Reserva dao_reserva = new DAO_Reserva();
 
         /**
@@ -271,7 +271,7 @@ public class Controlador_reserva implements Initializable {
                 public void handle(WorkerStateEvent workerStateEvent) {
                     progressIndReserva.setVisible(false);
 
-                    JOptionPane.showMessageDialog(null, "¡Reserva hecha!");
+                    mostrarAlerta("¡Reserva exitosa!", "Código de reserva: " + codigoDeReserva);
 
                     reiniciarPagina();
 
@@ -395,6 +395,11 @@ public class Controlador_reserva implements Initializable {
         mensajeEstado = null;
         cupoEnHabitacionesEnReserva = 0;
         personasHospedadasEnLaFecha = 0;
+
+        habitaciones_separadas.setText("");
+        estado_acomodacion.setText("");
+        total_personas.setText("");
+        lbl_titulo_condicion.setText("");
     }
 
     /**
@@ -626,11 +631,9 @@ public class Controlador_reserva implements Initializable {
             descuento = 0;
         };
 
-        DecimalFormat formato = new DecimalFormat("###,###,###.##");
-
-        this.valor_estadia.setText("$ " + formato.format(precioGeneral));
-        this.descuento.setText("$ " + formato.format(descuento));
-        this.valor_total.setText("$ " + formato.format((precioGeneral - descuento)));
+        this.valor_estadia.setText(String.format("$ %(,.2f",precioGeneral));
+        this.descuento.setText(String.format("$ %(,.2f",descuento));
+        this.valor_total.setText(String.format("$ %(,.2f",(precioGeneral - descuento)));
 
     }
 
@@ -699,12 +702,18 @@ public class Controlador_reserva implements Initializable {
 
         JFXDialog dialogAlerta = new JFXDialog(stackPane, (Region) contenedor, JFXDialog.DialogTransition.BOTTOM, true);
 
+        Controlador_alerta controlador_alerta = alertaDireccion.getController();
+
         AnchorPane alertaAP = (AnchorPane) contenedor.getChildrenUnmodifiable().get(0);
         JFXButton btn_aceptar = (JFXButton) alertaAP.getChildren().get(2);
         btn_aceptar.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventAceptar)->
         {
             dialogAlerta.close();
         });
+
+        controlador_alerta.mensaje.setText(mensaje);
+        controlador_alerta.titulo.setText(titulo);
+
 
         dialogAlerta.show();
 
