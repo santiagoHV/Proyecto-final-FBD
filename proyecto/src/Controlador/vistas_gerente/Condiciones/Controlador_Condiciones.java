@@ -1,6 +1,7 @@
 package Controlador.vistas_gerente.Condiciones;
 
 import DatosSQL.DAOs.DAO_CondicionHotel;
+import DatosSQL.DAOs.DAO_Pago;
 import Modelo.entidades.Condicion_Hotel;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
