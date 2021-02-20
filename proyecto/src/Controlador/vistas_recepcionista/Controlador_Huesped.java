@@ -89,21 +89,28 @@ public class Controlador_Huesped implements Initializable
                 Registro registro = registroTask.getValue();
                 if(registro!=null)
                 {
-                    comboHabitacion.getItems().add(registro.getHabitacion().getK_numero_habitacion());
-
-                    for(Habitacion h: habitacionList)
+                    if(habitacionList != null)
                     {
-                        if(!comboHabitacion.getItems().contains(h.getK_numero_habitacion()))
+                        for(Habitacion h: habitacionList)
                         {
-                            comboHabitacion.getItems().add(h.getK_numero_habitacion());
+                            if(!comboHabitacion.getItems().contains(h.getK_numero_habitacion()))
+                            {
+                                comboHabitacion.getItems().add(h.getK_numero_habitacion());
+                            }
                         }
                     }
+                    else
+                    {
+                        comboHabitacion.getItems().add(registro.getHabitacion().getK_numero_habitacion());
+                    }
+
+                    comboHabitacion.setValue(registro.getHabitacion().getK_numero_habitacion());
                 }
                 else
                 {
                     if(habitacionList==null)
                     {
-                        if(!comboHabitacion.getItems().get(comboHabitacion.getItems().size()-1).equals("No Registrado"))
+                        if(!comboHabitacion.getItems().contains("No Registrado"))
                         {
                             comboHabitacion.getItems().add("No Registrado");
                         }
@@ -120,8 +127,8 @@ public class Controlador_Huesped implements Initializable
                             i++;
                         }
                     }
+                    comboHabitacion.setValue(comboHabitacion.getItems().get(comboHabitacion.getItems().size()-1));
                 }
-                comboHabitacion.setValue(comboHabitacion.getItems().get(comboHabitacion.getItems().size()-1));
             }
         });
 

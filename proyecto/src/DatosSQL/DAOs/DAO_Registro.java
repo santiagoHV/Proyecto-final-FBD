@@ -89,23 +89,47 @@ public class DAO_Registro {
         return null;
     }
 
-    public void insertarRegistro(Registro registro){
+    public int insertarRegistro(Registro registro){
         try {
             PreparedStatement preparedStatement = Conexion.getInstance().getConnection().prepareStatement(
-                    "INSERT INTO registro_checkin VALUES(?,?,?,?,?,?,?);");
+                    "INSERT INTO registro_checkin VALUES((nextval('registro_checkin_k_registro_seq')),?,?,?,?,?,?);");
 
-            preparedStatement.setInt(1, registro.getK_registro());
-            preparedStatement.setDate(2, registro.getF_entrada());
-            preparedStatement.setDate(3, registro.getF_salida());
-            preparedStatement.setString(4, registro.getHuesped().getK_tipo_documento_id());
-            preparedStatement.setInt(5, registro.getHuesped().getK_identificacion());
-            preparedStatement.setInt(6, registro.getReserva().getK_reserva());
-            preparedStatement.setInt(7, registro.getHabitacion().getK_numero_habitacion());
+            //preparedStatement.setInt(1, registro.getK_registro());
+            preparedStatement.setDate(1, registro.getF_entrada());
+            preparedStatement.setDate(2, registro.getF_salida());
+            preparedStatement.setString(3, registro.getHuesped().getK_tipo_documento_id());
+            preparedStatement.setInt(4, registro.getHuesped().getK_identificacion());
+            preparedStatement.setInt(5, registro.getReserva().getK_reserva());
+            preparedStatement.setInt(6, registro.getHabitacion().getK_numero_habitacion());
 
-            preparedStatement.executeUpdate();
+           return preparedStatement.executeUpdate();
 
         }catch (Exception e){
             System.out.println(e + "En Registro");
         }
+        return 0;
+    }
+
+    public int actualizarRegistro(Registro registro)
+    {
+        try {
+            PreparedStatement preparedStatement = Conexion.getInstance().getConnection().prepareStatement(
+                    "UPDATE registro_checkin set f_salida = ?, k_tipo_documento = ?, " +
+                            "k_identificacion = ?, k_reserva = ?, k_numero_habitacion = ? WHERE k_registro = ?");
+
+            //preparedStatement.setDate(1, registro.getF_entrada());
+            preparedStatement.setDate(1, registro.getF_salida());
+            preparedStatement.setString(2, registro.getHuesped().getK_tipo_documento_id());
+            preparedStatement.setInt(3, registro.getHuesped().getK_identificacion());
+            preparedStatement.setInt(4, registro.getReserva().getK_reserva());
+            preparedStatement.setInt(5, registro.getHabitacion().getK_numero_habitacion());
+            preparedStatement.setInt(6, registro.getK_registro());
+
+            return preparedStatement.executeUpdate();
+
+        }catch (Exception e){
+            System.out.println(e + "En Registro");
+        }
+        return 0;
     }
 }

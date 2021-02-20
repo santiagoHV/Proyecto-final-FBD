@@ -433,10 +433,6 @@ public class Controlador_reserva implements Initializable {
                     }
                 }
                 try {
-
-
-
-
                     BotonConvertido.setOnAction(actionEvent -> {
                         try {
                             EvSelecHabi(actionEvent);
