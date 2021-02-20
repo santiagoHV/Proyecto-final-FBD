@@ -45,4 +45,38 @@ public class DAO_CondicionHotel {
             return null;
         }
     }
+
+    public boolean activarCond(int id){
+        Operaciones op = new Operaciones();
+        try {
+            op.UpdateEsp("UPDATE condicion_hotel SET i_estado_condicion = true WHERE k_condicion = "+id+"");
+            op.UpdateEsp("UPDATE condicion_hotel SET i_estado_condicion = false WHERE k_condicion != "+id+"");
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean addCondicion(Double descuento, Double aforo, String dias, String descripcion){
+        Operaciones op = new Operaciones();
+        try {
+            op.UpdateEsp("INSERT INTO condicion_hotel VALUES("+(getMaxID()+1)+", false, "+descuento+", "+aforo+", "+dias+", '"+descripcion+"')");
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public int getMaxID(){
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet res = op.ConsultaEsp("SELECT MAX(k_condicion) FROM condicion_hotel");
+            res.next();
+            return res.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
 }

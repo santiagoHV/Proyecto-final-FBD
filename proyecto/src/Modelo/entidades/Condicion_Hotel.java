@@ -62,5 +62,13 @@ public class Condicion_Hotel {
         this.numero_dias = numero_dias;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
 
 }
