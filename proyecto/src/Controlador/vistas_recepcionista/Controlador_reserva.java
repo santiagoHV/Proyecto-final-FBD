@@ -2,6 +2,7 @@ package Controlador.vistas_recepcionista;
 
 import DatosSQL.DAOs.*;
 import Modelo.entidades.*;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.events.JFXDialogEvent;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
@@ -24,6 +25,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,6 +101,8 @@ public class Controlador_reserva implements Initializable {
         this.cantidad_adultos.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,120));
         this.cantidad_niños.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,120));
         this.cantidad_bebes.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,50));
+
+        mostrarAlerta("","");
 
     }
 
@@ -622,9 +626,11 @@ public class Controlador_reserva implements Initializable {
             descuento = 0;
         };
 
-        this.valor_estadia.setText("$ " + precioGeneral);
-        this.descuento.setText("$ " + descuento);
-        this.valor_total.setText("$ " + (precioGeneral - descuento));
+        DecimalFormat formato = new DecimalFormat("###,###,###.##");
+
+        this.valor_estadia.setText("$ " + formato.format(precioGeneral));
+        this.descuento.setText("$ " + formato.format(descuento));
+        this.valor_total.setText("$ " + formato.format((precioGeneral - descuento)));
 
     }
 
@@ -680,6 +686,28 @@ public class Controlador_reserva implements Initializable {
         }else{
             nodo.getStyleClass().remove("map-red");
         }
+    }
+
+    public void mostrarAlerta(String titulo, String mensaje){
+        FXMLLoader alertaDireccion = new FXMLLoader(getClass().getResource("../../Vista/recepcionista/alerta.fxml"));
+        Parent contenedor = null;
+        try {
+            contenedor = alertaDireccion.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JFXDialog dialogAlerta = new JFXDialog(stackPane, (Region) contenedor, JFXDialog.DialogTransition.BOTTOM, true);
+
+        AnchorPane alertaAP = (AnchorPane) contenedor.getChildrenUnmodifiable().get(0);
+        JFXButton btn_aceptar = (JFXButton) alertaAP.getChildren().get(2);
+        btn_aceptar.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventAceptar)->
+        {
+            dialogAlerta.close();
+        });
+
+        dialogAlerta.show();
+
     }
 
 }
