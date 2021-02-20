@@ -111,7 +111,7 @@ public class Controlador_Usuarios implements Initializable {
 
     public void openAdd() throws IOException {
         BoxBlur blur = new BoxBlur(3, 3, 3);
-        Parent parent = FXMLLoader.load(getClass().getResource("../../Vista/gerente/add_user.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("../../../Vista/gerente/add_user.fxml"));
         JFXDialog dialog = new JFXDialog(SPtabla, (Region) parent, JFXDialog.DialogTransition.TOP, true);
         //Esto es un machetazo el tenaz, pero no sé de que otra forma hacerlo:
         AnchorPane AP = (AnchorPane) parent.getChildrenUnmodifiable().get(0);

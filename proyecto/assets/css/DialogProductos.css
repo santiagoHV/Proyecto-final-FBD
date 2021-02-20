@@ -22,3 +22,6 @@
     -fx-background-color: #222831;
     -fx-text-fill: white;
 }
+.combo-box{
+    -fx-font-size: 22px;
+}

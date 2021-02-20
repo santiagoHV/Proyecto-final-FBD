@@ -64,7 +64,7 @@
                         </TableView>
                         <HBox alignment="CENTER" layoutX="14.0" layoutY="680.0" prefHeight="74.0" prefWidth="876.0" spacing="30.0">
                            <children>
-                              <JFXButton text="Añadir producto">
+                              <JFXButton onAction="#addProducto" text="Añadir producto">
                                  <font>
                                     <Font size="20.0" />
                                  </font>

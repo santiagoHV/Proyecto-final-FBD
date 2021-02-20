@@ -61,4 +61,27 @@ public class DAO_PyS {
         }
     }
 
+    public boolean agregarProducto(String nombre, String stock, String precio, String categoria){
+        Operaciones op = new Operaciones();
+        try {
+            op.UpdateEsp("INSERT INTO productoyservicio VALUES ("+(Integer.parseInt(getMaxID())+1)+", '"+nombre+"',"+stock+", "+precio+", '"+categoria+"')");
+            return true;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    private String getMaxID(){
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet res = op.ConsultaEsp("SELECT MAX(k_codigo_pys) FROM productoyservicio");
+            res.next();
+            return res.getString(1);
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

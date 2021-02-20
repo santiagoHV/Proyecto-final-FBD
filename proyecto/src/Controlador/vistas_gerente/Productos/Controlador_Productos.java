@@ -48,6 +48,7 @@ public class Controlador_Productos implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         progresi.setVisible(false);
         loadProductos("Restaurante");
+        actual_categoria="Restaurante";
     }
 
     public ObservableList<PyS> getProductosByCategoria(String categoria){
@@ -132,5 +133,24 @@ public class Controlador_Productos implements Initializable {
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione el producto que desea modificar");
         }
+    }
+    public void addProducto(ActionEvent actionEvent) throws IOException {
+        BoxBlur blur = new BoxBlur(3, 3, 3);
+        Parent parent = FXMLLoader.load(getClass().getResource("../../../Vista/gerente/add_producto.fxml"));
+        JFXDialog dialog = new JFXDialog(stackPane1, (Region) parent, JFXDialog.DialogTransition.BOTTOM, true);
+        AnchorPane AP = (AnchorPane) parent.getChildrenUnmodifiable().get(0);
+        HBox HB = (HBox) AP.getChildren().get(1);
+        JFXButton BSalirDialog = (JFXButton) HB.getChildrenUnmodifiable().get(0);
+        BSalirDialog.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent) ->
+        {
+            dialog.close();
+            loadProductos(actual_categoria);
+        });
+        dialog.setOnDialogClosed((JFXDialogEvent event) ->
+        {
+            AnchorMP.setEffect(null);
+        });
+        AnchorMP.setEffect(blur);
+        dialog.show();
     }
 }
