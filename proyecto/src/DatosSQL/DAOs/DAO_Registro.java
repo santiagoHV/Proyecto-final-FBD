@@ -108,4 +108,27 @@ public class DAO_Registro {
             System.out.println(e + "En Registro");
         }
     }
+
+    public int actualizarRegistro(Registro registro)
+    {
+        try {
+            PreparedStatement preparedStatement = Conexion.getInstance().getConnection().prepareStatement(
+                    "UPDATE registro_checkin set f_salida = ?, k_tipo_documento = ?, " +
+                            "k_identificacion = ?, k_reserva = ?, k_numero_habitacion = ? WHERE k_registro = ?");
+
+            //preparedStatement.setDate(1, registro.getF_entrada());
+            preparedStatement.setDate(1, registro.getF_salida());
+            preparedStatement.setString(2, registro.getHuesped().getK_tipo_documento_id());
+            preparedStatement.setInt(3, registro.getHuesped().getK_identificacion());
+            preparedStatement.setInt(4, registro.getReserva().getK_reserva());
+            preparedStatement.setInt(5, registro.getHabitacion().getK_numero_habitacion());
+            preparedStatement.setInt(6, registro.getK_registro());
+
+            return preparedStatement.executeUpdate();
+
+        }catch (Exception e){
+            System.out.println(e + "En Registro");
+        }
+        return 0;
+    }
 }

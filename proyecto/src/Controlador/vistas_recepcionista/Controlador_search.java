@@ -46,6 +46,7 @@ public class Controlador_search implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         JFXScrollPane Prueba = new JFXScrollPane();
         Prueba.smoothScrolling(panel_reservas_halladas);
+        Prueba.smoothScrolling(panel_clientes_hallados);
     }
 
     public void Consultar_Reservas_Clientes(ActionEvent actionEvent) throws InterruptedException, IOException {

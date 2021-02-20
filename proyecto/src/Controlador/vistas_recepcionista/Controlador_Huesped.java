@@ -89,8 +89,6 @@ public class Controlador_Huesped implements Initializable
                 Registro registro = registroTask.getValue();
                 if(registro!=null)
                 {
-                    comboHabitacion.getItems().add(registro.getHabitacion().getK_numero_habitacion());
-
                     if(habitacionList != null)
                     {
                         for(Habitacion h: habitacionList)
@@ -101,6 +99,12 @@ public class Controlador_Huesped implements Initializable
                             }
                         }
                     }
+                    else
+                    {
+                        comboHabitacion.getItems().add(registro.getHabitacion().getK_numero_habitacion());
+                    }
+
+                    comboHabitacion.setValue(registro.getHabitacion().getK_numero_habitacion());
                 }
                 else
                 {

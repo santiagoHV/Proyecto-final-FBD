@@ -2,6 +2,7 @@ package Controlador.vistas_recepcionista;
 
 import DatosSQL.DAOs.*;
 import Modelo.entidades.*;
+import Modelo.fabricas.HuespedList;
 import Vista.Main;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
@@ -88,8 +89,13 @@ public class Controlador_checkin implements Initializable {
 
     public void DefinirPanelDatosHuespedes() {
 
+        progressConCheck.setVisible(true);
+
         DAO_Reserva dao_reserva = new DAO_Reserva();
         DAO_Registro dao_registro = new DAO_Registro();
+
+        huespedIDList.clear();
+        registroList.clear();
 
         int codReserva = 0;
         if(!codigo_reserva.getText().equals("")){
@@ -224,7 +230,6 @@ public class Controlador_checkin implements Initializable {
                 taskConRegistros.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
                     @Override
                     public void handle(WorkerStateEvent workerStateEvent) {
-                        System.out.println("Pasó Registros");
                         registroList = taskConRegistros.getValue();
 
                         int column = 0;
@@ -271,20 +276,12 @@ public class Controlador_checkin implements Initializable {
                                     controlador_huesped.btn_ingreso.setText("Ingresar");
                                     controlador_huesped.btn_ingreso.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent ingresarReg)->
                                     {
-                                        Task<Registro> crearRegistroTask  = new Task<Registro>() {
-                                            @Override
-                                            protected Registro call() throws Exception {
-                                                return new Registro(0, Date.valueOf(LocalDate.now()),null,
-                                                        new DAO_Huesped().consultarHuesped(Integer.parseInt(controlador_huesped.LBnum_id.getText()),controlador_huesped.LB_TipoDoc.getText().replace(":","")),
-                                                        new DAO_Reserva().consultarReserva(codReservaFinal),
-                                                        new DAO_Habitacion().consultarHabitacion(Integer.parseInt(controlador_huesped.comboHabitacion.getValue().toString())));
-                                            }
-                                        };
+                                        Task<Registro> crearRegistroTask = crearRegistro(controlador_huesped, codReservaFinal,0);
 
                                         crearRegistroTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
                                             @Override
                                             public void handle(WorkerStateEvent workerStateEvent) {
-                                                comprobarIDRepetido(crearRegistroTask);
+                                                comprobarIDRepetido(crearRegistroTask, "Ingreso");
                                             }
                                         });
                                         Thread crearRegistroThread = new Thread(crearRegistroTask);
@@ -318,7 +315,20 @@ public class Controlador_checkin implements Initializable {
 
                                         controlador_huesped.btn_ingreso.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent actualizarReg)->
                                         {
+                                            Task<Registro> crearRegistroTask = crearRegistro(controlador_huesped, codReservaFinal, registroList.get(j).getK_registro());
 
+                                            crearRegistroTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                                                @Override
+                                                public void handle(WorkerStateEvent workerStateEvent) {
+                                                    if(huespedIDList.contains(crearRegistroTask.getValue().getHuesped().getK_identificacion()))
+                                                    {
+                                                        comprobarIDRepetido(crearRegistroTask, "Actualizar");
+                                                    }
+                                                }
+                                            });
+                                            Thread crearRegistroThread = new Thread(crearRegistroTask);
+
+                                            crearRegistroThread.start();
                                         });
                                     }
                                     else
@@ -344,22 +354,14 @@ public class Controlador_checkin implements Initializable {
 
                                         controlador_huesped.btn_ingreso.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent ingresarReg)->
                                         {
-                                            Task<Registro> crearRegistroTask  = new Task<Registro>() {
-                                                @Override
-                                                protected Registro call() throws Exception {
-                                                    return new Registro(0, Date.valueOf(LocalDate.now()),null,
-                                                            new DAO_Huesped().consultarHuesped(Integer.parseInt(controlador_huesped.LBnum_id.getText()),controlador_huesped.LB_TipoDoc.getText().replace(":","")),
-                                                            new DAO_Reserva().consultarReserva(codReservaFinal),
-                                                            new DAO_Habitacion().consultarHabitacion(Integer.parseInt(controlador_huesped.comboHabitacion.getValue().toString())));
-                                                }
-                                            };
+                                            Task<Registro> crearRegistroTask = crearRegistro(controlador_huesped, codReservaFinal, 0);
 
                                             crearRegistroTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
                                                 @Override
                                                 public void handle(WorkerStateEvent workerStateEvent) {
-                                                    if(!huespedIDList.contains(crearRegistroTask.getValue().getHuesped().getK_identificacion()))
+                                                    if(huespedIDList.contains(crearRegistroTask.getValue().getHuesped().getK_identificacion()))
                                                     {
-                                                        comprobarIDRepetido(crearRegistroTask);
+                                                        comprobarIDRepetido(crearRegistroTask, "Ingreso");
                                                     }
                                                 }
                                             });
@@ -482,7 +484,19 @@ public class Controlador_checkin implements Initializable {
         threadReserva.start();
     }
 
-    public void comprobarIDRepetido(Task<Registro> crearRegistroTask) {
+    public Task<Registro> crearRegistro(Controlador_Huesped controlador_huesped, int codReservaFinal, int registroID) {
+        return new Task<Registro>() {
+            @Override
+            protected Registro call() throws Exception {
+                return new Registro(registroID, Date.valueOf(LocalDate.now()),null,
+                        new DAO_Huesped().consultarHuesped(Integer.parseInt(controlador_huesped.LBnum_id.getText()), controlador_huesped.LB_TipoDoc.getText().replace(":","")),
+                        new DAO_Reserva().consultarReserva(codReservaFinal),
+                        new DAO_Habitacion().consultarHabitacion(Integer.parseInt(controlador_huesped.comboHabitacion.getValue().toString())));
+            }
+        };
+    }
+
+    public void comprobarIDRepetido(Task<Registro> crearRegistroTask, String Operacion) {
         int cantRepetida = 0;
         for(int i: huespedIDList)
         {
@@ -498,14 +512,24 @@ public class Controlador_checkin implements Initializable {
         }
         else
         {
-            new DAO_Registro().insertarRegistro(crearRegistroTask.getValue());
+            if(Operacion.equals("Ingreso"))
+            {
+                new DAO_Registro().insertarRegistro(crearRegistroTask.getValue());
+            }
+            else
+            {
+                if(new DAO_Registro().actualizarRegistro(crearRegistroTask.getValue())>0)
+                {
+                    System.out.println("Actualización Realizada");
+                    DefinirPanelDatosHuespedes();
+                }
+            }
         }
     }
 
     public void ClickBuscar(ActionEvent actionEvent) {
         if(!codigo_reserva.getText().equals(""))
         {
-            progressConCheck.setVisible(true);
             DefinirPanelDatosHuespedes();
         }
     }
