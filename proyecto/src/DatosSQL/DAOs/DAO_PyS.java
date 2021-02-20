@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class DAO_PyS {
 
-    public PyS consultarPyS(int ID){
+    public PyS consultarPyS(int ID) throws SQLException {
         Operaciones op = new Operaciones();
         try {
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM productoyservicio WHERE k_codigo_pys = "+ID+"");

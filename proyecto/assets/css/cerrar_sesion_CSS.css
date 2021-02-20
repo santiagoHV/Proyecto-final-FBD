@@ -1,0 +1,41 @@
+@font-face {
+    src: url('../Fuentes/MAXWELL_BOLD.ttf');
+}
+
+@font-face {
+    src: url('../Fuentes/MAXWELL_REGULAR.ttf');
+}
+
+.StackBG
+{
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-background-color: linear-gradient(to bottom right, #262626, #404040);
+}
+
+.label
+{
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-text-fill: #fcfcfc;
+}
+
+.button
+{
+    -fx-text-fill: #fcfcfc;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+    -fx-font-size: 30px;
+    -fx-font-family: "MAXWELL REGULAR";
+}
+
+.bSalir{
+    -fx-background-color: #fc3030;
+}
+
+.bCancelar{
+    -fx-background-color: #868686;
+}
+
+.jfx-dialog-overlay-pane > StackPane {
+    -fx-background-color: TRANSPARENT;
+}
