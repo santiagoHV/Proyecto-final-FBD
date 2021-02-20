@@ -414,7 +414,7 @@ public class Controlador_checkin implements Initializable {
 
                                         if(titularDeReserva.getClass().equals(Huesped.class))
                                         {
-                                            controlador_huesped.setValoresPanel((Huesped) titularDeReserva, null);
+                                            controlador_huesped.setValoresPanel((Huesped) titularDeReserva, habitacionList);
                                             dialog.close();
                                             controlador_huesped.btn_ingreso.setDisable(false);
 
@@ -514,7 +514,11 @@ public class Controlador_checkin implements Initializable {
         {
             if(Operacion.equals("Ingreso"))
             {
-                new DAO_Registro().insertarRegistro(crearRegistroTask.getValue());
+                if(new DAO_Registro().insertarRegistro(crearRegistroTask.getValue())>0)
+                {
+                    System.out.println("Inserción Realizada");
+                    DefinirPanelDatosHuespedes();
+                }
             }
             else
             {

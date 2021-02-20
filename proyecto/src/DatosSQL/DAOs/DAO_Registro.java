@@ -89,7 +89,7 @@ public class DAO_Registro {
         return null;
     }
 
-    public void insertarRegistro(Registro registro){
+    public int insertarRegistro(Registro registro){
         try {
             PreparedStatement preparedStatement = Conexion.getInstance().getConnection().prepareStatement(
                     "INSERT INTO registro_checkin VALUES((nextval('registro_checkin_k_registro_seq')),?,?,?,?,?,?);");
@@ -102,11 +102,12 @@ public class DAO_Registro {
             preparedStatement.setInt(5, registro.getReserva().getK_reserva());
             preparedStatement.setInt(6, registro.getHabitacion().getK_numero_habitacion());
 
-            System.out.println(preparedStatement.executeUpdate());
+           return preparedStatement.executeUpdate();
 
         }catch (Exception e){
             System.out.println(e + "En Registro");
         }
+        return 0;
     }
 
     public int actualizarRegistro(Registro registro)
