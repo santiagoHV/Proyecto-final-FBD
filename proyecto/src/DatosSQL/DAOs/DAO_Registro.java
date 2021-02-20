@@ -92,17 +92,17 @@ public class DAO_Registro {
     public void insertarRegistro(Registro registro){
         try {
             PreparedStatement preparedStatement = Conexion.getInstance().getConnection().prepareStatement(
-                    "INSERT INTO registro_checkin VALUES(?,?,?,?,?,?,?);");
+                    "INSERT INTO registro_checkin VALUES((nextval('registro_checkin_k_registro_seq')),?,?,?,?,?,?);");
 
-            preparedStatement.setInt(1, registro.getK_registro());
-            preparedStatement.setDate(2, registro.getF_entrada());
-            preparedStatement.setDate(3, registro.getF_salida());
-            preparedStatement.setString(4, registro.getHuesped().getK_tipo_documento_id());
-            preparedStatement.setInt(5, registro.getHuesped().getK_identificacion());
-            preparedStatement.setInt(6, registro.getReserva().getK_reserva());
-            preparedStatement.setInt(7, registro.getHabitacion().getK_numero_habitacion());
+            //preparedStatement.setInt(1, registro.getK_registro());
+            preparedStatement.setDate(1, registro.getF_entrada());
+            preparedStatement.setDate(2, registro.getF_salida());
+            preparedStatement.setString(3, registro.getHuesped().getK_tipo_documento_id());
+            preparedStatement.setInt(4, registro.getHuesped().getK_identificacion());
+            preparedStatement.setInt(5, registro.getReserva().getK_reserva());
+            preparedStatement.setInt(6, registro.getHabitacion().getK_numero_habitacion());
 
-            preparedStatement.executeUpdate();
+            System.out.println(preparedStatement.executeUpdate());
 
         }catch (Exception e){
             System.out.println(e + "En Registro");
