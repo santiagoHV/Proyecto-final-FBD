@@ -118,3 +118,12 @@
     -fx-font-family: "MAXWELL REGULAR";
     -fx-effect: dropshadow(two-pass-box, #341111,20,0,3,3);
 }
+.tabla_condiciones{
+    -fx-font-size: 20px;
+}
+
+.button_condiciones{
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(from 0px 400px to 500px 1200px, #2E1E1E, #1d0a01);
+}
