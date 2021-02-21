@@ -11,6 +11,10 @@ import java.sql.SQLException;
 
 public class DAO_Pago {
 
+    private Date fechainicio;
+    private Date fechafinal;
+    private SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+
     public Pago consultarPago(int ID){
         Operaciones op = new Operaciones();
         try {
@@ -29,16 +33,40 @@ public class DAO_Pago {
         return null;
     }
 
-    public int consultarMontoProductosAnho(){
-        Date fechainicio = new Date();
-        fechainicio.setYear(fechainicio.getYear()-1);
-        Date fechafinal = new Date();
-        SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+    public double consultarMontoProductos(String opc){
+        setFechas(opc);
         Operaciones op = new Operaciones();
         try {
-            ResultSet res = op.ConsultaEsp("SELECT SUM(cp.v_precio_venta*cp.q_pys_pedidos) " +
-                                  "FROM cuenta_productos cp, cuenta c, pago p " +
-                                  "WHERE cp.k_cuenta = c.k_cuenta AND c.k_pago = p.k_pago AND cp.f_pedido BETWEEN '"+formateador.format(fechainicio)+"' AND '"+formateador.format(fechafinal)+"'");
+            ResultSet res = op.ConsultaEsp("SELECT SUM(x.valores) FROM (SELECT cp.q_pys_pedidos * cp.v_precio_venta AS valores " +
+                    "FROM cuenta_productos cp, cuenta c, pago p " +
+                    "WHERE cp.k_cuenta = c.k_cuenta AND c.k_cuenta = p.k_cuenta AND p.f_pago BETWEEN '"+formateador.format(fechainicio)+"' AND '"+formateador.format(fechafinal)+"' " +
+                    "GROUP BY c.k_cuenta, cp.q_pys_pedidos, cp.v_precio_venta) x");
+            res.next();
+            return res.getDouble(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+    public double consultarMontoProductos(){
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet res = op.ConsultaEsp("SELECT SUM(x.valores) FROM (SELECT cp.q_pys_pedidos * cp.v_precio_venta AS valores " +
+                    "FROM cuenta_productos cp, cuenta c, pago p " +
+                    "WHERE cp.k_cuenta = c.k_cuenta AND c.k_cuenta = p.k_cuenta " +
+                    "GROUP BY c.k_cuenta, cp.q_pys_pedidos, cp.v_precio_venta) x");
+            res.next();
+            return res.getDouble(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    public int totalPagosRealizados(){
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet res = op.ConsultaEsp("SELECT COUNT(k_pago) FROM pago");
             res.next();
             return res.getInt(1);
         } catch (SQLException e) {
@@ -46,16 +74,12 @@ public class DAO_Pago {
             return -1;
         }
     }
-    public int consultarMontoProductosMes(){
-        Date fechainicio = new Date();
-        fechainicio.setMonth(fechainicio.getMonth()-1);
-        Date fechafinal = new Date();
-        SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+
+    public int totalPagosRealizados(String opc){
+        setFechas(opc);
         Operaciones op = new Operaciones();
         try {
-            ResultSet res = op.ConsultaEsp("SELECT SUM(cp.v_precio_venta*cp.q_pys_pedidos) " +
-                    "FROM cuenta_productos cp, cuenta c, pago p " +
-                    "WHERE cp.k_cuenta = c.k_cuenta AND c.k_pago = p.k_pago AND cp.f_pedido BETWEEN '"+formateador.format(fechainicio)+"' AND '"+formateador.format(fechafinal)+"'");
+            ResultSet res = op.ConsultaEsp("SELECT COUNT(k_pago) FROM pago WHERE f_pago BETWEEN '"+formateador.format(fechainicio)+"' AND '"+formateador.format(fechafinal)+"'");
             res.next();
             return res.getInt(1);
         } catch (SQLException e) {
@@ -63,16 +87,11 @@ public class DAO_Pago {
             return -1;
         }
     }
-    public int consultarMontoProductosHoy(){
-        Date fechainicio = new Date();
-        fechainicio.setDate(fechainicio.getDay()-1);
-        Date fechafinal = new Date();
-        SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+
+    public int totalProductosVendidos(){
         Operaciones op = new Operaciones();
         try {
-            ResultSet res = op.ConsultaEsp("SELECT SUM(cp.v_precio_venta*cp.q_pys_pedidos) " +
-                    "FROM cuenta_productos cp, cuenta c, pago p " +
-                    "WHERE cp.k_cuenta = c.k_cuenta AND c.k_pago = p.k_pago AND cp.f_pedido BETWEEN '"+formateador.format(fechainicio)+"' AND '"+formateador.format(fechafinal)+"'");
+            ResultSet res = op.ConsultaEsp("SELECT SUM(cp.q_pys_pedidos) FROM cuenta_productos cp, cuenta c, pago p where cp.k_cuenta = c.k_cuenta AND p.k_cuenta = c.k_cuenta");
             res.next();
             return res.getInt(1);
         } catch (SQLException e) {
@@ -80,17 +99,60 @@ public class DAO_Pago {
             return -1;
         }
     }
-    public int consultarMontoProductosSiempre(){
+
+    public int totalProductosVendidos(String opc){
+        setFechas(opc);
         Operaciones op = new Operaciones();
         try {
-            ResultSet res = op.ConsultaEsp("SELECT SUM(cp.v_precio_venta*cp.q_pys_pedidos) " +
-                    "FROM cuenta_productos cp, cuenta c, pago p " +
-                    "WHERE cp.k_cuenta = c.k_cuenta AND c.k_pago = p.k_pago");
+            ResultSet res = op.ConsultaEsp("SELECT SUM(cp.q_pys_pedidos) FROM cuenta_productos cp, cuenta c, pago p where cp.k_cuenta = c.k_cuenta AND p.k_cuenta = c.k_cuenta AND p.f_pago BETWEEN '"+formateador.format(fechainicio)+"' AND '"+formateador.format(fechafinal)+"'");
             res.next();
             return res.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
             return -1;
+        }
+    }
+    public double VentaTotal(){
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet res = op.ConsultaEsp("SELECT SUM(v_monto) FROM pago");
+            res.next();
+            return res.getDouble(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    public double VentaTotal(String opc){
+        setFechas(opc);
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet res = op.ConsultaEsp("SELECT SUM(v_monto) FROM pago WHERE f_pago BETWEEN '"+formateador.format(fechainicio)+"' AND '"+formateador.format(fechafinal)+"'");
+            res.next();
+            return res.getDouble(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    private void setFechas(String opc){
+        long dif = 0;
+        fechainicio = new Date();
+        fechafinal = new Date();
+        if(opc.equals("Ultimo Año")){
+            dif = Long.parseLong("31536000000");
+            fechainicio.setTime(fechainicio.getTime()-dif);
+        }else if(opc.equals("Ultimo Mes")){
+            dif = Long.parseLong("2678400000");
+            fechainicio.setTime(fechainicio.getTime()-dif);
+        }else if(opc.equals("Ultima Semana")){
+            dif = Long.parseLong("604800000");
+            fechainicio.setTime(fechainicio.getTime()-dif);
+        }else if(opc.equals("Hoy")){
+            dif = Long.parseLong("86400000");
+            fechainicio.setTime(fechainicio.getTime()-dif);
         }
     }
 }
