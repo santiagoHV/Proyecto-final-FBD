@@ -2,6 +2,8 @@ package DatosSQL.DAOs;
 
 import DatosSQL.Operaciones;
 import Modelo.entidades.Pago;
+import Modelo.entidades.Persona;
+import Modelo.entidades.Reserva;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -135,6 +137,16 @@ public class DAO_Pago {
             e.printStackTrace();
             return -1;
         }
+    }
+    private double ingresoHabitacionesPorReserva(String id){
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet res1 = op.ConsultaEsp("SELECT * FROM reserva WHERE k_reserva = " + id);
+            ResultSet res2 = op.ConsultaEsp("SELECT * FROM reserva WHERE k_reserva = " + id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     private void setFechas(String opc){
