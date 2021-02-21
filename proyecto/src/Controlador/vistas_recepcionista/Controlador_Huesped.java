@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.events.JFXDialogEvent;
+import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
@@ -48,6 +49,7 @@ public class Controlador_Huesped implements Initializable
     public Label txt_tipo_huesped;
     public JFXButton btn_cambiar;
     public JFXButton btn_ingreso;
+    public MFXProgressSpinner progressActIng;
 
     public void setValoresPanel(Huesped huesped, List<Habitacion> habitacionList)
     {
