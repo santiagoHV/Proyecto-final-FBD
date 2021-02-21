@@ -305,7 +305,18 @@ public class Controlador_datos_ingreso implements Initializable {
         }
     }
 
+    public void editar_encontrado(ActionEvent actionEvent) {
+        panel_nuevo_ingreso.setDisable(false);
 
+        nombres_in.setText(personaEncontrada.getN_nombre());
+        apellidos_in.setText(personaEncontrada.getN_apellido());
+        no_documento_in.setText(String.valueOf(personaEncontrada.getK_identificacion()));
+        tipo_documento_in.setValue(personaEncontrada.getK_tipo_documento_id());
+        fecha_nacimiento_in.setValue(personaEncontrada.getF_nacimiento().toLocalDate());
+        telefono_in.setText(personaEncontrada.getN_telefono());
+
+
+    }
 
     public void close(ActionEvent actionEvent) {
 
@@ -313,4 +324,6 @@ public class Controlador_datos_ingreso implements Initializable {
 
     public void select(ActionEvent actionEvent) {
     }
+
+
 }
