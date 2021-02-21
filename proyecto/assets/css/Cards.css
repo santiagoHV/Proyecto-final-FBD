@@ -19,11 +19,6 @@
     -fx-font-size: 15px;
 }
 
-.jfx-combo-box
-{
-    -jfx-label-float: true;
-}
-
 .CardBebe
 {
     -fx-background-color: #fddddd;
