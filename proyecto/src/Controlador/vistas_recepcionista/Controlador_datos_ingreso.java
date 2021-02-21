@@ -314,6 +314,16 @@ public class Controlador_datos_ingreso implements Initializable {
         tipo_documento_in.setValue(personaEncontrada.getK_tipo_documento_id());
         fecha_nacimiento_in.setValue(personaEncontrada.getF_nacimiento().toLocalDate());
         telefono_in.setText(personaEncontrada.getN_telefono());
+        direccion_in.setText(direccion_srch.getText());
+
+        DAO_Persona dao_persona = new DAO_Persona();
+
+        Task guardarPersona = new Task() {
+            @Override
+            protected Object call() throws Exception {
+                return null;
+            }
+        };
 
 
     }
