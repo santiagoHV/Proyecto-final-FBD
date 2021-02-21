@@ -185,7 +185,7 @@
             </Pane>
             <VBox layoutX="546.0" layoutY="149.0" prefHeight="499.0" prefWidth="513.0" spacing="16.0">
                <children>
-                  <Label text="Ingreso de huespedes">
+                  <Label text="Ingreso de huéspedes">
                      <font>
                         <Font name="MAXWELL REGULAR" size="25.0" />
                      </font>
