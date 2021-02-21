@@ -21,7 +21,7 @@ public class ReservasList {
         Operaciones op = new Operaciones();
         try {
             String Query = "SELECT * FROM Reserva WHERE k_reserva = "+k_reserva+" or k_identificacion = "+num_doc+" or " +
-                    "k_identificacion = (SELECT k_identificacion FROM Persona WHERE n_nombre IN ('"+nom_or_apel+"') or n_apellido IN ('"+nom_or_apel+"')) ";
+                    "k_identificacion IN (SELECT k_identificacion FROM Persona WHERE n_nombre ILIKE ('"+nom_or_apel+"%') or n_apellido ILIKE ('"+nom_or_apel+"%')) ";
 
             if(nom_or_apel.equals("") && k_reserva==0 && num_doc==0)
             {
