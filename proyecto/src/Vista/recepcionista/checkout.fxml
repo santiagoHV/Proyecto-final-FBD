@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_checkout">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_checkout">
    <children>
       <AnchorPane prefHeight="768.0" prefWidth="1075.0">
          <children>
@@ -24,6 +16,7 @@
                   <Font size="10.0" />
                </font>
             </Label>
+            <MFXProgressSpinner fx:id="progressIndCheckout" layoutX="260.0" layoutY="214.0" prefHeight="26.0" prefWidth="25.0" visible="false" />
             <VBox layoutX="543.0" layoutY="134.0" prefHeight="458.0" prefWidth="513.0" spacing="16.0">
                <children>
                   <Label text="Salida de huespedes">
@@ -53,7 +46,6 @@
                </font>
             </Label>
             <TextField fx:id="codigo_reserva" layoutX="31.0" layoutY="215.0" prefHeight="25.0" prefWidth="183.0" />
-            <Button fx:id="btn_buscar" layoutX="313.0" layoutY="202.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="Buscar..." />
             <Button fx:id="btn_finalizar" layoutX="312.0" layoutY="134.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="FINALIZAR" />
             <Label layoutX="139.0" layoutY="275.0" style="-fx-font-weight: 500;" text="Datos del títular de reserva">
                <font>
@@ -191,6 +183,7 @@
                   </ScrollPane>
                </children>
             </VBox>
+            <Button fx:id="btn_buscar_reserva" layoutX="213.0" layoutY="215.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buscar_Reserva_Por_ID" prefHeight="24.0" prefWidth="33.0" styleClass="button_buscar" />
          </children>
          <stylesheets>
             <URL value="@../../../assets/css/recepcionista_escenas.css" />

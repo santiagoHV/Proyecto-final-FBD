@@ -620,7 +620,6 @@ public class Controlador_reserva implements Initializable {
     public void actualizarPrecios(double precioGeneral){
         double descuento;
 
-        System.out.println(condicionHotel.getNumero_dias() + " " + condicionHotel.getDescuento());
         if((sqlFechaFinal.toLocalDate().getDayOfYear() - sqlFechaInicio.toLocalDate().getDayOfYear()) >= condicionHotel.getNumero_dias()){
             descuento = condicionHotel.getDescuento() * precioGeneral;
         }else{
