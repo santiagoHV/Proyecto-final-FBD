@@ -1,24 +1,20 @@
 package Modelo.entidades;
 
-import DatosSQL.Operaciones;
-
 import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class Registro {
     private int k_registro;
     private Date f_entrada;
     private Date f_salida;
-    private Persona persona;
+    private Huesped Huesped;
     private Reserva reserva;
     private Habitacion habitacion;
 
-    public Registro(int k_registro, Date f_entrada, Date f_salida, Persona persona, Reserva reserva, Habitacion habitacion) {
+    public Registro(int k_registro, Date f_entrada, Date f_salida, Huesped Huesped, Reserva reserva, Habitacion habitacion) {
         this.k_registro = k_registro;
         this.f_entrada = f_entrada;
         this.f_salida = f_salida;
-        this.persona = persona;
+        this.Huesped = Huesped;
         this.reserva = reserva;
         this.habitacion = habitacion;
     }
@@ -50,12 +46,12 @@ public class Registro {
         this.f_salida = f_salida;
     }
 
-    public Persona getPersona() {
-        return persona;
+    public Huesped getHuesped() {
+        return Huesped;
     }
 
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    public void setHuesped(Huesped huesped) {
+        this.Huesped = huesped;
     }
 
     public Reserva getReserva() {
@@ -70,7 +66,8 @@ public class Registro {
         this.habitacion = habitacion;
     }
 
-
-
+    public Habitacion getHabitacion() {
+        return habitacion;
+    }
 }
 

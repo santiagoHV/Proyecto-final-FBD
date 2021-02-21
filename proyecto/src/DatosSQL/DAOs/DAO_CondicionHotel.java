@@ -9,13 +9,18 @@ import java.util.ArrayList;
 
 public class DAO_CondicionHotel {
 
+    Operaciones op;
+    public DAO_CondicionHotel(){
+        op = new Operaciones();
+    }
+
     /**
      *  Consulta la tabla persona por sus primary keys y retorna un objeto tipo Condicion_Hotel con sus atributos completos
      * @param ID
      * @return condicion_hotel
      */
     public Condicion_Hotel consultarCondicion(int ID) {
-        Operaciones op = new Operaciones();
+
         try {
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Condicion_Hotel WHERE k_condicion = "+ID+"");
             resultSet.next();
@@ -79,4 +84,20 @@ public class DAO_CondicionHotel {
             return -1;
         }
     }
-}
+
+    public Condicion_Hotel cosultarCondicionActiva() {
+            try {
+                ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Condicion_Hotel WHERE i_estado_condicion IS TRUE");
+                resultSet.next();
+
+                Condicion_Hotel condicion_hotel = new Condicion_Hotel(resultSet.getInt(1), resultSet.getBoolean(2),
+                        resultSet.getDouble(3), resultSet.getDouble(4), resultSet.getInt(5), resultSet.getString(6));
+
+                return condicion_hotel;
+
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            return null;
+        }
+    }

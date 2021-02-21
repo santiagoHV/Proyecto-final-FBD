@@ -10,8 +10,6 @@ public class Habitacion
     private int k_numero_habitacion;
     private Tipo tipo_habitacion;
 
-    public Habitacion(){
-    }
 
     public Habitacion(int k_numero_habitacion, Tipo tipo_habitacion) {
         this.k_numero_habitacion = k_numero_habitacion;
