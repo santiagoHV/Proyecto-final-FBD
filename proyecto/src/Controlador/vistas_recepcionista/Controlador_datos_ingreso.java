@@ -40,6 +40,7 @@ public class Controlador_datos_ingreso implements Initializable {
     public DatePicker fecha_nacimiento_in;
     public Button validar_btn;
     public TextField direccion_in;
+    public MFXProgressSpinner progressIndicatorEdit;
 
     //Panel de busqueda de usuarios existentes
     public Pane backPanelBuscar;
@@ -68,6 +69,9 @@ public class Controlador_datos_ingreso implements Initializable {
 
     public Persona personaEncontrada;
     public Huesped huespedEncontrado;
+
+    /////////////
+    boolean flagEdicion = false;
 
 
 
@@ -224,6 +228,10 @@ public class Controlador_datos_ingreso implements Initializable {
             panel_nuevo_ingreso.getStyleClass().add("controlValido");
 
             seleccionar_usuario_btn.setDisable(false);
+
+            if(flagEdicion){
+                actualizarCliente();
+            }
         }
     }
 
@@ -238,8 +246,9 @@ public class Controlador_datos_ingreso implements Initializable {
                 return new Persona(Integer.parseInt(no_documento_in.getText()),tipo_documento_in.getValue().toString(),nombres_in.getText(),
                         apellidos_in.getText(), Date.valueOf(fecha_nacimiento_in.getValue()),telefono_in.getText());
             }else{
-                return new Huesped(Integer.parseInt(no_documento_in.getText()),tipo_documento_in.getValue().toString(),nombres_in.getText(),
+                this.huespedEncontrado = new Huesped(Integer.parseInt(no_documento_in.getText()),tipo_documento_in.getValue().toString(),nombres_in.getText(),
                         apellidos_in.getText(), Date.valueOf(fecha_nacimiento_in.getValue()),telefono_in.getText(),direccion_in.getText());
+                return huespedEncontrado;
             }
         }else {
             if(direccion_srch.getText().equals("--")){
@@ -306,6 +315,7 @@ public class Controlador_datos_ingreso implements Initializable {
     }
 
     public void editar_encontrado(ActionEvent actionEvent) {
+        flagEdicion = true;
         panel_nuevo_ingreso.setDisable(false);
 
         nombres_in.setText(personaEncontrada.getN_nombre());
@@ -316,8 +326,14 @@ public class Controlador_datos_ingreso implements Initializable {
         telefono_in.setText(personaEncontrada.getN_telefono());
         direccion_in.setText(direccion_srch.getText());
 
+
+    }
+
+    public void actualizarCliente(){
         DAO_Persona dao_persona = new DAO_Persona();
         DAO_Huesped dao_huesped = new DAO_Huesped();
+        progressIndicatorEdit.setVisible(true);
+
 
         Task editarPersona = new Task() {
             @Override
@@ -329,12 +345,45 @@ public class Controlador_datos_ingreso implements Initializable {
         Task editarHuesped = new Task() {
             @Override
             protected Object call() throws Exception {
-                dao_huesped.actualizarHuesped(huespedEncontrado);
+
+                System.out.println(direccion_in.getText());
+
+                huespedEncontrado = (Huesped) solicitarPersona(true);
+                personaEncontrada = huespedEncontrado;
+
+                if(!dao_huesped.huespedExiste(huespedEncontrado.getK_identificacion(),huespedEncontrado.getK_tipo_documento_id())){
+
+                    dao_huesped.insertarHuesped(huespedEncontrado);
+                }else {
+                    dao_huesped.actualizarHuesped(huespedEncontrado);
+                }
                 return null;
             }
         };
 
+        Thread threadPersona = new Thread(editarPersona);
+        Thread threadHuesped = new Thread(editarHuesped);
 
+        editarPersona.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent workerStateEvent) {
+                progressIndicatorEdit.setVisible(false);
+            }
+        });
+        editarHuesped.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent workerStateEvent) {
+                threadPersona.start();
+            }
+        });
+
+        if(direccion_in.isDisable()){
+            threadPersona.start();
+        }else{
+
+            threadHuesped.start();
+
+        }
     }
 
     public void close(ActionEvent actionEvent) {

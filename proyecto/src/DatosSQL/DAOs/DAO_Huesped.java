@@ -12,8 +12,13 @@ import java.sql.SQLException;
 
 public class DAO_Huesped {
 
+    Operaciones op;
+    public DAO_Huesped(){
+        this.op = new Operaciones();
+    }
+
     public Huesped consultarHuesped(int ID, String Tipo) {
-        Operaciones op = new Operaciones();
+
         try {
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Huesped WHERE k_identificacion = "+ID+" and  k_tipo_documento = '"+Tipo+"'");
             resultSet.next();
@@ -40,6 +45,7 @@ public class DAO_Huesped {
             preparedStatement.setInt(2, huesped.getK_identificacion());
             preparedStatement.setString(3, huesped.getK_tipo_documento_id());
 
+            System.out.println("insertado con exito");
             preparedStatement.executeUpdate();
 
         }catch (Exception e){
@@ -66,4 +72,18 @@ public class DAO_Huesped {
         return 0;
     }
 
+    public boolean huespedExiste(int ID, String tipo) {
+        try {
+            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Huesped WHERE k_identificacion = "+ID+" and  k_tipo_documento = '"+tipo+"'");
+            resultSet.next();
+            String direccion = resultSet.getString(1);
+            System.out.println("pasa");
+            return true;
+
+        }catch (SQLException ex){
+            System.out.println(ex + "huesped no encontrado");
+            return false;
+        }
+
+    }
 }

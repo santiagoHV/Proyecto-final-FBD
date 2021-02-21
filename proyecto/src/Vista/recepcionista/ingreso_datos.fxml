@@ -31,6 +31,7 @@
                               <Glow />
                            </effect>
                         </Label>
+                        <MFXProgressSpinner fx:id="progressIndicatorEdit" layoutX="202.0" layoutY="16.0" prefHeight="26.0" prefWidth="25.0" visible="false" />
                         <TextField fx:id="nombres_in" layoutX="13.0" layoutY="88.0" />
                         <TextField fx:id="apellidos_in" layoutX="172.0" layoutY="88.0" />
                         <ComboBox fx:id="tipo_documento_in" layoutX="13.0" layoutY="145.0" prefHeight="25.0" prefWidth="149.0" visibleRowCount="5" />
