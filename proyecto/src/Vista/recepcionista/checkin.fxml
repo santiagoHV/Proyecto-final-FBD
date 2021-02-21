@@ -35,148 +35,148 @@
                </font>
             </Label>
             <Separator layoutX="527.0" layoutY="135.0" orientation="VERTICAL" prefHeight="615.0" prefWidth="6.0" />
-            <Pane fx:id="panel_datos" accessibleRole="SCROLL_BAR" layoutX="36.0" layoutY="283.0" prefHeight="465.0" prefWidth="480.0" style="-fx-border-color: black; -fx-border-radius: 10; -fx-background-color: white;">
+            <Pane fx:id="panel_datos" accessibleRole="SCROLL_BAR" layoutX="36.0" layoutY="305.0" prefHeight="443.0" prefWidth="480.0" style="-fx-border-color: black; -fx-border-radius: 10; -fx-background-color: white;">
                <children>
-                  <Label fx:id="til_reserva" layoutX="130.0" layoutY="14.0" style="-fx-font-weight: 500;" text="Datos del títular de reserva">
+                  <Label fx:id="til_reserva" layoutX="129.0" layoutY="34.0" style="-fx-font-weight: 500;" text="Datos del títular de reserva">
                      <font>
                         <Font name="MAXWELL REGULAR" size="22.0" />
                      </font>
                   </Label>
-                  <Label fx:id="datos_nombre" layoutX="25.0" layoutY="49.0" prefHeight="24.0" prefWidth="210.0" text="Juan Robado Peñalisa">
+                  <Label fx:id="datos_nombre" layoutX="24.0" layoutY="69.0" prefHeight="24.0" prefWidth="210.0" text="Juan Robado Peñalisa">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="datos_ti" layoutX="273.0" layoutY="50.0" prefHeight="24.0" prefWidth="21.0" text="TI:">
+                  <Label fx:id="datos_ti" layoutX="272.0" layoutY="70.0" prefHeight="24.0" prefWidth="21.0" text="TI:">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="datos_no_i" layoutX="296.0" layoutY="50.0" prefHeight="24.0" prefWidth="105.0" text="1000000">
+                  <Label fx:id="datos_no_i" layoutX="295.0" layoutY="70.0" prefHeight="24.0" prefWidth="105.0" text="1000000">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lb_telefono" layoutX="24.0" layoutY="80.0" prefHeight="24.0" prefWidth="27.0" text="Tel: ">
+                  <Label fx:id="lb_telefono" layoutX="23.0" layoutY="100.0" prefHeight="24.0" prefWidth="27.0" text="Tel: ">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="datos_tel" layoutX="51.0" layoutY="80.0" prefHeight="24.0" prefWidth="153.0" text="+57 300 555 2222">
+                  <Label fx:id="datos_tel" layoutX="50.0" layoutY="100.0" prefHeight="24.0" prefWidth="153.0" text="+57 300 555 2222">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lb_edad" layoutX="273.0" layoutY="80.0" prefHeight="24.0" prefWidth="37.0" text="Edad:">
+                  <Label fx:id="lb_edad" layoutX="272.0" layoutY="100.0" prefHeight="24.0" prefWidth="37.0" text="Edad:">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="datos_edad" layoutX="314.0" layoutY="80.0" prefHeight="24.0" prefWidth="135.0" text="25 años">
+                  <Label fx:id="datos_edad" layoutX="313.0" layoutY="100.0" prefHeight="24.0" prefWidth="135.0" text="25 años">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Separator layoutX="14.0" layoutY="181.0" prefHeight="0.0" prefWidth="452.0" />
-                  <Label fx:id="lb_reserva" layoutX="161.0" layoutY="191.0" style="-fx-font-weight: 500;" text="Datos de la reserva">
+                  <Separator layoutX="14.0" layoutY="148.0" prefHeight="0.0" prefWidth="452.0" />
+                  <Label fx:id="lb_reserva" layoutX="161.0" layoutY="158.0" style="-fx-font-weight: 500;" text="Datos de la reserva">
                      <font>
                         <Font name="MAXWELL REGULAR" size="22.0" />
                      </font>
                   </Label>
-                  <Label layoutX="300.0" layoutY="225.0" prefHeight="24.0" prefWidth="149.0" text="Cantidad de adultos:">
+                  <Label layoutX="300.0" layoutY="192.0" prefHeight="24.0" prefWidth="149.0" text="Cantidad de adultos:">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="300.0" layoutY="248.0" prefHeight="24.0" prefWidth="149.0" text="Cantidad de niños:">
+                  <Label layoutX="300.0" layoutY="215.0" prefHeight="24.0" prefWidth="149.0" text="Cantidad de niños:">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="300.0" layoutY="272.0" prefHeight="24.0" prefWidth="149.0" text="Cantidad de bebés:">
+                  <Label layoutX="300.0" layoutY="239.0" prefHeight="24.0" prefWidth="149.0" text="Cantidad de bebés:">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="datos_q_adultos" layoutX="442.0" layoutY="224.0" prefHeight="24.0" prefWidth="21.0" text="5">
+                  <Label fx:id="datos_q_adultos" layoutX="442.0" layoutY="191.0" prefHeight="24.0" prefWidth="21.0" text="5">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="datos_q_ninos" layoutX="442.0" layoutY="247.0" prefHeight="24.0" prefWidth="21.0" text="2">
+                  <Label fx:id="datos_q_ninos" layoutX="442.0" layoutY="214.0" prefHeight="24.0" prefWidth="21.0" text="2">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="datos_q_bebes" layoutX="442.0" layoutY="271.0" prefHeight="24.0" prefWidth="21.0" text="0">
+                  <Label fx:id="datos_q_bebes" layoutX="442.0" layoutY="238.0" prefHeight="24.0" prefWidth="21.0" text="0">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Separator layoutX="293.0" layoutY="228.0" orientation="VERTICAL" prefHeight="124.0" prefWidth="6.0" />
-                  <Label layoutX="14.0" layoutY="221.0" prefHeight="24.0" prefWidth="149.0" text="Habitaciones sencillas:">
+                  <Separator layoutX="293.0" layoutY="195.0" orientation="VERTICAL" prefHeight="124.0" prefWidth="6.0" />
+                  <Label layoutX="14.0" layoutY="188.0" prefHeight="24.0" prefWidth="149.0" text="Habitaciones sencillas:">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="datos_hab_sencillas" layoutX="14.0" layoutY="236.0" prefHeight="24.0" prefWidth="266.0" text="202, 502, 305">
+                  <Label fx:id="datos_hab_sencillas" layoutX="14.0" layoutY="203.0" prefHeight="24.0" prefWidth="266.0" text="202, 502, 305">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="263.0" prefHeight="24.0" prefWidth="149.0" text="Habitaciones dobles:">
+                  <Label layoutX="14.0" layoutY="230.0" prefHeight="24.0" prefWidth="149.0" text="Habitaciones dobles:">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="datos_hab_dobles" layoutX="14.0" layoutY="278.0" prefHeight="24.0" prefWidth="266.0" text="202, 502, 305">
+                  <Label fx:id="datos_hab_dobles" layoutX="14.0" layoutY="245.0" prefHeight="24.0" prefWidth="266.0" text="202, 502, 305">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="308.0" prefHeight="24.0" prefWidth="149.0" text="Habitaciones triples:">
+                  <Label layoutX="14.0" layoutY="275.0" prefHeight="24.0" prefWidth="149.0" text="Habitaciones triples:">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="datos_hab_triples" layoutX="14.0" layoutY="323.0" prefHeight="24.0" prefWidth="266.0" text="202, 502, 305">
+                  <Label fx:id="datos_hab_triples" layoutX="14.0" layoutY="290.0" prefHeight="24.0" prefWidth="266.0" text="202, 502, 305">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Separator layoutX="14.0" layoutY="177.0" prefHeight="0.0" prefWidth="452.0" />
-                  <Separator layoutX="14.0" layoutY="397.0" prefHeight="0.0" prefWidth="452.0" />
-                  <Label layoutX="38.0" layoutY="411.0" prefHeight="24.0" prefWidth="149.0" text="Fecha de inicio">
+                  <Separator layoutX="14.0" layoutY="144.0" prefHeight="0.0" prefWidth="452.0" />
+                  <Separator layoutX="14.0" layoutY="364.0" prefHeight="0.0" prefWidth="452.0" />
+                  <Label layoutX="38.0" layoutY="378.0" prefHeight="24.0" prefWidth="149.0" text="Fecha de inicio">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="219.0" layoutY="411.0" prefHeight="24.0" prefWidth="149.0" text="Fecha de salida">
+                  <Label layoutX="219.0" layoutY="378.0" prefHeight="24.0" prefWidth="149.0" text="Fecha de salida">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="datos_f_inicio" layoutX="38.0" layoutY="435.0" prefHeight="24.0" prefWidth="149.0" text="20-02-2021">
+                  <Label fx:id="datos_f_inicio" layoutX="38.0" layoutY="402.0" prefHeight="24.0" prefWidth="149.0" text="20-02-2021">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="datos_f_fin" layoutX="220.0" layoutY="435.0" prefHeight="24.0" prefWidth="149.0" text="20-02-2021">
+                  <Label fx:id="datos_f_fin" layoutX="220.0" layoutY="402.0" prefHeight="24.0" prefWidth="149.0" text="20-02-2021">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="348.0" prefHeight="24.0" prefWidth="198.0" text="Habitaciones matrimoniales:">
+                  <Label layoutX="14.0" layoutY="315.0" prefHeight="24.0" prefWidth="198.0" text="Habitaciones matrimoniales:">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="datos_hab_matrimoniales" layoutX="14.0" layoutY="363.0" prefHeight="24.0" prefWidth="266.0" text="202, 502, 305">
+                  <Label fx:id="datos_hab_matrimoniales" layoutX="14.0" layoutY="330.0" prefHeight="24.0" prefWidth="266.0" text="202, 502, 305">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="promp_reserva" alignment="CENTER" contentDisplay="CENTER" layoutY="245.0" prefHeight="95.0" prefWidth="480.0" textAlignment="CENTER" textFill="#575757" wrapText="true">
+                  <Label fx:id="promp_reserva" alignment="CENTER" contentDisplay="CENTER" layoutY="212.0" prefHeight="95.0" prefWidth="480.0" textAlignment="CENTER" textFill="#575757" wrapText="true">
                      <font>
                         <Font name="MAXWELL REGULAR" size="30.0" />
                      </font>

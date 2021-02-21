@@ -1,6 +1,7 @@
 package Controlador.vistas_recepcionista;
 
 import Modelo.entidades.Huesped;
+import Modelo.entidades.Registro;
 import Modelo.entidades.Reserva;
 import Modelo.fabricas.HuespedList;
 import Modelo.fabricas.ReservasList;
@@ -11,6 +12,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXScrollPane;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
 import javafx.concurrent.Task;
+import javafx.concurrent.Worker;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -41,7 +44,6 @@ public class Controlador_search implements Initializable {
     public ScrollPane panel_clientes_hallados;
     public GridPane Grid_Clientes;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         JFXScrollPane Prueba = new JFXScrollPane();
@@ -52,8 +54,11 @@ public class Controlador_search implements Initializable {
     public void Consultar_Reservas_Clientes(ActionEvent actionEvent) throws InterruptedException, IOException {
         new BounceIn(proSpinner).play();
         proSpinner.setVisible(true);
+
         BuscarReservas();
         BuscarHuespedes();
+
+        new BounceOut(proSpinner).play();
     }
 
     public void BuscarReservas() throws InterruptedException {
@@ -88,7 +93,6 @@ public class Controlador_search implements Initializable {
         taskConsultListReserv.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent workerStateEvent) {
-                new BounceOut(proSpinner).play();
 
                 Task<Void> sleeper = new Task<Void>()
                 {
@@ -185,7 +189,6 @@ public class Controlador_search implements Initializable {
         taskConsultListHuesped.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent workerStateEvent) {
-                new BounceOut(proSpinner).play();
 
                 Task<Void> sleeper = new Task<Void>()
                 {
@@ -223,6 +226,9 @@ public class Controlador_search implements Initializable {
 
                         Controlador_Huesped controlador_huesped = loader.getController();
                         controlador_huesped.setValoresPanel(Huespedes.get(i), null);
+
+                        controlador_huesped.btn_ingreso.setText("Actualizar");
+                        controlador_huesped.btn_ingreso.setDisable(false);
 
                         row++;
                         Grid_Clientes.add(PanelHuesped,column,row);
