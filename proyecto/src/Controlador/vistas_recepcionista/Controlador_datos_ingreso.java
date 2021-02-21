@@ -317,10 +317,19 @@ public class Controlador_datos_ingreso implements Initializable {
         direccion_in.setText(direccion_srch.getText());
 
         DAO_Persona dao_persona = new DAO_Persona();
+        DAO_Huesped dao_huesped = new DAO_Huesped();
 
-        Task guardarPersona = new Task() {
+        Task editarPersona = new Task() {
             @Override
             protected Object call() throws Exception {
+                dao_persona.actualizarPersona(personaEncontrada);
+                return null;
+            }
+        };
+        Task editarHuesped = new Task() {
+            @Override
+            protected Object call() throws Exception {
+                dao_huesped.actualizarHuesped(huespedEncontrado);
                 return null;
             }
         };

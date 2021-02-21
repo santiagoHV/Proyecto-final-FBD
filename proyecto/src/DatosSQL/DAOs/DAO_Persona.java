@@ -54,7 +54,30 @@ public class DAO_Persona {
             preparedStatement.executeUpdate();
 
         }catch (Exception e){
-            System.out.println(e + "es aca");
+            System.out.println(e + "Error en insercion de persona");
+        }
+    }
+
+    public void actualizarPersona(Persona persona){
+        try {
+            PreparedStatement preparedStatement = Conexion.getInstance().getConnection().prepareStatement(
+                    "UPDATE persona  SET k_identificacion = ?, k_tipo_documento = ?, n_nombre = ?, n_apellido = ?," +
+                            " f_nacimiento = ?, n_telefono = ?" +
+                            "WHERE k_identificacion = ? AND k_tipo_documento = ?");
+
+            preparedStatement.setInt(1, persona.getK_identificacion());
+            preparedStatement.setString(2, persona.getK_tipo_documento_id());
+            preparedStatement.setString(3, persona.getN_nombre());
+            preparedStatement.setString(4, persona.getN_apellido());
+            preparedStatement.setDate(5, persona.getF_nacimiento());
+            preparedStatement.setString(6, persona.getN_telefono());
+            preparedStatement.setInt(7, persona.getK_identificacion());
+            preparedStatement.setString(8, persona.getK_tipo_documento_id());
+
+            preparedStatement.executeUpdate();
+
+        }catch (Exception e){
+            System.out.println(e + "Error en actualizacion de persona");
         }
     }
 }
