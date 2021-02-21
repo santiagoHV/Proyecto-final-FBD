@@ -280,8 +280,12 @@ public class Controlador_checkin implements Initializable {
                             int cantAdultos = reserva.getCantidad_adultos();
                             int cantTotalHuespedes = cantBebes + cantNinos + cantAdultos;
 
+
                             for(int i = 0; i<cantTotalHuespedes; i++) {
                                 final int j = i;
+
+                                huespedIDList.add(0);
+
                                 //Carga de las plantillas para los paneles con información de los huespedes
                                 FXMLLoader loader = new FXMLLoader();
                                 loader.setLocation(Main.class.getResource("../Vista/recepcionista/Panel_Huesped.fxml"));
@@ -347,7 +351,7 @@ public class Controlador_checkin implements Initializable {
 
                                         controlador_huesped.setValoresPanel(registroList.get(i).getHuesped(), habitacionList);
 
-                                        huespedIDList.add(registroList.get(i).getHuesped().getK_identificacion());
+                                        huespedIDList.set(i,registroList.get(i).getHuesped().getK_identificacion());
 
                                         controlador_huesped.btn_ingreso.setText("Actualizar");
                                         controlador_huesped.btn_ingreso.setDisable(false);
@@ -482,14 +486,7 @@ public class Controlador_checkin implements Initializable {
 
                                                 //Lista de huespedes, se agregan elementos en caso de que la posición esté vacía
                                                 //en caso de que no lo esté, se reemplaza el elemento
-                                                if(huespedIDList.size()-j==0)
-                                                {
-                                                    huespedIDList.add(j,titularDeReserva.getK_identificacion());
-                                                }
-                                                else
-                                                {
-                                                    huespedIDList.set(j,titularDeReserva.getK_identificacion());
-                                                }
+                                                huespedIDList.set(j,titularDeReserva.getK_identificacion());
                                             }
                                         }
                                         else
