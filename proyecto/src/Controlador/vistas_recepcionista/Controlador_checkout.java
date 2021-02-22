@@ -138,9 +138,6 @@ public class Controlador_checkout implements Initializable {
         }
     }
 
-    public void ClickBuscar(ActionEvent actionEvent) {
-    }
-
     public void btn_limpiar(ActionEvent actionEvent) {}
 
     public void buscar_Reserva_Por_ID(ActionEvent actionEvent) {
