@@ -375,6 +375,8 @@ public class Controlador_checkout implements Initializable {
         promptTitular.setVisible(false);
         balance.setVisible(false);
 
+        int numNoches = Period.between(this.reserva.getF_inicio().toLocalDate(), this.reserva.getF_final().toLocalDate()).getDays();
+
         this.datos_nombre.setText(this.reserva.getPersona().getN_nombre() + " " + this.reserva.getPersona().getN_apellido());
         this.datos_edad.setText(String.valueOf(Period.between(this.reserva.getPersona().getF_nacimiento().toLocalDate(), LocalDate.now()).getYears()));
         this.datos_tel.setText(this.reserva.getPersona().getN_telefono());
@@ -382,11 +384,19 @@ public class Controlador_checkout implements Initializable {
         this.datos_no_i.setText(String.valueOf(this.reserva.getPersona().getK_identificacion()));
 
         this.valor_estadia.setText(String.format("$ %(,.2f",this.reserva.getPrecio_reserva()));
-        this.valor_descuentos.setText(String.format("$ %(,.2f",this.reserva.getPrecio_reserva() * this.reserva.getCondicion().getDescuento()));
         this.valor_consumos.setText(String.format("$ %(,.2f",totalConsumos));
         //faltan los consumos
-        this.totalPago = (this.reserva.getPrecio_reserva() - (this.reserva.getPrecio_reserva() * this.reserva.getCondicion().getDescuento())) + this.totalConsumos;
-        this.valor_total.setText(String.format("$ %(,.2f",totalPago));
+
+
+        if(numNoches >= this.reserva.getCondicion().getNumero_dias()){
+            this.valor_descuentos.setText(String.format("$ %(,.2f",this.reserva.getPrecio_reserva() * this.reserva.getCondicion().getDescuento()));
+            this.totalPago = (this.reserva.getPrecio_reserva() - (this.reserva.getPrecio_reserva() * this.reserva.getCondicion().getDescuento())) + this.totalConsumos;
+            this.valor_total.setText(String.format("$ %(,.2f",totalPago));
+        }else {
+            this.valor_descuentos.setText("$ " + 0);
+            this.totalPago = this.reserva.getPrecio_reserva() + this.totalConsumos;
+            this.valor_total.setText(String.format("$ %(,.2f",totalPago));
+        }
 
     }
 
