@@ -46,8 +46,9 @@ public class Controlador_checkout implements Initializable {
             , Color.DARKGRAY);
 
     private javafx.scene.control.Label promptTitular = new Label("Aquí se mostrará la información del titular de la reserva");
+    private javafx.scene.control.Label promptPagos = new Label("Aquí se mostrarán los datos relacionados con los pagos de la reserva");
 
-        //busqueda
+    //busqueda
     public MFXProgressSpinner progressIndCheckout;
     public TextField codigo_reserva;
     public Button btn_buscar_reserva;
@@ -90,7 +91,7 @@ public class Controlador_checkout implements Initializable {
         anchorBG.getChildren().add(information);
 
         balance.setLayoutX(248);
-        balance.setLayoutY(278+80);
+        balance.setLayoutY(278+180);
         balance.setPrefHeight(60);
         balance.setPrefWidth(60);
         balance.setMaxHeight(60);
@@ -107,7 +108,21 @@ public class Controlador_checkout implements Initializable {
         promptTitular.setLayoutX(30);
         promptTitular.setLayoutY(334-10);
         promptTitular.setVisible(true);
+
         anchorBG.getChildren().add(promptTitular);
+
+        promptPagos.setPrefHeight(70);
+        promptPagos.setPrefWidth(480);
+        promptPagos.setTextAlignment(TextAlignment.CENTER);
+        promptPagos.setTextFill(Paint.valueOf("#575757"));
+        promptPagos.setFont(Font.font("MAXWELL REGULAR",25));
+        promptPagos.setAlignment(Pos.CENTER);
+        promptPagos.setWrapText(true);
+        promptPagos.setLayoutX(30);
+        promptPagos.setLayoutY(334+180);
+        promptPagos.setVisible(true);
+
+        anchorBG.getChildren().add(promptPagos);
 
         information.setVisible(true);
 
