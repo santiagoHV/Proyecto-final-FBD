@@ -378,4 +378,25 @@ public class Controlador_checkout implements Initializable {
         }
         dialogAlerta.show();
     }
+
+    public void mostrarConsumosEv(ActionEvent actionEvent) {
+        FXMLLoader loaderConsumos = new FXMLLoader(getClass().getResource("../../Vista/recepcionista/vista_consumos.fxml"));
+        Parent contenido = null;
+        try {
+            contenido = loaderConsumos.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JFXDialog consumosDialog = new JFXDialog(stackBG, (Region) contenido, JFXDialog.DialogTransition.BOTTOM, true);
+        Controlador_Consumos controlador_consumos = loaderConsumos.getController();
+        Task<List<Cuenta_Productos>> listTask = new Task<List<Cuenta_Productos>>() {
+            @Override
+            protected List<Cuenta_Productos> call() throws Exception {
+                return new DAO_Cuenta_Productos().consultarCuentaProdPorCuenta(codigoReserva);
+            }
+        };
+        controlador_consumos.definirColumnas(listTask);
+        consumosDialog.show();
+    }
 }
