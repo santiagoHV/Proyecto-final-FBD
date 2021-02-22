@@ -83,6 +83,7 @@ public class Controlador_checkout implements Initializable {
 
     public Reserva reserva;
     public Cuenta cuenta;
+    public int codigoDePago;
     public int codigoReserva;
     public double totalPago;
     public double totalConsumos;
@@ -456,7 +457,7 @@ public class Controlador_checkout implements Initializable {
             e.printStackTrace();
         }
         Controlador_pagos controlador_pagos = loaderConsumos.getController();
-        String metodoDePago = controlador_pagos.getMetodoDePago();
+
 
         JFXDialog consumosDialog = new JFXDialog(stackBG, (Region) contenido, JFXDialog.DialogTransition.BOTTOM, true);
         JFXButton btnAceptar = (JFXButton) consumosDialog.lookup("#btn_aceptar");
@@ -464,8 +465,8 @@ public class Controlador_checkout implements Initializable {
 
         btnAceptar.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent)->
         {
-            crearPago(metodoDePago);
-            consumosDialog.close();
+            String metodoDePago = controlador_pagos.getMetodoDePago();
+            crearPago(metodoDePago, consumosDialog);
             btn_procesar_pago.setDisable(true);
         });
         btnCancelar.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent)->
@@ -475,7 +476,50 @@ public class Controlador_checkout implements Initializable {
 
         consumosDialog.show();
     }
-    public void crearPago(String metodoDePago){
-        Pago pago = new Pago(2,Date.valueOf(LocalDate.now()),cuenta.getPrecio_acumulado(),metodoDePago,cuenta);
+    public void crearPago(String metodoDePago, JFXDialog dialog){
+
+        DAO_Pago dao_pago = new DAO_Pago();
+        progressIndCheckout.setVisible(true);
+
+        Task taskGuardarPago = new Task() {
+            @Override
+            protected Object call() throws Exception {
+                Pago pago = new Pago(codigoDePago,Date.valueOf(LocalDate.now()),cuenta.getPrecio_acumulado(),metodoDePago,cuenta);
+                dao_pago.insertarPago(pago);
+                return null;
+            }
+        };
+        Task<Integer> numeroPagoTask = new Task<Integer>() {
+            @Override
+            protected Integer call() throws Exception {
+                return dao_pago.consultarUltimoPagoID();
+            }
+        };
+
+        Thread pagoThread = new Thread(taskGuardarPago);
+        Thread ultPagoThread = new Thread(numeroPagoTask);
+
+        taskGuardarPago.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent workerStateEvent) {
+                progressIndCheckout.setVisible(false);
+                btn_procesar_pago.setDisable(true);
+                dialog.close();
+            }
+        });
+
+        numeroPagoTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent workerStateEvent) {
+                codigoDePago = numeroPagoTask.getValue() + 1;
+                System.out.println(codigoDePago);
+                pagoThread.start();
+            }
+        });
+
+        ultPagoThread.start();
+
+
+
     }
 }
