@@ -33,7 +33,7 @@ public class Controlador_navbar implements Initializable {
     @FXML
     private AnchorPane ERuta,Enavegar;
     @FXML
-    private JFXButton BRestaurante,BPiscina,BCafeteria,ESalir;
+    private JFXButton BRestaurante,BPiscina,BCafeteria,ESalir,BSpa,BGimnasio;
 
 
 
@@ -41,16 +41,20 @@ public class Controlador_navbar implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setRuta("../Vista/empleado/piscina.fxml");
+        setRuta("../Vista/empleado/restaurante.fxml");
     }
 
     public void navigate(ActionEvent actionEvent) {
 
         if (actionEvent.getSource() == BRestaurante) {
-            setRuta("../Vista/empleado/piscina.fxml");
-        } else if (actionEvent.getSource() == BPiscina) {
-            setRuta("../Vista/empleado/piscina.fxml");
+            setRuta("../Vista/empleado/restaurante.fxml");
+        } else if (actionEvent.getSource() == BSpa) {
+            setRuta("../Vista/empleado/spa.fxml");
         } else if (actionEvent.getSource() == BCafeteria) {
+            setRuta("../Vista/empleado/cafeteria.fxml");
+        } else if (actionEvent.getSource() == BGimnasio) {
+            setRuta("../Vista/empleado/gimnasio.fxml");
+        }  else if (actionEvent.getSource() == BPiscina) {
             setRuta("../Vista/empleado/piscina.fxml");
         }
     }
@@ -68,9 +72,7 @@ public class Controlador_navbar implements Initializable {
     }
 
     public void onSalirButtonClicked(javafx.scene.input.MouseEvent event){
-        //Cierre de sesión temporal hasta que se implementen usuarios en el sistema con la base de datos:
 
-        //Usando JFXDialog:
         JFXDialogLayout EstrucMensaje = new JFXDialogLayout();
         EstrucMensaje.setBody(new Text("¿Está seguro de que quiere cerrar sesión?"));
         JFXButton BotonAceptar = new JFXButton("Sí, me quiero ir");

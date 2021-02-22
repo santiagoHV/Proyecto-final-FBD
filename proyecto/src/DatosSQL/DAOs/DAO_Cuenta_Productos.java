@@ -28,4 +28,14 @@ public class DAO_Cuenta_Productos {
         }
         return null;
     }
+    public static boolean agregarProducto(int q_pedido,int codigo,int cuenta, double precio_venta){
+        Operaciones op = new Operaciones();
+        try {
+            op.UpdateEsp("INSERT INTO cuenta_productos VALUES ("+q_pedido+",CURRENT_DATE,"+codigo+", "+cuenta+", '"+precio_venta+"')");
+            return true;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

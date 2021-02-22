@@ -31,21 +31,7 @@ public class DAO_Cuenta {
         return null;
     }
 
-    public static ArrayList<Integer> consultPrecioAcumulado(String reserva){
-        Operaciones op = new Operaciones();
-        ArrayList<Integer> Precio = new ArrayList<>();
-        try {
-            ResultSet res = op.ConsultaEsp("SELECT DISTINCT c.v_precio_acumulado FROM cuenta c,reserva r  WHERE  c.k_reserva=r.k_reserva AND c.k_reserva = "+reserva+"");
-            while (res.next()) {
-                Precio.add(res.getInt(1));
-            }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return Precio;
-
-    }
     public static boolean actualizarPrecio(int Total,String reserva){
         Operaciones op = new Operaciones();
         try{
@@ -55,5 +41,18 @@ public class DAO_Cuenta {
             e.printStackTrace();
             return false;
         }
+    }
+    public static int conseguirCuenta(int k_reserva){
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet res = op.ConsultaEsp("SELECT * FROM cuenta WHERE k_reserva ="+ k_reserva+"");
+            res.next();
+            return res.getInt(1);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+
     }
 }

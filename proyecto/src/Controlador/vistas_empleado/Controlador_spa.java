@@ -23,7 +23,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class Controlador_piscina implements Initializable {
+public class Controlador_spa implements Initializable {
 
 
     public StackPane empleado;
@@ -46,7 +46,7 @@ public class Controlador_piscina implements Initializable {
     public String reserva;
     int cuenta ;
     private int Total=0;
-    private String categoria="Piscina";
+    private String categoria="Spa";
 
 
    //Se genera las dos listas que van a servir para todos los botones
