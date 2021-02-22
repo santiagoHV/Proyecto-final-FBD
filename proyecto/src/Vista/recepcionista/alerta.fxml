@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="267.0" prefWidth="600.0" styleClass="StackBG" stylesheets="@../../../assets/css/alerta_CSS.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.Controlador_alerta">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label id="titulo" fx:id="titulo" alignment="CENTER" contentDisplay="CENTER" layoutY="27.0" prefHeight="36.0" prefWidth="600.0" styleClass="Titulo" text="El cliente seleccionado no tiene una dirección asociada" textAlignment="CENTER">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Label id="mensaje" fx:id="mensaje" alignment="CENTER" contentDisplay="CENTER" layoutY="53.0" prefHeight="81.0" prefWidth="600.0" text="Por favor asigne una dirección para este cliente antes de agregarlo a la lista de huespedes" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <JFXButton id="boton" buttonType="RAISED" layoutX="239.0" layoutY="180.0" styleClass="bAceptar" text="Aceptar" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

@@ -43,9 +43,9 @@
                               <Insets top="30.0" />
                            </HBox.margin>
                         </JFXComboBox>
-                        <JFXButton fx:id="RActualizar" onAction="#onclickhabitacion" alignment="CENTER" prefHeight="44.0" prefWidth="166.0" text="Actualizar" textFill="#2d2e2d">
+                        <JFXButton fx:id="RActualizar" alignment="CENTER" onAction="#onclickhabitacion" prefHeight="44.0" prefWidth="220.0" text="Agregar habitación" textFill="#2d2e2d">
                            <HBox.margin>
-                              <Insets left="50.0" top="23.0" />
+                              <Insets left="50.0" right="20.0" top="23.0" />
                            </HBox.margin>
                         </JFXButton>
 
@@ -80,7 +80,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </ScrollPane>
-                        <JFXTextArea fx:id="REMuestra" focusColor="#4b5f71" prefHeight="284.0" prefWidth="350.0" unFocusColor="#2a2c2e">
+                        <JFXTextArea fx:id="REMuestra" focusColor="#4b5f71" prefHeight="293.0" prefWidth="375.0" unFocusColor="#2a2c2e">
                            <padding>
                               <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
                            </padding>
@@ -98,28 +98,28 @@
                   </HBox>
                   <HBox prefHeight="82.0" prefWidth="920.0">
                      <children>
-                        <JFXTextField fx:id="TCantidad" alignment="TOP_CENTER" focusColor="#2d2e2d" prefHeight="32.0" prefWidth="192.0" promptText="Cantidad" unFocusColor="#2d2e2d">
+                        <JFXTextField fx:id="TCantidad" alignment="TOP_CENTER" focusColor="#2d2e2d" prefHeight="32.0" prefWidth="192.0" promptText="Ingrese la cantidad" unFocusColor="#2d2e2d">
                            <HBox.margin>
-                              <Insets left="250.0" top="15.0" />
+                              <Insets left="500.0" top="15.0" />
                            </HBox.margin>
                         </JFXTextField>
-                        <JFXButton fx:id="RAceptar" alignment="CENTER" onMouseClicked="#onClickedCargar" prefHeight="44.0" prefWidth="170.0" text="Aceptar" textFill="#2d2e2d">
+                        <JFXButton fx:id="RCargar" alignment="CENTER" onAction="#cargar" prefHeight="44.0" prefWidth="178.0" text="Cargar producto" textFill="#2d2e2d">
                            <HBox.margin>
-                              <Insets left="50.0" top="15.0" />
-                           </HBox.margin>
-                        </JFXButton>
-                        <JFXButton fx:id="RCargar" alignment="CENTER" onAction="#cargar" prefHeight="44.0" prefWidth="166.0" text="Cargar" textFill="#2d2e2d">
-                           <HBox.margin>
-                              <Insets left="50.0" top="15.0" />
+                              <Insets left="30.0" top="15.0" />
                            </HBox.margin>
                         </JFXButton>
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
+                        <JFXButton fx:id="RAceptar" alignment="CENTER" onMouseClicked="#onClickedCargar" prefHeight="44.0" prefWidth="170.0" text="Aceptar" textFill="#2d2e2d">
+                           <HBox.margin>
+                              <Insets left="500.0" top="15.0" />
+                           </HBox.margin>
+                        </JFXButton>
                         <JFXButton fx:id="RLimpiar" alignment="CENTER" onMouseClicked="#onClickedLimpiar" text="Limpiar" textFill="#2d2e2d">
                            <HBox.margin>
-                              <Insets left="750.0" top="15.0" />
+                              <Insets left="50.0" top="15.0" />
                            </HBox.margin>
                         </JFXButton>
                      </children>

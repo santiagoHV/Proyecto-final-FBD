@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import java.net.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<StackPane fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_reserva">
+<?import io.github.palexdev.materialfx.controls.MFXProgressSpinner?>
+<StackPane fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_reserva">
    <children>
       <AnchorPane fx:id="content" prefHeight="768.0" prefWidth="1075.0">
          <children>
@@ -25,9 +37,9 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="137.0" prefWidth="551.0" spacing="5.0">
                                        <children>
-                                          <JFXButton fx:id="btn_201" mnemonicParsing="false" prefHeight="130.0" prefWidth="180.0" styleClass="seleccion_hab__hab_triple_up" text="201" />
-                                          <JFXButton fx:id="btn_202" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple_up" text="202" />
-                                          <JFXButton fx:id="btn_203" mnemonicParsing="false" prefHeight="130.0" prefWidth="180.0" styleClass="seleccion_hab__hab_triple_up" text="203" />
+                                          <JFXButton id="201" fx:id="btn_201" mnemonicParsing="false" prefHeight="130.0" prefWidth="180.0" styleClass="seleccion_hab__hab_triple_up" text="201" />
+                                          <JFXButton id="202" fx:id="btn_202" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple_up" text="202" />
+                                          <JFXButton id="203" fx:id="btn_203" mnemonicParsing="false" prefHeight="130.0" prefWidth="180.0" styleClass="seleccion_hab__hab_triple_up" text="203" />
                                        </children>
                                     </HBox>
                                     <Label text="Habitaciones triples" textFill="WHITE">
@@ -37,9 +49,9 @@
                                     </Label>
                                     <HBox alignment="CENTER" prefHeight="135.0" prefWidth="551.0" spacing="4.0">
                                        <children>
-                                          <JFXButton fx:id="btn_204" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple_down" text="204" />
-                                          <JFXButton fx:id="btn_205" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple_down" text="205" />
-                                          <JFXButton fx:id="btn_206" mnemonicParsing="false" prefHeight="130.0" prefWidth="180.0" styleClass="seleccion_hab__hab_triple_down" text="206" />
+                                          <JFXButton id="204" fx:id="btn_204" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple_down" text="204" />
+                                          <JFXButton id="205" fx:id="btn_205" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple_down" text="205" />
+                                          <JFXButton id="206" fx:id="btn_206" mnemonicParsing="false" prefHeight="130.0" prefWidth="180.0" styleClass="seleccion_hab__hab_triple_down" text="206" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -59,9 +71,9 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="137.0" prefWidth="551.0" spacing="5.0">
                                        <children>
-                                          <JFXButton fx:id="btn_2011" mnemonicParsing="false" prefHeight="130.0" prefWidth="180.0" styleClass="seleccion_hab__hab_triple_up" text="301" />
-                                          <JFXButton fx:id="btn_2021" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple_up" text="302" />
-                                          <JFXButton fx:id="btn_2031" mnemonicParsing="false" prefHeight="130.0" prefWidth="180.0" styleClass="seleccion_hab__hab_triple_up" text="303" />
+                                          <JFXButton id="301" fx:id="btn_2011" mnemonicParsing="false" prefHeight="130.0" prefWidth="180.0" styleClass="seleccion_hab__hab_triple_up" text="301" />
+                                          <JFXButton id="302" fx:id="btn_2021" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple_up" text="302" />
+                                          <JFXButton id="303" fx:id="btn_2031" mnemonicParsing="false" prefHeight="130.0" prefWidth="180.0" styleClass="seleccion_hab__hab_triple_up" text="303" />
                                        </children>
                                     </HBox>
                                     <Label text="Habitaciones triples" textFill="WHITE">
@@ -71,9 +83,9 @@
                                     </Label>
                                     <HBox alignment="CENTER" prefHeight="135.0" prefWidth="551.0" spacing="4.0">
                                        <children>
-                                          <JFXButton fx:id="btn_2041" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple_down" text="304" />
-                                          <JFXButton fx:id="btn_2051" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple_down" text="305" />
-                                          <JFXButton fx:id="btn_2061" mnemonicParsing="false" prefHeight="130.0" prefWidth="180.0" styleClass="seleccion_hab__hab_triple_down" text="305" />
+                                          <JFXButton id="304" fx:id="btn_2041" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple_down" text="304" />
+                                          <JFXButton id="305" fx:id="btn_2051" mnemonicParsing="false" prefHeight="130.0" prefWidth="176.0" styleClass="seleccion_hab__hab_triple_down" text="305" />
+                                          <JFXButton id="306" fx:id="btn_2061" mnemonicParsing="false" prefHeight="130.0" prefWidth="180.0" styleClass="seleccion_hab__hab_triple_down" text="306" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -93,10 +105,10 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="140.0" prefWidth="551.0" spacing="5.0">
                                        <children>
-                                          <JFXButton fx:id="btn_401" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_up" text="401" />
-                                          <JFXButton fx:id="btn_402" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_up" text="402" />
-                                          <JFXButton fx:id="btn_403" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_up" text="403" />
-                                          <JFXButton fx:id="btn_404" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_up" text="404" />
+                                          <JFXButton id="401" fx:id="btn_401" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_up" text="401" />
+                                          <JFXButton id="402" fx:id="btn_402" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_up" text="402" />
+                                          <JFXButton id="403" fx:id="btn_403" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_up" text="403" />
+                                          <JFXButton id="404" fx:id="btn_404" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_up" text="404" />
                                        </children>
                                     </HBox>
                                     <Label text="Habitaciones dobles" textFill="WHITE">
@@ -106,10 +118,10 @@
                                     </Label>
                                     <HBox alignment="CENTER" prefHeight="140.0" prefWidth="551.0" spacing="5.0">
                                        <children>
-                                          <JFXButton fx:id="btn_405" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_down" text="405" />
-                                          <JFXButton fx:id="btn_406" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_down" text="406" />
-                                          <JFXButton fx:id="btn_407" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_down" text="407" />
-                                          <JFXButton fx:id="btn_408" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_down" text="408" />
+                                          <JFXButton id="405" fx:id="btn_405" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_down" text="405" />
+                                          <JFXButton id="406" fx:id="btn_406" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_down" text="406" />
+                                          <JFXButton id="407" fx:id="btn_407" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_down" text="407" />
+                                          <JFXButton id="408" fx:id="btn_408" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_down" text="408" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -129,10 +141,10 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="140.0" prefWidth="551.0" spacing="5.0">
                                        <children>
-                                          <JFXButton fx:id="btn_4011" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_up" text="501" />
-                                          <JFXButton fx:id="btn_4021" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_up" text="502" />
-                                          <JFXButton fx:id="btn_4031" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_up" text="503" />
-                                          <JFXButton fx:id="btn_4041" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_up" text="504" />
+                                          <JFXButton id="501" fx:id="btn_4011" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_up" text="501" />
+                                          <JFXButton id="502" fx:id="btn_4021" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_up" text="502" />
+                                          <JFXButton id="503" fx:id="btn_4031" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_up" text="503" />
+                                          <JFXButton id="504" fx:id="btn_4041" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble1_up" text="504" />
                                        </children>
                                     </HBox>
                                     <Label text="Habitaciones dobles" textFill="WHITE">
@@ -142,10 +154,10 @@
                                     </Label>
                                     <HBox alignment="CENTER" prefHeight="140.0" prefWidth="551.0" spacing="5.0">
                                        <children>
-                                          <JFXButton fx:id="btn_4051" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_down" text="505" />
-                                          <JFXButton fx:id="btn_4061" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_down" text="506" />
-                                          <JFXButton fx:id="btn_4071" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_down" text="507" />
-                                          <JFXButton fx:id="btn_4081" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_down" text="508" />
+                                          <JFXButton id="505" fx:id="btn_4051" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_down" text="505" />
+                                          <JFXButton id="506" fx:id="btn_4061" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_down" text="506" />
+                                          <JFXButton id="507" fx:id="btn_4071" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_down" text="507" />
+                                          <JFXButton id="508" fx:id="btn_4081" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_down" text="508" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -165,10 +177,10 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="140.0" prefWidth="551.0" spacing="5.0">
                                        <children>
-                                          <JFXButton fx:id="btn_40111" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_up" text="601" />
-                                          <JFXButton fx:id="btn_40211" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_up" text="602" />
-                                          <JFXButton fx:id="btn_40311" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_up" text="603" />
-                                          <JFXButton fx:id="btn_40411" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_up" text="604" />
+                                          <JFXButton id="601" fx:id="btn_40111" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_up" text="601" />
+                                          <JFXButton id="602" fx:id="btn_40211" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_up" text="602" />
+                                          <JFXButton id="603" fx:id="btn_40311" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_up" text="603" />
+                                          <JFXButton id="604" fx:id="btn_40411" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_up" text="604" />
                                        </children>
                                     </HBox>
                                     <Label text="Habitaciones dobles" textFill="WHITE">
@@ -178,10 +190,10 @@
                                     </Label>
                                     <HBox alignment="CENTER" prefHeight="140.0" prefWidth="551.0" spacing="5.0">
                                        <children>
-                                          <JFXButton fx:id="btn_40511" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_down" text="605" />
-                                          <JFXButton fx:id="btn_40611" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_down" text="606" />
-                                          <JFXButton fx:id="btn_40711" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_down" text="607" />
-                                          <JFXButton fx:id="btn_40811" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_down" text="608" />
+                                          <JFXButton id="605" fx:id="btn_40511" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_down" text="605" />
+                                          <JFXButton id="606" fx:id="btn_40611" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_down" text="606" />
+                                          <JFXButton id="607" fx:id="btn_40711" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_down" text="607" />
+                                          <JFXButton id="608" fx:id="btn_40811" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_doble2_down" text="608" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -201,10 +213,10 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="140.0" prefWidth="551.0" spacing="5.0">
                                        <children>
-                                          <JFXButton fx:id="btn_701" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="701" />
-                                          <JFXButton fx:id="btn_702" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="702" />
-                                          <JFXButton fx:id="btn_703" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="703" />
-                                          <JFXButton fx:id="btn_704" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="704" />
+                                          <JFXButton id="701" fx:id="btn_701" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="701" />
+                                          <JFXButton id="702" fx:id="btn_702" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="702" />
+                                          <JFXButton id="703" fx:id="btn_703" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="703" />
+                                          <JFXButton id="704" fx:id="btn_704" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="704" />
                                        </children>
                                     </HBox>
                                     <Label text="Habitaciones sencillas" textFill="WHITE">
@@ -214,10 +226,10 @@
                                     </Label>
                                     <HBox alignment="CENTER" prefHeight="140.0" prefWidth="551.0" spacing="5.0">
                                        <children>
-                                          <JFXButton fx:id="btn_705" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="705" />
-                                          <JFXButton fx:id="btn_706" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="706" />
-                                          <JFXButton fx:id="btn_707" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="707" />
-                                          <JFXButton fx:id="btn_708" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="708" />
+                                          <JFXButton id="705" fx:id="btn_705" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="705" />
+                                          <JFXButton id="706" fx:id="btn_706" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="706" />
+                                          <JFXButton id="707" fx:id="btn_707" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="707" />
+                                          <JFXButton id="708" fx:id="btn_708" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="708" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -237,10 +249,10 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="140.0" prefWidth="551.0" spacing="5.0">
                                        <children>
-                                          <JFXButton fx:id="btn_7011" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="801" />
-                                          <JFXButton fx:id="btn_7021" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="802" />
-                                          <JFXButton fx:id="btn_7031" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="803" />
-                                          <JFXButton fx:id="btn_7041" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="804" />
+                                          <JFXButton id="801" fx:id="btn_7011" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="801" />
+                                          <JFXButton id="802" fx:id="btn_7021" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="802" />
+                                          <JFXButton id="803" fx:id="btn_7031" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="803" />
+                                          <JFXButton id="804" fx:id="btn_7041" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="804" />
                                        </children>
                                     </HBox>
                                     <Label text="Habitaciones sencillas" textFill="WHITE">
@@ -250,10 +262,10 @@
                                     </Label>
                                     <HBox alignment="CENTER" prefHeight="140.0" prefWidth="551.0" spacing="5.0">
                                        <children>
-                                          <JFXButton fx:id="btn_7051" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="805" />
-                                          <JFXButton fx:id="btn_7061" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="806" />
-                                          <JFXButton fx:id="btn_7071" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="807" />
-                                          <JFXButton fx:id="btn_7081" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="808" />
+                                          <JFXButton id="805" fx:id="btn_7051" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="805" />
+                                          <JFXButton id="806" fx:id="btn_7061" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="806" />
+                                          <JFXButton id="807" fx:id="btn_7071" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="807" />
+                                          <JFXButton id="808" fx:id="btn_7081" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="808" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -274,10 +286,10 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="140.0" prefWidth="551.0" spacing="5.0">
                                        <children>
-                                          <JFXButton fx:id="btn_70111" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="901" />
-                                          <JFXButton fx:id="btn_70211" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="902" />
-                                          <JFXButton fx:id="btn_70311" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="903" />
-                                          <JFXButton fx:id="btn_70411" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="904" />
+                                          <JFXButton id="901" fx:id="btn_70111" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="901" />
+                                          <JFXButton id="902" fx:id="btn_70211" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="902" />
+                                          <JFXButton id="903" fx:id="btn_70311" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="903" />
+                                          <JFXButton id="904" fx:id="btn_70411" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_up" text="904" />
                                        </children>
                                     </HBox>
                                     <Label text="Habitaciones sencillas" textFill="WHITE">
@@ -287,10 +299,10 @@
                                     </Label>
                                     <HBox alignment="CENTER" prefHeight="140.0" prefWidth="551.0" spacing="5.0">
                                        <children>
-                                          <JFXButton fx:id="btn_70511" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="905" />
-                                          <JFXButton fx:id="btn_70611" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="906" />
-                                          <JFXButton fx:id="btn_70711" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="907" />
-                                          <JFXButton fx:id="btn_70811" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="908" />
+                                          <JFXButton id="905" fx:id="btn_70511" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="905" />
+                                          <JFXButton id="906" fx:id="btn_70611" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="906" />
+                                          <JFXButton id="907" fx:id="btn_70711" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="907" />
+                                          <JFXButton id="908" fx:id="btn_70811" mnemonicParsing="false" prefHeight="130.0" prefWidth="133.0" styleClass="seleccion_hab__hab_sencilla_down" text="908" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -317,8 +329,8 @@
                </font>
             </Label>
             <Button fx:id="btn_nueva_reserva" layoutX="379.0" layoutY="119.0" mnemonicParsing="false" onAction="#click" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="NUEVA RESERVA" />
-            <TextField fx:id="codigo_reserva" layoutX="31.0" layoutY="202.0" prefHeight="25.0" prefWidth="183.0" />
-            <Label layoutX="31.0" layoutY="176.0" text="Código de reserva:">
+            <TextField fx:id="codigo_reserva" layoutX="31.0" layoutY="202.0" prefHeight="25.0" prefWidth="183.0" styleClass="textbox_buscar" />
+            <Label layoutX="31.0" layoutY="169.0" text="Código de reserva:">
                <font>
                   <Font name="MAXWELL REGULAR" size="25.0" />
                </font>
@@ -342,13 +354,13 @@
                         <Font name="MAXWELL REGULAR" size="20.0" />
                      </font>
                   </Label>
-                  <Spinner fx:id="cantidad_adultos" layoutX="317.0" layoutY="120.0" prefHeight="25.0" prefWidth="67.0" />
+                  <Spinner fx:id="cantidad_bebes" layoutX="317.0" layoutY="120.0" prefHeight="25.0" prefWidth="67.0" />
                   <Label layoutX="317.0" layoutY="104.0" text="Bebés (0-2 años)" />
                   <Label layoutX="317.0" layoutY="43.0" text="Adultos" />
-                  <Spinner fx:id="cantidad_bebes" layoutX="316.0" layoutY="59.0" prefHeight="25.0" prefWidth="67.0" />
+                  <Spinner fx:id="cantidad_adultos" layoutX="316.0" layoutY="59.0" prefHeight="25.0" prefWidth="67.0" />
                   <Label layoutX="414.0" layoutY="43.0" text="Niños( 2-12 años)" />
                   <Spinner fx:id="cantidad_niños" layoutX="414.0" layoutY="59.0" prefHeight="25.0" prefWidth="67.0" />
-                  <Button fx:id="btn_verificar_fechas" layoutX="416.0" layoutY="111.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" prefHeight="34.0" prefWidth="100.0" text="Verificar" />
+                  <Button fx:id="btn_verificar_fechas" alignment="CENTER" contentDisplay="CENTER" layoutX="416.0" layoutY="111.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#click" prefHeight="34.0" prefWidth="100.0" text="Verificar" textAlignment="CENTER" />
                </children>
                <padding>
                   <Insets top="15.0" />
@@ -356,82 +368,98 @@
             </Pane>
             <Separator layoutX="662.0" layoutY="126.0" orientation="VERTICAL" prefHeight="621.0" prefWidth="0.0" />
             <Button fx:id="btn_editar_reserva" layoutX="379.0" layoutY="182.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="204.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="EDITAR RESERVA" />
-            <Pane fx:id="state_panel" layoutX="718.0" layoutY="127.0" prefHeight="176.0" prefWidth="310.0" style="-fx-background-color: white; -fx-border-color: black;" styleClass="calculadora">
+            <Pane fx:id="state_panel" layoutX="718.0" layoutY="127.0" prefHeight="216.0" prefWidth="310.0" style="-fx-background-color: white; -fx-border-color: black;" styleClass="calculadora">
                <padding>
                   <Insets top="15.0" />
                </padding>
                <children>
-                  <Label layoutX="6.0" layoutY="19.0" prefHeight="24.0" prefWidth="162.0" text="Habitaciones separadas:">
+                  <Label layoutX="6.0" layoutY="3.0" prefHeight="24.0" prefWidth="162.0" text="Habitaciones separadas:">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="habitaciones_separadas" layoutX="6.0" layoutY="38.0" prefHeight="24.0" prefWidth="162.0" text="202, 302, 502">
+                  <Label fx:id="habitaciones_separadas" layoutX="6.0" layoutY="22.0" prefHeight="24.0" prefWidth="212.0">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="6.0" layoutY="69.0" prefHeight="24.0" prefWidth="212.0" text="Total de personas a acomodar:">
+                  <Label layoutX="6.0" layoutY="48.0" prefHeight="24.0" prefWidth="212.0" text="Total de personas a acomodar:">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="6.0" layoutY="106.0" prefHeight="24.0" prefWidth="162.0" text="Estado de acomodación:">
+                  <Label layoutX="6.0" layoutY="93.0" prefHeight="24.0" prefWidth="162.0" text="Estado de acomodación:">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="estado_acomodacion" layoutX="6.0" layoutY="124.0" prefHeight="24.0" prefWidth="162.0" text="Faltan habitaciones" textFill="#e10808">
+                  <Label fx:id="estado_acomodacion" layoutX="6.0" layoutY="110.0" prefHeight="24.0" prefWidth="162.0" text="Faltan habitaciones" textFill="#e10808">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="total_personas" layoutX="213.0" layoutY="69.0" prefHeight="24.0" prefWidth="33.0" text="6">
+                  <Label fx:id="total_personas" layoutX="8.0" layoutY="66.0" prefHeight="24.0" prefWidth="195.0">
+                     <font>
+                        <Font name="MAXWELL REGULAR" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="6.0" layoutY="143.0" prefHeight="24.0" prefWidth="132.0" text="Código de reserva:">
+                     <font>
+                        <Font name="MAXWELL REGULAR" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblCodigoDeReserva" layoutX="132.0" layoutY="143.0" prefHeight="24.0" prefWidth="162.0" text="0">
+                     <font>
+                        <Font name="MAXWELL REGULAR" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl_titulo_condicion" layoutX="6.0" layoutY="178.0" prefHeight="24.0" prefWidth="132.0" textFill="#00bf26">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="price_panel" layoutX="718.0" layoutY="312.0" prefHeight="176.0" prefWidth="310.0" style="-fx-background-color: white; -fx-border-color: black;" styleClass="calculadora">
+            <Pane fx:id="price_panel" layoutX="718.0" layoutY="348.0" prefHeight="140.0" prefWidth="310.0" style="-fx-background-color: white; -fx-border-color: black;" styleClass="calculadora">
                <padding>
                   <Insets top="15.0" />
                </padding>
                <children>
-                  <Separator layoutX="14.0" layoutY="91.0" prefHeight="4.0" prefWidth="285.0" />
-                  <Label layoutX="9.0" layoutY="30.0" prefHeight="24.0" prefWidth="204.0" text="Valor de reserva y estadía . . . ">
+                  <Separator layoutX="14.0" layoutY="73.0" prefHeight="4.0" prefWidth="285.0" />
+                  <Label layoutX="9.0" layoutY="12.0" prefHeight="24.0" prefWidth="204.0" text="Valor de reserva y estadía . . . ">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="valor_estadia" layoutX="213.0" layoutY="30.0" prefHeight="24.0" prefWidth="89.0" text="\$ 000000000">
+                  <Label fx:id="valor_estadia" layoutX="213.0" layoutY="12.0" prefHeight="24.0" prefWidth="89.0" text="\$ 000000000">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="9.0" layoutY="54.0" prefHeight="24.0" prefWidth="204.0" text="Descuento por temporada . . . ">
+                  <Label layoutX="9.0" layoutY="36.0" prefHeight="24.0" prefWidth="204.0" text="Descuento por temporada . . . ">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="descuento" layoutX="213.0" layoutY="54.0" prefHeight="24.0" prefWidth="89.0" text="\$ 000000000">
+                  <Label fx:id="descuento" layoutX="213.0" layoutY="36.0" prefHeight="24.0" prefWidth="89.0" text="\$ 000000000">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="valor_total" layoutX="213.0" layoutY="122.0" prefHeight="24.0" prefWidth="89.0" text="\$ 000000000">
+                  <Label fx:id="valor_total" layoutX="213.0" layoutY="104.0" prefHeight="24.0" prefWidth="89.0" text="\$ 000000000">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="122.0" prefHeight="24.0" prefWidth="195.0" text="Total a pagar . . . . . . . . . . . . . . .">
+                  <Label layoutX="10.0" layoutY="104.0" prefHeight="24.0" prefWidth="195.0" text="Total a pagar . . . . . . . . . . . . . . .">
                      <font>
                         <Font name="MAXWELL REGULAR" size="19.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Button fx:id="btn_buscar_reserva" layoutX="213.0" layoutY="202.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Buscar_Reserva_Por_ID" prefHeight="24.0" prefWidth="33.0" style="-fx-border-radius: 0;" styleClass="button_buscar" />
+            <Button fx:id="btn_buscar_reserva" layoutX="213.0" layoutY="202.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Buscar_Reserva_Por_ID" prefHeight="24.0" prefWidth="33.0" styleClass="button_buscar" />
+            <MFXProgressSpinner fx:id="progressIndReserva" layoutX="254.0" layoutY="201.0" prefHeight="26.0" prefWidth="25.0" />
          </children>
          <stylesheets>
             <URL value="@../../../assets/css/recepcionista_escenas.css" />

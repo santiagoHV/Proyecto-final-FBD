@@ -138,18 +138,74 @@ public class DAO_Pago {
             return -1;
         }
     }
-    private double ingresoHabitacionesPorReserva(String id){
+    public double ingresoHabitacionesPorReserva(String id){
         Operaciones op = new Operaciones();
         try {
             ResultSet res1 = op.ConsultaEsp("SELECT * FROM reserva WHERE k_reserva = " + id);
-            ResultSet res2 = op.ConsultaEsp("SELECT * FROM reserva WHERE k_reserva = " + id);
+            res1.next();
+            ResultSet res2 = op.ConsultaEsp("SELECT * FROM condicion_hotel WHERE k_condicion = " + res1.getInt(10));
+            res2.next();
+            java.sql.Date fechai = res1.getDate(3);
+            java.sql.Date fechaf = res1.getDate(5);
+            long dias = (fechaf.getTime()-fechai.getTime())/86400000;
+            if(dias > res2.getInt(5)){
+                return res1.getDouble(9)*(1-res2.getDouble(3));
+            }else{
+                return res1.getDouble(9);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
+            return -1;
         }
-        return 0;
     }
 
-    private void setFechas(String opc){
+    public int cantidadProductosPorReserva(String id){
+        Operaciones op = new Operaciones();
+        try{
+            ResultSet res = op.ConsultaEsp("SELECT SUM(cp.q_pys_pedidos) FROM reserva r, pago p, cuenta c, cuenta_productos cp WHERE p.k_cuenta = c.k_cuenta AND c.k_cuenta = cp.k_cuenta AND c.k_reserva = r.k_reserva AND r.k_reserva = "+id);
+            if(res.next()){
+                return res.getInt(1);
+            }else{
+                return 0;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public double ingresosProductosPorReserva(String id){
+        Operaciones op = new Operaciones();
+        try{
+            ResultSet res = op.ConsultaEsp("SELECT SUM(cp.q_pys_pedidos* cp.v_precio_venta) FROM reserva r, pago p, cuenta c, cuenta_productos cp WHERE p.k_cuenta = c.k_cuenta AND c.k_cuenta = cp.k_cuenta AND c.k_reserva = r.k_reserva AND r.k_reserva ="+id);
+            if(res.next()){
+                return res.getDouble(1);
+            }else{
+                return 0;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public double totalIngresosPorReserva(String id){
+        Operaciones op = new Operaciones();
+        try{
+            ResultSet res = op.ConsultaEsp("SELECT p.v_monto FROM pago p, cuenta c, reserva r WHERE p.k_cuenta = c.k_cuenta AND c.k_reserva = r.k_reserva AND r.k_reserva = "+ id);
+            if(res.next()){
+                return res.getDouble(1);
+            }else{
+                return 0;
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public void setFechas(String opc){
         long dif = 0;
         fechainicio = new Date();
         fechafinal = new Date();

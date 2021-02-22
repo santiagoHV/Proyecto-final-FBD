@@ -61,6 +61,7 @@ public class Controlador_piscina implements Initializable {
          loadProductos();
 
     }
+
     public ObservableList<PyS> getProductosByCategoria(){
         ObservableList<PyS> obs = FXCollections.observableArrayList();
         for(PyS p: new DAO_PyS().consultarPorCategoria(categoria)){
@@ -74,16 +75,14 @@ public class Controlador_piscina implements Initializable {
 
         OBS = getProductosByCategoria();
 
-
         ID.setCellValueFactory(new PropertyValueFactory("k_codigo_pys"));
         Nombre.setCellValueFactory(new PropertyValueFactory("unidad"));
         Stock.setCellValueFactory(new PropertyValueFactory("stock"));
         Precio.setCellValueFactory(new PropertyValueFactory("precio_producta"));
+
         productos.setItems(OBS);
 
-
     }
-
     //Aquí se determinan las acciones que va a realiza un boton al hacer click sobre el
     //Falta poner las condiciones para que no los vuelvan a registrar
     public void cargar(ActionEvent actionEvent){
@@ -94,19 +93,21 @@ public class Controlador_piscina implements Initializable {
 
         REMuestra.appendText( "Producto: " + String.valueOf(productos.getSelectionModel().getSelectedItem().getUnidad() + "\n"));
         REMuestra.appendText("Precio de venta:" + String.valueOf(productos.getSelectionModel().getSelectedItem().getPrecio_producta() + "\n"));
-        if((IStock-ICantidad)>0) {
+
+        if((IStock-ICantidad)>0){
             REMuestra.appendText("Cantidad: " + TCantidad.getText() + "\n");
             new DAO_PyS().modificarStock(String.valueOf(productos.getSelectionModel().getSelectedItem().getK_codigo_pys()), String.valueOf(IStock-ICantidad));
             loadProductos();
-        }else{
+        }
+        else{
             JOptionPane.showMessageDialog(null, "Stock invalido, se pondra el maximo stock disponible");
             REMuestra.appendText("Cantidad: " + IStock + "\n");
             new DAO_PyS().modificarStock(String.valueOf(productos.getSelectionModel().getSelectedItem().getK_codigo_pys()), "0");
             loadProductos();
         }
-
         Total += ICantidad*precio;
     }
+
     public void onclickhabitacion(ActionEvent actionEvent){
 
         habitacion= RDPiso.getValue() + RDHabitacion.getValue();
@@ -119,9 +120,6 @@ public class Controlador_piscina implements Initializable {
         } else{
             JOptionPane.showMessageDialog(null,"Ya cargo una habitación");
         }
-
-
-
 
     }
 
