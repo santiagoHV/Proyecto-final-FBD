@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="383.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="383.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_pagos">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" stylesheets="@../../../assets/css/recepcionista_escenas.css">
          <children>
-            <JFXButton layoutX="220.0" layoutY="307.0" prefHeight="45.0" prefWidth="140.0" text="Aceptar" />
-            <JFXButton layoutX="424.0" layoutY="307.0" prefHeight="45.0" prefWidth="140.0" text="Cancelar" />
+            <JFXButton id="btn_aceptar" fx:id="btn_aceptar" layoutX="220.0" layoutY="307.0" prefHeight="45.0" prefWidth="140.0" text="Aceptar" />
+            <JFXButton id="btn_cancelar" layoutX="424.0" layoutY="307.0" prefHeight="45.0" prefWidth="140.0" text="Cancelar" />
             <Separator layoutX="258.0" layoutY="14.0" orientation="VERTICAL" prefHeight="249.0" prefWidth="0.0" />
             <Separator layoutX="512.0" layoutY="14.0" orientation="VERTICAL" prefHeight="249.0" prefWidth="0.0" />
-            <Pane fx:id="back_tarjeta" layoutX="14.0" layoutY="14.0" prefHeight="249.0" prefWidth="239.0">
+            <Pane fx:id="back_tarjeta" layoutX="14.0" layoutY="14.0" onMouseClicked="#escoger_pago" prefHeight="249.0" prefWidth="239.0">
                <children>
                   <Pane fx:id="panel_tarjeta" prefHeight="249.0" prefWidth="239.0">
                      <children>
@@ -27,12 +22,12 @@
                               <Font name="MAXWELL BOLD" size="25.0" />
                            </font>
                         </Label>
-                        <JFXButton layoutX="50.0" layoutY="41.0" prefHeight="168.0" prefWidth="140.0" text="Procesar pago" />
+                        <JFXButton layoutX="50.0" layoutY="44.0" onAction="#validar_tarjeta" prefHeight="168.0" prefWidth="140.0" text="Procesar pago" />
                      </children>
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="back_consignacion" layoutX="267.0" layoutY="14.0" prefHeight="249.0" prefWidth="239.0">
+            <Pane fx:id="back_consignacion" layoutX="267.0" layoutY="14.0" onMouseClicked="#escoger_pago" prefHeight="249.0" prefWidth="239.0">
                <children>
                   <Pane fx:id="panel_consignacion" prefHeight="249.0" prefWidth="239.0">
                      <children>
@@ -61,13 +56,13 @@
                               <Font name="MAXWELL REGULAR" size="19.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="9.0" layoutY="158.0" prefHeight="25.0" prefWidth="173.0" />
-                        <JFXButton layoutX="45.0" layoutY="204.0" prefHeight="45.0" prefWidth="140.0" text="Validar pago" />
+                        <TextField fx:id="numero_confirmacion" layoutX="9.0" layoutY="158.0" prefHeight="25.0" prefWidth="173.0" />
+                        <JFXButton layoutX="45.0" layoutY="204.0" onAction="#validar_consignacion" prefHeight="45.0" prefWidth="140.0" text="Validar pago" />
                      </children>
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="back_efectivo" layoutX="518.0" layoutY="14.0" prefHeight="249.0" prefWidth="230.0">
+            <Pane fx:id="back_efectivo" layoutX="518.0" layoutY="14.0" onMouseClicked="#escoger_pago" prefHeight="249.0" prefWidth="230.0">
                <children>
                   <Pane fx:id="panel_efectivo" prefHeight="249.0" prefWidth="230.0">
                      <children>
@@ -76,7 +71,7 @@
                               <Font name="MAXWELL BOLD" size="25.0" />
                            </font>
                         </Label>
-                        <JFXButton layoutX="42.0" layoutY="50.0" prefHeight="168.0" prefWidth="140.0" text="Abrir caja" />
+                        <JFXButton layoutX="42.0" layoutY="50.0" onAction="#validar_efectivo" prefHeight="168.0" prefWidth="140.0" text="Abrir caja" />
                      </children>
                   </Pane>
                </children>

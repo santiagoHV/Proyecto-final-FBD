@@ -446,4 +446,18 @@ public class Controlador_checkout implements Initializable {
         controlador_consumos.definirColumnas(listTask);
         consumosDialog.show();
     }
+
+    public void procesar_pago(ActionEvent actionEvent) {
+        FXMLLoader loaderConsumos = new FXMLLoader(getClass().getResource("../../Vista/recepcionista/metodos_de_pago.fxml"));
+        Parent contenido = null;
+        try {
+            contenido = loaderConsumos.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JFXDialog consumosDialog = new JFXDialog(stackBG, (Region) contenido, JFXDialog.DialogTransition.BOTTOM, true);
+
+        consumosDialog.show();
+    }
 }
