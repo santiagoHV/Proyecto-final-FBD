@@ -283,16 +283,15 @@ public class Controlador_datos_ingreso implements Initializable {
      */
     private boolean validarFechaYDocumento(String tipoDoc, LocalDate fecha) {
         LocalDate fechaActual = LocalDate.now();
+        int edad = Period.between(fecha,fechaActual).getYears();
         if(fechaActual.isBefore(fecha)){
             return false;
-        }else if(fechaActual.getYear() - fecha.getYear() > 18 && (tipoDoc.equals("CC") || tipoDoc.equals("CE"))){
+        }else if(edad >= 18 && (tipoDoc.equals("CC") || tipoDoc.equals("CE"))){
             return true;
-        }else if(fechaActual.getYear() - fecha.getYear() == 18 && (tipoDoc.equals("CC") || tipoDoc.equals("CE"))){
-            if(fechaActual.getMonthValue() >= fecha.getMonthValue()){
-                return true;
-            }else{
-                return false;
-            }
+        }else if(edad < 18 && edad >= 7 && tipoDoc.equals("TI")){
+            return true;
+        }else if(edad < 7 && tipoDoc.equals("RC")){
+            return true;
         }else{
             return false;
         }
