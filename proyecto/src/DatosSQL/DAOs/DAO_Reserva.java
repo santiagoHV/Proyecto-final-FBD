@@ -151,6 +151,10 @@ public class DAO_Reserva {
         return 0;
     }
 
+    /**
+     * Cambia el estado de reserva activa a en curso cuando inicia la fecha de reserva
+     * @throws SQLException
+     */
     public void actualizarEstadoDeReservasEnCurso() throws SQLException {
         PreparedStatement preparedStatement = Conexion.getInstance().getConnection().prepareStatement("UPDATE reserva" +
                 " SET n_estado = 'en curso' WHERE f_inicio = ?");

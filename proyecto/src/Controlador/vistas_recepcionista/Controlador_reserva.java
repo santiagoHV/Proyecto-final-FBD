@@ -184,6 +184,7 @@ public class Controlador_reserva implements Initializable {
                 @Override
                 public void handle(WorkerStateEvent workerStateEvent) {
                     condicionHotel = condicion_hotelTask.getValue();
+                    lbl_titulo_condicion.setText(condicionHotel.getDescripcion());
                 }
             });
             numReservaTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {

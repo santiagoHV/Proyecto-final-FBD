@@ -83,6 +83,8 @@ public class Controlador_checkout implements Initializable {
 
     public Reserva reserva;
     public int codigoReserva;
+    public double totalPago;
+    public double totalConsumos;
 
     private List<Habitacion> habitacionList = new ArrayList<>();
 
@@ -97,8 +99,6 @@ public class Controlador_checkout implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //prueba por errores de saldamigo
-
         //Uso del método smoothScrolling para suavizar la animación de desplazamiento de los scrollPane:
         JFXScrollPane Prueba = new JFXScrollPane();
         Prueba.smoothScrolling(panel_salida_huespedes);
@@ -228,8 +228,7 @@ public class Controlador_checkout implements Initializable {
         }
     }
 
-    public void obtener_huespedes()
-    {
+    public void obtener_huespedes() {
         DAO_Registro dao_registro = new DAO_Registro();
 
         Task<List<Registro>> taskConRegistros = new Task<List<Registro>>() {
@@ -318,10 +317,15 @@ public class Controlador_checkout implements Initializable {
         });
     }
 
+    /**
+     * Llena los datos de la reserva
+     */
     public void llenarDatosReserva(){
 
-        for(Node n: panel_titular.getChildren())
-        {
+        for(Node n: panel_titular.getChildren()) {
+            n.setVisible(true);
+        }
+        for(Node n: panel_pagos.getChildren()){
             n.setVisible(true);
         }
 
@@ -335,6 +339,14 @@ public class Controlador_checkout implements Initializable {
         this.datos_tel.setText(this.reserva.getPersona().getN_telefono());
         this.datos_ti.setText(this.reserva.getPersona().getK_tipo_documento_id());
         this.datos_no_i.setText(String.valueOf(this.reserva.getPersona().getK_identificacion()));
+
+        this.valor_estadia.setText(String.format("$ %(,.2f",this.reserva.getPrecio_reserva()));
+        this.valor_descuentos.setText(String.format("$ %(,.2f",this.reserva.getPrecio_reserva() * this.reserva.getCondicion().getDescuento()));
+
+        //faltan los consumos
+        this.totalPago = (this.reserva.getPrecio_reserva() - (this.reserva.getPrecio_reserva() * this.reserva.getCondicion().getDescuento()));
+        this.valor_total.setText(String.format("$ %(,.2f",totalPago));
+
     }
 
     public Task<Registro> crearRegistro(Controlador_Huesped controlador_huesped, int codReservaFinal, int registroID) {

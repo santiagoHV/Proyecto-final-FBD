@@ -11,10 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DAO_Cuenta_Productos {
+    Operaciones op;
+    public DAO_Cuenta_Productos(){
+        op = new Operaciones();
+    }
 
     public List<Cuenta_Productos> consultarCuentaProdPorCuenta(int k_cuenta) {
         List<Cuenta_Productos> cuenta_productosList = new ArrayList<>();
-        Operaciones op = new Operaciones();
+
         try {
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM cuenta_productos WHERE k_cuenta = "+k_cuenta+" ");
             while(resultSet.next())
@@ -29,5 +33,24 @@ public class DAO_Cuenta_Productos {
             System.out.println(ex);
         }
         return null;
+    }
+
+    /**
+     * Consulta el total de consumos por una reserva
+     * @param ID
+     * @return
+     * @throws SQLException
+     */
+    public double consultarTotalDeConsumosPorReserva(int ID) throws SQLException {
+
+        try {
+            ResultSet resultSet = op.ConsultaEsp("SELECT SUM( v_precio_venta ) FROM cuenta_productos cp WHERE k_cuenta = " + ID);
+
+            resultSet.next();
+            return resultSet.getDouble(1);
+        }catch (Exception e){
+
+            return 0;
+        }
     }
 }
