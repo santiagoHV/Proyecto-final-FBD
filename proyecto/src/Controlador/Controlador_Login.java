@@ -1,31 +1,23 @@
 package Controlador;
 
-import Controlador.vistas_recepcionista.Controlador_Card_Reserva;
 import Datos_NoSQL.Usuario;
 import Datos_NoSQL.UsuarioDAO;
 import Vista.Main;
-import animatefx.animation.BounceOut;
 import com.jfoenix.controls.*;
-import com.jfoenix.controls.events.JFXDialogEvent;
-import com.sun.media.jfxmediaimpl.platform.Platform;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.swing.*;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -128,6 +120,11 @@ public class Controlador_Login implements Initializable {
                     dialogActual.close();
                 }
                 else if(AUTH.equals("worker")) {
+                    try {
+                        openTrabajador();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     JFXButton BotonAceptar = (JFXButton) actionEvent.getSource();
                     Stage dialogActual = (Stage) BotonAceptar.getScene().getWindow();
                     dialogActual.close();
@@ -248,7 +245,7 @@ public class Controlador_Login implements Initializable {
     public void openTrabajador() throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("../Vista/gerente/navbar.fxml"));
+        loader.setLocation(Main.class.getResource("../Vista/empleado/empleado.fxml"));
         Pane ventana = (Pane) loader.load();
         //Show the scene containing the root layout.
 

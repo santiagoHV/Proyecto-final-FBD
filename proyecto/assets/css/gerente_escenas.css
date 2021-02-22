@@ -1,3 +1,23 @@
+@font-face {
+    src: url('../Fuentes/FontsFree-Net-BringHeart-Regular.ttf');
+}
+
+@font-face {
+    src: url('../Fuentes/MAXWELL_REGULAR.ttf');
+}
+
+@font-face {
+    src: url('../Fuentes/BebasNeue-Regular.ttf');
+}
+
+@font-face {
+    src: url('../Fuentes/MAXWELL_BOLD.ttf');
+}
+
+@font-face {
+    src: url('../Fuentes/TroubleFontRegular400.otf');
+}
+
 .navbar__button {
     -fx-background-color: #2E1E1E;
 }
@@ -117,4 +137,27 @@
     -fx-font-size: 25;
     -fx-font-family: "MAXWELL REGULAR";
     -fx-effect: dropshadow(two-pass-box, #341111,20,0,3,3);
+}
+.tabla_condiciones{
+    -fx-font-size: 20px;
+}
+
+.button_condiciones{
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(from 0px 400px to 500px 1200px, #2E1E1E, #1d0a01);
+}
+
+.label_subpagos{
+    -fx-font-size: 30px;
+    -fx-font-family: "MAXWELL REGULAR";
+}
+.label_pago_principal{
+    -fx-font-size: 35px;
+    -fx-font-family: "MAXWELL BOLD";
+}
+.button_buscar{
+    -fx-font-size: 22px;
+    -fx-background-color: linear-gradient(from 0px 400px to 500px 1200px, #2E1E1E, #1d0a01);
+    -fx-text-fill: white;
 }

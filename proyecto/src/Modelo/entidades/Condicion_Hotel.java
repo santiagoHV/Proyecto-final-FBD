@@ -11,16 +11,16 @@ public class Condicion_Hotel {
     private double descuento;
     private double aforo;
     private int numero_dias;
+    private String descripcion;
 
-    public Condicion_Hotel(int k_condicion, boolean estado_condicion, double descuento, double aforo, int numero_dias) {
+    public Condicion_Hotel(int k_condicion, boolean estado_condicion, double descuento, double aforo, int numero_dias, String descripcion) {
         this.k_condicion = k_condicion;
         this.estado_condicion = estado_condicion;
         this.descuento = descuento;
         this.aforo = aforo;
         this.numero_dias = numero_dias;
+        this.descripcion = descripcion;
     }
-
-    public Condicion_Hotel(){};
 
     public int getK_condicion() {
         return k_condicion;
@@ -60,6 +60,14 @@ public class Condicion_Hotel {
 
     public void setNumero_dias(int numero_dias) {
         this.numero_dias = numero_dias;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
 
