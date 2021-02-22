@@ -223,7 +223,7 @@ public class DAO_Pago {
             dif = Long.parseLong("604800000");
             fechainicio.setTime(fechainicio.getTime()-dif);
         }else if(opc.equals("Hoy")){
-            dif = Long.parseLong("86400000");
+            dif = Long.parseLong("0");
             fechainicio.setTime(fechainicio.getTime()-dif);
         }
     }

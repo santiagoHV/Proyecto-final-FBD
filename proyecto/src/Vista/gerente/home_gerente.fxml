@@ -46,7 +46,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label layoutX="581.0" layoutY="581.0" styleClass="label--circle" text="Ganancias por habitación" />
+            <Label layoutX="600.0" layoutY="581.0" styleClass="label--circle" text="Ganancias por reserva" />
          </children>
       </AnchorPane>
    </children>
