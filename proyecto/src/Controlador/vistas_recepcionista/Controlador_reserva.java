@@ -259,7 +259,7 @@ public class Controlador_reserva implements Initializable {
                     for(Habitacion habitacion: listaHabitaciones){
                         dao_reserva.insertarHabitacionEnReserva(reserva,habitacion);
                     }
-
+                    dao_reserva.actualizarEstadoDeReservasEnCurso();
                     return null;
                 }
             };
