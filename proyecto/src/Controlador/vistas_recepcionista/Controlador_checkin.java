@@ -455,6 +455,11 @@ public class Controlador_checkin implements Initializable {
                                                 try{
                                                     DAO_Persona dao_persona = new DAO_Persona();
                                                     dao_persona.insertarPersona(titularDeReserva);
+                                                    if(titularDeReserva.getClass().equals(Huesped.class))
+                                                    {
+                                                        DAO_Huesped dao_huesped = new DAO_Huesped();
+                                                        dao_huesped.insertarHuesped((Huesped) titularDeReserva);
+                                                    }
                                                 }catch (Exception e){
                                                     System.out.println(e + "Guardado fallido");
                                                 }

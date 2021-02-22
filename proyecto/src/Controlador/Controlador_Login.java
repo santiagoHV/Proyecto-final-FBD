@@ -10,9 +10,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -35,6 +37,9 @@ public class Controlador_Login implements Initializable {
     private double yOffset = 0;
     private UsuarioDAO db;
     public String AUTH;
+
+    private JFXDialog dialogAlerta;
+    private Controlador_alerta controlador_alerta;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -90,6 +95,7 @@ public class Controlador_Login implements Initializable {
                 try{
                     AUTH = authUsuario();
                 }catch(Exception e) {
+
                     System.out.println(e);
                 }
                 return null;
