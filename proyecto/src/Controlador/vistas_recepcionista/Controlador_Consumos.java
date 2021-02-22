@@ -39,12 +39,11 @@ public class Controlador_Consumos implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        
-        //smooth.smoothScrolling(tabla_consumos.get);
+
         tabla_consumos.setVisible(false);
         progressIndicator.setVisible(true);
         columnCodPro = new JFXTreeTableColumn<>("Código Del Producto");
-        columnCodPro.setPrefWidth(180);
+        columnCodPro.setPrefWidth(160);
         columnCodPro.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Cuenta_Productos_Table, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Cuenta_Productos_Table, String> cuenta_productos_tableStringCellDataFeatures) {
@@ -62,7 +61,7 @@ public class Controlador_Consumos implements Initializable {
         });
 
         columnCantPro = new JFXTreeTableColumn<>("Cantidad del producto");
-        columnCantPro.setPrefWidth(180);
+        columnCantPro.setPrefWidth(160);
         columnCantPro.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Cuenta_Productos_Table, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Cuenta_Productos_Table, String> cuenta_productos_tableStringCellDataFeatures) {
@@ -89,7 +88,7 @@ public class Controlador_Consumos implements Initializable {
         });
 
         columnCodCuenta = new JFXTreeTableColumn<>("Código de cuenta");
-        columnCodCuenta.setPrefWidth(100);
+        columnCodCuenta.setPrefWidth(180);
         columnCodCuenta.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Cuenta_Productos_Table, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Cuenta_Productos_Table, String> cuenta_productos_tableStringCellDataFeatures) {
@@ -98,7 +97,7 @@ public class Controlador_Consumos implements Initializable {
         });
 
         columnTilReser = new JFXTreeTableColumn<>("Titular");
-        columnTilReser.setPrefWidth(100);
+        columnTilReser.setPrefWidth(180);
         columnTilReser.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Cuenta_Productos_Table, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Cuenta_Productos_Table, String> cuenta_productos_tableStringCellDataFeatures) {
