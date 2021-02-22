@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,11 @@ public class DAO_Reserva {
         op = new Operaciones();
     }
 
+    /**
+     * Consulta una reserva por su ID
+     * @param ID
+     * @return
+     */
     public Reserva consultarReserva(int ID){
 
         try {
@@ -38,6 +44,11 @@ public class DAO_Reserva {
         return null;
     }
 
+    /**
+     * Consulta el ultimo id ingresado en la tabla de reservas
+     * @return
+     * @throws SQLException
+     */
     public int consultarUltimoCodigo() throws SQLException {
 
         ResultSet resultSet = op.ConsultaEsp("SELECT MAX(k_reserva) FROM reserva");
@@ -45,8 +56,13 @@ public class DAO_Reserva {
         return resultSet.getInt(1);
     }
 
-    public List<Reserva_Habitacion> consultarReservaHabPorIdReserva(int ID)
-    {
+    /**
+     * Consulta y retorna una lista de tuplas de habitacion_reserva
+     * por su codigo de reserva
+     * @param ID
+     * @return
+     */
+    public List<Reserva_Habitacion> consultarReservaHabPorIdReserva(int ID) {
         try {
             List<Reserva_Habitacion> reserva_habitacions = new ArrayList<>();
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Reserva_Habitacion WHERE k_reserva = "+ID+"");
@@ -68,6 +84,10 @@ public class DAO_Reserva {
         return null;
     }
 
+    /**
+     * Inserta un nuevo registro a la tabla reserva
+     * @param reserva
+     */
     public void insertarReserva(Reserva reserva){
         try {
             PreparedStatement preparedStatement = Conexion.getInstance().getConnection().prepareStatement(
@@ -93,6 +113,12 @@ public class DAO_Reserva {
         }
     }
 
+    /**
+     * Inserta un registro en reserva_habitacion
+     * @param reserva
+     * @param habitacion
+     * @throws SQLException
+     */
     public void insertarHabitacionEnReserva(Reserva reserva, Habitacion habitacion) throws SQLException {
         PreparedStatement preparedStatement = Conexion.getInstance().getConnection().prepareStatement(
                 "INSERT INTO reserva_habitacion VALUES(?,?);");
@@ -103,6 +129,12 @@ public class DAO_Reserva {
         preparedStatement.executeUpdate();
     }
 
+    /**
+     * Consulta y retorna la cantidad maxima de personas hospedadas entre dos fechas
+     * @param fInicio
+     * @param fFinal
+     * @return
+     */
     public int consultarCantidadDePersonasHospedadas(Date fInicio, Date fFinal) {
         try {
             ResultSet resultSet = op.ConsultaEsp("SELECT sum(q_cantidad_bebes), sum(q_cantidad_ninos), sum(q_cantidad_adultos) FROM reserva r" +
@@ -116,5 +148,13 @@ public class DAO_Reserva {
             System.out.println(ex + "cantidad de personas hospedadas");
         }
         return 0;
+    }
+
+    public void actualizarEstadoDeReservasEnCurso() throws SQLException {
+        PreparedStatement preparedStatement = Conexion.getInstance().getConnection().prepareStatement("UPDATE reserva" +
+                " SET n_estado = 'en curso' WHERE f_inicio = ?");
+
+        preparedStatement.setDate(1, Date.valueOf(LocalDate.now()));
+
     }
 }
