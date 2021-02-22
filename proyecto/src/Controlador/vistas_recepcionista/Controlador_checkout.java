@@ -6,6 +6,7 @@ import Modelo.entidades.*;
 import Vista.Main;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXScrollPane;
 import com.jfoenix.svg.SVGGlyph;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -97,6 +98,10 @@ public class Controlador_checkout implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //prueba por errores de saldamigo
+
+        //Uso del método smoothScrolling para suavizar la animación de desplazamiento de los scrollPane:
+        JFXScrollPane Prueba = new JFXScrollPane();
+        Prueba.smoothScrolling(panel_salida_huespedes);
 
         information.setLayoutX(248);
         information.setLayoutY(278-10);
@@ -199,7 +204,6 @@ public class Controlador_checkout implements Initializable {
                 {
                     habitacionList.add(reservaTask.getValue().get(i).getHabitacion());
                 }
-                progressIndCheckout.setVisible(false);
                 llenarDatosReserva();
             }
         });
@@ -207,6 +211,7 @@ public class Controlador_checkout implements Initializable {
         try{
             codigoReserva = Integer.parseInt(codigo_reserva.getText());
             threadReserva.start();
+            obtener_huespedes();
         }catch (Exception e){
             //poner error en busqueda
         }
@@ -371,6 +376,7 @@ public class Controlador_checkout implements Initializable {
                         GridPanel_Huespedes.setPrefHeight(Region.USE_COMPUTED_SIZE);
                         GridPanel_Huespedes.setMinHeight(Region.USE_COMPUTED_SIZE);
                     }
+                    progressIndCheckout.setVisible(false);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

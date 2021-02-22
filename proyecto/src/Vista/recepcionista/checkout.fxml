@@ -26,7 +26,7 @@
                   <Font size="10.0" />
                </font>
             </Label>
-            <MFXProgressSpinner fx:id="progressIndCheckout" layoutX="260.0" layoutY="214.0" prefHeight="26.0" prefWidth="25.0" visible="false" />
+            <MFXProgressSpinner fx:id="progressIndCheckout" layoutX="256.0" layoutY="224.0" prefHeight="26.0" prefWidth="25.0" visible="false" />
             <VBox layoutX="543.0" layoutY="134.0" prefHeight="458.0" prefWidth="513.0" spacing="16.0">
                <children>
                   <Label text="Salida de huéspedes">
@@ -197,7 +197,7 @@
                   </Label>
                </children>
             </Pane>
-            <Button fx:id="btn_buscar_reserva" layoutX="212.0" layoutY="222.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buscar_Reserva_Por_ID" prefHeight="24.0" prefWidth="33.0" styleClass="button_buscar" />
+            <Button fx:id="btn_buscar_reserva" layoutX="212.0" layoutY="223.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buscar_Reserva_Por_ID" prefHeight="24.0" prefWidth="33.0" styleClass="button_buscar" />
          </children>
          <stylesheets>
             <URL value="@../../../assets/css/recepcionista_escenas.css" />
