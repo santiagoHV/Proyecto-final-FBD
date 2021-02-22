@@ -1,5 +1,6 @@
 package Controlador.vistas_gerente.Habitaciones;
 
+import DatosSQL.DAOs.DAO_Habitacion;
 import DatosSQL.DAOs.DAO_Ocupacion_Registro;
 import Modelo.entidades.Ocupacion_registro;
 import javafx.collections.FXCollections;
@@ -27,6 +28,8 @@ public class Controlador_Ocupacion implements Initializable {
     public ObservableList<Ocupacion_registro> OBS;
     public ProgressIndicator progresi;
     public Label label_habitacion;
+    public Label label_precio;
+    public double precio;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -39,6 +42,7 @@ public class Controlador_Ocupacion implements Initializable {
             @Override
             protected Object call() throws Exception {
                 OBS = FXCollections.observableArrayList(new DAO_Ocupacion_Registro().getHistoricoOcupacion(label_habitacion.getText()));
+                precio = new DAO_Habitacion().precioHabitacio(label_habitacion.getText());
                 return null;
             }
         };
@@ -46,6 +50,7 @@ public class Controlador_Ocupacion implements Initializable {
             @Override
             public void handle(WorkerStateEvent workerStateEvent) {
                 tabla_historial.setItems(OBS);
+                label_precio.setText("Precio: " + String.format("$ %(,.2f", precio));
                 progresi.setVisible(false);
             }
         });
