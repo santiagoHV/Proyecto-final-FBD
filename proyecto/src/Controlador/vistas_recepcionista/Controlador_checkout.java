@@ -6,6 +6,7 @@ import Modelo.entidades.*;
 import Vista.Main;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXScrollPane;
 import com.jfoenix.svg.SVGGlyph;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -97,6 +98,10 @@ public class Controlador_checkout implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //prueba por errores de saldamigo
+
+        //Uso del método smoothScrolling para suavizar la animación de desplazamiento de los scrollPane:
+        JFXScrollPane Prueba = new JFXScrollPane();
+        Prueba.smoothScrolling(panel_salida_huespedes);
 
         information.setLayoutX(248);
         information.setLayoutY(278-10);
@@ -199,7 +204,6 @@ public class Controlador_checkout implements Initializable {
                 {
                     habitacionList.add(reservaTask.getValue().get(i).getHabitacion());
                 }
-                progressIndCheckout.setVisible(false);
                 llenarDatosReserva();
             }
         });
@@ -207,6 +211,7 @@ public class Controlador_checkout implements Initializable {
         try{
             codigoReserva = Integer.parseInt(codigo_reserva.getText());
             threadReserva.start();
+            obtener_huespedes();
         }catch (Exception e){
             //poner error en busqueda
         }
@@ -254,8 +259,13 @@ public class Controlador_checkout implements Initializable {
 
                         huespedIDList.set(i,registroList.get(i).getHuesped().getK_identificacion());
 
-                        controlador_huesped.btn_ingreso.setText("Actualizar");
-                        controlador_huesped.btn_ingreso.setDisable(false);
+                        //La parte concerniente al proceso de Checkout:
+
+                        controlador_huesped.btn_ingreso.setText("Dar Salida");
+                        controlador_huesped.comboHabitacion.setDisable(true);
+
+                        VBox vBox = (VBox) controlador_huesped.AnchorBG.getChildren().get(10);
+                        vBox.getChildren().remove(0);
 
                         controlador_huesped.btn_ingreso.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent actualizarReg)->
                         {
@@ -265,15 +275,12 @@ public class Controlador_checkout implements Initializable {
                             crearRegistroTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
                                 @Override
                                 public void handle(WorkerStateEvent workerStateEvent) {
-                                    if(huespedIDList.contains(crearRegistroTask.getValue().getHuesped().getK_identificacion()))
-                                    {
-                                        comprobarIDRepetido(crearRegistroTask, "Actualizar");
-                                        controlador_huesped.progressActIng.setVisible(false);
-                                    }
+                                    realizarCheckout(crearRegistroTask);
+                                    controlador_huesped.progressActIng.setVisible(false);
                                 }
                             });
-                            Thread crearRegistroThread = new Thread(crearRegistroTask);
 
+                            Thread crearRegistroThread = new Thread(crearRegistroTask);
                             crearRegistroThread.start();
                         });
 
@@ -281,86 +288,7 @@ public class Controlador_checkout implements Initializable {
                         GridPanel_Huespedes.add(PanelHuespedes,column,row);
                         GridPane.setMargin(PanelHuespedes,new Insets(8));
 
-                        //---------------------------------------------------------------
-                        //Acceso al ingreso de Datos:
-
-                        controlador_huesped.btn_cambiar.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventCambio)->
-                        {
-                            FXMLLoader loaderIngreso = new FXMLLoader(getClass().getResource("../../Vista/recepcionista/ingreso_datos.fxml"));
-                            Parent parent = null;
-                            try {
-                                parent = loaderIngreso.load();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            JFXDialog dialog = new JFXDialog(stackBG, (Region) parent, JFXDialog.DialogTransition.BOTTOM, true);
-                            AnchorPane AP = (AnchorPane) parent.getChildrenUnmodifiable().get(0);
-                            HBox HB = (HBox) AP.getChildren().get(0);
-                            Button BSalirDialog = (Button)HB.getChildrenUnmodifiable().get(1);
-                            Button btnCargarDatos = (Button)HB.getChildrenUnmodifiable().get(0);
-
-                            Controlador_datos_ingreso controlador_datos_ingreso = loaderIngreso.getController();
-
-                            btnCargarDatos.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventIngreso) ->
-                            {
-                                CheckBox checkNuevo = (CheckBox) dialog.lookup("#checkNuevo");
-
-                                if(checkNuevo.isSelected()){
-                                    personaConsultada = controlador_datos_ingreso.solicitarPersona(true);
-                                    try{
-                                        DAO_Persona dao_persona = new DAO_Persona();
-                                        dao_persona.insertarPersona(personaConsultada);
-                                    }catch (Exception e){
-                                        System.out.println(e + "Guardado fallido");
-                                    }
-                                }else{
-                                    personaConsultada = controlador_datos_ingreso.solicitarPersona(false);
-                                }
-
-                                if(personaConsultada.getClass().equals(Huesped.class))
-                                {
-                                    if(controlador_huesped.txt_tipo_huesped.getText().equals("Bebe") && Period.between(personaConsultada.getF_nacimiento().toLocalDate(),LocalDate.now()).getYears()>2)
-                                    {
-                                        controlador_alerta.titulo.setText("El huésped ingresado no cumple con la edad establecida");
-                                        controlador_alerta.mensaje.setText("El huésped seleccionado no se encuentra dentro del rango de edad apropiado para el campo," +
-                                                " revise la información ingresada e intentélo nuevamente. El huesped ingresado debe ser un bebe");
-                                        dialogAlerta.show();
-                                    } else if(controlador_huesped.txt_tipo_huesped.getText().equals("Niño") && (Period.between(personaConsultada.getF_nacimiento().toLocalDate(),LocalDate.now()).getYears()<=2 || Period.between(personaConsultada.getF_nacimiento().toLocalDate(),LocalDate.now()).getYears()>=18))
-                                    {
-                                        controlador_alerta.titulo.setText("El huésped ingresado no cumple con la edad establecida");
-                                        controlador_alerta.mensaje.setText("El huésped seleccionado no se encuentra dentro del rango de edad apropiado para el campo," +
-                                                " revise la información ingresada e intentélo nuevamente. El huesped ingresado debe ser un niño");
-                                        dialogAlerta.show();
-                                    }else if(controlador_huesped.txt_tipo_huesped.getText().equals("Adulto") && Period.between(personaConsultada.getF_nacimiento().toLocalDate(),LocalDate.now()).getYears()<2)
-                                    {
-                                        controlador_alerta.titulo.setText("El huésped ingresado no cumple con la edad establecida");
-                                        controlador_alerta.mensaje.setText("El huésped seleccionado no se encuentra dentro del rango de edad apropiado para el campo," +
-                                                " revise la información ingresada e intentélo nuevamente. El huesped ingresado debe ser adulto");
-                                        dialogAlerta.show();
-                                    } else {
-                                        controlador_huesped.setValoresPanel((Huesped) personaConsultada, habitacionList);
-                                        dialog.close();
-                                        controlador_huesped.btn_ingreso.setDisable(false);
-
-                                        huespedIDList.set(j, personaConsultada.getK_identificacion());
-                                    }
-                                }
-                                else
-                                {
-                                    dialogAlerta.show();
-                                }
-                            });
-
-                            BSalirDialog.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventIngreso)->
-                            {
-                                dialog.close();
-                            });
-
-                            dialog.show();
-                        });
-
                         //Alto y Ancho:
-
                         //Ancho:
                         GridPanel_Huespedes.setMaxWidth(Region.USE_COMPUTED_SIZE);
                         GridPanel_Huespedes.setPrefWidth(Region.USE_COMPUTED_SIZE);
@@ -371,6 +299,7 @@ public class Controlador_checkout implements Initializable {
                         GridPanel_Huespedes.setPrefHeight(Region.USE_COMPUTED_SIZE);
                         GridPanel_Huespedes.setMinHeight(Region.USE_COMPUTED_SIZE);
                     }
+                    progressIndCheckout.setVisible(false);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -401,7 +330,7 @@ public class Controlador_checkout implements Initializable {
         return new Task<Registro>() {
             @Override
             protected Registro call() throws Exception {
-                return new Registro(registroID, Date.valueOf(LocalDate.now()),null,
+                return new Registro(registroID, null,Date.valueOf(LocalDate.now()),
                         new DAO_Huesped().consultarHuesped(Integer.parseInt(controlador_huesped.LBnum_id.getText()), controlador_huesped.LB_TipoDoc.getText().replace(":","")),
                         new DAO_Reserva().consultarReserva(codReservaFinal),
                         new DAO_Habitacion().consultarHabitacion(Integer.parseInt(controlador_huesped.comboHabitacion.getValue().toString())));
@@ -409,7 +338,7 @@ public class Controlador_checkout implements Initializable {
         };
     }
 
-    public void comprobarIDRepetido(Task<Registro> crearRegistroTask, String Operacion) {
+    public void realizarCheckout(Task<Registro> crearRegistroTask) {
 
         FXMLLoader alertaDireccion = new FXMLLoader(getClass().getResource("../../Vista/recepcionista/alerta.fxml"));
         Parent contenedor = null;
@@ -429,43 +358,12 @@ public class Controlador_checkout implements Initializable {
             dialogAlerta.close();
         });
 
-        int cantRepetida = 0;
-        for(int i: huespedIDList)
+        if(new DAO_Registro().actualizarRegistro(crearRegistroTask.getValue())>0)
         {
-            if(i==crearRegistroTask.getValue().getHuesped().getK_identificacion())
-            {
-                cantRepetida++;
-            }
-        }
+            controlador_alerta.titulo.setText("Actualización Realizada");
+            controlador_alerta.mensaje.setText("Se actualizó correctamente el registro del checkin realizado por este huésped.");
 
-        if(cantRepetida>1)
-        {
-            controlador_alerta.titulo.setText("Huésped ya seleccionado");
-            controlador_alerta.mensaje.setText("Este huesped ya fue registrado para realizar su proceso de checkin en otra tarjeta, revise esta información" +
-                    " e inténtelo nuevamente.");
-        }
-        else
-        {
-            if(Operacion.equals("Ingreso"))
-            {
-                if(new DAO_Registro().insertarRegistro(crearRegistroTask.getValue())>0)
-                {
-                    controlador_alerta.titulo.setText("Inserción Realizada");
-                    controlador_alerta.mensaje.setText("El proceso de Checkin para este huésped se realizó correctamente");
-
-                    //DefinirPanelDatosHuespedes();
-                }
-            }
-            else
-            {
-                if(new DAO_Registro().actualizarRegistro(crearRegistroTask.getValue())>0)
-                {
-                    controlador_alerta.titulo.setText("Actualización Realizada");
-                    controlador_alerta.mensaje.setText("Se actualizó correctamente el registro del checkin realizado por este huésped.");
-
-                    //DefinirPanelDatosHuespedes();
-                }
-            }
+            //DefinirPanelDatosHuespedes();
         }
         dialogAlerta.show();
     }

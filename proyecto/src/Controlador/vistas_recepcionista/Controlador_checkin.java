@@ -396,6 +396,7 @@ public class Controlador_checkin implements Initializable {
 
 
                                         controlador_huesped.btn_ingreso.setText("Ingresar");
+                                        controlador_huesped.btn_ingreso.setDisable(true);
 
                                         controlador_huesped.btn_ingreso.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent ingresarReg)->
                                         {
