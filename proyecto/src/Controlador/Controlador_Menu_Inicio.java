@@ -100,6 +100,17 @@ public class Controlador_Menu_Inicio implements Initializable
 
         BRecep.setDisableVisualFocus(true);
         BRecep.setFocusTraversable(false);
+
+        BRecep.setDisable(true);
+        BAdmin.setDisable(true);
+        BEmple.setDisable(true);
+
+        Task taskActualizarReservas = new Task() {
+            @Override
+            protected Object call() throws Exception {
+                return null;
+            }
+        };
     }
 
     public void EvIng(ActionEvent actionEvent) throws IOException {
