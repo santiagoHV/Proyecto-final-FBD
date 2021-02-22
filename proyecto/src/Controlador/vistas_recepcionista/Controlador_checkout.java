@@ -281,6 +281,7 @@ public class Controlador_checkout implements Initializable {
             @Override
             public void handle(WorkerStateEvent workerStateEvent) {
                 registroList = taskConRegistros.getValue();
+                GridPanel_Huespedes.getChildren().clear();
 
                 int column = 0;
                 int row = 0;
@@ -289,63 +290,67 @@ public class Controlador_checkout implements Initializable {
                 {
                     for(int i = 0; i<registroList.size(); i++) {
                         final int j = i;
-                        huespedIDList.add(registroList.get(i).getHuesped().getK_identificacion());
-
-                        //Carga de las plantillas para los paneles con información de los huespedes
-                        FXMLLoader loader = new FXMLLoader();
-                        loader.setLocation(Main.class.getResource("../Vista/recepcionista/Panel_Huesped.fxml"));
-
-                        //Definición de los anchorpane:
-                        //Para el panel de los huespedes:
-                        AnchorPane PanelHuespedes = loader.load();
-
-                        Controlador_Huesped controlador_huesped = loader.getController();
-
-                        controlador_huesped.setValoresPanel(registroList.get(i).getHuesped(), habitacionList);
-
-                        huespedIDList.set(i,registroList.get(i).getHuesped().getK_identificacion());
-
-                        //La parte concerniente al proceso de Checkout:
-
-                        controlador_huesped.btn_ingreso.setText("Dar Salida");
-                        controlador_huesped.comboHabitacion.setDisable(true);
-
-                        VBox vBox = (VBox) controlador_huesped.AnchorBG.getChildren().get(10);
-                        vBox.getChildren().remove(0);
-
-                        controlador_huesped.btn_ingreso.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent actualizarReg)->
+                        if(registroList.get(i).getF_salida()==null)
                         {
-                            controlador_huesped.progressActIng.setVisible(true);
-                            Task<Registro> crearRegistroTask = crearRegistro(controlador_huesped, codigoReserva, registroList.get(j).getK_registro());
+                            huespedIDList.add(registroList.get(i).getHuesped().getK_identificacion());
 
-                            crearRegistroTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-                                @Override
-                                public void handle(WorkerStateEvent workerStateEvent) {
-                                    realizarCheckout(crearRegistroTask);
-                                    controlador_huesped.progressActIng.setVisible(false);
-                                }
+                            //Carga de las plantillas para los paneles con información de los huespedes
+                            FXMLLoader loader = new FXMLLoader();
+                            loader.setLocation(Main.class.getResource("../Vista/recepcionista/Panel_Huesped.fxml"));
+
+                            //Definición de los anchorpane:
+                            //Para el panel de los huespedes:
+                            AnchorPane PanelHuespedes = loader.load();
+
+                            Controlador_Huesped controlador_huesped = loader.getController();
+
+                            controlador_huesped.setValoresPanel(registroList.get(i).getHuesped(), habitacionList);
+
+                            huespedIDList.set(i,registroList.get(i).getHuesped().getK_identificacion());
+
+                            //La parte concerniente al proceso de Checkout:
+
+                            controlador_huesped.btn_ingreso.setText("Dar Salida");
+                            controlador_huesped.comboHabitacion.setDisable(true);
+
+                            VBox vBox = (VBox) controlador_huesped.AnchorBG.getChildren().get(10);
+                            vBox.getChildren().remove(0);
+
+                            controlador_huesped.btn_ingreso.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent actualizarReg)->
+                            {
+                                controlador_huesped.progressActIng.setVisible(true);
+                                Task<Registro> crearRegistroTask = crearRegistro(controlador_huesped, codigoReserva, registroList.get(j).getK_registro());
+
+                                crearRegistroTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                                    @Override
+                                    public void handle(WorkerStateEvent workerStateEvent) {
+                                        realizarCheckout(crearRegistroTask);
+                                        controlador_huesped.progressActIng.setVisible(false);
+                                    }
+                                });
+
+                                Thread crearRegistroThread = new Thread(crearRegistroTask);
+                                crearRegistroThread.start();
                             });
 
-                            Thread crearRegistroThread = new Thread(crearRegistroTask);
-                            crearRegistroThread.start();
-                        });
+                            row++;
+                            GridPanel_Huespedes.add(PanelHuespedes,column,row);
+                            GridPane.setMargin(PanelHuespedes,new Insets(8));
 
-                        row++;
-                        GridPanel_Huespedes.add(PanelHuespedes,column,row);
-                        GridPane.setMargin(PanelHuespedes,new Insets(8));
+                            //Alto y Ancho:
+                            //Ancho:
+                            GridPanel_Huespedes.setMaxWidth(Region.USE_COMPUTED_SIZE);
+                            GridPanel_Huespedes.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                            GridPanel_Huespedes.setMinWidth(Region.USE_COMPUTED_SIZE);
 
-                        //Alto y Ancho:
-                        //Ancho:
-                        GridPanel_Huespedes.setMaxWidth(Region.USE_COMPUTED_SIZE);
-                        GridPanel_Huespedes.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                        GridPanel_Huespedes.setMinWidth(Region.USE_COMPUTED_SIZE);
-
-                        //Alto:
-                        GridPanel_Huespedes.setMaxHeight(Region.USE_COMPUTED_SIZE);
-                        GridPanel_Huespedes.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                        GridPanel_Huespedes.setMinHeight(Region.USE_COMPUTED_SIZE);
+                            //Alto:
+                            GridPanel_Huespedes.setMaxHeight(Region.USE_COMPUTED_SIZE);
+                            GridPanel_Huespedes.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                            GridPanel_Huespedes.setMinHeight(Region.USE_COMPUTED_SIZE);
+                        }
                     }
                     progressIndCheckout.setVisible(false);
+                    GridPanel_Huespedes.setDisable(false);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -421,8 +426,9 @@ public class Controlador_checkout implements Initializable {
         {
             controlador_alerta.titulo.setText("Actualización Realizada");
             controlador_alerta.mensaje.setText("Se actualizó correctamente el registro del checkin realizado por este huésped.");
-
-            //DefinirPanelDatosHuespedes();
+            GridPanel_Huespedes.setDisable(true);
+            progressIndCheckout.setVisible(true);
+            obtener_huespedes();
         }
         dialogAlerta.show();
     }

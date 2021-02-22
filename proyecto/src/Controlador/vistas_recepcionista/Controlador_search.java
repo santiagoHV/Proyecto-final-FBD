@@ -1,10 +1,10 @@
 package Controlador.vistas_recepcionista;
 
+import DatosSQL.DAOs.DAO_Huesped;
+import DatosSQL.DAOs.DAO_Reserva;
 import Modelo.entidades.Huesped;
 import Modelo.entidades.Registro;
 import Modelo.entidades.Reserva;
-import Modelo.fabricas.HuespedList;
-import Modelo.fabricas.ReservasList;
 import Vista.Main;
 import animatefx.animation.BounceIn;
 import animatefx.animation.BounceOut;
@@ -65,7 +65,7 @@ public class Controlador_search implements Initializable {
 
         Grid_Reservas.getChildren().clear();
 
-        ReservasList reservasList = new ReservasList();
+        DAO_Reserva reservasList = new DAO_Reserva();
 
         int CodReserva = 0;
         int NumDoc = 0;
@@ -161,7 +161,7 @@ public class Controlador_search implements Initializable {
     {
         Grid_Clientes.getChildren().clear();
 
-        HuespedList huespedList = new HuespedList();
+        DAO_Huesped huespedList = new DAO_Huesped();
 
         int CodReserva = 0;
         int NumDoc = 0;
