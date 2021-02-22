@@ -28,6 +28,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -86,6 +87,7 @@ public class Controlador_reserva implements Initializable {
     public int huespedesNinos;
     public int huespedesAdultos;
     public int codigoDeReserva;
+    public int noches;
     public double precioReserva;
     Condicion_Hotel condicionHotel;
 
@@ -214,6 +216,7 @@ public class Controlador_reserva implements Initializable {
             if(validarFechas(fechaInicio,fechaFinal)){
                 this.sqlFechaInicio = Date.valueOf(fechaInicio.toString());
                 this.sqlFechaFinal = Date.valueOf(fechaFinal.toString());
+                this.noches = Period.between(sqlFechaInicio.toLocalDate(),sqlFechaFinal.toLocalDate()).getDays() - 1;
 
 
                 DAO_Habitacion dao_habitacion = new DAO_Habitacion();
@@ -578,7 +581,7 @@ public class Controlador_reserva implements Initializable {
                 flagHabitacionTriple = true;
             }
             cupoEnHabitacionesEnReserva += habitacion.getTipo_habitacion().getCupo();
-            precioReserva += habitacion.getTipo_habitacion().getPrecio_habitacion();
+            precioReserva += habitacion.getTipo_habitacion().getPrecio_habitacion() * this.noches;
         }
 
         System.out.println("cupo en habitaciones en reserva " + cupoEnHabitacionesEnReserva);

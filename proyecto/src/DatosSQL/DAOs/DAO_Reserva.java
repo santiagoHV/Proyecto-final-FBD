@@ -157,7 +157,7 @@ public class DAO_Reserva {
      */
     public void actualizarEstadoDeReservasEnCurso() throws SQLException {
         PreparedStatement preparedStatement = Conexion.getInstance().getConnection().prepareStatement("UPDATE reserva" +
-                " SET n_estado = 'en curso' WHERE f_inicio = ?");
+                " SET n_estado = 'en curso' WHERE f_inicio = ? AND n_estado != 'en curso'");
 
         preparedStatement.setDate(1, Date.valueOf(LocalDate.now()));
         preparedStatement.executeUpdate();

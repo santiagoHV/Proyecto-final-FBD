@@ -82,6 +82,7 @@ public class Controlador_checkout implements Initializable {
     public GridPane GridPanel_Btn_Habitaciones;
 
     public Reserva reserva;
+    public Cuenta cuenta;
     public int codigoReserva;
     public double totalPago;
     public double totalConsumos;
@@ -187,6 +188,12 @@ public class Controlador_checkout implements Initializable {
 
         progressIndCheckout.setVisible(true);
 
+        Task<Double> taskTotalConsumos = new Task<Double>() {
+            @Override
+            protected Double call() throws Exception {
+                return dao_cuenta_productos.consultarTotalDeConsumosPorReserva(cuenta.getK_cuenta());
+            }
+        };
         Task<List<Reserva_Habitacion>> reservaTask = new Task<List<Reserva_Habitacion>>() {
             @Override
             protected List<Reserva_Habitacion> call() throws Exception {
@@ -194,7 +201,16 @@ public class Controlador_checkout implements Initializable {
             }
         };
 
+        Task<Cuenta> cuentaTask = new Task<Cuenta>() {
+            @Override
+            protected Cuenta call() throws Exception {
+                return dao_cuenta.consultarCuentaPorReserva(codigoReserva);
+            }
+        };
+
         Thread threadReserva = new Thread(reservaTask);
+        Thread threadCuenta = new Thread(cuentaTask);
+        Thread threadConsumos = new Thread(taskTotalConsumos);
 
         reservaTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
@@ -207,8 +223,9 @@ public class Controlador_checkout implements Initializable {
                     {
                         habitacionList.add(reservaTask.getValue().get(i).getHabitacion());
                     }
-                    llenarDatosReserva();
+
                     obtener_huespedes();
+                    threadCuenta.start();
                 }
                 else
                 {
@@ -217,6 +234,24 @@ public class Controlador_checkout implements Initializable {
                     controlador_alerta.mensaje.setText("El código de la reserva ingresado no se encuentra registrado o no se encuentra en curso, por favor revise la información revisada");
                     dialogAlerta.show();
                 }
+            }
+        });
+
+        cuentaTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent workerStateEvent) {
+                cuenta = cuentaTask.getValue();
+
+                threadConsumos.start();
+            }
+        });
+
+        taskTotalConsumos.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent workerStateEvent) {
+                totalConsumos = taskTotalConsumos.getValue();
+                llenarDatosReserva();
+                progressIndCheckout.setVisible(false);
             }
         });
 
@@ -342,9 +377,9 @@ public class Controlador_checkout implements Initializable {
 
         this.valor_estadia.setText(String.format("$ %(,.2f",this.reserva.getPrecio_reserva()));
         this.valor_descuentos.setText(String.format("$ %(,.2f",this.reserva.getPrecio_reserva() * this.reserva.getCondicion().getDescuento()));
-
+        this.valor_consumos.setText(String.format("$ %(,.2f",totalConsumos));
         //faltan los consumos
-        this.totalPago = (this.reserva.getPrecio_reserva() - (this.reserva.getPrecio_reserva() * this.reserva.getCondicion().getDescuento()));
+        this.totalPago = (this.reserva.getPrecio_reserva() - (this.reserva.getPrecio_reserva() * this.reserva.getCondicion().getDescuento())) + this.totalConsumos;
         this.valor_total.setText(String.format("$ %(,.2f",totalPago));
 
     }
