@@ -455,9 +455,27 @@ public class Controlador_checkout implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Controlador_pagos controlador_pagos = loaderConsumos.getController();
+        String metodoDePago = controlador_pagos.getMetodoDePago();
 
         JFXDialog consumosDialog = new JFXDialog(stackBG, (Region) contenido, JFXDialog.DialogTransition.BOTTOM, true);
+        JFXButton btnAceptar = (JFXButton) consumosDialog.lookup("#btn_aceptar");
+        JFXButton btnCancelar = (JFXButton) consumosDialog.lookup("#btn_cancelar");
+
+        btnAceptar.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent)->
+        {
+            crearPago(metodoDePago);
+            consumosDialog.close();
+            btn_procesar_pago.setDisable(true);
+        });
+        btnCancelar.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEvent)->
+        {
+            consumosDialog.close();
+        });
 
         consumosDialog.show();
+    }
+    public void crearPago(String metodoDePago){
+        Pago pago = new Pago(2,Date.valueOf(LocalDate.now()),cuenta.getPrecio_acumulado(),metodoDePago,cuenta);
     }
 }

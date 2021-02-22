@@ -11,15 +11,23 @@ public class Pago {
     private Date f_pago;
     private double monto;
     private String forma_de_pago;
+    private Cuenta cuenta;
 
-    public Pago(int k_pago, Date f_pago, double monto, String forma_de_pago) {
+    public Pago(int k_pago, Date f_pago, double monto, String forma_de_pago, Cuenta cuenta) {
         this.k_pago = k_pago;
         this.f_pago = f_pago;
         this.monto = monto;
         this.forma_de_pago = forma_de_pago;
+        this.cuenta = cuenta;
     }
 
-    public Pago(){};
+    public Cuenta getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
+    }
 
     public int getK_pago() {
         return k_pago;

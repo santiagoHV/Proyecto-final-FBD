@@ -1,6 +1,7 @@
 package DatosSQL.DAOs;
 
 import DatosSQL.Operaciones;
+import Modelo.entidades.Cuenta;
 import Modelo.entidades.Pago;
 import Modelo.entidades.Persona;
 import Modelo.entidades.Reserva;
@@ -23,8 +24,11 @@ public class DAO_Pago {
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Pago WHERE k_pago = "+ID+"");
             resultSet.next();
 
+            DAO_Cuenta dao_cuenta = new DAO_Cuenta();
+            Cuenta cuenta = dao_cuenta.consultarCuenta(resultSet.getInt(5));
+
             Pago pago = new Pago(resultSet.getInt(1),resultSet.getDate(2),
-                    resultSet.getDouble(3),resultSet.getString(4));
+                    resultSet.getDouble(3),resultSet.getString(4),cuenta);
 
             return pago;
 
