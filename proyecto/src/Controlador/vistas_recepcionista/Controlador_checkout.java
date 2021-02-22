@@ -179,6 +179,16 @@ public class Controlador_checkout implements Initializable {
 
     public void llenarDatosReserva(){
 
+        for(Node n: panel_titular.getChildren())
+        {
+            n.setVisible(true);
+        }
+
+        information.setVisible(false);
+        promptPagos.setVisible(false);
+        promptTitular.setVisible(false);
+        balance.setVisible(false);
+
         this.datos_nombre.setText(this.reserva.getPersona().getN_nombre() + " " + this.reserva.getPersona().getN_apellido());
         this.datos_edad.setText(String.valueOf(Period.between(this.reserva.getPersona().getF_nacimiento().toLocalDate(), LocalDate.now()).getYears()));
         this.datos_tel.setText(this.reserva.getPersona().getN_telefono());
