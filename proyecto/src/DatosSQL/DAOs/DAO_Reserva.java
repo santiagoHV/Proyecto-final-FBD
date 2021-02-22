@@ -155,12 +155,20 @@ public class DAO_Reserva {
      * Cambia el estado de reserva activa a en curso cuando inicia la fecha de reserva
      * @throws SQLException
      */
-    public void actualizarEstadoDeReservasEnCurso() throws SQLException {
-        PreparedStatement preparedStatement = Conexion.getInstance().getConnection().prepareStatement("UPDATE reserva" +
-                " SET n_estado = 'en curso' WHERE f_inicio = ? AND n_estado != 'en curso'");
+    public void actualizarEstadoDeReservasEnCurso(){
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = Conexion.getInstance().getConnection().prepareStatement("UPDATE reserva" +
+                    " SET n_estado = 'en curso' WHERE f_inicio = ? AND n_estado != 'en curso'");
 
-        preparedStatement.setDate(1, Date.valueOf(LocalDate.now()));
-        preparedStatement.executeUpdate();
+            preparedStatement.setDate(1, Date.valueOf(LocalDate.now()));
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            System.out.println(throwables + " en actualizacion");
+            throwables.printStackTrace();
+        }
+
+
     }
 
     public List<Reserva> BuscarReservas(int k_reserva, int num_doc, String nom_or_apel) {

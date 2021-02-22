@@ -216,7 +216,7 @@ public class Controlador_reserva implements Initializable {
             if(validarFechas(fechaInicio,fechaFinal)){
                 this.sqlFechaInicio = Date.valueOf(fechaInicio.toString());
                 this.sqlFechaFinal = Date.valueOf(fechaFinal.toString());
-                this.noches = Period.between(sqlFechaInicio.toLocalDate(),sqlFechaFinal.toLocalDate()).getDays() - 1;
+                this.noches = Period.between(sqlFechaInicio.toLocalDate(),sqlFechaFinal.toLocalDate()).getDays();
 
 
                 DAO_Habitacion dao_habitacion = new DAO_Habitacion();
@@ -582,6 +582,7 @@ public class Controlador_reserva implements Initializable {
             }
             cupoEnHabitacionesEnReserva += habitacion.getTipo_habitacion().getCupo();
             precioReserva += habitacion.getTipo_habitacion().getPrecio_habitacion() * this.noches;
+            System.out.println("noches" + this.noches);
         }
 
         System.out.println("cupo en habitaciones en reserva " + cupoEnHabitacionesEnReserva);
@@ -622,6 +623,7 @@ public class Controlador_reserva implements Initializable {
      * @param precioGeneral
      */
     public void actualizarPrecios(double precioGeneral){
+        System.out.println(precioGeneral);
         double descuento;
 
         if((sqlFechaFinal.toLocalDate().getDayOfYear() - sqlFechaInicio.toLocalDate().getDayOfYear()) >= condicionHotel.getNumero_dias()){
