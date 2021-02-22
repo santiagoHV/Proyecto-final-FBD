@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class DAO_Habitacion {
 
-    public Habitacion consultarHabitacion(int ID){
+    public static Habitacion consultarHabitacion(int ID){
         Operaciones op = new Operaciones();
         try {
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Habitacion WHERE k_numero_habitacion = "+ID+"");

@@ -1,28 +1,21 @@
 package Controlador.vistas_empleado;
 
-import DatosSQL.DAOs.DAO_PyS;
+import DatosSQL.DAOs.*;
 import Modelo.entidades.PyS;
 import com.jfoenix.controls.*;
-import com.jfoenix.controls.events.JFXDialogEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
 import javax.swing.*;
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import static java.lang.Integer.*;
 
 public class Controlador_piscina implements Initializable {
 
@@ -39,6 +32,13 @@ public class Controlador_piscina implements Initializable {
     public ObservableList<PyS> OBS;
     public TableView<PyS> productos;
     public StackPane restaurante;
+    public ArrayList<Integer> Precio_Cargo;
+    public int ICantidad,IStock;
+    public double precio;
+    public boolean cond=true;
+    public String habitacion;
+    public String reserva;
+
     private int Total=0;
     private String categoria="Restaurante";
 
@@ -73,7 +73,7 @@ public class Controlador_piscina implements Initializable {
     public void loadProductos() {
 
         OBS = getProductosByCategoria();
-        System.out.println(OBS);
+
 
         ID.setCellValueFactory(new PropertyValueFactory("k_codigo_pys"));
         Nombre.setCellValueFactory(new PropertyValueFactory("unidad"));
@@ -85,21 +85,49 @@ public class Controlador_piscina implements Initializable {
     }
 
     //Aquí se determinan las acciones que va a realiza un boton al hacer click sobre el
-
+    //Falta poner las condiciones para que no los vuelvan a registrar
     public void cargar(ActionEvent actionEvent){
+
+        ICantidad=Integer.parseInt(TCantidad.getText());
+        precio = (int) productos.getSelectionModel().getSelectedItem().getPrecio_producta();
+        IStock = productos.getSelectionModel().getSelectedItem().getStock();
 
         REMuestra.appendText( "Producto: " + String.valueOf(productos.getSelectionModel().getSelectedItem().getUnidad() + "\n"));
         REMuestra.appendText("Precio de venta:" + String.valueOf(productos.getSelectionModel().getSelectedItem().getPrecio_producta() + "\n"));
-        REMuestra.appendText("Cantidad: "+TCantidad.getText()+"\n");
-        int Cantidad= Integer.parseInt(TCantidad.getText());
-        int precio = (int) productos.getSelectionModel().getSelectedItem().getPrecio_producta();
-        Total += Cantidad*precio;
+        if((IStock-ICantidad)>0) {
+            REMuestra.appendText("Cantidad: " + TCantidad.getText() + "\n");
+            new DAO_PyS().modificarStock(String.valueOf(productos.getSelectionModel().getSelectedItem().getK_codigo_pys()), String.valueOf(IStock-ICantidad));
+            loadProductos();
+        }else{
+            JOptionPane.showMessageDialog(null, "Stock invalido, se pondra el maximo stock disponible");
+            REMuestra.appendText("Cantidad: " + IStock + "\n");
+            new DAO_PyS().modificarStock(String.valueOf(productos.getSelectionModel().getSelectedItem().getK_codigo_pys()), "0");
+            loadProductos();
+        }
+
+        Total += ICantidad*precio;
     }
     public void onclickhabitacion(ActionEvent actionEvent){
-        REMuestra.appendText( "Habitación No: " +  RDPiso.getValue() + RDHabitacion.getValue() + "\n");
+
+        habitacion= RDPiso.getValue() + RDHabitacion.getValue();
+        reserva = String.valueOf(DAO_Registro.consultarHabitacion(habitacion));
+        if(DAO_Registro.consultarHabitacion(habitacion)!=-1 && cond) {
+            REMuestra.appendText("Habitación No: " + RDPiso.getValue() + RDHabitacion.getValue() + "\n");
+            cond=false;
+        } else if(cond==true){
+            JOptionPane.showMessageDialog(null, "Está habitación está disponible, porfavor escoger una ocupada ");
+        } else{
+            JOptionPane.showMessageDialog(null,"Ya cargo una habitación");
+        }
+
+
+
+
     }
 
     public void onClickedCargar(MouseEvent event){
+
+        DAO_Cuenta.actualizarPrecio(Total,reserva);
         REMuestra.appendText( "----------------------------\n");
         REMuestra.appendText( "Total:" + Total);
     }
@@ -107,6 +135,8 @@ public class Controlador_piscina implements Initializable {
 
     public void onClickedLimpiar(MouseEvent event){
             REMuestra.clear();
+            Total=0;
+            cond=true;
     }
 
 

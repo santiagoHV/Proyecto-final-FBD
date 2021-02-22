@@ -1,15 +1,24 @@
 package DatosSQL.DAOs;
 
 import DatosSQL.Operaciones;
-import Modelo.entidades.Habitacion;
-import Modelo.entidades.Persona;
 import Modelo.entidades.Registro;
-import Modelo.entidades.Reserva;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DAO_Registro {
+
+
+    public static int consultarHabitacion(String habitacion) {
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet res = op.ConsultaEsp("SELECT k_reserva FROM registro_checkin WHERE k_numero_habitacion = "+habitacion+"");
+            res.next();
+            return res.getInt(1);
+        } catch (SQLException e) {
+            return -1;
+        }
+    }
 
     public Registro consultarRegistro(int ID){
         Operaciones op = new Operaciones();
