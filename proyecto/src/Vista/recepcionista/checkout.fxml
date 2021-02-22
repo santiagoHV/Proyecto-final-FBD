@@ -107,7 +107,7 @@
                   </Label>
                </children>
             </Pane>
-            <JFXButton fx:id="btn_ver_consumos" buttonType="RAISED" layoutX="34.0" layoutY="659.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="145.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="Ver consumos">
+            <JFXButton fx:id="btn_ver_consumos" buttonType="RAISED" layoutX="34.0" layoutY="659.0" mnemonicParsing="false" onAction="#mostrarConsumosEv" prefHeight="60.0" prefWidth="145.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 5;" text="Ver consumos">
                <font>
                   <Font name="MAXWELL REGULAR" size="22.0" />
                </font>

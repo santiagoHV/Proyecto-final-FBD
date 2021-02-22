@@ -17,8 +17,8 @@ public class DAO_Cuenta {
             resultSet.next();
 
             Cuenta cuenta = new Cuenta(resultSet.getInt(1),resultSet.getDouble(2),
-                                        new DAO_Pago().consultarPago(resultSet.getInt(3)),
-                                        new DAO_Reserva().consultarReserva(resultSet.getInt(4)));
+                    new DAO_Reserva().consultarReserva(resultSet.getInt(3)));
+
             return cuenta;
 
 

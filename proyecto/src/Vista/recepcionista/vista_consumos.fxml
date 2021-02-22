@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import io.github.palexdev.materialfx.controls.MFXProgressSpinner?>
+<?import java.net.URL?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="696.0" prefWidth="992.0" stylesheets="@../../../assets/css/recepcionista_escenas.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_Consumos">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <JFXTreeTableView fx:id="tabla_consumos" layoutX="50.0" layoutY="55.0" prefHeight="614.0" prefWidth="892.0" showRoot="false">
+               <stylesheets>
+                  <URL value="@../../../assets/css/ScrollPane.css" />
+                  <URL value="@../../../assets/css/tableview.css" />
+               </stylesheets></JFXTreeTableView>
+            <MFXProgressSpinner fx:id="progressIndicator" layoutX="488.0" layoutY="342.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

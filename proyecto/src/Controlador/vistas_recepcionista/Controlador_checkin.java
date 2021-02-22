@@ -153,230 +153,152 @@ public class Controlador_checkin implements Initializable {
 
                 GridPanel_Huespedes.getChildren().clear();
 
-                Reserva reserva = taskConReservaHabi.getValue().get(0).getReserva();
-
-                //Definición de los datos del titular:
-                datos_no_i.setText(reserva.getPersona().getK_identificacion()+"");
-                datos_nombre.setText(reserva.getPersona().getN_nombre() + " " +reserva.getPersona().getN_apellido());
-                datos_tel.setText(reserva.getPersona().getN_telefono());
-                datos_ti.setText(reserva.getPersona().getK_tipo_documento_id()+":");
-
-                Period period = Period.between(reserva.getPersona().getF_nacimiento().toLocalDate(), LocalDate.now());
-                datos_edad.setText(period.getYears() + " Años");
-
-                datos_hab_sencillas.setText("");
-                datos_hab_dobles.setText("");
-                datos_hab_triples.setText("");
-                datos_hab_matrimoniales.setText("");
-
-                datos_q_bebes.setText(reserva.getCantidad_bebes()+"");
-                datos_q_ninos.setText(reserva.getCantidad_ninos()+"");
-                datos_q_adultos.setText(reserva.getCantidad_adultos()+"");
-
-                datos_f_inicio.setText(reserva.getF_inicio()+"");
-                datos_f_fin.setText(reserva.getF_final()+"");
-
-                List<Habitacion> habitacionList = new ArrayList<>();
-
-                //Definición datos de la reserva:
-                for(int i = 0; i<taskConReservaHabi.getValue().size();i++)
+                if(taskConReservaHabi.getValue().size()!=0)
                 {
-                    if(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion().equals("sencilla"))
+                    Reserva reserva = taskConReservaHabi.getValue().get(0).getReserva();
+
+                    //Definición de los datos del titular:
+                    datos_no_i.setText(reserva.getPersona().getK_identificacion()+"");
+                    datos_nombre.setText(reserva.getPersona().getN_nombre() + " " +reserva.getPersona().getN_apellido());
+                    datos_tel.setText(reserva.getPersona().getN_telefono());
+                    datos_ti.setText(reserva.getPersona().getK_tipo_documento_id()+":");
+
+                    Period period = Period.between(reserva.getPersona().getF_nacimiento().toLocalDate(), LocalDate.now());
+                    datos_edad.setText(period.getYears() + " Años");
+
+                    datos_hab_sencillas.setText("");
+                    datos_hab_dobles.setText("");
+                    datos_hab_triples.setText("");
+                    datos_hab_matrimoniales.setText("");
+
+                    datos_q_bebes.setText(reserva.getCantidad_bebes()+"");
+                    datos_q_ninos.setText(reserva.getCantidad_ninos()+"");
+                    datos_q_adultos.setText(reserva.getCantidad_adultos()+"");
+
+                    datos_f_inicio.setText(reserva.getF_inicio()+"");
+                    datos_f_fin.setText(reserva.getF_final()+"");
+
+                    List<Habitacion> habitacionList = new ArrayList<>();
+
+                    //Definición datos de la reserva:
+                    for(int i = 0; i<taskConReservaHabi.getValue().size();i++)
                     {
-                        //Habitaciones sencillas:
-                        if(datos_hab_sencillas.getText().equals(""))
+                        if(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion().equals("sencilla"))
                         {
-                            datos_hab_sencillas.setText(taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion()+"");
+                            //Habitaciones sencillas:
+                            if(datos_hab_sencillas.getText().equals(""))
+                            {
+                                datos_hab_sencillas.setText(taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion()+"");
+                            }
+                            else
+                            {
+                                datos_hab_sencillas.setText(datos_hab_sencillas.getText() + ", " + taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion());
+                            }
                         }
-                        else
+
+                        if(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion().equals("doble"))
                         {
-                            datos_hab_sencillas.setText(datos_hab_sencillas.getText() + ", " + taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion());
+                            //Habitaciones dobles:
+                            if(datos_hab_dobles.getText().equals(""))
+                            {
+                                datos_hab_dobles.setText(taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion()+"");
+                            }
+                            else
+                            {
+                                datos_hab_dobles.setText(datos_hab_dobles.getText() + ", " + taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion());
+                            }
                         }
+
+                        if(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion().equals("triple"))
+                        {
+                            //Habitaciones triples:
+                            if(datos_hab_triples.getText().equals(""))
+                            {
+                                datos_hab_triples.setText(taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion()+"");
+                            }
+                            else
+                            {
+                                datos_hab_triples.setText(datos_hab_triples.getText() + ", " + taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion());
+                            }
+                        }
+
+                        if(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion().equals("matrimonial"))
+                        {
+                            //Habitaciones matrimoniales:
+                            if(datos_hab_matrimoniales.getText().equals(""))
+                            {
+                                datos_hab_matrimoniales.setText(taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion()+"");
+                            }
+                            else
+                            {
+                                datos_hab_matrimoniales.setText(datos_hab_matrimoniales.getText() + ", " + taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion());
+                            }
+                        }
+                        habitacionList.add(taskConReservaHabi.getValue().get(i).getHabitacion());
                     }
 
-                    if(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion().equals("doble"))
+                    if(datos_hab_sencillas.getText().equals(""))
                     {
-                        //Habitaciones dobles:
-                        if(datos_hab_dobles.getText().equals(""))
-                        {
-                            datos_hab_dobles.setText(taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion()+"");
-                        }
-                        else
-                        {
-                            datos_hab_dobles.setText(datos_hab_dobles.getText() + ", " + taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion());
-                        }
+                        datos_hab_sencillas.setText("Ninguna Reservada");
+                    }
+                    if(datos_hab_dobles.getText().equals(""))
+                    {
+                        datos_hab_dobles.setText("Ninguna Reservada");
+                    }
+                    if(datos_hab_triples.getText().equals(""))
+                    {
+                        datos_hab_triples.setText("Ninguna Reservada");
+                    }
+                    if(datos_hab_matrimoniales.getText().equals(""))
+                    {
+                        datos_hab_matrimoniales.setText("Ninguna Reservada");
                     }
 
-                    if(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion().equals("triple"))
+                    for(Node n: panel_datos.getChildren())
                     {
-                        //Habitaciones triples:
-                        if(datos_hab_triples.getText().equals(""))
+                        if(!n.equals(til_reserva) || !n.equals(lb_reserva))
                         {
-                            datos_hab_triples.setText(taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion()+"");
-                        }
-                        else
-                        {
-                            datos_hab_triples.setText(datos_hab_triples.getText() + ", " + taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion());
+                            n.setVisible(true);
                         }
                     }
+                    promp_reserva.setVisible(false);
+                    svgGlyph.setVisible(false);
 
-                    if(taskConReservaHabi.getValue().get(i).getHabitacion().getTipo_habitacion().getK_tipo_habitacion().equals("matrimonial"))
-                    {
-                        //Habitaciones matrimoniales:
-                        if(datos_hab_matrimoniales.getText().equals(""))
-                        {
-                            datos_hab_matrimoniales.setText(taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion()+"");
-                        }
-                        else
-                        {
-                            datos_hab_matrimoniales.setText(datos_hab_matrimoniales.getText() + ", " + taskConReservaHabi.getValue().get(i).getHabitacion().getK_numero_habitacion());
-                        }
-                    }
-                    habitacionList.add(taskConReservaHabi.getValue().get(i).getHabitacion());
-                }
+                    Thread threadRegistro = new Thread(taskConRegistros);
+                    threadRegistro.start();
 
-                if(datos_hab_sencillas.getText().equals(""))
-                {
-                    datos_hab_sencillas.setText("Ninguna Reservada");
-                }
-                if(datos_hab_dobles.getText().equals(""))
-                {
-                    datos_hab_dobles.setText("Ninguna Reservada");
-                }
-                if(datos_hab_triples.getText().equals(""))
-                {
-                    datos_hab_triples.setText("Ninguna Reservada");
-                }
-                if(datos_hab_matrimoniales.getText().equals(""))
-                {
-                    datos_hab_matrimoniales.setText("Ninguna Reservada");
-                }
+                    taskConRegistros.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                        @Override
+                        public void handle(WorkerStateEvent workerStateEvent) {
+                            registroList = taskConRegistros.getValue();
 
-                for(Node n: panel_datos.getChildren())
-                {
-                    if(!n.equals(til_reserva) || !n.equals(lb_reserva))
-                    {
-                        n.setVisible(true);
-                    }
-                }
-                promp_reserva.setVisible(false);
-                svgGlyph.setVisible(false);
+                            int column = 0;
+                            int row = 0;
 
-                Thread threadRegistro = new Thread(taskConRegistros);
-                threadRegistro.start();
-
-                taskConRegistros.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-                    @Override
-                    public void handle(WorkerStateEvent workerStateEvent) {
-                        registroList = taskConRegistros.getValue();
-
-                        int column = 0;
-                        int row = 0;
-
-                        try
-                        {
-                            int cantBebes = reserva.getCantidad_bebes();
-                            int cantNinos = reserva.getCantidad_ninos();
-                            int cantAdultos = reserva.getCantidad_adultos();
-                            int cantTotalHuespedes = cantBebes + cantNinos + cantAdultos;
+                            try
+                            {
+                                int cantBebes = reserva.getCantidad_bebes();
+                                int cantNinos = reserva.getCantidad_ninos();
+                                int cantAdultos = reserva.getCantidad_adultos();
+                                int cantTotalHuespedes = cantBebes + cantNinos + cantAdultos;
 
 
-                            for(int i = 0; i<cantTotalHuespedes; i++) {
-                                final int j = i;
+                                for(int i = 0; i<cantTotalHuespedes; i++) {
+                                    final int j = i;
 
-                                huespedIDList.add(0);
+                                    huespedIDList.add(0);
 
-                                //Carga de las plantillas para los paneles con información de los huespedes
-                                FXMLLoader loader = new FXMLLoader();
-                                loader.setLocation(Main.class.getResource("../Vista/recepcionista/Panel_Huesped.fxml"));
+                                    //Carga de las plantillas para los paneles con información de los huespedes
+                                    FXMLLoader loader = new FXMLLoader();
+                                    loader.setLocation(Main.class.getResource("../Vista/recepcionista/Panel_Huesped.fxml"));
 
-                                //Definición de los anchorpane:
-                                //Para el panel de los huespedes:
-                                AnchorPane PanelHuespedes = loader.load();
+                                    //Definición de los anchorpane:
+                                    //Para el panel de los huespedes:
+                                    AnchorPane PanelHuespedes = loader.load();
 
-                                Controlador_Huesped controlador_huesped = loader.getController();
+                                    Controlador_Huesped controlador_huesped = loader.getController();
 
-                                if(registroList.size()==0)
-                                {
-                                    if(cantBebes>0)
-                                    {
-                                        controlador_huesped.setValoresTemporales("Bebe", habitacionList);
-                                        cantBebes--;
-                                    }
-                                    else if(cantNinos>0)
-                                    {
-                                        controlador_huesped.setValoresTemporales("Niño", habitacionList);
-                                        cantNinos--;
-                                    }
-                                    else if(cantAdultos>0)
-                                    {
-                                        controlador_huesped.setValoresTemporales("Adulto", habitacionList);
-                                        cantAdultos--;
-                                    }
-
-
-                                    controlador_huesped.btn_ingreso.setText("Ingresar");
-                                    controlador_huesped.btn_ingreso.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent ingresarReg)->
-                                    {
-                                        controlador_huesped.progressActIng.setVisible(true);
-                                        Task<Registro> crearRegistroTask = crearRegistro(controlador_huesped, codReservaFinal,0);
-
-                                        crearRegistroTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-                                            @Override
-                                            public void handle(WorkerStateEvent workerStateEvent) {
-                                                comprobarIDRepetido(crearRegistroTask, "Ingreso");
-                                                controlador_huesped.progressActIng.setVisible(false);
-                                            }
-                                        });
-                                        Thread crearRegistroThread = new Thread(crearRegistroTask);
-                                        crearRegistroThread.start();
-                                    });
-                                }
-                                else
-                                {
-                                    if(i<registroList.size())
-                                    {
-                                        if(Period.between(registroList.get(i).getHuesped().getF_nacimiento().toLocalDate(), LocalDate.now()).getYears()<=2)
-                                        {
-                                            cantBebes--;
-                                        }
-                                        else if(Period.between(registroList.get(i).getHuesped().getF_nacimiento().toLocalDate(), LocalDate.now()).getYears()>2 && Period.between(registroList.get(i).getHuesped().getF_nacimiento().toLocalDate(), LocalDate.now()).getYears()<18)
-                                        {
-                                            cantNinos--;
-                                        }
-                                        else if(Period.between(registroList.get(i).getHuesped().getF_nacimiento().toLocalDate(), LocalDate.now()).getYears()>18)
-                                        {
-                                            cantAdultos--;
-                                        }
-
-                                        controlador_huesped.setValoresPanel(registroList.get(i).getHuesped(), habitacionList);
-
-                                        huespedIDList.set(i,registroList.get(i).getHuesped().getK_identificacion());
-
-                                        controlador_huesped.btn_ingreso.setText("Actualizar");
-                                        controlador_huesped.btn_ingreso.setDisable(false);
-
-                                        controlador_huesped.btn_ingreso.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent actualizarReg)->
-                                        {
-                                            controlador_huesped.progressActIng.setVisible(true);
-                                            Task<Registro> crearRegistroTask = crearRegistro(controlador_huesped, codReservaFinal, registroList.get(j).getK_registro());
-
-                                            crearRegistroTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-                                                @Override
-                                                public void handle(WorkerStateEvent workerStateEvent) {
-                                                    if(huespedIDList.contains(crearRegistroTask.getValue().getHuesped().getK_identificacion()))
-                                                    {
-                                                        comprobarIDRepetido(crearRegistroTask, "Actualizar");
-                                                        controlador_huesped.progressActIng.setVisible(false);
-                                                    }
-                                                }
-                                            });
-                                            Thread crearRegistroThread = new Thread(crearRegistroTask);
-
-                                            crearRegistroThread.start();
-                                        });
-                                    }
-                                    else
+                                    if(registroList.size()==0)
                                     {
                                         if(cantBebes>0)
                                         {
@@ -396,132 +318,220 @@ public class Controlador_checkin implements Initializable {
 
 
                                         controlador_huesped.btn_ingreso.setText("Ingresar");
-                                        controlador_huesped.btn_ingreso.setDisable(true);
-
                                         controlador_huesped.btn_ingreso.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent ingresarReg)->
                                         {
                                             controlador_huesped.progressActIng.setVisible(true);
-                                            Task<Registro> crearRegistroTask = crearRegistro(controlador_huesped, codReservaFinal, 0);
+                                            Task<Registro> crearRegistroTask = crearRegistro(controlador_huesped, codReservaFinal,0);
 
                                             crearRegistroTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
                                                 @Override
                                                 public void handle(WorkerStateEvent workerStateEvent) {
-                                                    if(huespedIDList.contains(crearRegistroTask.getValue().getHuesped().getK_identificacion()))
-                                                    {
-                                                        comprobarIDRepetido(crearRegistroTask, "Ingreso");
-                                                        controlador_huesped.progressActIng.setVisible(false);
-                                                    }
+                                                    comprobarIDRepetido(crearRegistroTask, "Ingreso");
+                                                    controlador_huesped.progressActIng.setVisible(false);
                                                 }
                                             });
                                             Thread crearRegistroThread = new Thread(crearRegistroTask);
-
                                             crearRegistroThread.start();
                                         });
                                     }
-                                }
-
-                                row++;
-                                GridPanel_Huespedes.add(PanelHuespedes,column,row);
-                                GridPane.setMargin(PanelHuespedes,new Insets(8));
-
-                                //---------------------------------------------------------------
-                                //Acceso al ingreso de Datos:
-
-                                controlador_huesped.btn_cambiar.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventCambio)->
-                                {
-                                    FXMLLoader loaderIngreso = new FXMLLoader(getClass().getResource("../../Vista/recepcionista/ingreso_datos.fxml"));
-                                    Parent parent = null;
-                                    try {
-                                        parent = loaderIngreso.load();
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                    JFXDialog dialog = new JFXDialog(controlador_checkin.stackBG, (Region) parent, JFXDialog.DialogTransition.BOTTOM, true);
-                                    AnchorPane AP = (AnchorPane) parent.getChildrenUnmodifiable().get(0);
-                                    HBox HB = (HBox) AP.getChildren().get(0);
-                                    Button BSalirDialog = (Button)HB.getChildrenUnmodifiable().get(1);
-                                    Button btnCargarDatos = (Button)HB.getChildrenUnmodifiable().get(0);
-
-                                    Controlador_datos_ingreso controlador_datos_ingreso = loaderIngreso.getController();
-
-                                    btnCargarDatos.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventIngreso) ->
+                                    else
                                     {
-                                        CheckBox checkNuevo = (CheckBox) dialog.lookup("#checkNuevo");
-
-                                        if(checkNuevo.isSelected()){
-                                            titularDeReserva = controlador_datos_ingreso.solicitarPersona(true);
-                                            try{
-                                                DAO_Persona dao_persona = new DAO_Persona();
-                                                dao_persona.insertarPersona(titularDeReserva);
-                                            }catch (Exception e){
-                                                System.out.println(e + "Guardado fallido");
-                                            }
-                                        }else{
-                                            titularDeReserva = controlador_datos_ingreso.solicitarPersona(false);
-                                        }
-
-                                        if(titularDeReserva.getClass().equals(Huesped.class))
+                                        if(i<registroList.size())
                                         {
-                                            if(controlador_huesped.txt_tipo_huesped.getText().equals("Bebe") && Period.between(titularDeReserva.getF_nacimiento().toLocalDate(),LocalDate.now()).getYears()>2)
+                                            if(Period.between(registroList.get(i).getHuesped().getF_nacimiento().toLocalDate(), LocalDate.now()).getYears()<=2)
                                             {
-                                                controlador_alerta.titulo.setText("El huésped ingresado no cumple con la edad establecida");
-                                                controlador_alerta.mensaje.setText("El huésped seleccionado no se encuentra dentro del rango de edad apropiado para el campo," +
-                                                        " revise la información ingresada e intentélo nuevamente. El huesped ingresado debe ser un bebe");
-                                                dialogAlerta.show();
-                                            } else if(controlador_huesped.txt_tipo_huesped.getText().equals("Niño") && (Period.between(titularDeReserva.getF_nacimiento().toLocalDate(),LocalDate.now()).getYears()<=2 || Period.between(titularDeReserva.getF_nacimiento().toLocalDate(),LocalDate.now()).getYears()>=18))
-                                            {
-                                                controlador_alerta.titulo.setText("El huésped ingresado no cumple con la edad establecida");
-                                                controlador_alerta.mensaje.setText("El huésped seleccionado no se encuentra dentro del rango de edad apropiado para el campo," +
-                                                        " revise la información ingresada e intentélo nuevamente. El huesped ingresado debe ser un niño");
-                                                dialogAlerta.show();
-                                            }else if(controlador_huesped.txt_tipo_huesped.getText().equals("Adulto") && Period.between(titularDeReserva.getF_nacimiento().toLocalDate(),LocalDate.now()).getYears()<2)
-                                            {
-                                                controlador_alerta.titulo.setText("El huésped ingresado no cumple con la edad establecida");
-                                                controlador_alerta.mensaje.setText("El huésped seleccionado no se encuentra dentro del rango de edad apropiado para el campo," +
-                                                        " revise la información ingresada e intentélo nuevamente. El huesped ingresado debe ser adulto");
-                                                dialogAlerta.show();
-                                            } else {
-                                                controlador_huesped.setValoresPanel((Huesped) titularDeReserva, habitacionList);
-                                                dialog.close();
-                                                controlador_huesped.btn_ingreso.setDisable(false);
-
-                                                //Lista de huespedes, se agregan elementos en caso de que la posición esté vacía
-                                                //en caso de que no lo esté, se reemplaza el elemento
-                                                huespedIDList.set(j,titularDeReserva.getK_identificacion());
+                                                cantBebes--;
                                             }
+                                            else if(Period.between(registroList.get(i).getHuesped().getF_nacimiento().toLocalDate(), LocalDate.now()).getYears()>2 && Period.between(registroList.get(i).getHuesped().getF_nacimiento().toLocalDate(), LocalDate.now()).getYears()<18)
+                                            {
+                                                cantNinos--;
+                                            }
+                                            else if(Period.between(registroList.get(i).getHuesped().getF_nacimiento().toLocalDate(), LocalDate.now()).getYears()>18)
+                                            {
+                                                cantAdultos--;
+                                            }
+
+                                            controlador_huesped.setValoresPanel(registroList.get(i).getHuesped(), habitacionList);
+
+                                            huespedIDList.set(i,registroList.get(i).getHuesped().getK_identificacion());
+
+                                            controlador_huesped.btn_ingreso.setText("Actualizar");
+                                            controlador_huesped.btn_ingreso.setDisable(false);
+
+                                            controlador_huesped.btn_ingreso.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent actualizarReg)->
+                                            {
+                                                controlador_huesped.progressActIng.setVisible(true);
+                                                Task<Registro> crearRegistroTask = crearRegistro(controlador_huesped, codReservaFinal, registroList.get(j).getK_registro());
+
+                                                crearRegistroTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                                                    @Override
+                                                    public void handle(WorkerStateEvent workerStateEvent) {
+                                                        if(huespedIDList.contains(crearRegistroTask.getValue().getHuesped().getK_identificacion()))
+                                                        {
+                                                            comprobarIDRepetido(crearRegistroTask, "Actualizar");
+                                                            controlador_huesped.progressActIng.setVisible(false);
+                                                        }
+                                                    }
+                                                });
+                                                Thread crearRegistroThread = new Thread(crearRegistroTask);
+
+                                                crearRegistroThread.start();
+                                            });
                                         }
                                         else
                                         {
-                                            dialogAlerta.show();
+                                            if(cantBebes>0)
+                                            {
+                                                controlador_huesped.setValoresTemporales("Bebe", habitacionList);
+                                                cantBebes--;
+                                            }
+                                            else if(cantNinos>0)
+                                            {
+                                                controlador_huesped.setValoresTemporales("Niño", habitacionList);
+                                                cantNinos--;
+                                            }
+                                            else if(cantAdultos>0)
+                                            {
+                                                controlador_huesped.setValoresTemporales("Adulto", habitacionList);
+                                                cantAdultos--;
+                                            }
+
+
+                                            controlador_huesped.btn_ingreso.setText("Ingresar");
+                                            controlador_huesped.btn_ingreso.setDisable(true);
+
+                                            controlador_huesped.btn_ingreso.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent ingresarReg)->
+                                            {
+                                                controlador_huesped.progressActIng.setVisible(true);
+                                                Task<Registro> crearRegistroTask = crearRegistro(controlador_huesped, codReservaFinal, 0);
+
+                                                crearRegistroTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                                                    @Override
+                                                    public void handle(WorkerStateEvent workerStateEvent) {
+                                                        if(huespedIDList.contains(crearRegistroTask.getValue().getHuesped().getK_identificacion()))
+                                                        {
+                                                            comprobarIDRepetido(crearRegistroTask, "Ingreso");
+                                                            controlador_huesped.progressActIng.setVisible(false);
+                                                        }
+                                                    }
+                                                });
+                                                Thread crearRegistroThread = new Thread(crearRegistroTask);
+
+                                                crearRegistroThread.start();
+                                            });
                                         }
-                                    });
+                                    }
 
-                                    BSalirDialog.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventIngreso)->
+                                    row++;
+                                    GridPanel_Huespedes.add(PanelHuespedes,column,row);
+                                    GridPane.setMargin(PanelHuespedes,new Insets(8));
+
+                                    //---------------------------------------------------------------
+                                    //Acceso al ingreso de Datos:
+
+                                    controlador_huesped.btn_cambiar.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventCambio)->
                                     {
-                                        dialog.close();
+                                        FXMLLoader loaderIngreso = new FXMLLoader(getClass().getResource("../../Vista/recepcionista/ingreso_datos.fxml"));
+                                        Parent parent = null;
+                                        try {
+                                            parent = loaderIngreso.load();
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                        JFXDialog dialog = new JFXDialog(controlador_checkin.stackBG, (Region) parent, JFXDialog.DialogTransition.BOTTOM, true);
+                                        AnchorPane AP = (AnchorPane) parent.getChildrenUnmodifiable().get(0);
+                                        HBox HB = (HBox) AP.getChildren().get(0);
+                                        Button BSalirDialog = (Button)HB.getChildrenUnmodifiable().get(1);
+                                        Button btnCargarDatos = (Button)HB.getChildrenUnmodifiable().get(0);
+
+                                        Controlador_datos_ingreso controlador_datos_ingreso = loaderIngreso.getController();
+
+                                        btnCargarDatos.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventIngreso) ->
+                                        {
+                                            CheckBox checkNuevo = (CheckBox) dialog.lookup("#checkNuevo");
+
+                                            if(checkNuevo.isSelected()){
+                                                titularDeReserva = controlador_datos_ingreso.solicitarPersona(true);
+                                                try{
+                                                    DAO_Persona dao_persona = new DAO_Persona();
+                                                    dao_persona.insertarPersona(titularDeReserva);
+                                                }catch (Exception e){
+                                                    System.out.println(e + "Guardado fallido");
+                                                }
+                                            }else{
+                                                titularDeReserva = controlador_datos_ingreso.solicitarPersona(false);
+                                            }
+
+                                            if(titularDeReserva.getClass().equals(Huesped.class))
+                                            {
+                                                if(controlador_huesped.txt_tipo_huesped.getText().equals("Bebe") && Period.between(titularDeReserva.getF_nacimiento().toLocalDate(),LocalDate.now()).getYears()>2)
+                                                {
+                                                    controlador_alerta.titulo.setText("El huésped ingresado no cumple con la edad establecida");
+                                                    controlador_alerta.mensaje.setText("El huésped seleccionado no se encuentra dentro del rango de edad apropiado para el campo," +
+                                                            " revise la información ingresada e intentélo nuevamente. El huesped ingresado debe ser un bebe");
+                                                    dialogAlerta.show();
+                                                } else if(controlador_huesped.txt_tipo_huesped.getText().equals("Niño") && (Period.between(titularDeReserva.getF_nacimiento().toLocalDate(),LocalDate.now()).getYears()<=2 || Period.between(titularDeReserva.getF_nacimiento().toLocalDate(),LocalDate.now()).getYears()>=18))
+                                                {
+                                                    controlador_alerta.titulo.setText("El huésped ingresado no cumple con la edad establecida");
+                                                    controlador_alerta.mensaje.setText("El huésped seleccionado no se encuentra dentro del rango de edad apropiado para el campo," +
+                                                            " revise la información ingresada e intentélo nuevamente. El huesped ingresado debe ser un niño");
+                                                    dialogAlerta.show();
+                                                }else if(controlador_huesped.txt_tipo_huesped.getText().equals("Adulto") && Period.between(titularDeReserva.getF_nacimiento().toLocalDate(),LocalDate.now()).getYears()<2)
+                                                {
+                                                    controlador_alerta.titulo.setText("El huésped ingresado no cumple con la edad establecida");
+                                                    controlador_alerta.mensaje.setText("El huésped seleccionado no se encuentra dentro del rango de edad apropiado para el campo," +
+                                                            " revise la información ingresada e intentélo nuevamente. El huesped ingresado debe ser adulto");
+                                                    dialogAlerta.show();
+                                                } else {
+                                                    controlador_huesped.setValoresPanel((Huesped) titularDeReserva, habitacionList);
+                                                    dialog.close();
+                                                    controlador_huesped.btn_ingreso.setDisable(false);
+
+                                                    //Lista de huespedes, se agregan elementos en caso de que la posición esté vacía
+                                                    //en caso de que no lo esté, se reemplaza el elemento
+                                                    huespedIDList.set(j,titularDeReserva.getK_identificacion());
+                                                }
+                                            }
+                                            else
+                                            {
+                                                dialogAlerta.show();
+                                            }
+                                        });
+
+                                        BSalirDialog.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventIngreso)->
+                                        {
+                                            dialog.close();
+                                        });
+
+                                        dialog.show();
                                     });
 
-                                    dialog.show();
-                                });
+                                    //Alto y Ancho:
 
-                                //Alto y Ancho:
+                                    //Ancho:
+                                    GridPanel_Huespedes.setMaxWidth(Region.USE_COMPUTED_SIZE);
+                                    GridPanel_Huespedes.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                                    GridPanel_Huespedes.setMinWidth(Region.USE_COMPUTED_SIZE);
 
-                                //Ancho:
-                                GridPanel_Huespedes.setMaxWidth(Region.USE_COMPUTED_SIZE);
-                                GridPanel_Huespedes.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                                GridPanel_Huespedes.setMinWidth(Region.USE_COMPUTED_SIZE);
+                                    //Alto:
+                                    GridPanel_Huespedes.setMaxHeight(Region.USE_COMPUTED_SIZE);
+                                    GridPanel_Huespedes.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                                    GridPanel_Huespedes.setMinHeight(Region.USE_COMPUTED_SIZE);
+                                }
 
-                                //Alto:
-                                GridPanel_Huespedes.setMaxHeight(Region.USE_COMPUTED_SIZE);
-                                GridPanel_Huespedes.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                                GridPanel_Huespedes.setMinHeight(Region.USE_COMPUTED_SIZE);
+                            } catch (IOException e) {
+                                e.printStackTrace();
                             }
-                            progressConCheck.setVisible(false);
-                        } catch (IOException e) {
-                            e.printStackTrace();
                         }
-                    }
-                });
+                    });
+                }
+                else
+                {
+                    controlador_alerta.titulo.setText("Reserva no encontrada");
+                    controlador_alerta.mensaje.setText("El código de la reserva ingresado no se encuentra registrado o no se encuentra en curso, por favor revise la información revisada");
+                    dialogAlerta.show();
+                }
+                progressConCheck.setVisible(false);
             }
         });
         Thread threadReserva = new Thread(taskConReservaHabi);
