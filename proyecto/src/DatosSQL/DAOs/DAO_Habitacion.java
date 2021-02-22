@@ -69,5 +69,16 @@ public class DAO_Habitacion {
         }
     }
 
+    public double precioHabitacio(String id){
+        try{
+            ResultSet res = op.ConsultaEsp("SELECT v_precio_habitacion FROM habitacion h, tipo t WHERE t.k_tipo_habitacion = h.k_tipo_habitacion AND h.k_numero_habitacion = " + id);
+            res.next();
+            return res.getDouble(1);
+        }catch (SQLException e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
 
 }
