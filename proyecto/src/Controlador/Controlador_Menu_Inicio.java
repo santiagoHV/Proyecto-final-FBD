@@ -1,5 +1,6 @@
 package Controlador;
 
+import DatosSQL.DAOs.DAO_Reserva;
 import Vista.Main;
 import animatefx.animation.*;
 
@@ -18,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -46,6 +48,7 @@ public class Controlador_Menu_Inicio implements Initializable
     public JFXButton BEmple;
     public JFXButton BAdmin;
     public StackPane stackPane1;
+    public ProgressIndicator progressInd;
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -105,12 +108,31 @@ public class Controlador_Menu_Inicio implements Initializable
         BAdmin.setDisable(true);
         BEmple.setDisable(true);
 
+        progressInd.setVisible(true);
+
         Task taskActualizarReservas = new Task() {
             @Override
             protected Object call() throws Exception {
+                DAO_Reserva dao_reserva = new DAO_Reserva();
+                dao_reserva.actualizarEstadoDeReservasEnCurso();
                 return null;
             }
         };
+        Thread thread = new Thread(taskActualizarReservas);
+
+        taskActualizarReservas.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent workerStateEvent) {
+                BRecep.setDisable(false);
+                BAdmin.setDisable(false);
+                BEmple.setDisable(false);
+
+                progressInd.setVisible(false);
+            }
+        });
+
+        thread.start();
+
     }
 
     public void EvIng(ActionEvent actionEvent) throws IOException {
