@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" stylesheets="@../../../assets/css/recepcionista_escenas.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_checkout">
+<StackPane fx:id="stackBG" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" stylesheets="@../../../assets/css/recepcionista_escenas.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_checkout">
    <children>
       <AnchorPane fx:id="anchorBG" prefHeight="768.0" prefWidth="1075.0">
          <children>
@@ -57,12 +57,12 @@
             </Label>
             <Separator layoutX="30.0" layoutY="400.0" prefHeight="3.0" prefWidth="476.0" />
             <Separator layoutX="32.0" layoutY="263.0" prefHeight="3.0" prefWidth="476.0" />
-            <Label layoutX="186.0" layoutY="411.0" style="-fx-font-weight: 500;" text="Datos de pago">
+            <Label layoutX="196.0" layoutY="416.0" style="-fx-font-weight: 500;" text="Datos de pago">
                <font>
                   <Font name="MAXWELL REGULAR" size="29.0" />
                </font>
             </Label>
-            <Pane layoutX="34.0" layoutY="458.0" prefHeight="181.0" prefWidth="476.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 8;">
+            <Pane fx:id="panel_pagos" layoutX="34.0" layoutY="458.0" prefHeight="181.0" prefWidth="476.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 8;">
                <children>
                   <Label layoutX="14.0" layoutY="14.0" prefHeight="24.0" prefWidth="318.0" text="Valor de reserva y estadía . . . . . . . . . . . . . . . . . . . . .">
                      <font>
