@@ -405,7 +405,7 @@ public class Controlador_checkout implements Initializable {
         Task<List<Cuenta_Productos>> listTask = new Task<List<Cuenta_Productos>>() {
             @Override
             protected List<Cuenta_Productos> call() throws Exception {
-                return new DAO_Cuenta_Productos().consultarCuentaProdPorCuenta(codigoReserva);
+                return new DAO_Cuenta_Productos().consultarCuentaProdPorCuenta(new DAO_Cuenta().consultarCuentaPorReserva(codigoReserva).getK_cuenta());
             }
         };
         controlador_consumos.definirColumnas(listTask);
