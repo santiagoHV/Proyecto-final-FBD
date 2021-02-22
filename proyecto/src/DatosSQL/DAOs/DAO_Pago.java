@@ -17,9 +17,15 @@ public class DAO_Pago {
     private Date fechainicio;
     private Date fechafinal;
     private SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+    private Operaciones op = new Operaciones();
+
+    public DAO_Pago(){
+        op = new Operaciones();
+    }
+
 
     public Pago consultarPago(int ID){
-        Operaciones op = new Operaciones();
+
         try {
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Pago WHERE k_pago = "+ID+"");
             resultSet.next();
@@ -41,7 +47,6 @@ public class DAO_Pago {
 
     public double consultarMontoProductos(String opc){
         setFechas(opc);
-        Operaciones op = new Operaciones();
         try {
             ResultSet res = op.ConsultaEsp("SELECT SUM(x.valores) FROM (SELECT cp.q_pys_pedidos * cp.v_precio_venta AS valores " +
                     "FROM cuenta_productos cp, cuenta c, pago p " +
@@ -55,7 +60,6 @@ public class DAO_Pago {
         }
     }
     public double consultarMontoProductos(){
-        Operaciones op = new Operaciones();
         try {
             ResultSet res = op.ConsultaEsp("SELECT SUM(x.valores) FROM (SELECT cp.q_pys_pedidos * cp.v_precio_venta AS valores " +
                     "FROM cuenta_productos cp, cuenta c, pago p " +
@@ -70,7 +74,6 @@ public class DAO_Pago {
     }
 
     public int totalPagosRealizados(){
-        Operaciones op = new Operaciones();
         try {
             ResultSet res = op.ConsultaEsp("SELECT COUNT(k_pago) FROM pago");
             res.next();
@@ -83,7 +86,6 @@ public class DAO_Pago {
 
     public int totalPagosRealizados(String opc){
         setFechas(opc);
-        Operaciones op = new Operaciones();
         try {
             ResultSet res = op.ConsultaEsp("SELECT COUNT(k_pago) FROM pago WHERE f_pago BETWEEN '"+formateador.format(fechainicio)+"' AND '"+formateador.format(fechafinal)+"'");
             res.next();
@@ -95,7 +97,6 @@ public class DAO_Pago {
     }
 
     public int totalProductosVendidos(){
-        Operaciones op = new Operaciones();
         try {
             ResultSet res = op.ConsultaEsp("SELECT SUM(cp.q_pys_pedidos) FROM cuenta_productos cp, cuenta c, pago p where cp.k_cuenta = c.k_cuenta AND p.k_cuenta = c.k_cuenta");
             res.next();
@@ -108,7 +109,6 @@ public class DAO_Pago {
 
     public int totalProductosVendidos(String opc){
         setFechas(opc);
-        Operaciones op = new Operaciones();
         try {
             ResultSet res = op.ConsultaEsp("SELECT SUM(cp.q_pys_pedidos) FROM cuenta_productos cp, cuenta c, pago p where cp.k_cuenta = c.k_cuenta AND p.k_cuenta = c.k_cuenta AND p.f_pago BETWEEN '"+formateador.format(fechainicio)+"' AND '"+formateador.format(fechafinal)+"'");
             res.next();
@@ -119,7 +119,6 @@ public class DAO_Pago {
         }
     }
     public double VentaTotal(){
-        Operaciones op = new Operaciones();
         try {
             ResultSet res = op.ConsultaEsp("SELECT SUM(v_monto) FROM pago");
             res.next();
@@ -132,7 +131,6 @@ public class DAO_Pago {
 
     public double VentaTotal(String opc){
         setFechas(opc);
-        Operaciones op = new Operaciones();
         try {
             ResultSet res = op.ConsultaEsp("SELECT SUM(v_monto) FROM pago WHERE f_pago BETWEEN '"+formateador.format(fechainicio)+"' AND '"+formateador.format(fechafinal)+"'");
             res.next();
@@ -143,7 +141,6 @@ public class DAO_Pago {
         }
     }
     public double ingresoHabitacionesPorReserva(String id){
-        Operaciones op = new Operaciones();
         try {
             ResultSet res1 = op.ConsultaEsp("SELECT * FROM reserva WHERE k_reserva = " + id);
             res1.next();
@@ -164,7 +161,6 @@ public class DAO_Pago {
     }
 
     public int cantidadProductosPorReserva(String id){
-        Operaciones op = new Operaciones();
         try{
             ResultSet res = op.ConsultaEsp("SELECT SUM(cp.q_pys_pedidos) FROM reserva r, pago p, cuenta c, cuenta_productos cp WHERE p.k_cuenta = c.k_cuenta AND c.k_cuenta = cp.k_cuenta AND c.k_reserva = r.k_reserva AND r.k_reserva = "+id);
             if(res.next()){
@@ -179,7 +175,6 @@ public class DAO_Pago {
     }
 
     public double ingresosProductosPorReserva(String id){
-        Operaciones op = new Operaciones();
         try{
             ResultSet res = op.ConsultaEsp("SELECT SUM(cp.q_pys_pedidos* cp.v_precio_venta) FROM reserva r, pago p, cuenta c, cuenta_productos cp WHERE p.k_cuenta = c.k_cuenta AND c.k_cuenta = cp.k_cuenta AND c.k_reserva = r.k_reserva AND r.k_reserva ="+id);
             if(res.next()){
@@ -194,7 +189,6 @@ public class DAO_Pago {
     }
 
     public double totalIngresosPorReserva(String id){
-        Operaciones op = new Operaciones();
         try{
             ResultSet res = op.ConsultaEsp("SELECT p.v_monto FROM pago p, cuenta c, reserva r WHERE p.k_cuenta = c.k_cuenta AND c.k_reserva = r.k_reserva AND r.k_reserva = "+ id);
             if(res.next()){
