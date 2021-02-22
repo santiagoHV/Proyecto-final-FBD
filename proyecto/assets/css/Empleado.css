@@ -36,19 +36,19 @@
 {
     -fx-background-radius: 15 15 15 15;
 }
-#txtRHabitacion,#txtRPiso,#txtPHabitacion
+#txtRHabitacion,#txtRPiso
 {
     -fx-text-fill: #E74238;
     -fx-font-size: 34;
     -fx-font-family: "MAXWELL REGULAR";
 }
-#txtRProductos,#txtPProductos
+#txtRProductos
 {
     -fx-text-fill: #E74238;
     -fx-font-size: 34;
     -fx-font-family: "MAXWELL REGULAR";
 }
-#RTCodigo,#PTCodigo
+#RTCodigo
 {
     -fx-font-family: "MAXWELL REGULAR";
     -fx-text-fill: #E74238;
@@ -56,7 +56,7 @@
     -fx-font-size: 25;
     -fx-border-color: #E74238 #E74238 #E74238 #2d2e2d  ;
 }
-#RTNombre,#PTNombre
+#RTNombre,#RTStock
 {
     -fx-font-family: "MAXWELL REGULAR";
     -fx-text-fill: #E74238;
@@ -64,7 +64,7 @@
     -fx-font-size: 25;
     -fx-border-color: #E74238;
 }
-#RTPrecio,#PTPrecio
+#RTPrecio
 {
     -fx-font-family: "MAXWELL REGULAR";
     -fx-text-fill: #E74238;
@@ -72,7 +72,7 @@
     -fx-font-size: 25;
     -fx-border-color: #E74238 ;
 }
-#RTCantidad,#PTCantidad
+#RTCantidad
 {
     -fx-font-family: "MAXWELL REGULAR";
     -fx-text-fill: #E74238;
@@ -80,7 +80,7 @@
     -fx-font-size: 25;
     -fx-border-color: #E74238;
 }
-#RTCargar,#PTCargar
+#RTCargar
 {
     -fx-font-family: "MAXWELL REGULAR";
     -fx-text-fill: #E74238;
@@ -123,12 +123,21 @@
     -fx-font-size: 25 ptx;
 
 }
-#RAceptar,#PAceptar,#RLimpiar,#RPoner
+#RAceptar,#RLimpiar,#RActualizar,#RCargar
 {
     -fx-font-family: "MAXWELL REGULAR";
     -fx-font-size: 25 ptx;
     -fx-background-radius: 28 28 28 28;
     -fx-background-color: #ef4a40;
+}
+#TCantidad
+{
+    -fx-font-family: "MAXWELL REGULAR";
+    -fx-font-size: 25 ptx;
+    -fx-background-radius: 28 28 28 28;
+    -fx-text-fill: Black;
+    -fx-background-color: white;
+
 }
 #ESalir
 {

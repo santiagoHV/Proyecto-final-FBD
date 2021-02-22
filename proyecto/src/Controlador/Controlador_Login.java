@@ -157,7 +157,6 @@ public class Controlador_Login implements Initializable {
                 JOptionPane.showMessageDialog(null, "Interfaz en mantenimiento");
                 return "gerente";
             } else if (rol.equals("worker") || rol.equals("admin")) {
-                JOptionPane.showMessageDialog(null, "Interfaz en mantenimiento");
                 return "worker";
             } else {
                 JOptionPane.showMessageDialog(null, "Error inesperado 2");
@@ -245,7 +244,7 @@ public class Controlador_Login implements Initializable {
     public void openTrabajador() throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("../Vista/empleado/empleado.fxml"));
+        loader.setLocation(Main.class.getResource("../Vista/empleado/navbar_empleado.fxml"));
         Pane ventana = (Pane) loader.load();
         //Show the scene containing the root layout.
 

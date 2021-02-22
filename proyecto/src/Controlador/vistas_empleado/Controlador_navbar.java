@@ -1,8 +1,11 @@
 package Controlador.vistas_empleado;
 
+import DatosSQL.DAOs.DAO_PyS;
+import Modelo.entidades.PyS;
 import Vista.Main;
-import com.jfoenix.controls.*;
-import javafx.beans.Observable;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,11 +14,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -25,58 +25,47 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.EventObject;
 import java.util.ResourceBundle;
 
-import static java.lang.Integer.*;
-
-public class Controlador_empleado implements Initializable {
-
-
-    private @FXML StackPane empleado;
-    private @FXML Label RC1,RN1,RP1;
-    private @FXML JFXTextArea REMuestra,RCA1;
-    private @FXML JFXButton RCAR1,RPoner,RLimpiar;
-    private @FXML AnchorPane RPane,PPane;
-    private @FXML ComboBox<String> RDHabitacion,RDPiso;
-    private int Total=0;
+public class Controlador_navbar implements Initializable {
+    @FXML
+    private StackPane ruta;
+    @FXML
+    private AnchorPane ERuta,Enavegar;
+    @FXML
+    private JFXButton BRestaurante,BPiscina,BCafeteria,ESalir;
 
 
-   //Se genera las dos listas que van a servir para todos los botones
-    ObservableList<String> comboPisoContent =
-            FXCollections.observableArrayList(
-                    "2","3","4","5","6","7","8","9"
-            );
-    ObservableList<String> comboHabitacionContent =
-            FXCollections.observableArrayList(
-                    "01","02","03","04","05","06"
-            );
-    //Se insertan las listas a la interfaz grafica
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        RDPiso.setItems(comboPisoContent);
-        RDHabitacion.setItems(comboHabitacionContent);
-
+        setRuta("../Vista/empleado/piscina.fxml");
     }
 
-    //Aquí se determinan las acciones que va a realiza un boton al hacer click sobre el
-    public void onRestauranteButtonClicked(javafx.scene.input.MouseEvent event) {
-            if(RPane.isVisible()){
-                RPane.setVisible(false);
-            }
-            RPane.setVisible(true);
-            PPane.setVisible(false);
+    public void navigate(ActionEvent actionEvent) {
+
+        if (actionEvent.getSource() == BRestaurante) {
+            setRuta("../Vista/empleado/piscina.fxml");
+        } else if (actionEvent.getSource() == BPiscina) {
+            setRuta("../Vista/empleado/piscina.fxml");
+        } else if (actionEvent.getSource() == BCafeteria) {
+            setRuta("../Vista/empleado/piscina.fxml");
+        }
     }
 
-    public void onPiscinaButtonClicked(javafx.scene.input.MouseEvent event) {
-            RPane.setVisible(false);
-            PPane.setVisible(true);
+    public void setRuta(String url) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource(url));
+        Node Contenido = null;
+        try {
+            Contenido = (Node) loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Enavegar.getChildren().setAll(Contenido);
     }
-
-    public void onCafeteriaButtonClicked(javafx.scene.input.MouseEvent event) {
-
-    }
-
 
     public void onSalirButtonClicked(javafx.scene.input.MouseEvent event){
         //Cierre de sesión temporal hasta que se implementen usuarios en el sistema con la base de datos:
@@ -87,7 +76,7 @@ public class Controlador_empleado implements Initializable {
         JFXButton BotonAceptar = new JFXButton("Sí, me quiero ir");
         JFXButton BotonCancelar = new JFXButton("No, me pagan horas extra");
 
-        JFXDialog DialogoCerrar = new JFXDialog(empleado,EstrucMensaje, JFXDialog.DialogTransition.BOTTOM);
+        JFXDialog DialogoCerrar = new JFXDialog(ruta,EstrucMensaje, JFXDialog.DialogTransition.BOTTOM);
 
         BotonCancelar.addEventHandler(javafx.scene.input.MouseEvent.MOUSE_CLICKED, (javafx.scene.input.MouseEvent mouseEvent)->
         {
@@ -131,23 +120,4 @@ public class Controlador_empleado implements Initializable {
         EstrucMensaje.setActions(BotonCancelar, BotonAceptar);
         DialogoCerrar.show();
     }
-
-
-    public void onCargar1ButtonClicked(MouseEvent event) {
-        REMuestra.appendText("No: "+RC1.getText()+" - "+RN1.getText()+" $ "+(parseInt(RP1.getText())*parseInt(RCA1.getText()))+ "\n");
-        Total= Total+(parseInt(RP1.getText())*parseInt(RCA1.getText()));
-    }
-
-    public void onClickedCargar(MouseEvent event){
-        REMuestra.appendText( "----------------------------\n");
-        REMuestra.appendText( "Total:" + Total);
-    }
-    public void onClickedHabitacion(MouseEvent event){
-            REMuestra.appendText( "Habitación No: " +  RDPiso.getValue() + RDHabitacion.getValue() + "\n");
-    }
-
-    public void onClickedLimpiar(MouseEvent event){
-            REMuestra.clear();
-    }
-
 }

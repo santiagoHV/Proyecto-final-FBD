@@ -33,7 +33,7 @@ public class Controlador_Productos implements Initializable {
     public TableColumn col_nombre;
     public TableColumn col_stock;
     public TableColumn col_precio;
-    public TableView<PyS> tabla_productos;
+    public TableView<PyS> tabla_productos ;
     public Button gimnasio_button;
     public Button cafeteria_button;
     public Button spa_button;
@@ -49,6 +49,7 @@ public class Controlador_Productos implements Initializable {
         progresi.setVisible(false);
         loadProductos("Restaurante");
         actual_categoria="Restaurante";
+        System.out.println(tabla_productos);
     }
 
     public ObservableList<PyS> getProductosByCategoria(String categoria){
@@ -65,6 +66,7 @@ public class Controlador_Productos implements Initializable {
             @Override
             protected Void call() throws Exception {
                 OBS= getProductosByCategoria(categoria);
+                System.out.println(OBS);
                 return null;
             }
         };

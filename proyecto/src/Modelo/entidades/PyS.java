@@ -21,7 +21,6 @@ public class PyS {
         this.categoria = categoria;
     }
 
-    public PyS(){}
 
     public int getK_codigo_pys() {
         return k_codigo_pys;
