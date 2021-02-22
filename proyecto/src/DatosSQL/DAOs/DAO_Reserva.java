@@ -167,8 +167,6 @@ public class DAO_Reserva {
             System.out.println(throwables + " en actualizacion");
             throwables.printStackTrace();
         }
-
-
     }
 
     public List<Reserva> BuscarReservas(int k_reserva, int num_doc, String nom_or_apel) {
