@@ -426,6 +426,7 @@ public class Controlador_checkout implements Initializable {
             controlador_alerta.titulo.setText("Actualización Realizada");
             controlador_alerta.mensaje.setText("Se actualizó correctamente el registro del checkin realizado por este huésped.");
             GridPanel_Huespedes.setDisable(true);
+            progressIndCheckout.setVisible(true);
             obtener_huespedes();
         }
         dialogAlerta.show();
