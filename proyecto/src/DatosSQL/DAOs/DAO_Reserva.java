@@ -65,7 +65,8 @@ public class DAO_Reserva {
     public List<Reserva_Habitacion> consultarReservaHabPorIdReserva(int ID) {
         try {
             List<Reserva_Habitacion> reserva_habitacions = new ArrayList<>();
-            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Reserva_Habitacion WHERE k_reserva = "+ID+"");
+            ResultSet resultSet = op.ConsultaEsp("SELECT Reserva_Habitacion.* FROM Reserva_Habitacion, reserva " +
+                    "WHERE (Reserva_Habitacion.k_reserva = reserva.k_reserva) and Reserva_Habitacion.k_reserva = "+ID+" and n_estado='en curso'");
             Reserva_Habitacion reserva_habitacion;
 
             DAO_Habitacion dao_habitacion = new DAO_Habitacion();
@@ -155,6 +156,6 @@ public class DAO_Reserva {
                 " SET n_estado = 'en curso' WHERE f_inicio = ?");
 
         preparedStatement.setDate(1, Date.valueOf(LocalDate.now()));
-
+        preparedStatement.executeUpdate();
     }
 }

@@ -199,19 +199,30 @@ public class Controlador_checkout implements Initializable {
         reservaTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent workerStateEvent) {
-                reserva = reservaTask.getValue().get(0).getReserva();
-                for(int i = 0; i<reservaTask.getValue().size();i++)
+
+                if(reservaTask.getValue().size()!=0)
                 {
-                    habitacionList.add(reservaTask.getValue().get(i).getHabitacion());
+                    reserva = reservaTask.getValue().get(0).getReserva();
+                    for(int i = 0; i<reservaTask.getValue().size();i++)
+                    {
+                        habitacionList.add(reservaTask.getValue().get(i).getHabitacion());
+                    }
+                    llenarDatosReserva();
+                    obtener_huespedes();
                 }
-                llenarDatosReserva();
+                else
+                {
+                    progressIndCheckout.setVisible(false);
+                    controlador_alerta.titulo.setText("Reserva no encontrada");
+                    controlador_alerta.mensaje.setText("El código de la reserva ingresado no se encuentra registrado o no se encuentra en curso, por favor revise la información revisada");
+                    dialogAlerta.show();
+                }
             }
         });
 
         try{
             codigoReserva = Integer.parseInt(codigo_reserva.getText());
             threadReserva.start();
-            obtener_huespedes();
         }catch (Exception e){
             //poner error en busqueda
         }
