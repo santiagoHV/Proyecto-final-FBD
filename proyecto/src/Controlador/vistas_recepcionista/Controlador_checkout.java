@@ -37,6 +37,7 @@ public class Controlador_checkout implements Initializable {
 
     public AnchorPane anchorBG;
     public Pane panel_titular;
+    public Pane panel_pagos;
     private SVGGlyph information = new SVGGlyph(0,"information",
             "M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20Zm0-8.5a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0v-3A1,1,0,0,0,12,11.5Zm0-4a1.25,1.25,0,1,0,1.25,1.25A1.25,1.25,0,0,0,12,7.5Z"
             , Color.DARKGRAY);
@@ -91,7 +92,7 @@ public class Controlador_checkout implements Initializable {
         anchorBG.getChildren().add(information);
 
         balance.setLayoutX(248);
-        balance.setLayoutY(278+180);
+        balance.setLayoutY(278+200);
         balance.setPrefHeight(60);
         balance.setPrefWidth(60);
         balance.setMaxHeight(60);
@@ -119,7 +120,7 @@ public class Controlador_checkout implements Initializable {
         promptPagos.setAlignment(Pos.CENTER);
         promptPagos.setWrapText(true);
         promptPagos.setLayoutX(30);
-        promptPagos.setLayoutY(334+180);
+        promptPagos.setLayoutY(334+200);
         promptPagos.setVisible(true);
 
         anchorBG.getChildren().add(promptPagos);
@@ -127,6 +128,11 @@ public class Controlador_checkout implements Initializable {
         information.setVisible(true);
 
         for(Node n: panel_titular.getChildren())
+        {
+            n.setVisible(false);
+        }
+
+        for(Node n: panel_pagos.getChildren())
         {
             n.setVisible(false);
         }
