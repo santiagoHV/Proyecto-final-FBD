@@ -323,9 +323,12 @@ public class Controlador_checkout implements Initializable {
 
                             if(pagoCuenta==null)
                             {
-                                controlador_huesped.btn_ingreso.setDisable(true);
                                 lb_alert_pago.getStyleClass().set(1,"label_pago_alert");
                                 btn_procesar_pago.setDisable(false);
+                                if(huespedIDList.size()==1)
+                                {
+                                    controlador_huesped.btn_ingreso.setDisable(true);
+                                }
                             }
                             else
                             {
