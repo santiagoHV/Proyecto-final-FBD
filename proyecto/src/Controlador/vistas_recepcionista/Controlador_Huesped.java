@@ -119,14 +119,12 @@ public class Controlador_Huesped implements Initializable
                     }
                     else
                     {
-                        int i = 0;
                         for(Habitacion h: habitacionList)
                         {
-                            if(!comboHabitacion.getItems().get(i).equals(h.getK_numero_habitacion()))
+                            if(!comboHabitacion.getItems().contains(h.getK_numero_habitacion()))
                             {
                                 comboHabitacion.getItems().add(h.getK_numero_habitacion());
                             }
-                            i++;
                         }
                     }
                     comboHabitacion.setValue(comboHabitacion.getItems().get(comboHabitacion.getItems().size()-1));
