@@ -223,4 +223,17 @@ public class DAO_Pago {
             fechainicio.setTime(fechainicio.getTime()-dif);
         }
     }
+
+    public int consultarExistenciaPago(int cuenta){
+        Operaciones op = new Operaciones();
+        try{
+            ResultSet res = op.ConsultaEsp("SELECT k_pago FROM pago WHERE k_cuenta = "+cuenta );
+            res.next();
+            return res.getInt(1);
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
 }

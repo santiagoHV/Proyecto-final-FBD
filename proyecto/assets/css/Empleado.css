@@ -27,9 +27,15 @@
     -fx-font-family: "MAXWELL REGULAR";
 }
 #BPiscina
+ {
+     -fx-text-fill: white;
+     -fx-font-size: 34;
+     -fx-font-family: "MAXWELL REGULAR";
+ }
+#Nombre_Hotel
 {
-    -fx-text-fill: white;
-    -fx-font-size: 34;
+    -fx-text-fill: #ec4747;
+    -fx-font-size: 70;
     -fx-font-family: "MAXWELL REGULAR";
 }
 #pane
@@ -88,7 +94,7 @@
     -fx-font-size: 25;
     -fx-border-color: #E74238 #2d2e2d  #E74238 #E74238  ;
 }
-#RC1,#RC2,#RC3,#RC4,#RC5,#RC6,#PC1,#PC2,#PC3,#PC4,#PC5,#PC6
+#RC1,#RC2,#RC3,#RC4,#RC5,#RC6
 {
     -fx-font-family: "MAXWELL REGULAR";
     -fx-text-fill: #E74238;
@@ -96,7 +102,7 @@
     -fx-font-size: 25;
     -fx-border-color: #E74238 #E74238 #E74238 #2d2e2d ;
 }
-#RN1,#RN2,#RN3,#RN4,#RN5,#RN6,#RP1,#RP2,#RP3,#RP4,#RP5,#RP6,#RCA1,#RCA2,#RCA3,#RCA4,#RCA5,#RCA6,#PN1,#PN2,#PN3,#PN4,#PN5,#PN6,#PP1,#PP2,#PP3,#PP4,#PP5,#PP6,#PCA1,#PCA2,#PCA3,#PCA4,#PCA5,#PCA6
+#RN1,#RN2,#RN3,#RN4,#RN5,#RN6
 {
     -fx-font-family: "MAXWELL REGULAR";
     -fx-text-fill: #E74238;
@@ -114,7 +120,7 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
-#REMuestra,#PEMuestra
+#REMuestra,#PEMuestra,#GREMuestra
 {
     -fx-border-radius: 28 28 28 28;
     -fx-background-radius: 28 28 28 28;

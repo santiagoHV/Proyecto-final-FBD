@@ -32,7 +32,7 @@ public class DAO_Cuenta {
     }
 
 
-    public static boolean actualizarPrecio(int Total,String reserva){
+    public boolean actualizarPrecio(int Total,String reserva){
         Operaciones op = new Operaciones();
         try{
             op.UpdateEsp("UPDATE cuenta SET v_precio_acumulado = v_precio_acumulado+"+ Total + " WHERE k_reserva ="+ reserva );
@@ -42,10 +42,10 @@ public class DAO_Cuenta {
             return false;
         }
     }
-    public static int conseguirCuenta(int k_reserva){
+    public int conseguirCuenta(int k_reserva){
         Operaciones op = new Operaciones();
         try {
-            ResultSet res = op.ConsultaEsp("SELECT * FROM cuenta WHERE k_reserva ="+ k_reserva+"");
+            ResultSet res = op.ConsultaEsp("SELECT k_cuenta FROM cuenta WHERE k_reserva ="+ k_reserva+"");
             res.next();
             return res.getInt(1);
 
