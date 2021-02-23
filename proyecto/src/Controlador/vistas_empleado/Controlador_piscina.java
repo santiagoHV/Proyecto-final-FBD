@@ -38,7 +38,7 @@ public class Controlador_piscina implements Initializable {
     public int IStock;
     public int identificacion;
     public double precio;
-    public boolean cond=true,aceptar=true;
+    public boolean cond=true,aceptar=true,nulo,Bloquear_Total=true;
     public String habitacion;
     public String reserva;
     int cuenta ;
@@ -87,57 +87,65 @@ public class Controlador_piscina implements Initializable {
         productos.setItems(OBS);
 
     }
-    //Aquí se determinan las acciones que va a realiza un boton al hacer click sobre el
-    //Falta poner las condiciones para que no los vuelvan a registrar
+    //Cargar los productos
     public void cargar(ActionEvent actionEvent){
 
-        ICantidad=Integer.parseInt(TCantidad.getText());
-        precio = productos.getSelectionModel().getSelectedItem().getPrecio_producta();
-        IStock = productos.getSelectionModel().getSelectedItem().getStock();
-        identificacion = productos.getSelectionModel().getSelectedItem().getK_codigo_pys();
+        if(RDPiso.getValue() != null || RDHabitacion.getValue() != null)  {
+            ICantidad = Integer.parseInt(TCantidad.getText());
+            precio = productos.getSelectionModel().getSelectedItem().getPrecio_producta();
+            IStock = productos.getSelectionModel().getSelectedItem().getStock();
+            identificacion = productos.getSelectionModel().getSelectedItem().getK_codigo_pys();
+            nulo = productos.getSelectionModel().isCellSelectionEnabled();
 
-        REMuestra.appendText( "Producto: " + String.valueOf(productos.getSelectionModel().getSelectedItem().getUnidad() + "\n"));
-        REMuestra.appendText("Precio de venta:" + String.valueOf(productos.getSelectionModel().getSelectedItem().getPrecio_producta() + "\n"));
+            REMuestra.appendText("Producto: " + String.valueOf(productos.getSelectionModel().getSelectedItem().getUnidad() + "\n"));
+            REMuestra.appendText("Precio de venta:" + String.valueOf(productos.getSelectionModel().getSelectedItem().getPrecio_producta() + "\n"));
 
-        if((IStock-ICantidad)>=0){
-            REMuestra.appendText("Cantidad: " + TCantidad.getText() + "\n");
-            new DAO_PyS().modificarStock(String.valueOf(productos.getSelectionModel().getSelectedItem().getK_codigo_pys()), String.valueOf(IStock-ICantidad));
-            loadProductos();
-            aceptar=false;
+            if ((IStock - ICantidad) >= 0) {
+                REMuestra.appendText("Cantidad: " + TCantidad.getText() + "\n");
+                new DAO_PyS().modificarStock(String.valueOf(productos.getSelectionModel().getSelectedItem().getK_codigo_pys()), String.valueOf(IStock - ICantidad));
+                loadProductos();
+                aceptar = false;
+            } else {
+                Alert a1 = new Alert(Alert.AlertType.WARNING);
+                a1.setTitle("Stock invalido");
+                a1.setContentText("Stock invalido, se pondra el maximo stock disponible");
+                a1.setHeaderText(null);
+                a1.showAndWait();
+                REMuestra.appendText("Cantidad: " + IStock + "\n");
+                new DAO_PyS().modificarStock(String.valueOf(productos.getSelectionModel().getSelectedItem().getK_codigo_pys()), "0");
+                loadProductos();
+                aceptar = false;
+            }
+
+            cuenta = DAOC.conseguirCuenta(Integer.parseInt(reserva));
+
+            if (DAOCP.consultarcantidad(identificacion, cuenta) == -1) {
+                DAOCP.agregarProducto(ICantidad, identificacion, cuenta, precio);
+            } else {
+                DAOCP.actualizarProducto(ICantidad, identificacion, cuenta);
+            }
+
+            Total += ICantidad * precio;
+        }else{
+            Alert a8 = new Alert(Alert.AlertType.ERROR);
+            a8.setContentText("Ingrese una habitación valida");
+            a8.setTitle("Habitación nula");
+            a8.setHeaderText(null);
+            a8.showAndWait();
         }
-        else{
-            Alert a1 = new Alert(Alert.AlertType.WARNING);
-            a1.setTitle("Stock invalido");
-            a1.setContentText("Stock invalido, se pondra el maximo stock disponible");
-            a1.setHeaderText(null);
-            a1.showAndWait();
-            REMuestra.appendText("Cantidad: " + IStock + "\n");
-            new DAO_PyS().modificarStock(String.valueOf(productos.getSelectionModel().getSelectedItem().getK_codigo_pys()), "0");
-            loadProductos();
-            aceptar=false;
-        }
-
-        cuenta = DAOC.conseguirCuenta(Integer.parseInt(reserva));
-
-           if(DAOCP.consultarcantidad(identificacion,cuenta)==-1) {
-               DAOCP.agregarProducto(ICantidad, identificacion, cuenta, precio);
-           }else{
-               DAOCP.actualizarProducto(ICantidad,identificacion,cuenta);
-           }
-
-        Total += ICantidad*precio;
     }
-
+    //Cargar la habitación
     public void onclickhabitacion(ActionEvent actionEvent){
         habitacion= RDPiso.getValue() + RDHabitacion.getValue();
         reserva = String.valueOf(DAOR.consultarHabitacion(habitacion));
+
         if (DAOR.consultarHabitacion(habitacion)!=-1 && cond){
             cuenta = DAOC.conseguirCuenta(Integer.parseInt(reserva));
         }
-        if(DAOR.consultarHabitacion(habitacion)!=-1 && cond && (DAOP.consultarExistenciaPago(cuenta)==1)){
+        if(DAOR.consultarsalida(habitacion)==null && cond && (DAOP.consultarExistenciaPago(cuenta)==null)){
             REMuestra.appendText("Habitación No: " + RDPiso.getValue() + RDHabitacion.getValue() + "\n");
             cond = false;
-        } else if (DAOP.consultarExistenciaPago(cuenta)!=1){
+        } else if (DAOP.consultarExistenciaPago(cuenta)!=null){
             Alert a6 = new Alert(Alert.AlertType.ERROR);
             a6.setContentText("El huesped ya realizo el pago de la habitación");
             a6.setTitle("Pago cliente");
@@ -158,12 +166,14 @@ public class Controlador_piscina implements Initializable {
         }
 
     }
-
+    //Cargar el total de los productos
     public void onClickedCargar(MouseEvent event){
-        if(aceptar==false ){
+
+        if(aceptar==false && Bloquear_Total==true ){
             DAOC.actualizarPrecio(Total,reserva);
             REMuestra.appendText( "----------------------------\n");
             REMuestra.appendText( "Total:" + Total);
+            Bloquear_Total = false;
         } else{
 
             Alert a5 = new Alert(Alert.AlertType.ERROR);
@@ -178,11 +188,11 @@ public class Controlador_piscina implements Initializable {
 
     public void onClickedLimpiar(MouseEvent event){
 
-        if(aceptar==false) {
+        if(aceptar==false &&  Bloquear_Total==true) {
             new DAO_PyS().modificarStock(String.valueOf(identificacion), String.valueOf(IStock));
             loadProductos();
             aceptar=true;
-        }  else if(aceptar==false){
+        }  else if(Bloquear_Total==true){
             Alert a5 = new Alert(Alert.AlertType.ERROR);
             a5.setContentText("No se puede borrar lo que está vacio");
             a5.setTitle("Error area vacia");

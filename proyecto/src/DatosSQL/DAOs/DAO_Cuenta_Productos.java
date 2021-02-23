@@ -52,8 +52,12 @@ public class DAO_Cuenta_Productos {
             Operaciones op = new Operaciones();
             try {
                 ResultSet res = op.ConsultaEsp("SELECT q_pys_pedidos FROM cuenta_productos WHERE k_codigo_pys="+codigo_pys+"AND k_cuenta="+cuenta);
-                res.next();
-                return res.getInt(1);
+                if(res.next()){
+                    return res.getInt(1);
+                }
+                else{
+                    return -1;
+                }
             }catch (SQLException e){
                 e.printStackTrace();
                 return -1;
