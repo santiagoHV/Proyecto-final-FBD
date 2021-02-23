@@ -53,4 +53,37 @@ public class DAO_Cuenta_Productos {
             return 0;
         }
     }
-}
+    public boolean agregarProducto(int q_pedido,int codigo,int cuenta, double precio_venta){
+        Operaciones op = new Operaciones();
+        try {
+            op.UpdateEsp("INSERT INTO cuenta_productos VALUES ("+q_pedido+",CURRENT_DATE,"+codigo+", "+cuenta+", '"+precio_venta+"')");
+            return true;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean actualizarProducto(int cantidad, int codigo_pys, int cuenta){
+        Operaciones op = new Operaciones();
+        try{
+            op.UpdateEsp("UPDATE cuenta_productos SET q_pys_pedidos = "+ cantidad + ",f_pedido= CURRENT_DATE WHERE k_codigo_pys ="+ codigo_pys + "AND k_cuenta = "+ cuenta);
+            return true;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public int consultarcantidad(int codigo_pys, int cuenta){
+            Operaciones op = new Operaciones();
+            try {
+                ResultSet res = op.ConsultaEsp("SELECT q_pys_pedidos FROM cuenta_productos WHERE k_codigo_pys="+codigo_pys+"AND k_cuenta="+cuenta);
+                res.next();
+                return res.getInt(1);
+            }catch (SQLException e){
+                e.printStackTrace();
+                return -1;
+
+            }
+        }
+    }
+

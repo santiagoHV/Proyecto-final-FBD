@@ -16,8 +16,8 @@ public class DAO_Habitacion {
         op = new Operaciones();
     }
 
-    public Habitacion consultarHabitacion(int ID){
-
+    public  Habitacion consultarHabitacion(int ID){
+       
         try {
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Habitacion WHERE k_numero_habitacion = "+ID+"");
             resultSet.next();

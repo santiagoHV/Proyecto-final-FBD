@@ -3,10 +3,12 @@ package DatosSQL.DAOs;
 import DatosSQL.Operaciones;
 import Modelo.entidades.Cuenta;
 import Modelo.entidades.Pago;
+import Modelo.entidades.PyS;
 import Modelo.entidades.Reserva;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DAO_Cuenta {
 
@@ -46,5 +48,30 @@ public class DAO_Cuenta {
         }
 
         return null;
+    }
+
+
+    public boolean actualizarPrecio(int Total,String reserva){
+        Operaciones op = new Operaciones();
+        try{
+            op.UpdateEsp("UPDATE cuenta SET v_precio_acumulado = v_precio_acumulado+"+ Total + " WHERE k_reserva ="+ reserva );
+            return true;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public int conseguirCuenta(int k_reserva){
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet res = op.ConsultaEsp("SELECT k_cuenta FROM cuenta WHERE k_reserva ="+ k_reserva+"");
+            res.next();
+            return res.getInt(1);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+
     }
 }

@@ -249,7 +249,7 @@ public class Controlador_Login implements Initializable {
     public void openTrabajador() throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("../Vista/empleado/empleado.fxml"));
+        loader.setLocation(Main.class.getResource("../Vista/empleado/navbar_empleado.fxml"));
         Pane ventana = (Pane) loader.load();
         //Show the scene containing the root layout.
 

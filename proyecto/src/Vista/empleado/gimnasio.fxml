@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="restaurante" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_empleado.Controlador_gimnasio">
+   <children>
+      <AnchorPane fx:id="RPane" prefHeight="563.0" prefWidth="926.0" style="-fx-background-color: #2d2e2d;" stylesheets="@../../../assets/css/Empleado.css">
+         <children>
+            <VBox layoutX="-1.0" layoutY="-1.0" prefHeight="658.0" prefWidth="926.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0">
+               <children>
+                  <HBox fx:id="EHabitacion" prefHeight="96.0" prefWidth="911.0" style="-fx-background-radius: 45 45 45 45;" stylesheets="@../../../assets/css/Empleado.css">
+                     <children>
+                        <Label fx:id="txtRPiso" alignment="CENTER" prefHeight="66.0" prefWidth="140.0" stylesheets="@../../../assets/css/Empleado.css" text="Piso">
+                           <HBox.margin>
+                              <Insets left="30.0" top="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <JFXComboBox fx:id="RDPiso" focusColor="WHITE" prefHeight="32.0" prefWidth="167.0" style="-fx-background-color: white;" unFocusColor="BLACK">
+                           <HBox.margin>
+                              <Insets top="30.0" />
+                           </HBox.margin>
+                        </JFXComboBox>
+                        <Label fx:id="txtRHabitacion" prefHeight="65.0" prefWidth="167.0" stylesheets="@../../../assets/css/Empleado.css" text="Habitación">
+                           <HBox.margin>
+                              <Insets left="20.0" top="15.0" />
+                           </HBox.margin>
+                        </Label>
+                        <JFXComboBox fx:id="RDHabitacion" focusColor="WHITE" prefHeight="32.0" prefWidth="167.0" style="-fx-background-color: white;" unFocusColor="BLACK">
+                           <HBox.margin>
+                              <Insets top="30.0" />
+                           </HBox.margin>
+                        </JFXComboBox>
+                        <JFXButton fx:id="RActualizar" alignment="CENTER" onAction="#onclickhabitacion" prefHeight="44.0" prefWidth="220.0" text="Agregar habitación" textFill="#2d2e2d">
+                           <HBox.margin>
+                              <Insets left="50.0" right="20.0" top="23.0" />
+                           </HBox.margin>
+                        </JFXButton>
+
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="43.0" prefWidth="901.0">
+                     <children>
+                        <Label fx:id="txtRProductos" text="Productos:">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="333.0" prefWidth="682.0">
+                     <children>
+                        <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="312.0" prefWidth="407.0">
+                           <content>
+                              <TableView fx:id="productos" prefHeight="310.0" prefWidth="407.0">
+                                <columns>
+                                  <TableColumn fx:id="ID" prefWidth="83.99999463558197" text="Código" />
+                                  <TableColumn fx:id="Nombre" prefWidth="122.4000473022461" text="Nombre" />
+                                    <TableColumn fx:id="Stock" prefWidth="72.00006103515625" text="Stock" />
+                                    <TableColumn fx:id="Precio" prefWidth="110.4000244140625" text="Precio" />
+                                </columns>
+                              </TableView>
+                           </content>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ScrollPane>
+                        <JFXTextArea fx:id="REMuestra" focusColor="#4b5f71" prefHeight="293.0" prefWidth="375.0" unFocusColor="#2a2c2e">
+                           <padding>
+                              <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                           </padding>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <HBox.margin>
+                              <Insets bottom="30.0" left="40.0" right="15.0" top="5.0" />
+                           </HBox.margin>
+                        </JFXTextArea>
+                     </children>
+                     <padding>
+                        <Insets left="50.0" top="15.0" />
+                     </padding>
+                  </HBox>
+                  <HBox prefHeight="82.0" prefWidth="920.0">
+                     <children>
+                        <JFXTextField fx:id="TCantidad" alignment="TOP_CENTER" focusColor="#2d2e2d" prefHeight="32.0" prefWidth="192.0" promptText="Ingrese la cantidad" unFocusColor="#2d2e2d">
+                           <HBox.margin>
+                              <Insets left="500.0" top="15.0" />
+                           </HBox.margin>
+                        </JFXTextField>
+                        <JFXButton fx:id="RCargar" alignment="CENTER" onAction="#cargar" prefHeight="44.0" prefWidth="178.0" text="Cargar producto" textFill="#2d2e2d">
+                           <HBox.margin>
+                              <Insets left="30.0" top="15.0" />
+                           </HBox.margin>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton fx:id="RAceptar" alignment="CENTER" onMouseClicked="#onClickedCargar" prefHeight="44.0" prefWidth="170.0" text="Aceptar" textFill="#2d2e2d">
+                           <HBox.margin>
+                              <Insets left="500.0" top="15.0" />
+                           </HBox.margin>
+                        </JFXButton>
+                        <JFXButton fx:id="RLimpiar" alignment="CENTER" onMouseClicked="#onClickedLimpiar" text="Limpiar" textFill="#2d2e2d">
+                           <HBox.margin>
+                              <Insets left="50.0" top="15.0" />
+                           </HBox.margin>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

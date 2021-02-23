@@ -13,7 +13,7 @@
     <children>
         <AnchorPane prefHeight="768.0" prefWidth="1200.0" style="-fx-background-color: white;">
             <children>
-            <AnchorPane fx:id="router" layoutX="126.0" prefHeight="768.0" prefWidth="1074.0" style="-fx-background-color: white;" />
+            <AnchorPane fx:id="router" layoutX="126.0" prefHeight="768.0" prefWidth="1071.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="3.599999999999909" AnchorPane.topAnchor="0.0" />
                 <VBox alignment="TOP_CENTER" prefHeight="768.0" prefWidth="125.0" styleClass="navbar">
                     <children>
                         <Button fx:id="reserve_button" alignment="BOTTOM_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#navigate" prefHeight="153.6" prefWidth="125.0" text="Reservar" textAlignment="CENTER" textFill="WHITE">

@@ -2,7 +2,7 @@ package DatosSQL.DAOs;
 
 import DatosSQL.Conexion;
 import DatosSQL.Operaciones;
-import Modelo.entidades.*;
+import Modelo.entidades.Registro;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -14,7 +14,19 @@ import java.util.List;
 
 public class DAO_Registro {
 
-    public List<Registro> consultarRegistro(int ID){
+
+    public int consultarHabitacion(String habitacion) {
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet res = op.ConsultaEsp("SELECT k_reserva FROM registro_checkin WHERE k_numero_habitacion = "+habitacion+"");
+            res.next();
+            return res.getInt(1);
+        } catch (SQLException e) {
+            return -1;
+        }
+    }
+
+    public Registro consultarRegistro(int ID){
         Operaciones op = new Operaciones();
         try {
             ResultSet resultSet = op.ConsultaEsp("SELECT * FROM registro_checkin WHERE k_registro = "+ID+"");
@@ -30,7 +42,7 @@ public class DAO_Registro {
                 registroList.add(registro);
             }
 
-            return registroList;
+            return (Registro) registroList;
 
 
         }catch (SQLException ex){
