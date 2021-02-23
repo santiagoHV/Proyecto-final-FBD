@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import io.github.palexdev.materialfx.controls.*?>
-<?import java.net.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXProgressSpinner?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<StackPane fx:id="stackBG" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" stylesheets="@../../../assets/css/recepcionista_escenas.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_checkout">
+<StackPane fx:id="stackBG" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1075.0" stylesheets="@../../../assets/css/recepcionista_escenas.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_checkout">
    <children>
       <AnchorPane fx:id="anchorBG" prefHeight="768.0" prefWidth="1075.0">
          <children>
@@ -48,7 +57,7 @@
             </Label>
             <Separator layoutX="30.0" layoutY="400.0" prefHeight="3.0" prefWidth="476.0" />
             <Separator layoutX="32.0" layoutY="263.0" prefHeight="3.0" prefWidth="476.0" />
-            <Label layoutX="196.0" layoutY="416.0" style="-fx-font-weight: 500;" text="Datos de pago">
+            <Label layoutX="178.0" layoutY="403.0" style="-fx-font-weight: 500;" text="Datos de pago">
                <font>
                   <Font name="MAXWELL REGULAR" size="29.0" />
                </font>
@@ -189,6 +198,7 @@
                </children>
             </Pane>
             <Button fx:id="btn_buscar_reserva" layoutX="212.0" layoutY="223.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buscar_Reserva_Por_ID" prefHeight="24.0" prefWidth="33.0" styleClass="button_buscar" />
+            <Label fx:id="lb_alert_pago" alignment="CENTER" contentDisplay="CENTER" layoutX="284.0" layoutY="216.0" prefHeight="43.0" prefWidth="231.0" styleClass="label_pago_alert" text="No se ha realizado el pago asociado a la cuenta de esta reserva" textAlignment="CENTER" visible="false" wrapText="true" />
          </children>
          <stylesheets>
             <URL value="@../../../assets/css/recepcionista_escenas.css" />
