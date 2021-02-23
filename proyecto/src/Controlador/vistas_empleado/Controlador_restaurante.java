@@ -1,6 +1,7 @@
 package Controlador.vistas_empleado;
 
 import DatosSQL.DAOs.*;
+import Modelo.entidades.Habitacion;
 import Modelo.entidades.PyS;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
@@ -39,7 +40,7 @@ public class Controlador_restaurante implements Initializable {
     public int IStock;
     public int identificacion;
     public double precio;
-    public boolean cond=true,aceptar=true;
+    public boolean cond=true,aceptar=true,nulo;
     public String habitacion;
     public String reserva;
     int cuenta ;
@@ -96,6 +97,7 @@ public class Controlador_restaurante implements Initializable {
         precio = productos.getSelectionModel().getSelectedItem().getPrecio_producta();
         IStock = productos.getSelectionModel().getSelectedItem().getStock();
         identificacion = productos.getSelectionModel().getSelectedItem().getK_codigo_pys();
+        nulo= productos.getSelectionModel().isCellSelectionEnabled();
 
         REMuestra.appendText( "Producto: " + String.valueOf(productos.getSelectionModel().getSelectedItem().getUnidad() + "\n"));
         REMuestra.appendText("Precio de venta:" + String.valueOf(productos.getSelectionModel().getSelectedItem().getPrecio_producta() + "\n"));
@@ -132,13 +134,14 @@ public class Controlador_restaurante implements Initializable {
     public void onclickhabitacion(ActionEvent actionEvent){
         habitacion= RDPiso.getValue() + RDHabitacion.getValue();
         reserva = String.valueOf(DAOR.consultarHabitacion(habitacion));
+
         if (DAOR.consultarHabitacion(habitacion)!=-1 && cond){
             cuenta = DAOC.conseguirCuenta(Integer.parseInt(reserva));
         }
-        if(DAOR.consultarHabitacion(habitacion)!=-1 && cond && (DAOP.consultarExistenciaPago(cuenta)==1)){
+        if(DAOR.consultarsalida(habitacion)==null && cond && (DAOP.consultarExistenciaPago(cuenta)==null)){
             REMuestra.appendText("Habitación No: " + RDPiso.getValue() + RDHabitacion.getValue() + "\n");
             cond = false;
-        } else if (DAOP.consultarExistenciaPago(cuenta)!=1){
+        } else if (DAOP.consultarExistenciaPago(cuenta)!=null){
             Alert a6 = new Alert(Alert.AlertType.ERROR);
             a6.setContentText("El huesped ya realizo el pago de la habitación");
             a6.setTitle("Pago cliente");

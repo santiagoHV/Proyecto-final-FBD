@@ -17,31 +17,31 @@ public class DAO_Pago {
     private Date fechafinal;
     private SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
 
-    public Pago consultarPago(int ID){
+    public Pago consultarPago(int ID) {
         Operaciones op = new Operaciones();
         try {
-            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Pago WHERE k_pago = "+ID+"");
+            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Pago WHERE k_pago = " + ID + "");
             resultSet.next();
 
-            Pago pago = new Pago(resultSet.getInt(1),resultSet.getDate(2),
-                    resultSet.getDouble(3),resultSet.getString(4));
+            Pago pago = new Pago(resultSet.getInt(1), resultSet.getDate(2),
+                    resultSet.getDouble(3), resultSet.getString(4));
 
             return pago;
 
-        }catch (SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
 
         return null;
     }
 
-    public double consultarMontoProductos(String opc){
+    public double consultarMontoProductos(String opc) {
         setFechas(opc);
         Operaciones op = new Operaciones();
         try {
             ResultSet res = op.ConsultaEsp("SELECT SUM(x.valores) FROM (SELECT cp.q_pys_pedidos * cp.v_precio_venta AS valores " +
                     "FROM cuenta_productos cp, cuenta c, pago p " +
-                    "WHERE cp.k_cuenta = c.k_cuenta AND c.k_cuenta = p.k_cuenta AND p.f_pago BETWEEN '"+formateador.format(fechainicio)+"' AND '"+formateador.format(fechafinal)+"' " +
+                    "WHERE cp.k_cuenta = c.k_cuenta AND c.k_cuenta = p.k_cuenta AND p.f_pago BETWEEN '" + formateador.format(fechainicio) + "' AND '" + formateador.format(fechafinal) + "' " +
                     "GROUP BY c.k_cuenta, cp.q_pys_pedidos, cp.v_precio_venta) x");
             res.next();
             return res.getDouble(1);
@@ -50,7 +50,8 @@ public class DAO_Pago {
             return -1;
         }
     }
-    public double consultarMontoProductos(){
+
+    public double consultarMontoProductos() {
         Operaciones op = new Operaciones();
         try {
             ResultSet res = op.ConsultaEsp("SELECT SUM(x.valores) FROM (SELECT cp.q_pys_pedidos * cp.v_precio_venta AS valores " +
@@ -65,7 +66,7 @@ public class DAO_Pago {
         }
     }
 
-    public int totalPagosRealizados(){
+    public int totalPagosRealizados() {
         Operaciones op = new Operaciones();
         try {
             ResultSet res = op.ConsultaEsp("SELECT COUNT(k_pago) FROM pago");
@@ -77,11 +78,11 @@ public class DAO_Pago {
         }
     }
 
-    public int totalPagosRealizados(String opc){
+    public int totalPagosRealizados(String opc) {
         setFechas(opc);
         Operaciones op = new Operaciones();
         try {
-            ResultSet res = op.ConsultaEsp("SELECT COUNT(k_pago) FROM pago WHERE f_pago BETWEEN '"+formateador.format(fechainicio)+"' AND '"+formateador.format(fechafinal)+"'");
+            ResultSet res = op.ConsultaEsp("SELECT COUNT(k_pago) FROM pago WHERE f_pago BETWEEN '" + formateador.format(fechainicio) + "' AND '" + formateador.format(fechafinal) + "'");
             res.next();
             return res.getInt(1);
         } catch (SQLException e) {
@@ -90,7 +91,7 @@ public class DAO_Pago {
         }
     }
 
-    public int totalProductosVendidos(){
+    public int totalProductosVendidos() {
         Operaciones op = new Operaciones();
         try {
             ResultSet res = op.ConsultaEsp("SELECT SUM(cp.q_pys_pedidos) FROM cuenta_productos cp, cuenta c, pago p where cp.k_cuenta = c.k_cuenta AND p.k_cuenta = c.k_cuenta");
@@ -102,11 +103,11 @@ public class DAO_Pago {
         }
     }
 
-    public int totalProductosVendidos(String opc){
+    public int totalProductosVendidos(String opc) {
         setFechas(opc);
         Operaciones op = new Operaciones();
         try {
-            ResultSet res = op.ConsultaEsp("SELECT SUM(cp.q_pys_pedidos) FROM cuenta_productos cp, cuenta c, pago p where cp.k_cuenta = c.k_cuenta AND p.k_cuenta = c.k_cuenta AND p.f_pago BETWEEN '"+formateador.format(fechainicio)+"' AND '"+formateador.format(fechafinal)+"'");
+            ResultSet res = op.ConsultaEsp("SELECT SUM(cp.q_pys_pedidos) FROM cuenta_productos cp, cuenta c, pago p where cp.k_cuenta = c.k_cuenta AND p.k_cuenta = c.k_cuenta AND p.f_pago BETWEEN '" + formateador.format(fechainicio) + "' AND '" + formateador.format(fechafinal) + "'");
             res.next();
             return res.getInt(1);
         } catch (SQLException e) {
@@ -114,7 +115,8 @@ public class DAO_Pago {
             return -1;
         }
     }
-    public double VentaTotal(){
+
+    public double VentaTotal() {
         Operaciones op = new Operaciones();
         try {
             ResultSet res = op.ConsultaEsp("SELECT SUM(v_monto) FROM pago");
@@ -126,11 +128,11 @@ public class DAO_Pago {
         }
     }
 
-    public double VentaTotal(String opc){
+    public double VentaTotal(String opc) {
         setFechas(opc);
         Operaciones op = new Operaciones();
         try {
-            ResultSet res = op.ConsultaEsp("SELECT SUM(v_monto) FROM pago WHERE f_pago BETWEEN '"+formateador.format(fechainicio)+"' AND '"+formateador.format(fechafinal)+"'");
+            ResultSet res = op.ConsultaEsp("SELECT SUM(v_monto) FROM pago WHERE f_pago BETWEEN '" + formateador.format(fechainicio) + "' AND '" + formateador.format(fechafinal) + "'");
             res.next();
             return res.getDouble(1);
         } catch (SQLException e) {
@@ -138,7 +140,8 @@ public class DAO_Pago {
             return -1;
         }
     }
-    public double ingresoHabitacionesPorReserva(String id){
+
+    public double ingresoHabitacionesPorReserva(String id) {
         Operaciones op = new Operaciones();
         try {
             ResultSet res1 = op.ConsultaEsp("SELECT * FROM reserva WHERE k_reserva = " + id);
@@ -147,10 +150,10 @@ public class DAO_Pago {
             res2.next();
             java.sql.Date fechai = res1.getDate(3);
             java.sql.Date fechaf = res1.getDate(5);
-            long dias = (fechaf.getTime()-fechai.getTime())/86400000;
-            if(dias > res2.getInt(5)){
-                return res1.getDouble(9)*(1-res2.getDouble(3));
-            }else{
+            long dias = (fechaf.getTime() - fechai.getTime()) / 86400000;
+            if (dias > res2.getInt(5)) {
+                return res1.getDouble(9) * (1 - res2.getDouble(3));
+            } else {
                 return res1.getDouble(9);
             }
         } catch (SQLException e) {
@@ -159,81 +162,86 @@ public class DAO_Pago {
         }
     }
 
-    public int cantidadProductosPorReserva(String id){
+    public int cantidadProductosPorReserva(String id) {
         Operaciones op = new Operaciones();
-        try{
-            ResultSet res = op.ConsultaEsp("SELECT SUM(cp.q_pys_pedidos) FROM reserva r, pago p, cuenta c, cuenta_productos cp WHERE p.k_cuenta = c.k_cuenta AND c.k_cuenta = cp.k_cuenta AND c.k_reserva = r.k_reserva AND r.k_reserva = "+id);
-            if(res.next()){
+        try {
+            ResultSet res = op.ConsultaEsp("SELECT SUM(cp.q_pys_pedidos) FROM reserva r, pago p, cuenta c, cuenta_productos cp WHERE p.k_cuenta = c.k_cuenta AND c.k_cuenta = cp.k_cuenta AND c.k_reserva = r.k_reserva AND r.k_reserva = " + id);
+            if (res.next()) {
                 return res.getInt(1);
-            }else{
+            } else {
                 return 0;
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             return 0;
         }
     }
 
-    public double ingresosProductosPorReserva(String id){
+    public double ingresosProductosPorReserva(String id) {
         Operaciones op = new Operaciones();
-        try{
-            ResultSet res = op.ConsultaEsp("SELECT SUM(cp.q_pys_pedidos* cp.v_precio_venta) FROM reserva r, pago p, cuenta c, cuenta_productos cp WHERE p.k_cuenta = c.k_cuenta AND c.k_cuenta = cp.k_cuenta AND c.k_reserva = r.k_reserva AND r.k_reserva ="+id);
-            if(res.next()){
+        try {
+            ResultSet res = op.ConsultaEsp("SELECT SUM(cp.q_pys_pedidos* cp.v_precio_venta) FROM reserva r, pago p, cuenta c, cuenta_productos cp WHERE p.k_cuenta = c.k_cuenta AND c.k_cuenta = cp.k_cuenta AND c.k_reserva = r.k_reserva AND r.k_reserva =" + id);
+            if (res.next()) {
                 return res.getDouble(1);
-            }else{
+            } else {
                 return 0;
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             return 0;
         }
     }
 
-    public double totalIngresosPorReserva(String id){
+    public double totalIngresosPorReserva(String id) {
         Operaciones op = new Operaciones();
-        try{
-            ResultSet res = op.ConsultaEsp("SELECT p.v_monto FROM pago p, cuenta c, reserva r WHERE p.k_cuenta = c.k_cuenta AND c.k_reserva = r.k_reserva AND r.k_reserva = "+ id);
-            if(res.next()){
+        try {
+            ResultSet res = op.ConsultaEsp("SELECT p.v_monto FROM pago p, cuenta c, reserva r WHERE p.k_cuenta = c.k_cuenta AND c.k_reserva = r.k_reserva AND r.k_reserva = " + id);
+            if (res.next()) {
                 return res.getDouble(1);
-            }else{
+            } else {
                 return 0;
             }
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             return 0;
         }
     }
 
-    public void setFechas(String opc){
+    public void setFechas(String opc) {
         long dif = 0;
         fechainicio = new Date();
         fechafinal = new Date();
-        if(opc.equals("Ultimo Año")){
+        if (opc.equals("Ultimo Año")) {
             dif = Long.parseLong("31536000000");
-            fechainicio.setTime(fechainicio.getTime()-dif);
-        }else if(opc.equals("Ultimo Mes")){
+            fechainicio.setTime(fechainicio.getTime() - dif);
+        } else if (opc.equals("Ultimo Mes")) {
             dif = Long.parseLong("2678400000");
-            fechainicio.setTime(fechainicio.getTime()-dif);
-        }else if(opc.equals("Ultima Semana")){
+            fechainicio.setTime(fechainicio.getTime() - dif);
+        } else if (opc.equals("Ultima Semana")) {
             dif = Long.parseLong("604800000");
-            fechainicio.setTime(fechainicio.getTime()-dif);
-        }else if(opc.equals("Hoy")){
+            fechainicio.setTime(fechainicio.getTime() - dif);
+        } else if (opc.equals("Hoy")) {
             dif = Long.parseLong("86400000");
-            fechainicio.setTime(fechainicio.getTime()-dif);
+            fechainicio.setTime(fechainicio.getTime() - dif);
         }
     }
 
-    public int consultarExistenciaPago(int cuenta){
+    public String consultarExistenciaPago(int cuenta) {
         Operaciones op = new Operaciones();
-        try{
-            ResultSet res = op.ConsultaEsp("SELECT k_pago FROM pago WHERE k_cuenta = "+cuenta );
+        try {
+            ResultSet res = op.ConsultaEsp("SELECT k_pago FROM pago WHERE k_cuenta = " + cuenta);
             res.next();
-            return res.getInt(1);
-
-        }catch (SQLException e){
+            if (res.next()) {
+                return res.getString(1);
+            }else{
+                return null;
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
-            return -1;
+            return null;
         }
+
     }
 }
+
