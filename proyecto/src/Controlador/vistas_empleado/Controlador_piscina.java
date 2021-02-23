@@ -1,7 +1,6 @@
 package Controlador.vistas_empleado;
 
 import DatosSQL.DAOs.*;
-import Modelo.entidades.Habitacion;
 import Modelo.entidades.PyS;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
@@ -16,12 +15,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 
-import javax.swing.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class Controlador_restaurante implements Initializable {
+public class Controlador_piscina implements Initializable {
 
 
     public StackPane empleado;
@@ -45,7 +43,7 @@ public class Controlador_restaurante implements Initializable {
     public String reserva;
     int cuenta ;
     private int Total=0;
-    private String categoria="Restaurante";
+    private String categoria="Piscina";
     DAO_Cuenta DAOC = new DAO_Cuenta();
     DAO_Cuenta_Productos DAOCP = new DAO_Cuenta_Productos();
     DAO_Registro DAOR =  new DAO_Registro();
