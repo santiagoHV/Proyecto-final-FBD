@@ -169,6 +169,19 @@ public class DAO_Reserva {
         }
     }
 
+    public void actualizarEstadoDeReservas(String estado, int ID){
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = Conexion.getInstance().getConnection().prepareStatement("UPDATE reserva" +
+                    " SET n_estado = '"+estado+"' WHERE k_reserva= "+ID+"");
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            System.out.println(throwables + " en actualizacion");
+            throwables.printStackTrace();
+        }
+    }
+
     public List<Reserva> BuscarReservas(int k_reserva, int num_doc, String nom_or_apel) {
 
         List<Reserva> reservaList = new ArrayList<>();

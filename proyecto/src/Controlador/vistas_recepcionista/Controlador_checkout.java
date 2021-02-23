@@ -458,6 +458,10 @@ public class Controlador_checkout implements Initializable {
             GridPanel_Huespedes.setDisable(true);
             progressIndCheckout.setVisible(true);
             obtener_huespedes();
+            if(huespedIDList.size()==1)
+            {
+                new DAO_Reserva().actualizarEstadoDeReservas("vencida",cuenta.getReserva().getK_reserva());
+            }
         }
         dialogAlerta.show();
     }
