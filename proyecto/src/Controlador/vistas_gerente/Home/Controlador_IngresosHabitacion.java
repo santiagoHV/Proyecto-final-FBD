@@ -1,5 +1,6 @@
 package Controlador.vistas_gerente.Home;
 
+import Controlador.Alerta;
 import DatosSQL.DAOs.DAO_Pago;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -9,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.layout.StackPane;
 
 import javax.swing.*;
 import java.net.URL;
@@ -25,6 +27,7 @@ public class Controlador_IngresosHabitacion implements Initializable {
     public double ingresos_tot;
     public JFXTextField camp_id;
     public Label label_ing_tot;
+    public StackPane stack;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -71,7 +74,7 @@ public class Controlador_IngresosHabitacion implements Initializable {
             Thread elhilitoromeo = new Thread(tareita);
             elhilitoromeo.start();
         } else {
-            JOptionPane.showMessageDialog(null, "Ingrese algun dato");
+            new Alerta("Advertencia!","Ingrese algun dato",stack);
         }
     }
 }

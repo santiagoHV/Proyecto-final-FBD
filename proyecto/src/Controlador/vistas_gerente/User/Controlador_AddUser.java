@@ -1,5 +1,6 @@
 package Controlador.vistas_gerente.User;
 
+import Controlador.Alerta;
 import Datos_NoSQL.Usuario;
 import Datos_NoSQL.UsuarioDAO;
 import com.jfoenix.controls.JFXButton;
@@ -11,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -29,6 +31,7 @@ public class Controlador_AddUser implements Initializable {
     public PasswordField l_password;
     public ProgressIndicator progress;
     public JFXButton cancelar_button;
+    public StackPane stack;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -45,14 +48,14 @@ public class Controlador_AddUser implements Initializable {
 
     public void addUser(){
         if(l_username.getText().isBlank() || l_password.getText().isBlank() || l_password2.getText().isBlank() || combobox.getValue() == null ){
-            JOptionPane.showMessageDialog(null, "Ingrese todos los datos");
+            new Alerta("Advertencia!","Ingrese todos los datos", stack);
         }else{
             if(l_password.getText().equals(l_password2.getText())){
                 String role = convPalabras(combobox.getValue().toString());
                 Usuario user = new Usuario(l_username.getText(), l_password.getText(), role);
                 addUserDB(user);
             }else{
-                JOptionPane.showMessageDialog(null,"Las contraseñas deben coincidir");
+                new Alerta("Error!","Las contraseñas deben coincidir", stack);
             }
         }
     }
@@ -80,17 +83,17 @@ public class Controlador_AddUser implements Initializable {
                     boolean agregado = db.addUsuario(user);
                     progress.setVisible(false);
                     if(agregado){
-                        JOptionPane.showMessageDialog(null,"Usuario creado con exito!");
+                        new Alerta("Creado!","Usuario creado con exito!", stack);
                         l_username.setText("");
                         l_password.setText("");
                         l_password2.setText("");
                     }else{
-                        JOptionPane.showMessageDialog(null,"Este usuario ya existe");
+                        new Alerta("Error!","Este usuario ya existe!", stack);
                     }
-
                 }catch (Exception e){
                     progress.setVisible(false);
-                    JOptionPane.showMessageDialog(null, "Error al crear el usuario, intente luego.");
+                    new Alerta("Error Critico!","Error al crear el usuario, intente luego", stack);
+
                 }
                 return null;
             }

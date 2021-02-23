@@ -1,5 +1,6 @@
 package Controlador.vistas_gerente.Productos;
 
+import Controlador.Alerta;
 import DatosSQL.DAOs.DAO_PyS;
 import Modelo.entidades.PyS;
 import com.jfoenix.controls.JFXButton;
@@ -131,7 +132,7 @@ public class Controlador_Productos implements Initializable {
             AnchorMP.setEffect(blur);
             dialog.show();
         }else{
-            JOptionPane.showMessageDialog(null, "Seleccione el producto que desea modificar");
+            new Alerta("Advertencia!","Seleccione el producto que desea modificar", stackPane1);
         }
     }
     public void addProducto(ActionEvent actionEvent) throws IOException {

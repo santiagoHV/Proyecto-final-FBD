@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.layout.StackPane;
 
 import javax.swing.*;
 import java.net.URL;
@@ -16,6 +17,7 @@ public class Controlador_AddCondicion implements Initializable {
     public JFXTextField dias_textfield1;
     public Spinner aforo_spinner;
     public Spinner descuento_spinner;
+    public StackPane stack;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -30,7 +32,7 @@ public class Controlador_AddCondicion implements Initializable {
             dias_textfield1.setText("");
             descripcion_textfield.setText("");
         }else {
-            JOptionPane.showMessageDialog(null, "Ocurrio un error");
+            new Alerta("Error","Ha ocurrido un error inesperado", stack);
         }
     }
 }

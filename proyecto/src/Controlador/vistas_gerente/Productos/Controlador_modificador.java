@@ -1,11 +1,13 @@
 package Controlador.vistas_gerente.Productos;
 
+import Controlador.Alerta;
 import DatosSQL.DAOs.DAO_PyS;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 
 import javax.swing.*;
 import java.net.URL;
@@ -17,6 +19,7 @@ public class Controlador_modificador implements Initializable {
     public Label id_label;
     public JFXTextField value_input;
     public JFXButton ok_button;
+    public StackPane stack;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -27,19 +30,19 @@ public class Controlador_modificador implements Initializable {
         System.out.println(title_label.getText());
         if(title_label.getText().equals("Modificar Stock")){
             if(new DAO_PyS().modificarStock(id_label.getText(), value_input.getText())){
-                JOptionPane.showMessageDialog(null,"Stock modificado con exito");
+                new Alerta("Modificado!","Stock modificado con exito", stack);
                 BSalirDialog.getOnAction();
             }else{
-                JOptionPane.showMessageDialog(null, "Error al hacer esta operacion");
+                new Alerta("Error!","Error al hacer esta operacion", stack);
             }
         }else if(title_label.getText().equals("Editar precio de venta")){
             if(new DAO_PyS().modificarPrecio(id_label.getText(), value_input.getText())){
-                JOptionPane.showMessageDialog(null,"Precio modificado con exito");
+                new Alerta("Modificado!","Precio modificado con exito", stack);
             }else{
-                JOptionPane.showMessageDialog(null, "Error al hacer esta operacion");
+                new Alerta("Error!","Error al hacer esta operacion", stack);
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Algo anda mal...");
+            new Alerta("Error Critico!","Algo anda mal...", stack);
         }
     }
 

@@ -1,5 +1,6 @@
 package Controlador.vistas_gerente.Condiciones;
 
+import Controlador.Alerta;
 import DatosSQL.DAOs.DAO_CondicionHotel;
 import DatosSQL.DAOs.DAO_Pago;
 import Modelo.entidades.Condicion_Hotel;
@@ -86,12 +87,12 @@ public class Controlador_Condiciones implements Initializable {
 
     public void activarSeleccionado(ActionEvent actionEvent){
         if(tabla_condiciones.getSelectionModel().getSelectedItem() == null){
-            JOptionPane.showMessageDialog(null, "Seleccione una condicion");
+            new Alerta("Advertencia!","Seleccione una condicion",stackpane1);
         }else{
             if(new DAO_CondicionHotel().activarCond(tabla_condiciones.getSelectionModel().getSelectedItem().getK_condicion())){
                 loadCondiciones();
             }else{
-                JOptionPane.showMessageDialog(null, "Error al cambiar estado");
+                new Alerta("Error!","Error al cambiar estado",stackpane1);
             }
         }
     }

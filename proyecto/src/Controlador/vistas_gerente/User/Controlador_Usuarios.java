@@ -1,5 +1,6 @@
 package Controlador.vistas_gerente.User;
 
+import Controlador.Alerta;
 import Datos_NoSQL.Usuario;
 import Datos_NoSQL.UsuarioDAO;
 import Vista.Main;
@@ -82,7 +83,7 @@ public class Controlador_Usuarios implements Initializable {
                 db.dropUser(user);
                 loadUsers();
             }else{
-                JOptionPane.showMessageDialog(null,"Por favor, seleccione un usuario");
+                Alerta a = new Alerta("Error", "Por favor, seleccione un usuario", SPtabla);
             }
     }
 
