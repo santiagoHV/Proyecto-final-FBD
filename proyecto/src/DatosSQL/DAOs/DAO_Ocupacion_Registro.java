@@ -19,7 +19,7 @@ public class DAO_Ocupacion_Registro {
                     "AND Huesped.k_tipo_documento = Persona.k_tipo_documento " +
                     "AND Huesped.k_identificacion = Persona.k_identificacion " +
                     "AND Reserva.k_reserva = Registro_CheckIn.k_reserva " +
-                    "and Registro_CheckIn.k_numero_habitacion = "+202+"");
+                    "and Registro_CheckIn.k_numero_habitacion = "+hab+"");
             ArrayList<Ocupacion_registro> arr = new ArrayList<>();
             while (res.next()){
                 arr.add(new Ocupacion_registro(res.getString(1), res.getString(2), res.getString(3), res.getInt(4), res.getString(5)));
