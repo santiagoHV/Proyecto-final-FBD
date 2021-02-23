@@ -575,6 +575,7 @@ public class Controlador_reserva implements Initializable {
         boolean flagHabitacionTriple= false;
 
         for(Habitacion habitacion: this.listaHabitaciones){
+
             if(habitacion.getTipo_habitacion().getCupo() == 2){
                 flagHabitacionDoble = true;
             }else if(habitacion.getTipo_habitacion().getCupo() == 3){

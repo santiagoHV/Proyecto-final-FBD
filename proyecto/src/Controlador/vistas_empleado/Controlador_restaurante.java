@@ -138,7 +138,7 @@ public class Controlador_restaurante implements Initializable {
         if(DAOR.consultarHabitacion(habitacion)!=-1 && cond && (DAOP.consultarExistenciaPago(cuenta)==1)){
             REMuestra.appendText("Habitación No: " + RDPiso.getValue() + RDHabitacion.getValue() + "\n");
             cond = false;
-        } else if (DAOP.consultarExistenciaPago(cuenta)!=1){
+        } else if (DAOP.consultarExistenciaPago(cuenta) == -1){
             Alert a6 = new Alert(Alert.AlertType.ERROR);
             a6.setContentText("El huesped ya realizo el pago de la habitación");
             a6.setTitle("Pago cliente");

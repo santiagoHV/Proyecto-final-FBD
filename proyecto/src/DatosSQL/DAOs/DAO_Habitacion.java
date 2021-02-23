@@ -37,7 +37,7 @@ public class DAO_Habitacion {
         ArrayList<Integer> habitaciones = new ArrayList<Integer>();
         try{
             ResultSet resultSet = op.ConsultaEsp("SELECT distinct (rh.k_numero_habitacion) FROM reserva r, reserva_habitacion rh" +
-                    " WHERE r.k_reserva = rh.k_reserva and " +
+                    " WHERE r.k_reserva = rh.k_reserva and (n_estado = 'en curso' OR n_estado = 'activa') AND" +
                     "      (('" + fInicio + "' BETWEEN r.f_inicio and r.f_final OR '" + fFinal + "' BETWEEN r.f_inicio and r.f_final) OR " +
                     "      (r.f_inicio BETWEEN '" + fInicio + "' and '" + fFinal + "' OR r.f_final BETWEEN '" + fInicio + "' and '" + fFinal + "'));");
 
