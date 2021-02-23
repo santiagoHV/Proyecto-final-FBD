@@ -1,5 +1,6 @@
 package Controlador.vistas_gerente.Condiciones;
 
+import Controlador.Alerta;
 import DatosSQL.DAOs.DAO_CondicionHotel;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.Initializable;
@@ -26,7 +27,6 @@ public class Controlador_AddCondicion implements Initializable {
         Double aforo = Double.parseDouble(aforo_spinner.getValue().toString())/100;
         Double descuento = Double.parseDouble(descuento_spinner.getValue().toString())/100;
         if(new DAO_CondicionHotel().addCondicion(descuento, aforo, dias_textfield1.getText(),descripcion_textfield.getText())){
-            JOptionPane.showMessageDialog(null, "Agregado con exito");
             dias_textfield1.setText("");
             descripcion_textfield.setText("");
         }else {

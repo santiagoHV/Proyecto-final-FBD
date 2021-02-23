@@ -88,6 +88,8 @@ public class Controlador_datos_ingreso implements Initializable {
         srch_tipo_documento_in.getItems().add("CE");
         srch_tipo_documento_in.getItems().add("RC");
         srch_tipo_documento_in.getItems().add("TI");
+
+        srch_editar.setDisable(true);
     }
 
     /**
@@ -134,8 +136,10 @@ public class Controlador_datos_ingreso implements Initializable {
 
                             subpanel_usuarios.getStyleClass().add("controlValido");
                             seleccionar_usuario_btn.setDisable(false);
+                            srch_editar.setDisable(false);
 
                         }else{
+                            srch_editar.setDisable(false);
                             no_identificacion_srch.setText("--");
                             nombreC_srch.setText("No encontrado");
                             ti_srch.setText("--");
