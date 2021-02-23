@@ -54,6 +54,7 @@ public class Controlador_AddUser implements Initializable {
                 String role = convPalabras(combobox.getValue().toString());
                 Usuario user = new Usuario(l_username.getText(), l_password.getText(), role);
                 addUserDB(user);
+                new Alerta("Creado!","Usuario creado con exito", stack);
             }else{
                 new Alerta("Error!","Las contraseñas deben coincidir", stack);
             }
