@@ -26,19 +26,17 @@ public class DAO_Pago {
     }
 
 
-    public Pago consultarPago(int ID){
+    public Pago consultarPagoPorCuenta(int ID_Cuenta){
 
         try {
-            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Pago WHERE k_pago = "+ID+"");
+            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Pago WHERE k_cuenta = "+ID_Cuenta+"");
             resultSet.next();
 
             DAO_Cuenta dao_cuenta = new DAO_Cuenta();
             Cuenta cuenta = dao_cuenta.consultarCuenta(resultSet.getInt(5));
 
-            Pago pago = new Pago(resultSet.getInt(1),resultSet.getDate(2),
+            return new Pago(resultSet.getInt(1),resultSet.getDate(2),
                     resultSet.getDouble(3),resultSet.getString(4),cuenta);
-
-            return pago;
 
         }catch (SQLException ex){
             System.out.println(ex);

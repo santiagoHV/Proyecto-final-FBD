@@ -43,6 +43,7 @@ public class Controlador_checkout implements Initializable {
     public Pane panel_titular;
     public Pane panel_pagos;
     public StackPane stackBG;
+    public Label lb_alert_pago;
     private SVGGlyph information = new SVGGlyph(0,"information",
             "M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20Zm0-8.5a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0v-3A1,1,0,0,0,12,11.5Zm0-4a1.25,1.25,0,1,0,1.25,1.25A1.25,1.25,0,0,0,12,7.5Z"
             , Color.DARKGRAY);
@@ -87,6 +88,8 @@ public class Controlador_checkout implements Initializable {
     public int codigoReserva;
     public double totalPago;
     public double totalConsumos;
+
+    private Pago pagoCuenta;
 
     private List<Habitacion> habitacionList = new ArrayList<>();
 
@@ -252,7 +255,6 @@ public class Controlador_checkout implements Initializable {
             public void handle(WorkerStateEvent workerStateEvent) {
                 totalConsumos = taskTotalConsumos.getValue();
                 llenarDatosReserva();
-                progressIndCheckout.setVisible(false);
             }
         });
 
@@ -282,6 +284,8 @@ public class Controlador_checkout implements Initializable {
             public void handle(WorkerStateEvent workerStateEvent) {
                 registroList = taskConRegistros.getValue();
                 GridPanel_Huespedes.getChildren().clear();
+                huespedIDList.clear();
+                pagoCuenta = new DAO_Pago().consultarPagoPorCuenta(cuenta.getK_cuenta());
 
                 int column = 0;
                 int row = 0;
@@ -315,6 +319,21 @@ public class Controlador_checkout implements Initializable {
 
                             VBox vBox = (VBox) controlador_huesped.AnchorBG.getChildren().get(10);
                             vBox.getChildren().remove(0);
+                            lb_alert_pago.setVisible(true);
+
+                            if(pagoCuenta==null)
+                            {
+                                controlador_huesped.btn_ingreso.setDisable(true);
+                                lb_alert_pago.getStyleClass().set(1,"label_pago_alert");
+                                btn_procesar_pago.setDisable(false);
+                            }
+                            else
+                            {
+                                controlador_huesped.btn_ingreso.setDisable(false);
+                                lb_alert_pago.getStyleClass().set(1,"label_pago_alert_green");
+                                lb_alert_pago.setText("El pago para esta cuenta ya ha sido realizado");
+                                btn_procesar_pago.setDisable(true);
+                            }
 
                             controlador_huesped.btn_ingreso.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent actualizarReg)->
                             {
@@ -521,6 +540,8 @@ public class Controlador_checkout implements Initializable {
                 progressIndCheckout.setVisible(false);
                 btn_procesar_pago.setDisable(true);
                 dialog.close();
+                progressIndCheckout.setVisible(true);
+                obtener_huespedes();
             }
         });
 
