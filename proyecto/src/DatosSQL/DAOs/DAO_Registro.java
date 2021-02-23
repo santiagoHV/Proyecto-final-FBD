@@ -25,6 +25,16 @@ public class DAO_Registro {
             return -1;
         }
     }
+    public String consultarsalida(String habitacion){
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet res = op.ConsultaEsp("SELECT f_salida FROM registro_checkin WHERE k_numero_habitacion = "+habitacion+"");
+            res.next();
+            return res.getString(1);
+        } catch (SQLException e) {
+            return null;
+        }
+    }
 
     public Registro consultarRegistro(int ID){
         Operaciones op = new Operaciones();
