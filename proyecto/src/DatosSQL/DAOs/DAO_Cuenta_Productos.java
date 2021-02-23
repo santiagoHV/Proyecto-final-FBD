@@ -44,7 +44,7 @@ public class DAO_Cuenta_Productos {
     public double consultarTotalDeConsumosPorReserva(int ID) throws SQLException {
 
         try {
-            ResultSet resultSet = op.ConsultaEsp("SELECT SUM( v_precio_venta ) FROM cuenta_productos cp WHERE k_cuenta = " + ID);
+            ResultSet resultSet = op.ConsultaEsp("SELECT SUM( v_precio_venta * q_pys_pedidos ) FROM cuenta_productos cp WHERE k_cuenta = " + ID);
 
             resultSet.next();
             return resultSet.getDouble(1);
