@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="859.0" stylesheets="@../../../assets/css/gerente_escenas.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_gerente.Habitaciones.Controlador_Ocupacion">
+   <children>
+      <AnchorPane fx:id="AnchorMP" prefHeight="472.0" prefWidth="742.0">
+         <children>
+            <TableView fx:id="tabla_historial" layoutX="1.0" layoutY="69.0" prefHeight="513.0" prefWidth="859.0" styleClass="tabla_condiciones">
+              <columns>
+                <TableColumn fx:id="titular_column" prefWidth="261.0" text="Titular " />
+                <TableColumn fx:id="fechai_column" minWidth="0.0" prefWidth="140.0" text="Fecha inicio" />
+                  <TableColumn fx:id="fechaf_column" minWidth="0.0" prefWidth="140.0" text="Fecha Final" />
+                  <TableColumn fx:id="idres_column" minWidth="0.0" prefWidth="113.0" text="ID Reserva" />
+                  <TableColumn fx:id="estado_column" minWidth="0.0" prefWidth="208.0" text="Estado" />
+              </columns>
+            </TableView>
+            <JFXButton layoutX="380.0" layoutY="592.0" prefHeight="44.0" prefWidth="99.0" styleClass="cancel" text="Salir">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </JFXButton>
+            <Label alignment="CENTER" prefHeight="69.0" prefWidth="863.0" styleClass="title-hotel" text="Historial de Ocupacion - habitacion" textFill="WHITE" />
+            <ProgressIndicator fx:id="progresi" layoutX="773.0" layoutY="588.0" />
+            <Label fx:id="label_habitacion" layoutX="26.0" layoutY="598.0" text="xxx">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="label_precio" layoutX="91.0" layoutY="599.0" prefHeight="32.0" prefWidth="263.0" text="Precio: ">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

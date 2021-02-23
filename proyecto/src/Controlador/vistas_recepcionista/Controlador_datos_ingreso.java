@@ -40,6 +40,7 @@ public class Controlador_datos_ingreso implements Initializable {
     public DatePicker fecha_nacimiento_in;
     public Button validar_btn;
     public TextField direccion_in;
+    public MFXProgressSpinner progressIndicatorEdit;
 
     //Panel de busqueda de usuarios existentes
     public Pane backPanelBuscar;
@@ -69,6 +70,9 @@ public class Controlador_datos_ingreso implements Initializable {
     public Persona personaEncontrada;
     public Huesped huespedEncontrado;
 
+    /////////////
+    boolean flagEdicion = false;
+
 
 
     @Override
@@ -84,6 +88,8 @@ public class Controlador_datos_ingreso implements Initializable {
         srch_tipo_documento_in.getItems().add("CE");
         srch_tipo_documento_in.getItems().add("RC");
         srch_tipo_documento_in.getItems().add("TI");
+
+        srch_editar.setDisable(true);
     }
 
     /**
@@ -130,8 +136,10 @@ public class Controlador_datos_ingreso implements Initializable {
 
                             subpanel_usuarios.getStyleClass().add("controlValido");
                             seleccionar_usuario_btn.setDisable(false);
+                            srch_editar.setDisable(false);
 
                         }else{
+                            srch_editar.setDisable(false);
                             no_identificacion_srch.setText("--");
                             nombreC_srch.setText("No encontrado");
                             ti_srch.setText("--");
@@ -224,6 +232,10 @@ public class Controlador_datos_ingreso implements Initializable {
             panel_nuevo_ingreso.getStyleClass().add("controlValido");
 
             seleccionar_usuario_btn.setDisable(false);
+
+            if(flagEdicion){
+                actualizarCliente();
+            }
         }
     }
 
@@ -238,8 +250,9 @@ public class Controlador_datos_ingreso implements Initializable {
                 return new Persona(Integer.parseInt(no_documento_in.getText()),tipo_documento_in.getValue().toString(),nombres_in.getText(),
                         apellidos_in.getText(), Date.valueOf(fecha_nacimiento_in.getValue()),telefono_in.getText());
             }else{
-                return new Huesped(Integer.parseInt(no_documento_in.getText()),tipo_documento_in.getValue().toString(),nombres_in.getText(),
+                this.huespedEncontrado = new Huesped(Integer.parseInt(no_documento_in.getText()),tipo_documento_in.getValue().toString(),nombres_in.getText(),
                         apellidos_in.getText(), Date.valueOf(fecha_nacimiento_in.getValue()),telefono_in.getText(),direccion_in.getText());
+                return huespedEncontrado;
             }
         }else {
             if(direccion_srch.getText().equals("--")){
@@ -274,16 +287,15 @@ public class Controlador_datos_ingreso implements Initializable {
      */
     private boolean validarFechaYDocumento(String tipoDoc, LocalDate fecha) {
         LocalDate fechaActual = LocalDate.now();
+        int edad = Period.between(fecha,fechaActual).getYears();
         if(fechaActual.isBefore(fecha)){
             return false;
-        }else if(fechaActual.getYear() - fecha.getYear() > 18 && (tipoDoc.equals("CC") || tipoDoc.equals("CE"))){
+        }else if(edad >= 18 && (tipoDoc.equals("CC") || tipoDoc.equals("CE"))){
             return true;
-        }else if(fechaActual.getYear() - fecha.getYear() == 18 && (tipoDoc.equals("CC") || tipoDoc.equals("CE"))){
-            if(fechaActual.getMonthValue() >= fecha.getMonthValue()){
-                return true;
-            }else{
-                return false;
-            }
+        }else if(edad < 18 && edad >= 7 && tipoDoc.equals("TI")){
+            return true;
+        }else if(edad < 7 && tipoDoc.equals("RC")){
+            return true;
         }else{
             return false;
         }
@@ -305,7 +317,77 @@ public class Controlador_datos_ingreso implements Initializable {
         }
     }
 
+    public void editar_encontrado(ActionEvent actionEvent) {
+        flagEdicion = true;
+        panel_nuevo_ingreso.setDisable(false);
 
+        nombres_in.setText(personaEncontrada.getN_nombre());
+        apellidos_in.setText(personaEncontrada.getN_apellido());
+        no_documento_in.setText(String.valueOf(personaEncontrada.getK_identificacion()));
+        tipo_documento_in.setValue(personaEncontrada.getK_tipo_documento_id());
+        fecha_nacimiento_in.setValue(personaEncontrada.getF_nacimiento().toLocalDate());
+        telefono_in.setText(personaEncontrada.getN_telefono());
+        direccion_in.setText(direccion_srch.getText());
+
+
+    }
+
+    public void actualizarCliente(){
+        DAO_Persona dao_persona = new DAO_Persona();
+        DAO_Huesped dao_huesped = new DAO_Huesped();
+        progressIndicatorEdit.setVisible(true);
+
+
+        Task editarPersona = new Task() {
+            @Override
+            protected Object call() throws Exception {
+                dao_persona.actualizarPersona(personaEncontrada);
+                return null;
+            }
+        };
+        Task editarHuesped = new Task() {
+            @Override
+            protected Object call() throws Exception {
+
+                System.out.println(direccion_in.getText());
+
+                huespedEncontrado = (Huesped) solicitarPersona(true);
+                personaEncontrada = huespedEncontrado;
+
+                if(!dao_huesped.huespedExiste(huespedEncontrado.getK_identificacion(),huespedEncontrado.getK_tipo_documento_id())){
+
+                    dao_huesped.insertarHuesped(huespedEncontrado);
+                }else {
+                    dao_huesped.actualizarHuesped(huespedEncontrado);
+                }
+                return null;
+            }
+        };
+
+        Thread threadPersona = new Thread(editarPersona);
+        Thread threadHuesped = new Thread(editarHuesped);
+
+        editarPersona.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent workerStateEvent) {
+                progressIndicatorEdit.setVisible(false);
+            }
+        });
+        editarHuesped.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent workerStateEvent) {
+                threadPersona.start();
+            }
+        });
+
+        if(direccion_in.isDisable()){
+            threadPersona.start();
+        }else{
+
+            threadHuesped.start();
+
+        }
+    }
 
     public void close(ActionEvent actionEvent) {
 
@@ -313,4 +395,6 @@ public class Controlador_datos_ingreso implements Initializable {
 
     public void select(ActionEvent actionEvent) {
     }
+
+
 }

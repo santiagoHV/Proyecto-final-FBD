@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXProgressSpinner?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Glow?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<StackPane fx:id="stack_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../../../assets/css/recepcionista_escenas.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_datos_ingreso">
+<StackPane fx:id="stack_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../../../assets/css/recepcionista_escenas.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.vistas_recepcionista.Controlador_datos_ingreso">
    <children>
        <AnchorPane prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: white;">
           <children>
@@ -39,6 +31,7 @@
                               <Glow />
                            </effect>
                         </Label>
+                        <MFXProgressSpinner fx:id="progressIndicatorEdit" layoutX="202.0" layoutY="16.0" prefHeight="26.0" prefWidth="25.0" visible="false" />
                         <TextField fx:id="nombres_in" layoutX="13.0" layoutY="88.0" />
                         <TextField fx:id="apellidos_in" layoutX="172.0" layoutY="88.0" />
                         <ComboBox fx:id="tipo_documento_in" layoutX="13.0" layoutY="145.0" prefHeight="25.0" prefWidth="149.0" visibleRowCount="5" />
@@ -142,7 +135,7 @@
                         </Label>
                         <Pane fx:id="subpanel_usuarios" layoutX="14.0" layoutY="113.0" prefHeight="142.0" prefWidth="393.0" style="-fx-border-color: black;">
                            <children>
-                              <Label fx:id="nombreC_srch" graphicTextGap="6.0" layoutX="14.0" layoutY="14.0" text="Juan Robado" textAlignment="CENTER">
+                              <Label fx:id="nombreC_srch" graphicTextGap="6.0" layoutX="14.0" layoutY="14.0" text="Por asignar" textAlignment="CENTER">
                                  <font>
                                     <Font name="MAXWELL REGULAR" size="19.0" />
                                  </font>
@@ -150,7 +143,7 @@
                                     <Glow />
                                  </effect>
                               </Label>
-                              <Label fx:id="ti_srch" graphicTextGap="6.0" layoutX="14.0" layoutY="36.0" text="cc:" textAlignment="CENTER">
+                              <Label fx:id="ti_srch" graphicTextGap="6.0" layoutX="14.0" layoutY="36.0" prefHeight="20.0" prefWidth="25.0" text="--" textAlignment="CENTER">
                                  <font>
                                     <Font name="MAXWELL REGULAR" size="19.0" />
                                  </font>
@@ -158,7 +151,7 @@
                                     <Glow />
                                  </effect>
                               </Label>
-                              <Label fx:id="no_identificacion_srch" graphicTextGap="6.0" layoutX="42.0" layoutY="37.0" text="10000000" textAlignment="CENTER">
+                              <Label fx:id="no_identificacion_srch" graphicTextGap="6.0" layoutX="42.0" layoutY="37.0" text="--" textAlignment="CENTER">
                                  <font>
                                     <Font name="MAXWELL REGULAR" size="19.0" />
                                  </font>
@@ -174,7 +167,7 @@
                                     <Glow />
                                  </effect>
                               </Label>
-                              <Label fx:id="edad_srch" graphicTextGap="6.0" layoutX="58.0" layoutY="61.0" text="19 años" textAlignment="CENTER">
+                              <Label fx:id="edad_srch" graphicTextGap="6.0" layoutX="58.0" layoutY="61.0" text="--" textAlignment="CENTER">
                                  <font>
                                     <Font name="MAXWELL REGULAR" size="19.0" />
                                  </font>
@@ -190,7 +183,7 @@
                                     <Glow />
                                  </effect>
                               </Label>
-                              <Label fx:id="telefono_srch" graphicTextGap="6.0" layoutX="81.0" layoutY="87.0" text="+57 3005556633" textAlignment="CENTER">
+                              <Label fx:id="telefono_srch" graphicTextGap="6.0" layoutX="81.0" layoutY="87.0" text="--" textAlignment="CENTER">
                                  <font>
                                     <Font name="MAXWELL REGULAR" size="19.0" />
                                  </font>
@@ -198,7 +191,7 @@
                                     <Glow />
                                  </effect>
                               </Label>
-                              <JFXButton fx:id="srch_editar" layoutX="261.0" layoutY="23.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="87.0" text="Editar" />
+                              <JFXButton fx:id="srch_editar" layoutX="261.0" layoutY="23.0" mnemonicParsing="false" onAction="#editar_encontrado" prefHeight="77.0" prefWidth="87.0" text="Editar" />
                               <Label graphicTextGap="6.0" layoutX="12.0" layoutY="113.0" text="Dirección:" textAlignment="CENTER">
                                  <font>
                                     <Font name="MAXWELL REGULAR" size="19.0" />
@@ -207,7 +200,7 @@
                                     <Glow />
                                  </effect>
                               </Label>
-                              <Label fx:id="direccion_srch" graphicTextGap="6.0" layoutX="78.0" layoutY="113.0" text="Bosa donde la puñalada es mas sabrosa" textAlignment="CENTER">
+                              <Label fx:id="direccion_srch" graphicTextGap="6.0" layoutX="78.0" layoutY="113.0" text="--" textAlignment="CENTER">
                                  <font>
                                     <Font name="MAXWELL REGULAR" size="19.0" />
                                  </font>

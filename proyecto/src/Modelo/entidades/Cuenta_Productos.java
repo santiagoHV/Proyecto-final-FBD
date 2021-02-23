@@ -1,5 +1,6 @@
 package Modelo.entidades;
 import DatosSQL.Operaciones;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -7,12 +8,14 @@ import java.sql.SQLException;
 
 public class Cuenta_Productos {
     private int pys_pedidos;
+    private double precio_venta;
     private Date f_pedido;
     private PyS pys;
     private Cuenta cuenta;
 
-    public Cuenta_Productos(int pys_pedidos, Date f_pedido, PyS pys, Cuenta cuenta) {
+    public Cuenta_Productos(int pys_pedidos, Date f_pedido, double precio_venta, PyS pys, Cuenta cuenta) {
         this.pys_pedidos = pys_pedidos;
+        this.precio_venta = precio_venta;
         this.f_pedido = f_pedido;
         this.pys = pys;
         this.cuenta = cuenta;
@@ -50,5 +53,11 @@ public class Cuenta_Productos {
         this.cuenta = cuenta;
     }
 
+    public double getPrecio_venta() {
+        return precio_venta;
+    }
 
+    public void setPrecio_venta(double precio_venta) {
+        this.precio_venta = precio_venta;
+    }
 }

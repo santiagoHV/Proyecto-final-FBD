@@ -77,6 +77,9 @@ public class DAO_PyS {
         try {
             ResultSet res = op.ConsultaEsp("SELECT MAX(k_codigo_pys) FROM productoyservicio");
             res.next();
+            if(res.getString(1) == null){
+                return "0";
+            }
             return res.getString(1);
         }catch (SQLException e){
             e.printStackTrace();

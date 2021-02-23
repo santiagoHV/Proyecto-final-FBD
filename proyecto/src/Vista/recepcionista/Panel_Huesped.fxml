@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXProgressSpinner?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -24,12 +25,12 @@
             <Font name="MAXWELL REGULAR" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="192.0" layoutY="12.0" prefHeight="24.0" prefWidth="37.0" text="Edad:">
+      <Label layoutX="223.0" layoutY="12.0" prefHeight="24.0" prefWidth="37.0" text="Edad:">
          <font>
             <Font name="MAXWELL REGULAR" size="19.0" />
          </font>
       </Label>
-      <Label fx:id="LBedad" layoutX="234.0" layoutY="12.0" prefHeight="24.0" prefWidth="87.0" text="7 años">
+      <Label fx:id="LBedad" layoutX="265.0" layoutY="12.0" prefHeight="24.0" prefWidth="87.0" text="7 años">
          <font>
             <Font name="MAXWELL REGULAR" size="19.0" />
          </font>
@@ -59,17 +60,18 @@
             <Font name="MAXWELL REGULAR" size="19.0" />
          </font>
       </Label>
-      <VBox fx:id="content_botones" layoutX="360.0" prefHeight="144.0" prefWidth="123.0" spacing="15.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="7.0">
+      <VBox fx:id="content_botones" alignment="CENTER" layoutX="352.0" prefHeight="144.0" prefWidth="123.0" spacing="15.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXButton fx:id="btn_cambiar" mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: black; -fx-border-radius: 5;" text="Cambiar" />
-            <JFXButton fx:id="btn_ingreso" disable="true" mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: black; -fx-border-radius: 5;" text="Dar ingreso" />
+            <JFXButton fx:id="btn_cambiar" buttonType="RAISED" mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: black; -fx-border-radius: 5;" text="Cambiar" />
+            <JFXButton fx:id="btn_ingreso" buttonType="RAISED" mnemonicParsing="false" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: black; -fx-border-radius: 5;" text="Dar ingreso" />
          </children>
       </VBox>
       <JFXComboBox fx:id="comboHabitacion" focusColor="#510503" layoutX="183.0" layoutY="110.0" prefHeight="22.0" prefWidth="104.0" promptText="Habitaciones" styleClass="comboBox" />
-      <Label fx:id="txt_tipo_huesped" layoutX="193.0" layoutY="36.0" prefHeight="24.0" prefWidth="87.0" text="Tipo">
+      <Label fx:id="txt_tipo_huesped" layoutX="224.0" layoutY="36.0" prefHeight="24.0" prefWidth="87.0" text="Tipo">
          <font>
             <Font name="MAXWELL REGULAR" size="19.0" />
          </font>
       </Label>
+      <MFXProgressSpinner fx:id="progressActIng" layoutX="319.0" layoutY="98.0" prefHeight="26.0" prefWidth="26.0" visible="false" />
    </children>
 </AnchorPane>

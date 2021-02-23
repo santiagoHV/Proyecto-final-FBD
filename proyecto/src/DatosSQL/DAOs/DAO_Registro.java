@@ -69,7 +69,9 @@ public class DAO_Registro {
     public List<Registro> consultarRegistroPorReserva(int ID_Reserva){
         Operaciones op = new Operaciones();
         try {
-            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM registro_checkin WHERE k_reserva = "+ID_Reserva+"");
+            ResultSet resultSet = op.ConsultaEsp("SELECT registro_checkin.* FROM registro_checkin, reserva " +
+                    "WHERE (Registro_CheckIn.k_reserva=Reserva.k_reserva) and registro_checkin.k_reserva = "+ID_Reserva+"" +
+                    " and n_estado = 'en curso'");
 
             List<Registro> registroList = new ArrayList<>();
 

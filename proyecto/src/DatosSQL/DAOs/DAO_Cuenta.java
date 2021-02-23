@@ -17,8 +17,27 @@ public class DAO_Cuenta {
             resultSet.next();
 
             Cuenta cuenta = new Cuenta(resultSet.getInt(1),resultSet.getDouble(2),
-                                        new DAO_Pago().consultarPago(resultSet.getInt(3)),
-                                        new DAO_Reserva().consultarReserva(resultSet.getInt(4)));
+                    new DAO_Reserva().consultarReserva(resultSet.getInt(3)));
+
+            return cuenta;
+
+
+        }catch (SQLException ex){
+            System.out.println(ex);
+        }
+
+        return null;
+    }
+
+    public Cuenta consultarCuentaPorReserva(int IDReserva){
+        Operaciones op = new Operaciones();
+        try {
+            ResultSet resultSet = op.ConsultaEsp("SELECT * FROM Cuenta WHERE k_reserva= "+IDReserva+"");
+            resultSet.next();
+
+            Cuenta cuenta = new Cuenta(resultSet.getInt(1),resultSet.getDouble(2),
+                    new DAO_Reserva().consultarReserva(resultSet.getInt(3)));
+
             return cuenta;
 
 

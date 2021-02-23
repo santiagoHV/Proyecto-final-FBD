@@ -18,6 +18,10 @@
     src: url('../Fuentes/TroubleFontRegular400.otf');
 }
 
+@font-face {
+    src: url('../Fuentes/SpaceGrotesk-Regular.otf');
+}
+
 .navbar {
     -fx-background-color: #2E1E1E;
     -fx-border-style: solid;
@@ -220,6 +224,20 @@
 }
 .tap-ventanas{
     -fx-font-size: 15px;
+}
+
+.label_pago_alert
+{
+    -fx-text-fill: #f84d4d;
+    -fx-font-family: "Space Grotesk Regular";
+    -fx-font-size: 13px;
+}
+
+.label_pago_alert_green
+{
+    -fx-text-fill: #21bc46;
+    -fx-font-family: "Space Grotesk Regular";
+    -fx-font-size: 13px;
 }
 
 
