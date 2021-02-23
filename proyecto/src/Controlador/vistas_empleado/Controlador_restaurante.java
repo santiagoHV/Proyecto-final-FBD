@@ -2,7 +2,9 @@ package Controlador.vistas_empleado;
 
 import DatosSQL.DAOs.*;
 import Modelo.entidades.PyS;
-import com.jfoenix.controls.*;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,7 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 import javax.swing.*;
 import java.net.URL;
@@ -27,13 +30,14 @@ public class Controlador_restaurante implements Initializable {
     public JFXButton RCAR1,RPoner,RLimpiar;
     public AnchorPane RPane,PPane;
     public TableColumn ID,Nombre,Stock,Cantidad,Precio,Cargar;
-    public ProgressIndicator progresi;
     public ComboBox<String> RDHabitacion,RDPiso;
     public ObservableList<PyS> OBS;
     public TableView<PyS> productos;
     public StackPane restaurante;
     public ArrayList<Integer> Precio_Cargo;
-    public int ICantidad,IStock,identificacion;
+    public int ICantidad;
+    public int IStock;
+    public int identificacion;
     public double precio;
     public boolean cond=true,aceptar=true;
     public String habitacion;
@@ -41,7 +45,10 @@ public class Controlador_restaurante implements Initializable {
     int cuenta ;
     private int Total=0;
     private String categoria="Restaurante";
-
+    DAO_Cuenta DAOC = new DAO_Cuenta();
+    DAO_Cuenta_Productos DAOCP = new DAO_Cuenta_Productos();
+    DAO_Registro DAOR =  new DAO_Registro();
+    DAO_Pago DAOP = new DAO_Pago();
 
    //Se genera las dos listas que van a servir para todos los botones
     ObservableList<String> comboPisoContent =
@@ -67,7 +74,6 @@ public class Controlador_restaurante implements Initializable {
         for(PyS p: new DAO_PyS().consultarPorCategoria(categoria)){
             obs.add(p);
         }
-        System.out.println(obs);
         return obs;
     }
 
@@ -101,51 +107,93 @@ public class Controlador_restaurante implements Initializable {
             aceptar=false;
         }
         else{
-            JOptionPane.showMessageDialog(null, "Stock invalido, se pondra el maximo stock disponible");
+            Alert a1 = new Alert(Alert.AlertType.WARNING);
+            a1.setTitle("Stock invalido");
+            a1.setContentText("Stock invalido, se pondra el maximo stock disponible");
+            a1.setHeaderText(null);
+            a1.showAndWait();
             REMuestra.appendText("Cantidad: " + IStock + "\n");
             new DAO_PyS().modificarStock(String.valueOf(productos.getSelectionModel().getSelectedItem().getK_codigo_pys()), "0");
             loadProductos();
+            aceptar=false;
         }
 
-        cuenta = DAO_Cuenta.conseguirCuenta(Integer.parseInt(reserva));
+        cuenta = DAOC.conseguirCuenta(Integer.parseInt(reserva));
 
-        DAO_Cuenta_Productos.agregarProducto(ICantidad,identificacion,cuenta,precio);
+           if(DAOCP.consultarcantidad(identificacion,cuenta)==-1) {
+               DAOCP.agregarProducto(ICantidad, identificacion, cuenta, precio);
+           }else{
+               DAOCP.actualizarProducto(ICantidad,identificacion,cuenta);
+           }
 
         Total += ICantidad*precio;
     }
 
     public void onclickhabitacion(ActionEvent actionEvent){
-
         habitacion= RDPiso.getValue() + RDHabitacion.getValue();
-        reserva = String.valueOf(DAO_Registro.consultarHabitacion(habitacion));
-        if(DAO_Registro.consultarHabitacion(habitacion)!=-1 && cond) {
+        reserva = String.valueOf(DAOR.consultarHabitacion(habitacion));
+        if (DAOR.consultarHabitacion(habitacion)!=-1 && cond){
+            cuenta = DAOC.conseguirCuenta(Integer.parseInt(reserva));
+        }
+        if(DAOR.consultarHabitacion(habitacion)!=-1 && cond && (DAOP.consultarExistenciaPago(cuenta)==1)){
             REMuestra.appendText("Habitación No: " + RDPiso.getValue() + RDHabitacion.getValue() + "\n");
-            cond=false;
+            cond = false;
+        } else if (DAOP.consultarExistenciaPago(cuenta)!=1){
+            Alert a6 = new Alert(Alert.AlertType.ERROR);
+            a6.setContentText("El huesped ya realizo el pago de la habitación");
+            a6.setTitle("Pago cliente");
+            a6.setHeaderText(null);
+            a6.showAndWait();
         } else if(cond==true){
-            JOptionPane.showMessageDialog(null, "Está habitación está disponible, porfavor escoger una ocupada ");
+            Alert a2 = new Alert(Alert.AlertType.ERROR);
+            a2.setContentText("Esta habitación está disponible, porfavor escoger una ocupada");
+            a2.setTitle("Habitación vacia");
+            a2.setHeaderText(null);
+            a2.showAndWait();
         } else{
-            JOptionPane.showMessageDialog(null,"Ya cargo una habitación");
+            Alert a3 = new Alert(Alert.AlertType.ERROR);
+            a3.setContentText("Ya cargo una habitación");
+            a3.setTitle("Error Habitación");
+            a3.setHeaderText(null);
+            a3.showAndWait();
         }
 
     }
 
     public void onClickedCargar(MouseEvent event){
-        if(aceptar==false){
-            DAO_Cuenta.actualizarPrecio(Total,reserva);
+        if(aceptar==false ){
+            DAOC.actualizarPrecio(Total,reserva);
             REMuestra.appendText( "----------------------------\n");
             REMuestra.appendText( "Total:" + Total);
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Ingrese algun producto");
+        } else{
+
+            Alert a5 = new Alert(Alert.AlertType.ERROR);
+            a5.setContentText("Ingrese algun producto");
+            a5.setTitle("Error producto");
+            a5.setHeaderText(null);
+            a5.showAndWait();
         }
 
     }
 
 
     public void onClickedLimpiar(MouseEvent event){
+
+        if(aceptar==false) {
+            new DAO_PyS().modificarStock(String.valueOf(identificacion), String.valueOf(IStock));
+            loadProductos();
+            aceptar=true;
+        }  else if(aceptar==false){
+            Alert a5 = new Alert(Alert.AlertType.ERROR);
+            a5.setContentText("No se puede borrar lo que está vacio");
+            a5.setTitle("Error area vacia");
+            a5.setHeaderText(null);
+            a5.showAndWait();
+        }
             REMuestra.clear();
             Total=0;
             cond=true;
+
     }
 
 

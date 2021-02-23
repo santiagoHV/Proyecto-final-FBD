@@ -15,7 +15,7 @@ import java.util.List;
 public class DAO_Registro {
 
 
-    public static int consultarHabitacion(String habitacion) {
+    public int consultarHabitacion(String habitacion) {
         Operaciones op = new Operaciones();
         try {
             ResultSet res = op.ConsultaEsp("SELECT k_reserva FROM registro_checkin WHERE k_numero_habitacion = "+habitacion+"");
