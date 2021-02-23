@@ -159,7 +159,7 @@ public class DAO_Reserva {
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = Conexion.getInstance().getConnection().prepareStatement("UPDATE reserva" +
-                    " SET n_estado = 'en curso' WHERE f_inicio = ? AND n_estado != 'en curso'");
+                    " SET n_estado = 'en curso' WHERE f_inicio = ? AND n_estado = 'activa'");
 
             preparedStatement.setDate(1, Date.valueOf(LocalDate.now()));
             preparedStatement.executeUpdate();
