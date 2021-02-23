@@ -36,7 +36,7 @@ public class Controlador_Login implements Initializable {
     private double xOffset = 0;
     private double yOffset = 0;
     private UsuarioDAO db;
-    public String AUTH;
+    public String AUTH = "";
 
     private JFXDialog dialogAlerta;
     private Controlador_alerta controlador_alerta;
@@ -46,6 +46,7 @@ public class Controlador_Login implements Initializable {
         //Invocación del método para volver el stage arrastrable:
         db = new UsuarioDAO();
         this.makeStageDragable();
+
     }
 
     //Método para arrastrar la ventana
@@ -135,6 +136,9 @@ public class Controlador_Login implements Initializable {
                     Stage dialogActual = (Stage) BotonAceptar.getScene().getWindow();
                     dialogActual.close();
                 }
+                else {
+                    Alerta alerta = new Alerta("¡ACCESO DENEGADO!",AUTH,StackPane1);
+                }
                 progress.setVisible(false);
             }
         });
@@ -160,27 +164,21 @@ public class Controlador_Login implements Initializable {
             if (rol.equals("recept") || rol.equals("admin")) {
                 return "recept";
             } else if (rol.equals("gerente") || rol.equals("admin")) {
-                JOptionPane.showMessageDialog(null, "Interfaz en mantenimiento");
                 return "gerente";
             } else if (rol.equals("worker") || rol.equals("admin")) {
-                JOptionPane.showMessageDialog(null, "Interfaz en mantenimiento");
                 return "worker";
             } else {
-                JOptionPane.showMessageDialog(null, "Error inesperado 2");
+                mostrarAlerta("¡ERROR!","Error inesperado 2");
                 return "";
             }
         } else if (result.equals("wrong_pass")) {
-            JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
-            return "";
+            return "Contraseña incorrecta";
         } else if (result.equals("not_exist")) {
-            JOptionPane.showMessageDialog(null, "Este usuario no existe");
-            return "";
+            return "Este usuario no existe";
         } else if (result.equals("no_permission")) {
-            JOptionPane.showMessageDialog(null, "Este usuario no tiene acceso aqui");
-            return "";
+            return "Este ususario no tiene acceso aquí";
         } else {
-            JOptionPane.showMessageDialog(null, "Error Inesperado");
-            return "";
+            return "Error inesperado";
         }
     }
 
@@ -266,5 +264,35 @@ public class Controlador_Login implements Initializable {
 
         //Mostrar Stage:
         stage.show();
+    }
+
+    public void mostrarAlerta(String titulo, String mensaje){
+        FXMLLoader alertaDireccion = new FXMLLoader(getClass().getResource("../Vista/recepcionista/alerta.fxml"));
+
+        Parent contenedor = null;
+        try {
+            contenedor = alertaDireccion.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        JFXDialog dialogAlerta = new JFXDialog(StackPane1, (Region) contenedor, JFXDialog.DialogTransition.BOTTOM, true);
+
+        Controlador_alerta controlador_alerta = alertaDireccion.getController();
+
+        AnchorPane alertaAP = (AnchorPane) contenedor.getChildrenUnmodifiable().get(0);
+        JFXButton btn_aceptar = (JFXButton) alertaAP.getChildren().get(2);
+        btn_aceptar.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventAceptar)->
+        {
+            dialogAlerta.close();
+        });
+
+        controlador_alerta.mensaje.setText(mensaje);
+        controlador_alerta.titulo.setText(titulo);
+
+
+        dialogAlerta.show();
+
     }
 }
