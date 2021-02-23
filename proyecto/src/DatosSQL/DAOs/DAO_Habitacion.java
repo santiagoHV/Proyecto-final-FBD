@@ -44,29 +44,13 @@ public class DAO_Habitacion {
 
             while (resultSet.next()){
                 habitaciones.add(resultSet.getInt(1));
-                System.out.println(resultSet.getInt(1));
             }
 
             return habitaciones;
         }catch (SQLException ex){
-            System.out.println(ex + "En Habitación");
+            ex.printStackTrace();
         }
         return null;
-    }
-
-    public String estadoHabitacion(String id){
-        try{
-            ResultSet res = op.ConsultaEsp("SELECT r.n_estado FROM habitacion h, reserva_habitacion rh, reserva r WHERE h.k_numero_habitacion = rh.k_numero_habitacion AND rh.k_reserva = r.k_reserva AND h.k_numero_habitacion = " + id);
-            while(res.next()){
-                if(res.getString(1).equals("en curso")){
-                    return "ocupada";
-                }
-            }
-            return "disponible";
-        }catch (SQLException e){
-            e.printStackTrace();
-            return null;
-        }
     }
 
     public double precioHabitacio(String id){
@@ -79,6 +63,4 @@ public class DAO_Habitacion {
             return 0;
         }
     }
-
-
 }

@@ -175,7 +175,9 @@ public class DAO_Pago {
     public double ingresoHabitacionesPorReserva(String id){
         try {
             ResultSet res1 = op.ConsultaEsp("SELECT * FROM reserva WHERE k_reserva = " + id);
-            res1.next();
+            if (!res1.next()){
+                return -1;
+            }
             ResultSet res2 = op.ConsultaEsp("SELECT * FROM condicion_hotel WHERE k_condicion = " + res1.getInt(10));
             res2.next();
             java.sql.Date fechai = res1.getDate(3);

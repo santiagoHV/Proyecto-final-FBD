@@ -38,24 +38,47 @@ public class Controlador_Ocupacion implements Initializable {
     }
 
     public void loadHistorial(){
-        Task tareita = new Task() {
+        Task<Void> sleeper = new Task<Void>()
+        {
             @Override
-            protected Object call() throws Exception {
-                OBS = FXCollections.observableArrayList(new DAO_Ocupacion_Registro().getHistoricoOcupacion(label_habitacion.getText()));
-                precio = new DAO_Habitacion().precioHabitacio(label_habitacion.getText());
+            protected Void call() throws Exception {
+                try {
+                    Thread.sleep(150);
+                } catch (InterruptedException e) {
+                }
                 return null;
             }
         };
-        tareita.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+
+        //Método invocado una vez se termina correctamente el hilo anterior
+        sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>()
+        {
+            //Método para cerrar la aplicación
             @Override
-            public void handle(WorkerStateEvent workerStateEvent) {
-                tabla_historial.setItems(OBS);
-                label_precio.setText("Precio: " + String.format("$ %(,.2f", precio));
-                progresi.setVisible(false);
+            public void handle(WorkerStateEvent event)
+            {
+                Task tareita = new Task() {
+                    @Override
+                    protected Object call() throws Exception {
+                        OBS = FXCollections.observableArrayList(new DAO_Ocupacion_Registro().getHistoricoOcupacion(label_habitacion.getText()));
+                        precio = new DAO_Habitacion().precioHabitacio(label_habitacion.getText());
+                        return null;
+                    }
+                };
+                tareita.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                    @Override
+                    public void handle(WorkerStateEvent workerStateEvent) {
+                        tabla_historial.setItems(OBS);
+                        label_precio.setText("Precio: " + String.format("$ %(,.2f", precio));
+                        progresi.setVisible(false);
+                    }
+                });
+                Thread elhilito = new Thread(tareita);
+                elhilito.start();
             }
         });
-        Thread elhilito = new Thread(tareita);
-        elhilito.start();
+        new Thread(sleeper).start();
+
     }
 
     public void prepararTabla(){
