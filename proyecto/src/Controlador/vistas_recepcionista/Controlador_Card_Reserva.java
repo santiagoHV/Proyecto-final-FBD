@@ -1,6 +1,9 @@
 package Controlador.vistas_recepcionista;
 
+import DatosSQL.DAOs.DAO_Reserva;
 import Modelo.entidades.Reserva;
+import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
@@ -16,6 +19,7 @@ public class Controlador_Card_Reserva implements Initializable {
     public Label lab_id_titular;
     public Label lab_nom_cliente;
     public Label lab_apel_cliente;
+    public JFXButton btn_cancelar;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -30,5 +34,14 @@ public class Controlador_Card_Reserva implements Initializable {
         lab_id_titular.setText(reserva.getPersona().getK_identificacion()+"");
         lab_nom_cliente.setText(reserva.getPersona().getN_nombre());
         lab_apel_cliente.setText(reserva.getPersona().getN_apellido());
+        if(reserva.getEstado().equals("cancelada") || reserva.getEstado().equals("vencida") || reserva.getEstado().equals("en curso"))
+        {
+            btn_cancelar.setDisable(true);
+        }
+    }
+
+    public void cancelarReservaEv(ActionEvent actionEvent) {
+
+        new DAO_Reserva().actualizarEstadoDeReservas("cancelada", Integer.parseInt(lab_cod_reserva.getText()));
     }
 }
