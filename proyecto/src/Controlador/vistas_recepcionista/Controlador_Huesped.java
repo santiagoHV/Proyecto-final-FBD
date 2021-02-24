@@ -50,8 +50,9 @@ public class Controlador_Huesped implements Initializable
     public JFXButton btn_cambiar;
     public JFXButton btn_ingreso;
     public MFXProgressSpinner progressActIng;
+    public Label txt_num_noches;
 
-    public void setValoresPanel(Huesped huesped, List<Habitacion> habitacionList)
+    public void setValoresPanel(Huesped huesped, List<Habitacion> habitacionList, int codReserva)
     {
         LBnom_completo.setText(huesped.getN_nombre() + " " + huesped.getN_apellido());
         LBnum_id.setText(huesped.getK_identificacion()+"");
@@ -81,7 +82,7 @@ public class Controlador_Huesped implements Initializable
         Task<Registro> registroTask = new Task<Registro>() {
             @Override
             protected Registro call() throws Exception {
-                return new DAO_Registro().consultarRegistroPorHuesped(huesped.getK_identificacion(),huesped.getK_tipo_documento_id());
+                return new DAO_Registro().consultarRegistroPorHuesped(huesped.getK_identificacion(),huesped.getK_tipo_documento_id(), codReserva);
             }
         };
 
@@ -126,8 +127,8 @@ public class Controlador_Huesped implements Initializable
                                 comboHabitacion.getItems().add(h.getK_numero_habitacion());
                             }
                         }
+                        comboHabitacion.setValue(comboHabitacion.getItems().get(comboHabitacion.getItems().size()-1));
                     }
-                    comboHabitacion.setValue(comboHabitacion.getItems().get(comboHabitacion.getItems().size()-1));
                 }
             }
         });

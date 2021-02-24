@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXProgressSpinner?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -69,6 +70,32 @@
                                  </font>
                               </Label>
                               <TextField fx:id="txt_num_doc" prefHeight="25.0" prefWidth="187.0" />
+                           </children>
+                           <padding>
+                              <Insets top="25.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="179.0" layoutY="10.0" prefHeight="76.0" prefWidth="188.0">
+                           <children>
+                              <Label text="Fecha De Inicio">
+                                 <font>
+                                    <Font name="MAXWELL REGULAR" size="25.0" />
+                                 </font>
+                              </Label>
+                              <MFXDatePicker fx:id="dp_fecha_inicio" lineColor="#2c1404b2" maxHeight="-Infinity" maxWidth="-Infinity" pickerColor="#1b0b01" prefHeight="20.0" prefWidth="130.0" />
+                           </children>
+                           <padding>
+                              <Insets top="25.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="760.0" layoutY="10.0" prefHeight="76.0" prefWidth="149.0">
+                           <children>
+                              <Label text="Fecha De Salida">
+                                 <font>
+                                    <Font name="MAXWELL REGULAR" size="25.0" />
+                                 </font>
+                              </Label>
+                              <MFXDatePicker fx:id="dp_fecha_final" lineColor="#2c1404b2" maxHeight="-Infinity" maxWidth="-Infinity" pickerColor="#1b0b01" prefHeight="20.0" prefWidth="130.0" />
                            </children>
                            <padding>
                               <Insets top="25.0" />

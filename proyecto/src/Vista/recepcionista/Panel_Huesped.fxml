@@ -73,5 +73,10 @@
          </font>
       </Label>
       <MFXProgressSpinner fx:id="progressActIng" layoutX="319.0" layoutY="98.0" prefHeight="26.0" prefWidth="26.0" visible="false" />
+      <Label fx:id="txt_num_noches" layoutX="224.0" layoutY="60.0" prefHeight="24.0" prefWidth="87.0" text="#Noches" visible="false">
+         <font>
+            <Font name="MAXWELL REGULAR" size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

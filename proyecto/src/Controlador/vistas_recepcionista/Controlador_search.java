@@ -10,6 +10,7 @@ import animatefx.animation.BounceIn;
 import animatefx.animation.BounceOut;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXScrollPane;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXProgressSpinner;
 import javafx.concurrent.Task;
 import javafx.concurrent.Worker;
@@ -43,6 +44,8 @@ public class Controlador_search implements Initializable {
     public MFXProgressSpinner proSpinner;
     public ScrollPane panel_clientes_hallados;
     public GridPane Grid_Clientes;
+    public MFXDatePicker dp_fecha_final;
+    public MFXDatePicker dp_fecha_inicio;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -86,7 +89,7 @@ public class Controlador_search implements Initializable {
             @Override
             protected List<Reserva> call() throws Exception {
 
-                return reservasList.BuscarReservas(CodFinal, NumDocFinal, txt_nom_apel.getText());
+                return reservasList.BuscarReservas(CodFinal, NumDocFinal, txt_nom_apel.getText(), dp_fecha_inicio.getDate(), dp_fecha_final.getDate());
             }
         };
 
@@ -225,7 +228,15 @@ public class Controlador_search implements Initializable {
                         AnchorPane PanelHuesped = loader.load();
 
                         Controlador_Huesped controlador_huesped = loader.getController();
-                        controlador_huesped.setValoresPanel(Huespedes.get(i), null);
+                        if(txt_cod_reserva.getText().equals(""))
+                        {
+                            controlador_huesped.setValoresPanel(Huespedes.get(i), null, 0);
+                        }
+                        else
+                        {
+                            controlador_huesped.setValoresPanel(Huespedes.get(i), null, Integer.parseInt(txt_cod_reserva.getText()));
+                        }
+
 
                         controlador_huesped.btn_ingreso.setText("Actualizar");
                         controlador_huesped.btn_ingreso.setDisable(false);

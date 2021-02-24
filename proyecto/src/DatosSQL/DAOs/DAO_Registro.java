@@ -61,15 +61,24 @@ public class DAO_Registro {
         return null;
     }
 
-    public Registro consultarRegistroPorHuesped(int ID_Huesped, String tipo_ID){
+    public Registro consultarRegistroPorHuesped(int ID_Huesped, String tipo_ID, int CodReserva){
         Operaciones op = new Operaciones();
         try {
             LocalDate locald = LocalDate.now();
             java.sql.Date sqlDate = java.sql.Date.valueOf(locald);
-            ResultSet resultSet = op.ConsultaEsp("SELECT Registro_CheckIn.* FROM registro_checkin, reserva WHERE " +
-                    "(registro_checkin.k_reserva = reserva.k_reserva and Registro_CheckIn.k_identificacion=Reserva.k_identificacion and " +
-                    "Registro_CheckIn.k_tipo_documento=Reserva.k_tipo_documento) and (registro_checkin.k_identificacion = "+ID_Huesped+" and registro_checkin.k_tipo_documento = '"+tipo_ID+"'" +
-                    " and '"+sqlDate+"' between f_entrada and (reserva.f_reserva))");
+            ResultSet resultSet;
+            if(CodReserva==0)
+            {
+                resultSet = op.ConsultaEsp("SELECT Registro_CheckIn.* FROM registro_checkin, reserva WHERE " +
+                        "Registro_CheckIn.k_tipo_documento=Reserva.k_tipo_documento and registro_checkin.k_identificacion = "+ID_Huesped+" and registro_checkin.k_tipo_documento = '"+tipo_ID+"'");
+            }
+            else
+            {
+                resultSet = op.ConsultaEsp("SELECT Registro_CheckIn.* FROM registro_checkin, reserva WHERE " +
+                        "Registro_CheckIn.k_tipo_documento=Reserva.k_tipo_documento and registro_checkin.k_identificacion = "+ID_Huesped+" and registro_checkin.k_tipo_documento = '"+tipo_ID+"'" +
+                        " and registro_checkin.k_reserva = "+CodReserva+"");
+            }
+
 
             if(resultSet.next())
             {

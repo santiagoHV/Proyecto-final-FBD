@@ -308,7 +308,7 @@ public class Controlador_checkout implements Initializable {
 
                             Controlador_Huesped controlador_huesped = loader.getController();
 
-                            controlador_huesped.setValoresPanel(registroList.get(i).getHuesped(), habitacionList);
+                            controlador_huesped.setValoresPanel(registroList.get(i).getHuesped(), habitacionList, codigoReserva);
 
                             huespedIDList.set(i,registroList.get(i).getHuesped().getK_identificacion());
 
