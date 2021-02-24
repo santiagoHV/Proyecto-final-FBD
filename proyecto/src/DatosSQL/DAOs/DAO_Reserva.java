@@ -188,15 +188,36 @@ public class DAO_Reserva {
 
         Operaciones op = new Operaciones();
         try {
-            String Query = "SELECT * FROM Reserva WHERE k_reserva = "+k_reserva+" or k_identificacion = "+num_doc+" or " +
-                    "k_identificacion IN (SELECT k_identificacion FROM Persona WHERE n_nombre ILIKE ('"+nom_or_apel+"%') or n_apellido ILIKE ('"+nom_or_apel+"%')) ";
 
-            if(nom_or_apel.equals("") && k_reserva==0 && num_doc==0)
+            String Query = "";
+
+            if(fInicio!=null && fFinal!=null)
             {
-                Query = "SELECT * FROM Reserva";
+                Query = "SELECT distinct Reserva.* FROM Reserva, Persona WHERE (Reserva.k_identificacion = Persona.k_identificacion and Reserva.k_tipo_documento = Persona.k_tipo_documento)" +
+                        " and (k_reserva = "+k_reserva+" or Reserva.k_identificacion = "+num_doc+" or " +
+                        " (Persona.n_nombre ILIKE '"+nom_or_apel+"%' or Persona.n_apellido ILIKE '"+nom_or_apel+"%') " +
+                        " or ('"+Date.valueOf(fInicio)+"' <= f_inicio and '"+Date.valueOf(fFinal)+"' >= f_final)) order by k_reserva";
+                Query = Query.replace("%","");
             }
-            ResultSet resultSet =
-                    op.ConsultaEsp(Query);
+            else
+            {
+                Query = "SELECT distinct Reserva.* FROM Reserva, Persona WHERE (Reserva.k_identificacion = Persona.k_identificacion and Reserva.k_tipo_documento = Persona.k_tipo_documento)" +
+                        " and (k_reserva = "+k_reserva+" or Reserva.k_identificacion = "+num_doc+" or " +
+                        " (Persona.n_nombre ILIKE '"+nom_or_apel+"%' or Persona.n_apellido ILIKE '"+nom_or_apel+"%')) order by k_reserva";
+            }
+
+
+            if(nom_or_apel.equals(""))
+            {
+                Query = Query.replace("%","");
+            }
+
+            if(k_reserva==0 && nom_or_apel.equals("") && num_doc==0 && fInicio==null && fFinal==null)
+            {
+                Query = "SELECT * FROM Reserva order by k_reserva";
+            }
+
+            ResultSet resultSet = op.ConsultaEsp(Query);
 
             Reserva reserva;
             while (resultSet.next()) {

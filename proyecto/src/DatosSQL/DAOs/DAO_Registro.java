@@ -69,7 +69,7 @@ public class DAO_Registro {
             ResultSet resultSet;
             if(CodReserva==0)
             {
-                resultSet = op.ConsultaEsp("SELECT Registro_CheckIn.* FROM registro_checkin WHERE " +
+                resultSet = op.ConsultaEsp("SELECT Registro_CheckIn.* FROM registro_checkin, reserva WHERE " +
                         "Registro_CheckIn.k_tipo_documento=Reserva.k_tipo_documento and registro_checkin.k_identificacion = "+ID_Huesped+" and registro_checkin.k_tipo_documento = '"+tipo_ID+"'");
             }
             else
