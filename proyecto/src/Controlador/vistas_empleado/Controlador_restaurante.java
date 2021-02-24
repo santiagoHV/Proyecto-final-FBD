@@ -144,16 +144,16 @@ public class Controlador_restaurante implements Initializable {
         if (DAOR.consultarHabitacion(habitacion)!=-1 && cond){
             cuenta = DAOC.conseguirCuenta(Integer.parseInt(reserva));
         }
-        if(DAOR.consultarsalida(habitacion)==null && cond && (DAOP.consultarExistenciaPago(cuenta)==null)){
+        if(DAOR.consultarsalida(habitacion)==null && cond && (DAOP.consultarExistenciaPago(cuenta)==null) && DAOR.consultarHabitacion(habitacion)!=-1){
             REMuestra.appendText("Habitación No: " + RDPiso.getValue() + RDHabitacion.getValue() + "\n");
             cond = false;
-        } else if (DAOP.consultarExistenciaPago(cuenta)!=null){
+        } else if (DAOP.consultarExistenciaPago(cuenta)!=null ){
             Alert a6 = new Alert(Alert.AlertType.ERROR);
             a6.setContentText("El huesped ya realizo el pago de la habitación");
             a6.setTitle("Pago cliente");
             a6.setHeaderText(null);
             a6.showAndWait();
-        } else if(cond==true){
+        } else if(DAOR.consultarHabitacion(habitacion)==-1){
             Alert a2 = new Alert(Alert.AlertType.ERROR);
             a2.setContentText("Esta habitación está disponible, porfavor escoger una ocupada");
             a2.setTitle("Habitación vacia");
@@ -194,12 +194,18 @@ public class Controlador_restaurante implements Initializable {
             new DAO_PyS().modificarStock(String.valueOf(identificacion), String.valueOf(IStock));
             loadProductos();
             aceptar=true;
-        }  else if(Bloquear_Total==true){
+        }  else if(Bloquear_Total==true && cond == true){
             Alert a5 = new Alert(Alert.AlertType.ERROR);
             a5.setContentText("No se puede borrar lo que está vacio");
             a5.setTitle("Error area vacia");
             a5.setHeaderText(null);
             a5.showAndWait();
+        }  else if(Bloquear_Total== false){
+            Alert a9 = new Alert(Alert.AlertType.ERROR);
+            a9.setContentText("Solo se borrara el titulo");
+            a9.setTitle("Error no hay productos");
+            a9.setHeaderText(null);
+            a9.showAndWait();
         }
             REMuestra.clear();
             Total=0;
