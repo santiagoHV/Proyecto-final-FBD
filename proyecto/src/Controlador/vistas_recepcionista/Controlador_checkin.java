@@ -297,6 +297,8 @@ public class Controlador_checkin implements Initializable {
                                     AnchorPane PanelHuespedes = loader.load();
 
                                     Controlador_Huesped controlador_huesped = loader.getController();
+                                    controlador_huesped.txt_num_noches.setVisible(true);
+                                    controlador_huesped.txt_num_noches.setText((Period.between(reserva.getF_inicio().toLocalDate(),reserva.getF_final().toLocalDate()).getDays()-1)+"");
 
                                     if(registroList.size()==0)
                                     {
@@ -351,7 +353,7 @@ public class Controlador_checkin implements Initializable {
                                                 cantAdultos--;
                                             }
 
-                                            controlador_huesped.setValoresPanel(registroList.get(i).getHuesped(), habitacionList);
+                                            controlador_huesped.setValoresPanel(registroList.get(i).getHuesped(), habitacionList, codReservaFinal);
 
                                             huespedIDList.set(i,registroList.get(i).getHuesped().getK_identificacion());
 
@@ -488,7 +490,7 @@ public class Controlador_checkin implements Initializable {
                                                             " revise la información ingresada e intentélo nuevamente. El huesped ingresado debe ser adulto");
                                                     dialogAlerta.show();
                                                 } else {
-                                                    controlador_huesped.setValoresPanel((Huesped) titularDeReserva, habitacionList);
+                                                    controlador_huesped.setValoresPanel((Huesped) titularDeReserva, habitacionList, codReservaFinal);
                                                     dialog.close();
                                                     controlador_huesped.btn_ingreso.setDisable(false);
 

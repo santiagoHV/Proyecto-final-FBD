@@ -182,7 +182,7 @@ public class DAO_Reserva {
         }
     }
 
-    public List<Reserva> BuscarReservas(int k_reserva, int num_doc, String nom_or_apel) {
+    public List<Reserva> BuscarReservas(int k_reserva, int num_doc, String nom_or_apel, LocalDate fInicio, LocalDate fFinal) {
 
         List<Reserva> reservaList = new ArrayList<>();
 
