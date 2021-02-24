@@ -198,7 +198,7 @@ public class Controlador_piscina implements Initializable {
             a5.setTitle("Error area vacia");
             a5.setHeaderText(null);
             a5.showAndWait();
-        }  else if(Bloquear_Total== false){
+        }  else if(Bloquear_Total== false && cond == true ){
             Alert a9 = new Alert(Alert.AlertType.ERROR);
             a9.setContentText("Solo se borrara el titulo");
             a9.setTitle("Error no hay productos");

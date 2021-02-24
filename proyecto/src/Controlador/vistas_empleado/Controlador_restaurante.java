@@ -93,6 +93,7 @@ public class Controlador_restaurante implements Initializable {
     public void cargar(ActionEvent actionEvent){
 
         if(RDPiso.getValue() != null || RDHabitacion.getValue() != null)  {
+            cuenta = DAOC.conseguirCuenta(Integer.parseInt(reserva));
             ICantidad = Integer.parseInt(TCantidad.getText());
             precio = productos.getSelectionModel().getSelectedItem().getPrecio_producta();
             IStock = productos.getSelectionModel().getSelectedItem().getStock();
@@ -119,8 +120,6 @@ public class Controlador_restaurante implements Initializable {
                 aceptar = false;
             }
 
-            cuenta = DAOC.conseguirCuenta(Integer.parseInt(reserva));
-
             if (DAOCP.consultarcantidad(identificacion, cuenta) == -1) {
                 DAOCP.agregarProducto(ICantidad, identificacion, cuenta, precio);
             } else {
@@ -144,7 +143,7 @@ public class Controlador_restaurante implements Initializable {
         if (DAOR.consultarHabitacion(habitacion)!=-1 && cond){
             cuenta = DAOC.conseguirCuenta(Integer.parseInt(reserva));
         }
-        if(DAOR.consultarsalida(habitacion)==null && cond && (DAOP.consultarExistenciaPago(cuenta)==null) && DAOR.consultarHabitacion(habitacion)!=-1){
+        if(DAOR.consultarsalida(habitacion)==null && DAOP.consultarExistenciaPago(cuenta)==null && DAOR.consultarHabitacion(habitacion)!=-1 && cond==true){
             REMuestra.appendText("Habitación No: " + RDPiso.getValue() + RDHabitacion.getValue() + "\n");
             cond = false;
         } else if (DAOP.consultarExistenciaPago(cuenta)!=null ){
@@ -193,23 +192,27 @@ public class Controlador_restaurante implements Initializable {
         if(aceptar==false &&  Bloquear_Total==true) {
             new DAO_PyS().modificarStock(String.valueOf(identificacion), String.valueOf(IStock));
             loadProductos();
-            aceptar=true;
         }  else if(Bloquear_Total==true && cond == true){
             Alert a5 = new Alert(Alert.AlertType.ERROR);
             a5.setContentText("No se puede borrar lo que está vacio");
             a5.setTitle("Error area vacia");
             a5.setHeaderText(null);
             a5.showAndWait();
-        }  else if(Bloquear_Total== false){
+
+        }  else if(Bloquear_Total== false && cond == true){
             Alert a9 = new Alert(Alert.AlertType.ERROR);
             a9.setContentText("Solo se borrara el titulo");
             a9.setTitle("Error no hay productos");
             a9.setHeaderText(null);
             a9.showAndWait();
+
+
         }
             REMuestra.clear();
             Total=0;
             cond=true;
+            Bloquear_Total = true;
+            aceptar=true;
 
     }
 
