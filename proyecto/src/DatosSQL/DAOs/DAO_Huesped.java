@@ -96,13 +96,19 @@ public class DAO_Huesped {
         Operaciones op = new Operaciones();
         try {
             String Query = "SELECT distinct Huesped.*, Persona.n_nombre, Persona.n_apellido, Persona.n_telefono, Persona.f_nacimiento " +
-                    " FROM Huesped, Persona, registro_checkin WHERE (Huesped.k_identificacion = Persona.k_identificacion and Huesped.k_tipo_documento = Persona.k_tipo_documento) " +
-                    " and (Huesped.k_identificacion = "+num_doc+" or Huesped.k_identificacion IN (SELECT Persona.k_identificacion FROM Persona WHERE n_nombre ILIKE ('"+nom_or_apel+"%') or n_apellido ILIKE ('"+nom_or_apel+"%')) or k_reserva="+k_reserva+");";
+                    " FROM Huesped, Persona, registro_checkin WHERE (Huesped.k_identificacion = Persona.k_identificacion and Huesped.k_tipo_documento = Persona.k_tipo_documento and Registro_CheckIn.k_identificacion = Huesped.k_identificacion and Registro_CheckIn.k_tipo_documento = Huesped.k_tipo_documento) " +
+                    " and (Huesped.k_identificacion = " + num_doc + " or Persona.n_nombre ILIKE '" + nom_or_apel + "%' or Persona.n_apellido ILIKE '" + nom_or_apel + "%'" +
+                    " or registro_checkin.k_reserva="+k_reserva+")";
+
+            if (nom_or_apel.equals("")) {
+                Query = Query.replace("%","");
+            }
+
 
             if(nom_or_apel.equals("") && k_reserva==0 && num_doc==0)
             {
                 Query = "SELECT distinct Huesped.*, Persona.n_nombre, Persona.n_apellido, Persona.n_telefono, Persona.f_nacimiento " +
-                        " FROM Huesped, Persona, registro_checkin WHERE (Huesped.k_identificacion = Persona.k_identificacion and Huesped.k_tipo_documento = Persona.k_tipo_documento)";
+                        " FROM Huesped, Persona, registro_checkin WHERE (Huesped.k_identificacion = Persona.k_identificacion and Huesped.k_tipo_documento = Persona.k_tipo_documento and Registro_CheckIn.k_identificacion = Huesped.k_identificacion and Registro_CheckIn.k_tipo_documento = Huesped.k_tipo_documento)";
             }
             ResultSet resultSet = op.ConsultaEsp(Query);
 
