@@ -298,7 +298,7 @@ public class Controlador_checkin implements Initializable {
 
                                     Controlador_Huesped controlador_huesped = loader.getController();
                                     controlador_huesped.txt_num_noches.setVisible(true);
-                                    controlador_huesped.txt_num_noches.setText((Period.between(reserva.getF_inicio().toLocalDate(),reserva.getF_final().toLocalDate()).getDays()-1)+"");
+                                    controlador_huesped.txt_num_noches.setText((Period.between(reserva.getF_inicio().toLocalDate(),reserva.getF_final().toLocalDate()).getDays()-1)+" Noche(s)");
 
                                     if(registroList.size()==0)
                                     {
@@ -542,6 +542,7 @@ public class Controlador_checkin implements Initializable {
             }
         });
         Thread threadReserva = new Thread(taskConReservaHabi);
+
         threadReserva.start();
     }
 
@@ -619,10 +620,37 @@ public class Controlador_checkin implements Initializable {
     }
 
     public void ClickBuscar(ActionEvent actionEvent) {
-        if(!codigo_reserva.getText().equals(""))
+        if(codigo_reserva.getText().matches("[0-9]+"))
         {
-            DefinirPanelDatosHuespedes();
+            if(!codigo_reserva.getText().equals(""))
+            {
+                DefinirPanelDatosHuespedes();
+            }
         }
+        else
+        {
+            FXMLLoader alertaDireccion = new FXMLLoader(getClass().getResource("../../Vista/recepcionista/alerta.fxml"));
+            Parent contenedor = null;
+            try {
+                contenedor = alertaDireccion.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            JFXDialog dialogAlerta = new JFXDialog(controlador_checkin.stackBG, (Region) contenedor, JFXDialog.DialogTransition.BOTTOM, true);
+            Controlador_alerta controlador_alerta = alertaDireccion.getController();
+
+            AnchorPane alertaAP = (AnchorPane) contenedor.getChildrenUnmodifiable().get(0);
+            JFXButton btn_aceptar = (JFXButton) alertaAP.getChildren().get(2);
+            btn_aceptar.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent mouseEventAceptar)->
+            {
+                dialogAlerta.close();
+            });
+            controlador_alerta.titulo.setText("Error al realizar la consulta");
+            controlador_alerta.mensaje.setText("El valor ingresado debe ser un número, por favor intentélo nuevamente");
+            dialogAlerta.show();
+        }
+
     }
 
     public void btn_limpiar(ActionEvent actionEvent) {

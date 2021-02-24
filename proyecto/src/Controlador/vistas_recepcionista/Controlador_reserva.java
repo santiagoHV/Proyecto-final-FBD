@@ -667,16 +667,33 @@ public class Controlador_reserva implements Initializable {
                 @Override
                 public void handle(WorkerStateEvent workerStateEvent) {
                     Reserva reserva = reservaTask.getValue();
-                    fecha_ingreso.setValue(reserva.getF_inicio().toLocalDate());
-                    fecha_salida.setValue(reserva.getF_final().toLocalDate());
-                    total_personas.setText(reserva.getCantidad_adultos()+"");
-                    progressIndReserva.setVisible(false);
+                    if(reserva != null)
+                    {
+                        fecha_ingreso.setValue(reserva.getF_inicio().toLocalDate());
+                        fecha_salida.setValue(reserva.getF_final().toLocalDate());
+                        total_personas.setText(reserva.getCantidad_adultos()+"");
+                        progressIndReserva.setVisible(false);
+                    }
+                    else
+                    {
+                        mostrarAlerta("Error al realizar la consulta", "El valor ingresado no parece estar asociado a ningún código de reserva, por favor intentélo nuevamente");
+                        progressIndReserva.setVisible(false);
+                    }
                 }
             });
 
 
             //Se inicia el hilo asignado
-            threadReserva.start();
+            if(codigo_reserva.getText().matches("[0-9]+"))
+            {
+                threadReserva.start();
+            }
+            else
+            {
+                mostrarAlerta("Error al realizar la consulta", "El valor ingresado debe ser un número, por favor intentélo nuevamente");
+                progressIndReserva.setVisible(false);
+            }
+
         }
     }
 

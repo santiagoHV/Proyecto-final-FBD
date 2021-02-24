@@ -239,7 +239,8 @@ public class Controlador_search implements Initializable {
 
 
                         controlador_huesped.btn_ingreso.setText("Actualizar");
-                        controlador_huesped.btn_ingreso.setDisable(false);
+                        controlador_huesped.btn_ingreso.setDisable(true);
+                        controlador_huesped.btn_cambiar.setDisable(true);
 
                         row++;
                         Grid_Clientes.add(PanelHuesped,column,row);
