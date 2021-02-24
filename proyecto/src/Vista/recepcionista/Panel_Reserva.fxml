@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXProgressSpinner?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -86,5 +87,6 @@
             <Font name="MAXWELL REGULAR" size="19.0" />
          </font>
       </Label>
+      <MFXProgressSpinner fx:id="progressReserva" layoutX="264.0" layoutY="83.0" visible="false" />
    </children>
 </AnchorPane>
